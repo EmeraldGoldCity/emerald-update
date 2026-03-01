@@ -9,12 +9,11 @@ import MainLayout from '@/layouts/MainLayout.astro';
 >
   {/* Hero Section - Mobile Performance Optimized */}
   <section class="relative h-[600px] md:h-[700px] flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-r from-emerald-950/80 to-emerald-900/70 z-10"></div>
-    <picture>
+<div class="absolute inset-0 bg-gradient-to-r from-emerald-950/40 to-emerald-900/30 z-10"></div>    <picture>
       {/* Mobile WebP */}
       <source 
         media="(max-width: 768px)" 
-        srcset="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=640&h=360&fit=crop&q=70&fm=webp" 
+        srcset="/images/cad-hero.avif" 
         type="image/webp"
         width="640"
         height="360"
@@ -22,7 +21,7 @@ import MainLayout from '@/layouts/MainLayout.astro';
       
       {/* Desktop WebP */}
       <source 
-        srcset="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=1920&h=1080&fit=crop&q=75&fm=webp" 
+        srcset="/images/cad-hero.avif" 
         type="image/webp"
         width="1920"
         height="1080"
@@ -30,7 +29,7 @@ import MainLayout from '@/layouts/MainLayout.astro';
       
       {/* Fallback */}
       <img
-        src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=1920&h=1080&fit=crop&q=75&fm=webp&auto=format"
+        src="/images/cad-hero.avif"
         alt="Professional luxury limousine service in Seattle - Black Mercedes sedan for airport transfers and corporate events"
         class="absolute inset-0 w-full h-full object-cover"
         width="1920"
