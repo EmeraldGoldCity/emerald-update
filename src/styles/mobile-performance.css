@@ -1,0 +1,273 @@
+/* ================================================ */
+/* MOBILE PERFORMANCE OPTIMIZATIONS                */
+/* GPU-Accelerated Animations Only                 */
+/* ================================================ */
+
+/* ============================================ */
+/* FIX: Non-composited animations               */
+/* Override transition-colors to use only       */
+/* GPU-compositable properties                  */
+/* ============================================ */
+
+/* Kill all border-color transitions globally - use box-shadow instead */
+.transition-colors {
+  transition-property: color, background-color, fill, stroke, opacity !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Service cards: use box-shadow instead of border transition */
+a[class*="border-2"][class*="rounded-xl"],
+.group.border-2 {
+  transition: box-shadow 0.2s ease, transform 0.2s ease !important;
+  will-change: transform;
+}
+
+a[class*="border-2"][class*="rounded-xl"]:hover,
+.group.border-2:hover {
+  box-shadow: 0 0 0 2px #10b981 !important;
+  transform: translateY(-1px);
+}
+
+/* Service card headings with group-hover */
+h3[class*="group-hover:text-emerald"],
+.group:hover h3[class*="group-hover:text-emerald"] {
+  transition: opacity 0.15s ease !important;
+}
+
+.group:hover h3[class*="group-hover:text-emerald"] {
+  color: #059669;
+}
+
+/* Footer links & nav links */
+a[class*="hover:text-[#d4af37]"],
+footer a,
+nav a {
+  transition: opacity 0.15s ease !important;
+}
+
+a[class*="hover:text-[#d4af37]"]:hover,
+footer a:hover,
+nav a:hover {
+  color: #d4af37 !important;
+}
+
+/* Mobile menu button */
+button[class*="hover:bg-emerald"] {
+  transition: background-color 0.15s ease !important;
+}
+
+/* Book Now buttons - GPU optimized */
+a[href="/book-now"],
+a[href*="book-now"] {
+  transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease !important;
+  will-change: transform;
+}
+
+a[href="/book-now"]:hover,
+a[href*="book-now"]:hover {
+  transform: translateY(-1px);
+}
+
+/* ================================================ */
+/* Override framework-injected inline transitions   */
+/* that cause non-composited animation warnings     */
+/* ================================================ */
+
+/* Footer links */
+footer a[style*="transition"] {
+  transition: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Service card headings */
+h3[style*="transition: color"] {
+  transition: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Any element with inline color transition */
+[style*="transition: color"] {
+  transition: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Use will-change for elements that DO animate */
+.group {
+  will-change: transform;
+}
+
+/* View Service Areas link */
+a[href="/locations"][class*="inline-flex"] {
+  transition: opacity 150ms ease !important;
+}
+
+/* ================================================ */
+/* Content Visibility for Below-Fold Sections      */
+/* Speeds up initial render                        */
+/* ================================================ */
+
+section:not(:first-of-type) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+/* ================================================ */
+/* CLS Prevention                                   */
+/* Reserve space for dynamic content                */
+/* ================================================ */
+
+.hero-text-container,
+.hero-content,
+.hero .relative.z-20 {
+  min-height: 280px;
+  contain: layout style paint;
+}
+
+/* ================================================ */
+/* Font Loading Optimization                        */
+/* Prevent layout shift from font loading           */
+/* ================================================ */
+
+@supports (font-display: swap) {
+  @font-face {
+    font-display: swap;
+  }
+}
+
+/* ================================================ */
+/* Image Performance                                */
+/* ================================================ */
+
+img {
+  content-visibility: auto;
+}
+
+/* Lazy-loaded images below the fold */
+img[loading="lazy"] {
+  content-visibility: auto;
+  contain-intrinsic-size: 640px 360px;
+}
+
+/* ================================================ */
+/* Reduce Motion for Accessibility                  */
+/* ================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ================================================ */
+/* Mobile-Specific Performance Optimizations        */
+/* ================================================ */
+
+@media (max-width: 768px) {
+  /* Disable expensive effects on mobile */
+  .shadow-2xl,
+  .shadow-3xl {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  /* Reduce transforms on mobile for better performance */
+  .hover\:scale-105:hover {
+    transform: scale(1.02) !important;
+  }
+  
+  /* Simpler gradients on mobile */
+  .bg-gradient-to-r,
+  .bg-gradient-to-b {
+    background-image: linear-gradient(to bottom, var(--tw-gradient-stops)) !important;
+  }
+}
+
+/* ================================================ */
+/* Prefetch Optimization                            */
+/* ================================================ */
+
+a[href*="/book-now"]:hover::before,
+a[href*="/services"]:hover::before,
+a[href*="/airport-transfers"]:hover::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+/* ================================================ */
+/* Critical Path Optimization                       */
+/* ================================================ */
+
+/* Defer non-critical backgrounds */
+[style*="background-image"]:not(.hero) {
+  content-visibility: auto;
+}
+
+/* ================================================ */
+/* Touch Target Optimization                        */
+/* Ensure all interactive elements meet 48x48px     */
+/* ================================================ */
+
+button:not(nav button),
+a[role="button"],
+input[type="submit"],
+input[type="button"] {
+  min-width: 48px;
+  min-height: 48px;
+}
+
+/* ================================================ */
+/* Scroll Performance                               */
+/* ================================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ================================================ */
+/* Paint Optimization                               */
+/* Isolate paint layers for better compositing      */
+/* ================================================ */
+
+.hero,
+header,
+nav,
+footer {
+  isolation: isolate;
+}
+
+/* ================================================ */
+/* Screen Reader Only (Accessibility)               */
+/* ================================================ */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}

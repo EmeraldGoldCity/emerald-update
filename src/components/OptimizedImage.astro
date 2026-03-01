@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  quality?: number;
+}
+
+const { 
+  src, 
+  alt, 
+  width, 
+  height, 
+  class: className = '', 
+  loading = 'lazy',
+  quality = 80
+} = Astro.props;
+
+// Check if it's a remote image or local
+const isRemote = src.startsWith('http://') || src.startsWith('https://');
+---
+
+{isRemote ? (
+  <img 
+    src={src} 
+    alt={alt} 
+    class={className}
+    loading={loading}
+    width={width}
+    height={height}
+  />
+) : (
+  <Image
+    src={src}
+    alt={alt}
+    width={width || 800}
+    height={height || 600}
+    class={className}
+    loading={loading}
+    quality={quality}
+    format="webp"
+  />
+)}

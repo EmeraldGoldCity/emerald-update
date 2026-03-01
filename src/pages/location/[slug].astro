@@ -1,0 +1,220 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import { allLocations } from '@/app/data/locations';
+
+export async function getStaticPaths() {
+  return allLocations.map((location) => ({
+    params: { slug: location.slug },
+    props: { location }
+  }));
+}
+
+const { location } = Astro.props;
+---
+
+<MainLayout 
+  title={`${location.name} Limousine Service - Emerald City Limos`}
+  description={location.description}
+  keywords={`${location.name} limo service, ${location.name} limousine, ${location.name} luxury transportation, ${location.name} airport transfer, emerald city limos ${location.name}`}
+>
+  {/* Hero Section */}
+  <section class="relative h-[500px] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-emerald-950/80 to-emerald-900/70 z-10"></div>
+    <img
+      src="https://images.unsplash.com/photo-1524089642040-1c8df6942a78?w=1920&h=1080&fit=crop&q=80"
+      alt={`${location.name} Limousine Service`}
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+    />
+    <div class="relative z-20 text-center text-white max-w-4xl mx-auto px-4">
+      <h1 class="text-5xl md:text-6xl font-bold mb-4 drop-shadow-2xl">
+        {location.name} <span class="text-[#d4af37]">Limousine Service</span>
+      </h1>
+      {location.county && (
+        <p class="text-xl text-gray-200 drop-shadow-lg mb-4">
+          {location.county}
+        </p>
+      )}
+      <p class="text-lg text-gray-200 drop-shadow-lg">
+        Premium luxury transportation serving {location.name}
+      </p>
+    </div>
+  </section>
+
+  {/* Description Section */}
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="prose prose-lg max-w-none">
+        <p class="text-xl text-gray-700 leading-relaxed mb-6">
+          {location.description}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* Services Available */}
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">
+        Services Available in {location.name}
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Airport Transfers */}
+        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all">
+          <div class="w-16 h-16 bg-emerald-700 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Airport Transfers</h3>
+          <p class="text-gray-600 mb-4">Reliable transportation to/from SEA-TAC, Boeing Field, and Paine Field airports.</p>
+          <a href="/airport-transfers" class="text-emerald-700 font-semibold hover:text-emerald-800">Learn More →</a>
+        </div>
+
+        {/* Hourly Charters */}
+        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all">
+          <div class="w-16 h-16 bg-emerald-700 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Hourly Charters</h3>
+          <p class="text-gray-600 mb-4">Flexible luxury transportation for business meetings, tours, and special events.</p>
+          <a href="/service/hourly-charters" class="text-emerald-700 font-semibold hover:text-emerald-800">Learn More →</a>
+        </div>
+
+        {/* Corporate Transportation */}
+        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all">
+          <div class="w-16 h-16 bg-emerald-700 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Executive Transportation</h3>
+          <p class="text-gray-600 mb-4">Professional chauffeur service for executives and business professionals.</p>
+          <a href="/service/executive-transportation" class="text-emerald-700 font-semibold hover:text-emerald-800">Learn More →</a>
+        </div>
+
+        {/* Wedding Transportation */}
+        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all">
+          <div class="w-16 h-16 bg-emerald-700 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Wedding Transportation</h3>
+          <p class="text-gray-600 mb-4">Elegant limousine service for your special day with champagne and red carpet.</p>
+          <a href="/service/wedding-transportation" class="text-emerald-700 font-semibold hover:text-emerald-800">Learn More →</a>
+        </div>
+
+        {/* Special Events */}
+        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all">
+          <div class="w-16 h-16 bg-emerald-700 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Special Occasions</h3>
+          <p class="text-gray-600 mb-4">Luxury transportation for birthdays, proms, anniversaries, and celebrations.</p>
+          <a href="/service/special-occasions" class="text-emerald-700 font-semibold hover:text-emerald-800">Learn More →</a>
+        </div>
+
+        {/* Game Day Transport */}
+        <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all">
+          <div class="w-16 h-16 bg-emerald-700 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Game Day Transport</h3>
+          <p class="text-gray-600 mb-4">Safe transportation to Seahawks, Mariners, Sounders, and Kraken games.</p>
+          <a href="/service/game-day-transport" class="text-emerald-700 font-semibold hover:text-emerald-800">Learn More →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Why Choose Us for This Location */}
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">
+        Why Choose Emerald City Limos in {location.name}
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="w-20 h-20 bg-gradient-to-br from-emerald-700 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">24/7 Availability</h3>
+          <p class="text-gray-600">Round-the-clock service whenever you need us in {location.name}</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-20 h-20 bg-gradient-to-br from-emerald-700 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">Professional Chauffeurs</h3>
+          <p class="text-gray-600">Experienced drivers familiar with all {location.name} routes</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-20 h-20 bg-gradient-to-br from-emerald-700 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">Luxury Fleet</h3>
+          <p class="text-gray-600">Premium vehicles maintained to the highest standards</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* CTA Section */}
+  <section class="py-20 bg-gradient-to-r from-emerald-900 to-emerald-800 text-white">
+    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl font-bold mb-6">Book Your {location.name} Limousine Service</h2>
+      <p class="text-xl mb-8 text-gray-200">
+        Experience luxury transportation in {location.name}
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/book-now"
+          class="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-semibold transition-all inline-block"
+        >
+          BOOK NOW
+        </a>
+        <a
+          href="tel:+12065959675"
+          class="bg-transparent border-2 border-white hover:bg-white hover:text-emerald-900 text-white px-8 py-4 rounded-lg font-semibold transition-all inline-block"
+        >
+          Call: (206) 595-9675
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* Other Locations */}
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-center text-gray-900 mb-8">Other Locations We Serve</h2>
+      <div class="text-center">
+        <a
+          href="/locations"
+          class="inline-flex items-center text-emerald-700 hover:text-emerald-800 font-semibold text-lg"
+        >
+          View All Locations
+          <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</MainLayout>

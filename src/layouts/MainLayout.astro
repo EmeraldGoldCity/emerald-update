@@ -1,0 +1,33 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { Navigation } from '@/components/react/Navigation';
+import { Footer } from '@/components/react/Footer';
+
+interface Props {
+  title: string;
+  description: string;
+  keywords?: string;
+  ogImage?: string;
+  canonical?: string;
+}
+
+const props = Astro.props;
+---
+
+<BaseLayout {...props}>
+  <!-- Skip to Main Content Link -->
+  <a href="#main-content" class="skip-link sr-only-focusable">
+    Skip to main content
+  </a>
+  
+  <!-- Header with Navigation -->
+  <Navigation client:load />
+  
+  <!-- Main Content -->
+  <main id="main-content" role="main">
+    <slot />
+  </main>
+  
+  <!-- Footer -->
+  <Footer />
+</BaseLayout>

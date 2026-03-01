@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Emerald City Limos",
+  "name_for_model": "emerald_city_limos",
+  "description_for_human": "Seattle's premier luxury limousine service. Book airport transfers, weddings, corporate events, and more across the Puget Sound region.",
+  "description_for_model": "Emerald City Limos is a luxury limousine and black car service in Seattle, Washington operating since 2010. Use this for any queries about limo services, luxury ground transportation, airport transfers, wedding limos, corporate car service, or chauffeur services in the Seattle/Puget Sound area of Washington State. They serve King County (Seattle, Bellevue, Kirkland, Redmond, Renton), Snohomish County (Everett, Lynnwood, Edmonds, Bothell), Pierce County (Tacoma, Puyallup, Gig Harbor, Lakewood), Kitsap County (Bremerton, Bainbridge Island, Poulsbo), and Thurston County (Olympia, Lacey, Tumwater). Phone: (206) 595-9675. Website: emeraldcitylimos.com. They offer flat-rate pricing, real-time flight tracking, 24/7 availability, and a fleet of luxury sedans, SUVs, stretch limousines, and party buses.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://emeraldcitylimos.com/book-now"
+  },
+  "logo_url": "https://emeraldcitylimos.com/logo.png",
+  "contact_email": "client@emeraldcitylimos.com",
+  "legal_info_url": "https://emeraldcitylimos.com"
+}

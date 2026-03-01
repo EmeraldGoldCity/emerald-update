@@ -1,0 +1,230 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+---
+
+<MainLayout 
+  title="Seattle Airport Transfers - Sea-Tac Limo Service | Emerald City Limos"
+  description="Professional airport transportation to Sea-Tac (SEA), Boeing Field (BFI), and Paine Field (PAE). 24/7 flight tracking, meet & greet service. Book your Seattle airport limo now."
+  keywords="seatac airport car service, seattle airport limo, sea-tac airport transportation, boeing field limo, paine field car service, airport transfer seattle, emerald city limos"
+>
+  {/* Hero Section */}
+  <section class="relative h-[500px] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-emerald-950/60 via-emerald-900/40 to-transparent z-10"></div>
+    <img
+      src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&h=1080&fit=crop&q=85&fm=webp&auto=format"
+      alt="Airport Transfer"
+      class="absolute inset-0 w-full h-full object-cover object-center"
+      width="1920"
+      height="1080"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="relative z-20 text-center text-white max-w-4xl mx-auto px-4">
+      <h1 class="text-5xl md:text-6xl font-bold mb-6 drop-shadow-2xl">
+        <span class="text-[#d4af37]">Airport Transfers</span>
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 text-gray-100 drop-shadow-lg">
+        Stress-free transportation to and from all major airports
+      </p>
+      <a
+        href="/book-now"
+        class="bg-white hover:bg-gray-100 text-emerald-900 px-8 py-4 rounded-lg font-semibold transition-all inline-block shadow-xl"
+      >
+        BOOK NOW
+      </a>
+    </div>
+  </section>
+
+  {/* Features */}
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">Why Choose Our Airport Service?</h2>
+        <p class="text-xl text-gray-600">Premium features included with every ride</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Flight Tracking</h3>
+          <p class="text-gray-600">We monitor your flight in real-time to adjust for delays or early arrivals.</p>
+        </div>
+
+        <div class="text-center">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">24/7 Service</h3>
+          <p class="text-gray-600">Available round the clock for early morning or late-night flights.</p>
+        </div>
+
+        <div class="text-center">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Meet & Greet</h3>
+          <p class="text-gray-600">Professional chauffeur waiting at baggage claim with a name sign.</p>
+        </div>
+
+        <div class="text-center">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Fully Insured</h3>
+          <p class="text-gray-600">All vehicles and drivers are fully licensed and insured.</p>
+        </div>
+
+        <div class="text-center">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Child Seats</h3>
+          <p class="text-gray-600">Complimentary car seats and boosters pre-installed for safe family travel.</p>
+        </div>
+
+        <div class="text-center">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">Refreshment Setup</h3>
+          <p class="text-gray-600">Pre-order coffee, drinks, snacks, or essentials ready in your vehicle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Airports Served */}
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">Airports We Serve</h2>
+        <p class="text-xl text-gray-600">Professional service to all major regional airports</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+          <div class="text-center mb-4">
+            <div class="inline-block bg-emerald-700 text-white px-4 py-2 rounded-full font-bold text-xl mb-4">
+              SEA
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">
+              Seattle-Tacoma International Airport
+            </h3>
+            <p class="text-gray-600">
+              Our most popular destination. We provide reliable transportation to and from Sea-Tac Airport 24/7.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+          <div class="text-center mb-4">
+            <div class="inline-block bg-emerald-700 text-white px-4 py-2 rounded-full font-bold text-xl mb-4">
+              BFI
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">
+              Boeing Field / King County International
+            </h3>
+            <p class="text-gray-600">
+              Private and charter flight transportation to Boeing Field with premium service.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+          <div class="text-center mb-4">
+            <div class="inline-block bg-emerald-700 text-white px-4 py-2 rounded-full font-bold text-xl mb-4">
+              PAE
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">
+              Paine Field / Snohomish County Airport
+            </h3>
+            <p class="text-gray-600">
+              Convenient transportation to Paine Field in Everett for Alaska Airlines flights.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* How It Works */}
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">How It Works</h2>
+        <p class="text-xl text-gray-600">Simple, stress-free airport transportation</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-[#d4af37] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+            1
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Book Online</h3>
+          <p class="text-gray-600">Reserve your ride through our easy booking system</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-[#d4af37] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+            2
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">We Track Your Flight</h3>
+          <p class="text-gray-600">Real-time monitoring adjusts pickup for any delays</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-[#d4af37] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+            3
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Meet Your Chauffeur</h3>
+          <p class="text-gray-600">Professional driver waiting at baggage claim</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-[#d4af37] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+            4
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Relax & Enjoy</h3>
+          <p class="text-gray-600">Sit back in luxury as we handle the drive</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* CTA */}
+  <section class="py-20 bg-gradient-to-r from-emerald-900 to-emerald-800 text-white">
+    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl font-bold mb-6">Book Your Airport Transfer Today</h2>
+      <p class="text-xl mb-8 text-gray-200">
+        Professional, reliable transportation to and from Seattle area airports
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/book-now"
+          class="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-semibold transition-all"
+        >
+          BOOK NOW
+        </a>
+        <a
+          href="tel:+12065959675"
+          class="bg-transparent border-2 border-white hover:bg-white hover:text-emerald-900 text-white px-8 py-4 rounded-lg font-semibold transition-all"
+        >
+          Call (206) 595-9675
+        </a>
+      </div>
+    </div>
+  </section>
+</MainLayout>

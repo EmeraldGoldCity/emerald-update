@@ -1,0 +1,112 @@
+---
+/**
+ * ResponsiveImage Component
+ * 
+ * Optimized for mobile performance with:
+ * - WebP format with JPG fallback
+ * - Responsive sizing for mobile/desktop
+ * - Lazy loading (except critical images)
+ * - Proper dimensions to prevent layout shift
+ * 
+ * Usage:
+ * <ResponsiveImage
+ *   desktop="/images/hero-desktop"
+ *   mobile="/images/hero-mobile"
+ *   alt="Seattle limousine service"
+ *   width={1280}
+ *   height={720}
+ *   loading="eager"
+ *   priority
+ * />
+ */
+
+interface Props {
+  desktop: string; // Path without extension (e.g., "/images/hero-desktop")
+  mobile?: string; // Path without extension (e.g., "/images/hero-mobile")
+  alt: string;
+  width: number;
+  height: number;
+  loading?: 'eager' | 'lazy';
+  priority?: boolean;
+  className?: string;
+  objectFit?: 'cover' | 'contain' | 'fill';
+}
+
+const {
+  desktop,
+  mobile,
+  alt,
+  width,
+  height,
+  loading = 'lazy',
+  priority = false,
+  className = '',
+  objectFit = 'cover',
+} = Astro.props;
+
+// Calculate mobile dimensions (typically 50% of desktop)
+const mobileWidth = mobile ? Math.round(width / 2) : width;
+const mobileHeight = mobile ? Math.round(height / 2) : height;
+
+const objectFitClass = {
+  cover: 'object-cover',
+  contain: 'object-contain',
+  fill: 'object-fill',
+}[objectFit];
+---
+
+<picture>
+  {mobile && (
+    <>
+      {/* Mobile WebP - Modern browsers on mobile */}
+      <source 
+        media="(max-width: 768px)" 
+        srcset={`${mobile}.webp`}
+        type="image/webp" 
+        width={mobileWidth}
+        height={mobileHeight}
+      />
+      
+      {/* Mobile JPG fallback */}
+      <source 
+        media="(max-width: 768px)" 
+        srcset={`${mobile}.jpg`}
+        type="image/jpeg" 
+        width={mobileWidth}
+        height={mobileHeight}
+      />
+    </>
+  )}
+  
+  {/* Desktop WebP - Modern browsers */}
+  <source 
+    srcset={`${desktop}.webp`}
+    type="image/webp" 
+    width={width}
+    height={height}
+  />
+  
+  {/* Desktop JPG fallback - All browsers */}
+  <img
+    src={`${desktop}.jpg`}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    fetchpriority={priority ? 'high' : 'auto'}
+    decoding={priority ? 'sync' : 'async'}
+    class={`${objectFitClass} ${className}`}
+  />
+</picture>
+
+<style>
+  picture {
+    display: contents;
+  }
+  
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+</style>

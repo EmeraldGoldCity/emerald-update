@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  ADD THESE ENTRIES TO YOUR EXISTING sitemap.xml
+  These LLM discovery files should be indexed by search engines and AI crawlers
+-->
+
+<!-- LLM Discovery Files - Add to existing sitemap.xml -->
+<url>
+  <loc>https://emeraldcitylimos.com/llms.txt</loc>
+  <lastmod>2025-02-17</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://emeraldcitylimos.com/llms-full.txt</loc>
+  <lastmod>2025-02-17</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.7</priority>
+</url>

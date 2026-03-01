@@ -1,0 +1,426 @@
+/* ============================================ */
+/* ACCESSIBILITY STYLES - WCAG 2.1 AA Compliant */
+/* ============================================ */
+
+/* Screen Reader Only - Visually Hidden but Accessible */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Show on Focus - For Keyboard Navigation */
+.sr-only-focusable:active,
+.sr-only-focusable:focus,
+.sr-only-focusable:focus-within {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  padding: 0.5rem 1rem;
+  background-color: #d4af37;
+  color: #000;
+  font-weight: 600;
+  z-index: 10000;
+}
+
+/* Skip to Main Content Link */
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: 0;
+  background: #d4af37;
+  color: #000;
+  padding: 12px 24px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  z-index: 10000;
+  border-radius: 0 0 4px 0;
+  transition: top 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid #000;
+  outline-offset: 2px;
+}
+
+/* ============================================ */
+/* FOCUS INDICATORS - Enhanced for Visibility */
+/* ============================================ */
+
+/* Remove default outline */
+*:focus {
+  outline: none;
+}
+
+/* Custom Focus Visible Indicator */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible,
+[role="button"]:focus-visible,
+[role="link"]:focus-visible {
+  outline: 3px solid #d4af37;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Specific focus for navigation links */
+nav a:focus-visible {
+  outline: 3px solid #d4af37;
+  outline-offset: 4px;
+  background-color: rgba(212, 175, 55, 0.1);
+}
+
+/* Button focus states */
+.btn:focus-visible,
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible,
+button[type="submit"]:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(212, 175, 55, 0.3);
+}
+
+/* Focus within containers - only for form elements */
+form:focus-within,
+fieldset:focus-within {
+  outline: 2px solid rgba(212, 175, 55, 0.3);
+  outline-offset: 2px;
+}
+
+/* Remove focus outline for mouse users only */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================ */
+/* TOUCH TARGETS - Minimum 48x48px for Mobile */
+/* ============================================ */
+
+@media (max-width: 768px) {
+  button,
+  [role="button"],
+  input[type="submit"],
+  input[type="button"] {
+    min-height: 48px;
+    min-width: 48px;
+  }
+  
+  /* Enhanced tap highlight */
+  a,
+  button,
+  [role="button"] {
+    -webkit-tap-highlight-color: rgba(212, 175, 55, 0.3);
+    tap-highlight-color: rgba(212, 175, 55, 0.3);
+  }
+  
+  /* Prevent text selection on buttons */
+  button,
+  [role="button"] {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
+/* ============================================ */
+/* KEYBOARD NAVIGATION */
+/* ============================================ */
+
+/* Ensure interactive elements are clearly marked */
+[role="button"],
+[role="link"] {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Keyboard-only focus indicator */
+.keyboard-focus:focus-visible {
+  outline: 3px dashed #d4af37;
+  outline-offset: 4px;
+}
+
+/* Tab focus order visualization (development only) */
+body.show-focus-order *:focus {
+  outline: 3px solid red;
+  outline-offset: 2px;
+}
+
+/* ============================================ */
+/* HIGH CONTRAST MODE SUPPORT */
+/* ============================================ */
+
+@media (prefers-contrast: high) {
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible {
+    outline-width: 4px;
+    outline-offset: 3px;
+  }
+  
+  .skip-link {
+    border: 2px solid #000;
+  }
+  
+  /* Ensure text remains readable */
+  * {
+    background-color: inherit;
+    color: inherit;
+  }
+}
+
+/* ============================================ */
+/* REDUCED MOTION SUPPORT */
+/* ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* Keep essential transforms but remove transitions */
+  .skip-link {
+    transition: none;
+  }
+}
+
+/* ============================================ */
+/* SEMANTIC HTML ENHANCEMENTS */
+/* ============================================ */
+
+/* Address element styling */
+address {
+  font-style: normal;
+}
+
+/* Ensure lists are accessible */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Navigation lists */
+nav ul,
+nav ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  margin: 0;
+}
+
+/* ============================================ */
+/* ARIA LIVE REGIONS */
+/* ============================================ */
+
+/* Status messages */
+[role="status"],
+[role="alert"],
+[aria-live] {
+  position: relative;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+}
+
+[role="alert"] {
+  background-color: #fef2f2;
+  border-left: 4px solid #dc2626;
+  color: #7f1d1d;
+}
+
+[role="status"] {
+  background-color: #f0fdf4;
+  border-left: 4px solid #16a34a;
+  color: #14532d;
+}
+
+/* Loading spinner accessibility */
+.loading {
+  position: relative;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ============================================ */
+/* FORM ACCESSIBILITY */
+/* ============================================ */
+
+/* Focus styles for form elements */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid #d4af37;
+  outline-offset: 2px;
+  border-color: #d4af37;
+}
+
+/* Required field indicator */
+input:required,
+textarea:required,
+select:required {
+  border-left: 3px solid #d4af37;
+}
+
+/* Invalid field indicator */
+input:invalid:not(:placeholder-shown),
+textarea:invalid:not(:placeholder-shown),
+select:invalid {
+  border-color: #dc2626;
+  background-color: #fef2f2;
+}
+
+/* Valid field indicator */
+input:valid:not(:placeholder-shown),
+textarea:valid:not(:placeholder-shown) {
+  border-color: #16a34a;
+}
+
+/* Error messages */
+.error-message {
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Help text */
+.help-text {
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* ============================================ */
+/* SVG ACCESSIBILITY */
+/* ============================================ */
+
+/* Hide decorative SVGs from screen readers */
+svg[aria-hidden="true"] {
+  pointer-events: none;
+}
+
+/* Make interactive SVGs keyboard accessible */
+svg:focus-visible {
+  outline: 3px solid #d4af37;
+  outline-offset: 2px;
+}
+
+/* Ensure SVGs scale properly */
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ============================================ */
+/* PRINT STYLES FOR ACCESSIBILITY */
+/* ============================================ */
+
+@media print {
+  /* Show skip links in print */
+  .skip-link {
+    position: static;
+    display: block;
+    background: none;
+    color: #000;
+  }
+  
+  /* Ensure links are visible */
+  a {
+    text-decoration: underline;
+  }
+  
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+  }
+  
+  /* Hide unnecessary elements */
+  nav,
+  .no-print {
+    display: none;
+  }
+}
+
+/* ============================================ */
+/* DARK MODE ACCESSIBILITY */
+/* ============================================ */
+
+@media (prefers-color-scheme: dark) {
+  /* Ensure sufficient contrast in dark mode */
+  .skip-link {
+    background-color: #d4af37;
+    color: #000;
+  }
+  
+  [role="alert"] {
+    background-color: #7f1d1d;
+    color: #fef2f2;
+  }
+  
+  [role="status"] {
+    background-color: #14532d;
+    color: #f0fdf4;
+  }
+}
+
+/* ============================================ */
+/* LANGUAGE DIRECTION SUPPORT (RTL) */
+/* ============================================ */
+
+[dir="rtl"] .skip-link {
+  left: auto;
+  right: 0;
+  border-radius: 0 0 0 4px;
+}
+
+/* ============================================ */
+/* UTILITY CLASSES */
+/* ============================================ */
+
+/* Visually hide but keep accessible */
+.visually-hidden {
+  @apply sr-only;
+}
+
+/* Not visually hidden but accessible */
+.accessible-description {
+  color: transparent;
+  user-select: none;
+}
+
+/* Force focus visibility (for testing) */
+.force-focus-visible:focus {
+  outline: 3px solid #d4af37 !important;
+  outline-offset: 3px !important;
+}

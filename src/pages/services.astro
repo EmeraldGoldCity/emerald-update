@@ -1,0 +1,414 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
+const heroBg = "https://images.unsplash.com/photo-1639497366184-abc2260cca65?w=1920&h=1080&fit=crop&q=80";
+---
+
+<MainLayout 
+  title="Our Services - Emerald City Limos Seattle Luxury Transportation"
+  description="Comprehensive luxury transportation services in Seattle: Airport transfers, hourly charters, weddings, corporate events, game day transport, and more. Professional chauffeurs available 24/7."
+  keywords="seattle limo services, airport transfer seattle, wedding transportation seattle, corporate car service seattle, hourly charter seattle, emerald city limos"
+>
+  {/* Hero Section */}
+  <section class="relative h-[400px] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-emerald-950/70 to-emerald-900/60 z-10"></div>
+    <img
+      src={heroBg}
+      alt="Emerald City Limos Professional Service"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+    />
+    <div class="relative z-20 text-center text-white max-w-4xl mx-auto px-4">
+      <h1 class="text-5xl md:text-6xl font-bold mb-4 drop-shadow-2xl">
+        Our <span class="text-[#d4af37]">Services</span>
+      </h1>
+      <p class="text-xl text-gray-200 drop-shadow-lg">
+        Luxury transportation for every occasion
+      </p>
+    </div>
+  </section>
+
+  {/* Services Grid */}
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        {/* Airport Transfers */}
+        <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-emerald-500 hover:shadow-xl transition-all flex flex-col h-full">
+          <div class="flex items-center justify-center mb-4">
+            <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-emerald-700 to-emerald-600 text-white rounded-lg flex items-center justify-center">
+              <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 text-center mb-3">Airport Transfers</h3>
+          <p class="text-gray-700 text-sm mb-4 flex-grow">Professional transportation to and from Sea-Tac Airport, Boeing Field, and Paine Field. We monitor flights and ensure timely pickups and drop-offs.</p>
+          <ul class="space-y-1.5 mb-4">
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Flight tracking</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Meet & greet service</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Luggage assistance</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">All major airports</span>
+            </li>
+          </ul>
+          <a href="/airport-transfers" class="inline-flex items-center justify-center text-emerald-700 font-semibold hover:text-emerald-800 transition-colors mt-auto">
+            Learn More
+            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+        </div>
+
+        {/* Hourly Charters */}
+        <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-emerald-500 hover:shadow-xl transition-all flex flex-col h-full">
+          <div class="flex items-center justify-center mb-4">
+            <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-emerald-700 to-emerald-600 text-white rounded-lg flex items-center justify-center">
+              <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 text-center mb-3">Hourly Charters</h3>
+          <p class="text-gray-700 text-sm mb-4 flex-grow">Flexible hourly services perfect for business meetings, shopping trips, wine tours, or sightseeing around the Seattle area.</p>
+          <ul class="space-y-1.5 mb-4">
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Minimum 3-hour booking</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Professional chauffeur</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Premium vehicles</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Customizable itinerary</span>
+            </li>
+          </ul>
+          <a href="/service/hourly-charters" class="inline-flex items-center justify-center text-emerald-700 font-semibold hover:text-emerald-800 transition-colors mt-auto">
+            Learn More
+            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+        </div>
+
+        {/* Wedding Transportation */}
+        <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-emerald-500 hover:shadow-xl transition-all flex flex-col h-full">
+          <div class="flex items-center justify-center mb-4">
+            <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-emerald-700 to-emerald-600 text-white rounded-lg flex items-center justify-center">
+              <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+              </svg>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 text-center mb-3">Wedding Transportation</h3>
+          <p class="text-gray-700 text-sm mb-4 flex-grow">Make your special day perfect with our elegant wedding limousines. We provide transportation for the wedding party, guests, and the happy couple.</p>
+          <ul class="space-y-1.5 mb-4">
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Decorated vehicles</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Red carpet service</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Champagne service</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Flexible packages</span>
+            </li>
+          </ul>
+          <a href="/service/wedding-transportation" class="inline-flex items-center justify-center text-emerald-700 font-semibold hover:text-emerald-800 transition-colors mt-auto">
+            Learn More
+            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+        </div>
+
+        {/* Game Day Transport */}
+        <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-emerald-500 hover:shadow-xl transition-all flex flex-col h-full">
+          <div class="flex items-center justify-center mb-4">
+            <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-emerald-700 to-emerald-600 text-white rounded-lg flex items-center justify-center">
+              <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+              </svg>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 text-center mb-3">Game Day Transport</h3>
+          <p class="text-gray-700 text-sm mb-4 flex-grow">Arrive in style at Lumen Field, T-Mobile Park, Climate Pledge Arena, or Husky Stadium. Enjoy the game without worrying about traffic or parking.</p>
+          <ul class="space-y-1.5 mb-4">
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Seahawks games</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Mariners games</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Sounders matches</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Kraken hockey</span>
+            </li>
+          </ul>
+          <a href="/service/game-day-transport" class="inline-flex items-center justify-center text-emerald-700 font-semibold hover:text-emerald-800 transition-colors mt-auto">
+            Learn More
+            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+        </div>
+
+        {/* Special Occasions */}
+        <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-emerald-500 hover:shadow-xl transition-all flex flex-col h-full">
+          <div class="flex items-center justify-center mb-4">
+            <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-emerald-700 to-emerald-600 text-white rounded-lg flex items-center justify-center">
+              <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+              </svg>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 text-center mb-3">Special Occasions</h3>
+          <p class="text-gray-700 text-sm mb-4 flex-grow">Celebrate birthdays, anniversaries, proms, quinceañeras, and any special event with our luxury limousine service.</p>
+          <ul class="space-y-1.5 mb-4">
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Birthday celebrations</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Anniversaries</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Prom nights</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Corporate events</span>
+            </li>
+          </ul>
+          <a href="/service/special-occasions" class="inline-flex items-center justify-center text-emerald-700 font-semibold hover:text-emerald-800 transition-colors mt-auto">
+            Learn More
+            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+        </div>
+
+        {/* Executive Transportation */}
+        <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-emerald-500 hover:shadow-xl transition-all flex flex-col h-full">
+          <div class="flex items-center justify-center mb-4">
+            <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-emerald-700 to-emerald-600 text-white rounded-lg flex items-center justify-center">
+              <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 text-center mb-3">Executive Transportation</h3>
+          <p class="text-gray-700 text-sm mb-4 flex-grow">Premium chauffeur service for executives and VIPs. Professional, discreet, and punctual transportation for business leaders.</p>
+          <ul class="space-y-1.5 mb-4">
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Corporate accounts</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Executive sedans</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Airport pickups</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Business meetings</span>
+            </li>
+          </ul>
+          <a href="/service/executive-transportation" class="inline-flex items-center justify-center text-emerald-700 font-semibold hover:text-emerald-800 transition-colors mt-auto">
+            Learn More
+            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+        </div>
+
+        {/* Cruise Transportation */}
+        <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-emerald-500 hover:shadow-xl transition-all flex flex-col h-full">
+          <div class="flex items-center justify-center mb-4">
+            <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-emerald-700 to-emerald-600 text-white rounded-lg flex items-center justify-center text-3xl">
+              🚢
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 text-center mb-3">Cruise Transportation</h3>
+          <p class="text-gray-700 text-sm mb-4 flex-grow">Seamless transportation to and from Seattle cruise terminals at Pier 91 and Bell Street Pier. Start your voyage stress-free.</p>
+          <ul class="space-y-1.5 mb-4">
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">All cruise terminals</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Luggage handling</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Pre-cruise transfers</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Post-cruise pickups</span>
+            </li>
+          </ul>
+          <a href="/service/cruise-transportation" class="inline-flex items-center justify-center text-emerald-700 font-semibold hover:text-emerald-800 transition-colors mt-auto">
+            Learn More
+            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+        </div>
+
+        {/* Infant Car Seats */}
+        <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-emerald-500 hover:shadow-xl transition-all flex flex-col h-full">
+          <div class="flex items-center justify-center mb-4">
+            <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-emerald-700 to-emerald-600 text-white rounded-lg flex items-center justify-center text-3xl">
+              👶
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 text-center mb-3">Infant Car Seats/Booster Seats</h3>
+          <p class="text-gray-700 text-sm mb-4 flex-grow">Travel safely with your little ones. Our vehicles come equipped with professionally installed infant car seats and booster seats appropriate for all ages.</p>
+          <ul class="space-y-1.5 mb-4">
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Pre-installed upon request</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Multiple age groups</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Safety certified</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Complimentary service</span>
+            </li>
+          </ul>
+          <a href="/service/infant-car-seats" class="inline-flex items-center justify-center text-emerald-700 font-semibold hover:text-emerald-800 transition-colors mt-auto">
+            Learn More
+            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+        </div>
+
+        {/* Personal Chauffeur */}
+        <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-emerald-500 hover:shadow-xl transition-all flex flex-col h-full">
+          <div class="flex items-center justify-center mb-4">
+            <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-emerald-700 to-emerald-600 text-white rounded-lg flex items-center justify-center text-3xl">
+              🚗
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 text-center mb-3">Personal Chauffeur</h3>
+          <p class="text-gray-700 text-sm mb-4 flex-grow">Dedicated chauffeur service tailored for clients seeking personalized transportation for their families and business needs. Your own professional driver, on your schedule.</p>
+          <ul class="space-y-1.5 mb-4">
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Dedicated driver</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Flexible scheduling</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Family & business use</span>
+            </li>
+            <li class="flex items-center space-x-2 text-sm">
+              <span class="text-[#d4af37]">•</span>
+              <span class="text-gray-700">Priority service</span>
+            </li>
+          </ul>
+          <a href="/service/personal-chauffeur" class="inline-flex items-center justify-center text-emerald-700 font-semibold hover:text-emerald-800 transition-colors mt-auto">
+            Learn More
+            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {/* Why Choose Us */}
+  <section class="py-20 bg-gradient-to-br from-emerald-900 to-emerald-800 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-4">Why Emerald City Limos?</h2>
+        <p class="text-xl text-gray-200">Excellence in every detail</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="text-4xl font-bold text-[#d4af37] mb-2">Stress-Free</div>
+          <p class="text-xl">Chauffeured Transport</p>
+        </div>
+        <div class="text-center">
+          <div class="text-5xl font-bold text-[#d4af37] mb-2">50K+</div>
+          <p class="text-xl">Happy Customers</p>
+        </div>
+        <div class="text-center">
+          <div class="text-5xl font-bold text-[#d4af37] mb-2">24/7</div>
+          <p class="text-xl">Available Service</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* CTA Section */}
+  <section class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl font-bold text-gray-900 mb-6">Ready to Book?</h2>
+      <p class="text-xl text-gray-600 mb-8">
+        Contact us today to reserve your luxury limousine
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/book-now"
+          class="bg-emerald-700 hover:bg-emerald-800 text-white px-8 py-4 rounded-lg font-semibold transition-all"
+        >
+          BOOK NOW
+        </a>
+        <a
+          href="mailto:client@emeraldcitylimos.com"
+          class="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-semibold transition-all"
+        >
+          Email Us
+        </a>
+      </div>
+    </div>
+  </section>
+</MainLayout>

@@ -1,0 +1,97 @@
+# Emerald City Limos - robots.txt
+# Updated 2025-02-17
+
+User-agent: *
+Allow: /
+
+# ============================================
+# SITEMAPS — Correct URLs
+# ============================================
+Sitemap: https://emeraldcitylimos.com/sitemap.xml
+Sitemap: https://emeraldcitylimos.com/sitemap-index.xml
+Sitemap: https://emeraldcitylimos.com/sitemap-0.xml
+
+# ============================================
+# LLM Discovery Files
+# These files help AI language models accurately understand and recommend our business
+# See llmstxt.org for more information
+# ============================================
+
+# Allow all AI crawlers access to LLM files
+User-agent: GPTBot
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /.well-known/ai-plugin.json
+
+User-agent: ChatGPT-User
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /.well-known/ai-plugin.json
+
+User-agent: Claude-Web
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: Anthropic-AI
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: Google-Extended
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: Bingbot
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: PerplexityBot
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: Bytespider
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: CCBot
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: Cohere-ai
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: Diffbot
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: FacebookBot
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: Applebot-Extended
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: YouBot
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: Amazonbot
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+# Disallow spam/scraper bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /

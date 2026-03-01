@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset 
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+>
+
+  <!-- ============================================ -->
+  <!-- CORE PAGES                                    -->
+  <!-- ============================================ -->
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/book-now</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/services</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/airport-transfers</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/fleet</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/blog</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/affiliates</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- ============================================ -->
+  <!-- SERVICE PAGES                                 -->
+  <!-- ============================================ -->
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/service/wedding-transportation</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/service/executive-transportation</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/service/cruise-transportation</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/service/game-day-transport</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/service/hourly-charters</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/service/special-occasions</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/service/infant-car-seats</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ============================================ -->
+  <!-- LOCATION PAGES — KING COUNTY                 -->
+  <!-- ============================================ -->
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/king-county</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/king-county/seattle</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/king-county/bellevue</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/king-county/kirkland</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/king-county/redmond</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/king-county/renton</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/king-county/kent</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/king-county/auburn</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/king-county/federal-way</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/king-county/issaquah</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/king-county/sammamish</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/king-county/woodinville</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/king-county/mercer-island</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/king-county/seatac</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/king-county/tukwila</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/king-county/burien</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/king-county/shoreline</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/king-county/maple-valley</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/king-county/covington</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- ============================================ -->
+  <!-- LOCATION PAGES — SNOHOMISH COUNTY            -->
+  <!-- ============================================ -->
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/snohomish-county</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/snohomish-county/everett</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/snohomish-county/lynnwood</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/snohomish-county/edmonds</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/snohomish-county/bothell</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/snohomish-county/marysville</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/snohomish-county/mukilteo</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/snohomish-county/lake-stevens</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/snohomish-county/snohomish</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/snohomish-county/mountlake-terrace</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/snohomish-county/mill-creek</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/snohomish-county/arlington</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/snohomish-county/monroe</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- ============================================ -->
+  <!-- LOCATION PAGES — PIERCE COUNTY               -->
+  <!-- ============================================ -->
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/pierce-county</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/pierce-county/tacoma</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/pierce-county/lakewood</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/pierce-county/puyallup</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/pierce-county/university-place</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/pierce-county/gig-harbor</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/pierce-county/bonney-lake</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/pierce-county/spanaway</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/pierce-county/fife</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/pierce-county/dupont</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/pierce-county/sumner</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/pierce-county/orting</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/pierce-county/eatonville</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- ============================================ -->
+  <!-- LOCATION PAGES — KITSAP COUNTY               -->
+  <!-- ============================================ -->
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/kitsap-county</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/kitsap-county/bremerton</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/kitsap-county/bainbridge-island</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/kitsap-county/poulsbo</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/kitsap-county/silverdale</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- ============================================ -->
+  <!-- LOCATION PAGES — THURSTON COUNTY              -->
+  <!-- ============================================ -->
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/thurston-county</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/thurston-county/olympia</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/thurston-county/lacey</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/locations/thurston-county/tumwater</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- ============================================ -->
+  <!-- BLOG POSTS                                    -->
+  <!-- ============================================ -->
+  
+  <!-- NEW COMPREHENSIVE BLOG POSTS (February 2025) -->
+  <url>
+    <loc>https://emeraldcitylimos.com/blog/seatac-airport-to-downtown-seattle-transportation-guide</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/blog/seattle-wedding-transportation-complete-planning-guide</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/blog/seattle-game-day-transportation-ultimate-guide</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/blog/woodinville-wine-tour-planning-guide</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/blog/corporate-transportation-seattle-executive-guide</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/blog/seattle-cruise-port-transportation-guide</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/blog/seattle-prom-homecoming-transportation-guide</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/blog/bainbridge-island-ferry-transportation-guide</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/blog/seattle-holiday-events-nye-transportation</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/blog/mount-rainier-day-trip-transportation-guide</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- EXISTING BLOG POSTS -->
+  <url>
+    <loc>https://emeraldcitylimos.com/blog/airport-transportation-guide</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/blog/wedding-transportation</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/blog/corporate-travel</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/blog/game-day-transportation</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/blog/prom-transportation</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- ============================================ -->
+  <!-- LLM DISCOVERY FILES                           -->
+  <!-- ============================================ -->
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/llms.txt</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://emeraldcitylimos.com/llms-full.txt</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>

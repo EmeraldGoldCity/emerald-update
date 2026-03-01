@@ -1,0 +1,42 @@
+---
+/**
+ * FAQ Schema Component for SEO
+ * Adds structured data for FAQ sections
+ * 
+ * Usage in any Astro page:
+ * ---
+ * import FAQSchema from '@/components/FAQSchema.astro';
+ * const faqs = [
+ *   { question: "How much...", answer: "Our service..." },
+ *   { question: "Do you...", answer: "Yes, we..." }
+ * ];
+ * ---
+ * <FAQSchema faqs={faqs} />
+ */
+
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  faqs: FAQ[];
+}
+
+const { faqs } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
