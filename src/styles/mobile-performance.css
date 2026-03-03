@@ -178,8 +178,8 @@ img[loading="lazy"] {
   }
   
   /* Simpler gradients on mobile */
-  .bg-gradient-to-r,
-  .bg-gradient-to-b {
+  .bg-gradient-to-r:not(nav):not(nav *),
+  .bg-gradient-to-b:not(nav):not(nav *) {
     background-image: linear-gradient(to bottom, var(--tw-gradient-stops)) !important;
   }
 }
