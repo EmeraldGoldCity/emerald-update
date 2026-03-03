@@ -2,66 +2,16 @@
 import MainLayout from '@/layouts/MainLayout.astro';
 
 const locations = [
-  {
-    title: 'King County',
-    slug: 'king-county',
-    description: 'Seattle, Bellevue, Redmond, Kirkland, Renton, and more',
-    image: 'https://images.unsplash.com/photo-1506146332389-18140dc7b2fb?w=600&h=400&fit=crop&q=75&fm=webp&auto=format'
-  },
-  {
-    title: 'Snohomish County',
-    slug: 'snohomish-county',
-    description: 'Everett, Lynnwood, Edmonds, Bothell, and surrounding areas',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop&q=75&fm=webp&auto=format'
-  },
-  {
-    title: 'Pierce County',
-    slug: 'pierce-county',
-    description: 'Tacoma, Lakewood, Puyallup, University Place, and more',
-    image: 'https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?w=600&h=400&fit=crop&q=75&fm=webp&auto=format'
-  },
-  {
-    title: 'Spokane',
-    slug: 'spokane',
-    description: 'Eastern Washington\'s largest city and surrounding areas',
-    image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&h=400&fit=crop&q=75&fm=webp&auto=format'
-  },
-  {
-    title: 'Wenatchee',
-    slug: 'wenatchee',
-    description: 'Central Washington wine country and outdoor recreation',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop&q=75&fm=webp&auto=format'
-  },
-  {
-    title: 'Seattle',
-    slug: 'seattle',
-    description: 'Downtown, Capitol Hill, Queen Anne, Ballard, and all neighborhoods',
-    image: 'https://images.unsplash.com/photo-1518093661910-c9fd25c8a4de?w=600&h=400&fit=crop&q=75&fm=webp&auto=format'
-  },
-  {
-    title: 'Bellevue',
-    slug: 'bellevue',
-    description: 'Bellevue downtown, Crossroads, Factoria, and Eastside',
-    image: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=600&h=400&fit=crop&q=75&fm=webp&auto=format'
-  },
-  {
-    title: 'Tacoma',
-    slug: 'tacoma',
-    description: 'Tacoma downtown, Stadium District, Point Defiance, and surrounding areas',
-    image: 'https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=600&h=400&fit=crop&q=75&fm=webp&auto=format'
-  },
-  {
-    title: 'Everett',
-    slug: 'everett',
-    description: 'Everett, Mukilteo, Marysville, and North Sound region',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop&q=75&fm=webp&auto=format'
-  },
-  {
-    title: 'Redmond',
-    slug: 'redmond',
-    description: 'Microsoft campus, downtown Redmond, and Eastside tech corridor',
-    image: 'https://images.unsplash.com/photo-1518050774789-23e0f3c8d611?w=600&h=400&fit=crop&q=75&fm=webp&auto=format'
-  },
+  { title: 'Seattle', slug: 'seattle', description: 'Downtown, Capitol Hill, Queen Anne, Ballard, and all neighborhoods', image: 'https://images.unsplash.com/photo-1518093661910-c9fd25c8a4de?w=600&h=400&fit=crop&q=75&fm=webp' },
+  { title: 'Bellevue', slug: 'bellevue', description: 'Bellevue downtown, Crossroads, Factoria, and Eastside', image: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=600&h=400&fit=crop&q=75&fm=webp' },
+  { title: 'Tacoma', slug: 'tacoma', description: 'Tacoma downtown, Stadium District, Point Defiance, and surrounding areas', image: 'https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=600&h=400&fit=crop&q=75&fm=webp' },
+  { title: 'Everett', slug: 'everett', description: 'Everett, Mukilteo, Marysville, and North Sound region', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop&q=75&fm=webp' },
+  { title: 'Redmond', slug: 'redmond', description: 'Microsoft campus, downtown Redmond, and Eastside tech corridor', image: 'https://images.unsplash.com/photo-1518050774789-23e0f3c8d611?w=600&h=400&fit=crop&q=75&fm=webp' },
+  { title: 'Kirkland', slug: 'kirkland', description: 'Waterfront hotels, downtown Kirkland, Marina Park, and Lake Washington venues', image: 'https://images.unsplash.com/photo-1506146332389-18140dc7b2fb?w=600&h=400&fit=crop&q=75&fm=webp' },
+  { title: 'Spokane', slug: 'spokane', description: "Eastern Washington's largest city and surrounding areas", image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&h=400&fit=crop&q=75&fm=webp' },
+  { title: 'Wenatchee', slug: 'wenatchee', description: 'Central Washington wine country and outdoor recreation', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop&q=75&fm=webp' },
+  { title: 'SeaTac Airport', slug: 'sea-tac-airport', description: '24/7 airport transfers with flight tracking and meet & greet service', image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&h=400&fit=crop&q=75&fm=webp' },
+  { title: 'Woodinville', slug: 'woodinville', description: 'Wine country tours, wineries, and luxury event transportation', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop&q=75&fm=webp' },
 ];
 ---
 
