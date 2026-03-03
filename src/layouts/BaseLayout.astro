@@ -249,33 +249,43 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, siteUrl).href;
     
     <!-- Performance Optimization Script -->
     <script is:inline>
-      (function() {
-        'use strict';
-        
-        // Prefetch likely next pages after page is idle
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(function() {
-            var pages = ['/book-now', '/services', '/airport-transfers', '/fleet', '/locations'];
-            pages.forEach(function(page) {
-              var link = document.createElement('link');
-              link.rel = 'prefetch';
-              link.href = page;
-              link.as = 'document';
-              document.head.appendChild(link);
-            });
-          });
-        }
-        
-        // Resource hint for booking system
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(function() {
-            var bookingHint = document.createElement('link');
-            bookingHint.rel = 'dns-prefetch';
-            bookingHint.href = 'https://pnw.moovs.com';
-            document.head.appendChild(bookingHint);
-          });
-        }
-      })();
-    </script>
+  (function() {
+    'use strict';
+    
+    // Prefetch likely next pages after page is idle
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(function() {
+        var pages = ['/book-now', '/services', '/airport-transfers', '/fleet', '/locations'];
+        pages.forEach(function(page) {
+          var link = document.createElement('link');
+          link.rel = 'prefetch';
+          link.href = page;
+          link.as = 'document';
+          document.head.appendChild(link);
+        });
+      });
+    }
+    
+    // Resource hint for booking system
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(function() {
+        var bookingHint = document.createElement('link');
+        bookingHint.rel = 'dns-prefetch';
+        bookingHint.href = 'https://customer.moovs.app';
+        document.head.appendChild(bookingHint);
+      });
+    }
+  })();
+
+  // Moovs booking widget
+  window["moovsAPI"] = moovsAPI = window["moovsAPI"] || [];
+  moovsAPI.push(["operator", "d7ca8eda-6ef3-11ef-87b0-9b8d3824ce6b"]);
+  (function(m, oo, v, s) {
+    s = m.createElement(oo);
+    s.src = v;
+    s.async = 1;
+    m.head.appendChild(s);
+  })(document, "script", "https://static.moovs.app");
+</script>
   </body>
 </html>
