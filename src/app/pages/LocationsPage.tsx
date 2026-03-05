@@ -1,8 +1,8 @@
 import React from 'react';
 import { MapPin, Shield } from 'lucide-react';
-import { Link } from 'react-router-dom';
+
 import { counties } from '@/app/data/locations';
-const seattleBackground = "https://images.unsplash.com/photo-1524089642040-1c8df6942a78?w=1920&h=1080&fit=crop&q=80";
+const seattleBackground = "/images/seattle-landmark.jpg";
 
 export function LocationsPage() {
   return (
@@ -47,9 +47,9 @@ export function LocationsPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
               {counties.king.cities.map((city) => (
-                <Link
+                <a
                   key={city.slug}
-                  to={`/location/${city.slug}`}
+                  href={`/location/${city.slug}`}
                   className="group bg-white/95 backdrop-blur-sm border-2 border-emerald-200 rounded-lg p-7 hover:border-emerald-500 hover:shadow-xl transition-all"
                 >
                   {/* Header Row: Icon + Name */}
@@ -64,7 +64,7 @@ export function LocationsPage() {
                   <p className="text-gray-600 text-sm leading-relaxed pl-9">
                     {city.description}
                   </p>
-                </Link>
+                </a>
               ))}
             </div>
           </div>
@@ -77,9 +77,9 @@ export function LocationsPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
               {counties.snohomish.cities.map((city) => (
-                <Link
+                <a
                   key={city.slug}
-                  to={`/location/${city.slug}`}
+                  href={`/location/${city.slug}`}
                   className="group bg-white/95 backdrop-blur-sm border-2 border-emerald-200 rounded-lg p-7 hover:border-emerald-500 hover:shadow-xl transition-all"
                 >
                   {/* Header Row: Icon + Name */}
@@ -94,7 +94,7 @@ export function LocationsPage() {
                   <p className="text-gray-600 text-sm leading-relaxed pl-9">
                     {city.description}
                   </p>
-                </Link>
+                </a>
               ))}
             </div>
           </div>
@@ -120,9 +120,9 @@ export function LocationsPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
               {counties.pierce.cities.map((city) => (
-                <Link
+                <a
                   key={city.slug}
-                  to={`/location/${city.slug}`}
+                  href={`/location/${city.slug}`}
                   className="group bg-white/95 backdrop-blur-sm border-2 border-emerald-200 rounded-lg p-7 hover:border-emerald-500 hover:shadow-xl transition-all"
                 >
                   {/* Header Row: Icon + Name */}
@@ -137,7 +137,7 @@ export function LocationsPage() {
                   <p className="text-gray-600 text-sm leading-relaxed pl-9">
                     {city.description}
                   </p>
-                </Link>
+                </a>
               ))}
             </div>
           </div>
@@ -150,9 +150,9 @@ export function LocationsPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {counties.other.cities.map((city) => (
-                <Link
+                <a
                   key={city.slug}
-                  to={`/location/${city.slug}`}
+                  href={`/location/${city.slug}`}
                   className="group bg-white/95 backdrop-blur-sm border-2 border-yellow-300 rounded-lg p-7 hover:border-yellow-500 hover:shadow-xl transition-all"
                 >
                   {/* Header Row: Icon + Name */}
@@ -167,7 +167,7 @@ export function LocationsPage() {
                   <p className="text-gray-600 text-sm leading-relaxed pl-9">
                     {city.description}
                   </p>
-                </Link>
+                </a>
               ))}
             </div>
           </div>
@@ -182,12 +182,12 @@ export function LocationsPage() {
             We may still be able to serve you! Contact us to inquire about transportation to other areas.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/book-now"
+            <a
+             href="/book-now"
               className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-semibold transition-all"
             >
               BOOK NOW
-            </Link>
+            </a>
             <a
               href="mailto:client@a1charterspnw.com"
               className="bg-transparent border-2 border-white hover:bg-white hover:text-emerald-900 text-white px-8 py-4 rounded-lg font-semibold transition-all"
