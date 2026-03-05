@@ -50,8 +50,16 @@ export function LocationsPage() {
                 <a
                   key={city.slug}
                   href={`/location/${city.slug}`}
-                  className="group bg-white/95 backdrop-blur-sm border-2 border-emerald-200 rounded-lg p-7 hover:border-emerald-500 hover:shadow-xl transition-all"
+                 className="group bg-white/95 backdrop-blur-sm border-2 border-emerald-200 rounded-lg overflow-hidden hover:border-emerald-500 hover:shadow-xl transition-all"
                 >
+                  {city.images && (
+                    <div className="h-40 overflow-hidden">
+                      <img src={city.images} alt={city.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                    </div>
+                  )}
+                  <div className="p-7"> //
+                    
+                  </div>
                   {/* Header Row: Icon + Name */}
                   <div className="flex items-start gap-3 mb-5">
                     <MapPin className="w-6 h-6 text-emerald-700 flex-shrink-0 mt-0.5" />
@@ -64,7 +72,7 @@ export function LocationsPage() {
                   <p className="text-gray-600 text-sm leading-relaxed pl-9">
                     {city.description}
                   </p>
-                </a>
+                </a> //
               ))}
             </div>
           </div>
@@ -80,8 +88,14 @@ export function LocationsPage() {
                 <a
                   key={city.slug}
                   href={`/location/${city.slug}`}
-                  className="group bg-white/95 backdrop-blur-sm border-2 border-emerald-200 rounded-lg p-7 hover:border-emerald-500 hover:shadow-xl transition-all"
+                 className="group bg-white/95 backdrop-blur-sm border-2 border-yellow-300 rounded-lg overflow-hidden hover:border-yellow-500 hover:shadow-xl transition-all"
                 >
+                  {city.images && (
+                    <div className="h-40 overflow-hidden">
+                      <img src={city.images} alt={city.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                    </div>
+                  )}
+                  <div className="p-7"></div>
                   {/* Header Row: Icon + Name */}
                   <div className="flex items-start gap-3 mb-5">
                     <MapPin className="w-6 h-6 text-emerald-700 flex-shrink-0 mt-0.5" />
@@ -94,6 +108,7 @@ export function LocationsPage() {
                   <p className="text-gray-600 text-sm leading-relaxed pl-9">
                     {city.description}
                   </p>
+                  
                 </a>
               ))}
             </div>
