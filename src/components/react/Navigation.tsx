@@ -30,14 +30,15 @@ export function Navigation() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <a 
-            href="/" 
+            href="/"
             className="flex items-center space-x-2"
             aria-label="Emerald City Limos - Return to homepage"
           >
-            <div className="text-2xl font-bold">
-              <span className="text-white">Emerald City</span>
-              <span className="text-[#d4af37]"> Limo</span>
-            </div>
+            <img
+              src="/images/logo.png"
+              alt="Emerald City Limos"
+              className="h-12 w-auto"
+            />
           </a>
 
           {/* Desktop Navigation */}
