@@ -132,7 +132,7 @@ export function HomePage() {
               <span className="text-[#d4af37]">Emerald City Limos</span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-white drop-shadow-lg">
-              Seattle's Limo Service | Luxury Black Car & Airport Transfers | Emerald City Limos
+              Airport transfers, corporate travel, weddings & special events. Serving Seattle, Bellevue, Tacoma & beyond.
             </p>
             <div className="flex justify-center">
               <Link

@@ -3,28 +3,57 @@ import MainLayout from '@/layouts/MainLayout.astro';
 ---
 
 <MainLayout 
-  title="Emerald City Limos - Seattle's Premier Luxury Limousine Service"
-  description="Professional luxury transportation in Seattle, WA. Airport transfers, corporate events, weddings, and special occasions. Available 24/7 with professional chauffeurs."
-  keywords="seattle limo service, luxury car service seattle, airport transportation seattle, black car service seattle, SeaTac airport limo, emerald city limos"
+  title="Seattle Limo Service | Airport Transfers & Black Car | Emerald City Limos"
+  description="Premium Seattle limousine service. Flat-rate SeaTac airport transfers, corporate travel, weddings & special events. 24/7 service with professional chauffeurs. Call (206) 595-9675."
+  keywords="seattle limo service, seatac airport limo, luxury car service seattle, black car service seattle, seattle airport transportation, corporate limo seattle, wedding limo seattle"
 >
   <section class="relative h-[600px] md:h-[700px] flex items-center justify-center overflow-hidden">
     <picture>
-      <source media="(max-width: 768px)" srcset="/images/cad-hero.avif" type="image/avif" width="640" height="360" />
-      <source srcset="/images/cad-hero.avif" type="image/avif" width="1920" height="1080" />
-      <img src="/images/cad-hero.avif" alt="Professional luxury limousine service in Seattle" class="absolute inset-0 w-full h-full object-cover" width="1920" height="1080" loading="eager" fetchpriority="high" decoding="sync" />
+      <source media="(max-width: 768px)" srcset="/images/hero-background.jpeg" type="image/jpeg" width="640" height="360" />
+      <source srcset="/images/hero-background.jpeg" type="image/jpeg" width="1920" height="1080" />
+      <img
+        src="/images/hero-background.jpeg"
+        alt="Luxury limousine service Seattle - Emerald City Limos black car"
+        class="absolute inset-0 w-full h-full object-cover"
+        width="1920"
+        height="1080"
+        loading="eager"
+        fetchpriority="high"
+        decoding="sync"
+      />
     </picture>
+    <div class="absolute inset-0 bg-gradient-to-r from-emerald-900/90 to-emerald-800/80 z-10"></div>
     <div class="relative z-20 text-center text-white max-w-4xl mx-auto px-4" style="min-height: 280px;">
       <h1 class="text-5xl md:text-6xl font-bold mb-6">
-        <span class="text-[#d4af37]">Emerald City Limos</span>
+        Seattle's Premier <span class="text-[#d4af37]">Limo & Black Car Service</span>
       </h1>
-      <p class="text-xl md:text-2xl mb-8 text-gray-200">Seattle's Premier Limousine Service Since 2010</p>
-      <div class="flex justify-center">
-        <a href="/book-now" class="bg-[#d4af37] hover:bg-[#b8941f] text-black px-12 py-5 rounded-lg text-xl font-bold transition-all shadow-2xl inline-flex items-center justify-center" role="button" aria-label="Book your luxury limousine service now">
+      <p class="text-xl md:text-2xl mb-8 text-gray-200">
+        Airport transfers, corporate travel, weddings & special events. Serving Seattle, Bellevue, Tacoma & beyond.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        
+          href="/book-now"
+          class="bg-[#d4af37] hover:bg-[#b8941f] text-black px-12 py-5 rounded-lg text-xl font-bold transition-all shadow-2xl inline-flex items-center justify-center"
+          role="button"
+          aria-label="Book your luxury limousine service now"
+        >
           BOOK NOW
+        </a>
+        
+          href="tel:+12065959675"
+          class="bg-transparent border-2 border-white hover:bg-white hover:text-emerald-900 text-white px-12 py-5 rounded-lg text-xl font-bold transition-all inline-flex items-center justify-center"
+        >
+          (206) 595-9675
         </a>
       </div>
     </div>
-    <a href="https://www.youtube.com/watch?v=kcUFqF7MUWc" target="_blank" rel="noopener noreferrer" class="absolute bottom-8 right-8 z-30" aria-label="Watch Our Video">
+    
+      href="https://www.youtube.com/watch?v=kcUFqF7MUWc"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="absolute bottom-8 right-8 z-30"
+      aria-label="Watch Our Video"
+    >
       <div class="flex items-center gap-2 bg-black/60 hover:bg-black/80 text-white px-4 py-2 rounded-full transition-all">
         <svg class="w-6 h-6 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
         <span class="text-sm font-semibold">Watch Video</span>
@@ -32,60 +61,116 @@ import MainLayout from '@/layouts/MainLayout.astro';
     </a>
   </section>
 
+  <!-- Trust Signals -->
   <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="sr-only">Why Choose Emerald City Limos</h2>
+      <h2 class="sr-only">Why Choose Emerald City Limos Seattle</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div class="text-center">
           <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full mb-4">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+            </svg>
           </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">5-Star Service</h3>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">5-Star Rated</h3>
           <p class="text-gray-600">Highest rated limo service in Seattle</p>
         </div>
         <div class="text-center">
           <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full mb-4">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
           </div>
           <h3 class="text-xl font-bold text-gray-900 mb-2">Always On Time</h3>
-          <p class="text-gray-600">Punctuality guaranteed</p>
+          <p class="text-gray-600">Flight tracking & punctuality guaranteed</p>
         </div>
         <div class="text-center">
           <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full mb-4">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+            </svg>
           </div>
           <h3 class="text-xl font-bold text-gray-900 mb-2">Fully Insured</h3>
-          <p class="text-gray-600">Your safety is our priority</p>
+          <p class="text-gray-600">Licensed & insured for your safety</p>
         </div>
         <div class="text-center">
           <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full mb-4">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+            </svg>
           </div>
           <h3 class="text-xl font-bold text-gray-900 mb-2">Professional Chauffeurs</h3>
-          <p class="text-gray-600">Experienced and courteous drivers</p>
+          <p class="text-gray-600">Background-checked, experienced drivers</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- About Section -->
+  <section class="py-20 bg-gradient-to-br from-emerald-50 to-yellow-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            About <span class="text-emerald-700">Emerald City Limos</span>
+          </h2>
+          <p class="text-lg text-gray-700 mb-4">
+            Since 2010, we've been providing the Greater Seattle area with unparalleled luxury transportation services. Our fleet of premium vehicles and professional chauffeurs ensure that every journey is comfortable, safe, and memorable.
+          </p>
+          <p class="text-lg text-gray-700 mb-6">
+            Whether you're heading to SeaTac Airport, celebrating a wedding, attending a Seahawks game, cruising from Seattle's port, or need executive black car service — we deliver excellence every time. Proudly serving King County, Snohomish County, Pierce County, and the greater Seattle-Tacoma metro area.
+          </p>
+          
+            href="/locations"
+            class="inline-flex items-center text-emerald-700 font-semibold hover:text-emerald-800 transition-colors"
+          >
+            View All Service Areas
+            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="relative h-96 rounded-lg overflow-hidden shadow-2xl">
+          <img
+            src="/images/cad1.webp"
+            alt="Emerald City Limos luxury Cadillac Escalade Seattle airport transfer"
+            class="w-full h-full object-cover"
+            width="600"
+            height="400"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
   <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Our <span class="text-emerald-700">Premium Services</span></h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">Comprehensive luxury transportation solutions for every occasion</p>
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          Our <span class="text-emerald-700">Premium Services</span>
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Luxury Seattle transportation solutions for every occasion
+        </p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
-          { title: 'Airport Transfers', icon: '✈️', link: '/airport-transfers', desc: 'Reliable and punctual airport transportation' },
-          { title: 'Hourly Charters', icon: '⏰', link: '/service/hourly-charters', desc: 'Flexible hourly services' },
-          { title: 'Wedding Transport', icon: '💍', link: '/service/wedding-transportation', desc: 'Make your special day perfect' },
-          { title: 'Game Day Transport', icon: '🏈', link: '/service/game-day-transport', desc: 'Arrive in style for games' },
-          { title: 'Executive Transportation', icon: '💼', link: '/service/executive-transportation', desc: 'Professional chauffeur service' },
-          { title: 'Cruise Transportation', icon: '🚢', link: '/service/cruise-transportation', desc: 'Seamless transfers to cruise terminals' },
-          { title: 'Infant Car Seats', icon: '👶', link: '/service/infant-car-seats', desc: 'Safe family travel' },
-          { title: 'Special Occasions', icon: '⭐', link: '/service/special-occasions', desc: "Celebrate life's special moments" },
+          { title: 'Airport Transfers', icon: '✈️', link: '/airport-transfers', desc: 'Flat-rate SeaTac airport limo service. 24/7 flight tracking & meet and greet.' },
+          { title: 'Hourly Charters', icon: '⏰', link: '/service/hourly-charters', desc: 'Flexible hourly limo service for Seattle tours, shopping, and business meetings.' },
+          { title: 'Wedding Transport', icon: '💍', link: '/service/wedding-transportation', desc: 'Seattle wedding limousine service. Red carpet arrival for your special day.' },
+          { title: 'Game Day Transport', icon: '🏈', link: '/service/game-day-transport', desc: 'Seattle Seahawks, Mariners, Sounders & Kraken game day transportation.' },
+          { title: 'Executive Transportation', icon: '💼', link: '/service/executive-transportation', desc: 'Seattle corporate black car service for executives and business travelers.' },
+          { title: 'Cruise Transportation', icon: '🚢', link: '/service/cruise-transportation', desc: 'Seattle cruise terminal transfers. Smith Cove & Bell Street pier service.' },
+          { title: 'Infant Car Seats', icon: '👶', link: '/service/infant-car-seats', desc: 'Pre-installed car seats and booster seats for safe Seattle family travel.' },
+          { title: 'Special Occasions', icon: '⭐', link: '/service/special-occasions', desc: 'Seattle birthday, anniversary & prom limo service. Celebrate in luxury.' },
         ].map((service) => (
-          <a href={service.link} class="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
+          
+            href={service.link}
+            class="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2"
+          >
             <div class="p-6">
               <div class="text-5xl mb-4 text-center group-hover:scale-110 transition-transform">{service.icon}</div>
               <h3 class="text-xl font-bold text-gray-900 mb-2 text-center group-hover:text-emerald-700 transition-colors">{service.title}</h3>
@@ -94,21 +179,73 @@ import MainLayout from '@/layouts/MainLayout.astro';
           </a>
         ))}
       </div>
+      <div class="text-center mt-10">
+        
+          href="/services"
+          class="inline-flex items-center text-emerald-700 font-semibold hover:text-emerald-800 text-lg transition-colors"
+        >
+          View All Services
+          <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </a>
+      </div>
     </div>
   </section>
 
+  <!-- Service Areas -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-4xl font-bold text-gray-900 mb-4">Seattle Area Limo Service Coverage</h2>
+      <p class="text-xl text-gray-600 mb-10">Serving all major cities across King, Snohomish & Pierce counties</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        {[
+          'Seattle', 'Bellevue', 'Redmond', 'Kirkland', 'Renton',
+          'Tacoma', 'Everett', 'Lynnwood', 'Edmonds', 'Bothell',
+          'Woodinville', 'Auburn', 'Federal Way', 'Sammamish', 'Kent',
+          'Lakewood', 'Puyallup', 'Marysville', 'SeaTac Airport', 'Boeing Field'
+        ].map((city) => (
+          <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-full text-sm font-medium">
+            {city}
+          </span>
+        ))}
+      </div>
+      <div class="mt-8">
+        
+          href="/locations"
+          class="inline-flex items-center text-emerald-700 font-semibold hover:text-emerald-800 text-lg transition-colors"
+        >
+          View All Locations
+          <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
   <section class="py-20 bg-gradient-to-r from-emerald-900 to-emerald-800 text-white">
     <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
       <h2 class="text-4xl font-bold mb-6">Ready to Experience Luxury?</h2>
-      <p class="text-xl mb-8 text-gray-200">Book your premium transportation today and travel in style</p>
+      <p class="text-xl mb-8 text-gray-200">
+        Book your premium Seattle limousine service today and travel in style
+      </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/book-now" class="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-semibold transition-all inline-flex items-center justify-center">
+        
+          href="/book-now"
+          class="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-semibold transition-all inline-flex items-center justify-center"
+        >
           BOOK NOW
         </a>
-        <a href="tel:+12065959675" class="bg-transparent border-2 border-white hover:bg-white hover:text-emerald-900 text-white px-8 py-4 rounded-lg font-semibold transition-all inline-flex items-center justify-center">
+        
+          href="tel:+12065959675"
+          class="bg-transparent border-2 border-white hover:bg-white hover:text-emerald-900 text-white px-8 py-4 rounded-lg font-semibold transition-all inline-flex items-center justify-center"
+        >
           (206) 595-9675
         </a>
       </div>
     </div>
   </section>
+
 </MainLayout>
