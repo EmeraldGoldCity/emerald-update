@@ -57,7 +57,7 @@ export function LocationsPage() {
                       <img src={city.images} alt={city.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                     </div>
                   )}
-                  <div className="p-7"> //
+                  <div className="p-7"> 
                     
                   </div>
                   {/* Header Row: Icon + Name */}
@@ -72,7 +72,7 @@ export function LocationsPage() {
                   <p className="text-gray-600 text-sm leading-relaxed pl-9">
                     {city.description}
                   </p>
-                </a> //
+                </a> 
               ))}
             </div>
           </div>
