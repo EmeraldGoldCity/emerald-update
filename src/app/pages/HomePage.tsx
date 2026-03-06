@@ -81,10 +81,9 @@ export function HomePage() {
     <source
       type="image/webp"
       srcSet="
-        https://images.unsplash.com/photo-1768024175224-db216683d310?w=480&h=320&fit=crop&q=70&fm=webp 480w,
-        https://images.unsplash.com/photo-1768024175224-db216683d310?w=768&h=512&fit=crop&q=75&fm=webp 768w,
-        https://images.unsplash.com/photo-1768024175224-db216683d310?w=1280&h=720&fit=crop&q=80&fm=webp 1280w,
-        https://images.unsplash.com/photo-1768024175224-db216683d310?w=1920&h=1080&fit=crop&q=85&fm=webp 1920w
+        /images/hero-background.jpeg 768w,
+        /images/hero-background.jpeg 1280w,
+        /images/hero-background.jpeg 1920w
       "
       sizes="100vw"
     />
@@ -133,7 +132,7 @@ export function HomePage() {
               <span className="text-[#d4af37]">Emerald City Limos</span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-white drop-shadow-lg">
-              Seattle's Premier Limousine Service Since 2010
+              Seattle's Limo Service | Luxury Black Car & Airport Transfers | Emerald City Limos
             </p>
             <div className="flex justify-center">
               <Link
