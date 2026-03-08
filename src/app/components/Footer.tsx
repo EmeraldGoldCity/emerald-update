@@ -99,14 +99,14 @@ export function Footer() {
           <div>
             <h4 className="font-bold mb-4 text-[#d4af37] text-lg">Our Services</h4>
             <ul className="space-y-2 text-sm text-gray-200">
-              <li>Airport Transfers</li>
-              <li>Hourly Charters</li>
-              <li>Wedding Transportation</li>
-              <li>Game Day Transport</li>
-              <li>Special Occasions</li>
-              <li>Corporate Events</li>
-              <li>Executive Transportation</li>
-              <li>Cruise Transportation</li>
+              <li><a href="/airport-transfers" className="hover:text-[#d4af37] transition-colors">Airport Transfers</a></li>
+              <li><a href="/service/hourly-charters" className="hover:text-[#d4af37] transition-colors">Hourly Charters</a></li>
+              <li><a href="/service/wedding-transportation" className="hover:text-[#d4af37] transition-colors">Wedding Transportation</a></li>
+              <li><a href="/service/game-day-transport" className="hover:text-[#d4af37] transition-colors">Game Day Transport</a></li>
+              <li><a href="/service/special-occasions" className="hover:text-[#d4af37] transition-colors">Special Occasions</a></li>
+              <li><a href="/services" className="hover:text-[#d4af37] transition-colors">Corporate Events</a></li>
+              <li><a href="/service/executive-transportation" className="hover:text-[#d4af37] transition-colors">Executive Transportation</a></li>
+              <li><a href="/service/cruise-transportation" className="hover:text-[#d4af37] transition-colors">Cruise Transportation</a></li>
             </ul>
           </div>
 
