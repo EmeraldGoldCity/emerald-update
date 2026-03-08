@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { Facebook, Instagram, Mail, Phone, MapPin, } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 // YouTube icon component
@@ -31,6 +31,9 @@ export function Footer() {
               </a>
               <a href="#" aria-label="YouTube" className="text-white hover:text-[#d4af37] transition-colors">
                 <YouTubeIcon />
+              </a>
+              <a href="https://www.tiktok.com/@emeraldcitylimos" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="text-white hover:text-[#d4af37] transition-colors">
+                <img src="/images/tiktok-icon.png" alt="TikTok" className="w-5 h-5" />
               </a>
             </div>
           </div>
