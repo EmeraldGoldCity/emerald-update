@@ -1,9 +1,9 @@
 
 import { Calendar, Clock, ArrowLeft, Tag, ArrowRight } from 'lucide-react';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
-import { allNewBlogPosts } from '@/app/data/allNewBlogPosts';
-import { remainingBlogPosts } from '@/app/data/remainingBlogPosts';
-import { finalBlogPosts } from '@/app/data/finalBlogPosts';
+import { allNewBlogPosts } from '@/app/data/allNewBlogPosts.tsx';
+import { remainingBlogPosts } from '@/app/data/remainingBlogPosts.tsx';
+import { finalBlogPosts } from '@/app/data/finalBlogPosts.tsx';
 
 interface BlogPostContent {
   [key: string]: {

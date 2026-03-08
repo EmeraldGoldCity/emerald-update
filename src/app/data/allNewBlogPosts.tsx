@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+
 
 // Complete set of 10 new blog posts for Emerald City Limos
 // High-quality, SEO-optimized content following emerald green theme
@@ -138,9 +138,9 @@ export const allNewBlogPosts = {
           <p className="text-gray-200 mb-6">
             Pre-plan your Sea-Tac transfer for dramatically better experience. Whatever you choose, book before you land.
           </p>
-          <Link to="/airport-transfers" className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all">
+          <a href="/airport-transfers" className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all">
             Explore Airport Service
-          </Link>
+          </a>
         </div>
       </>
     )
@@ -340,9 +340,9 @@ export const allNewBlogPosts = {
           <p className="text-gray-200 mb-6">
             Transportation is your wedding's invisible backbone. When it works perfectly, nobody notices. When it fails, everyone remembers. Plan it right.
           </p>
-          <Link to="/service/wedding-transportation" className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all">
+          <a href="/service/wedding-transportation" className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all">
             Explore Wedding Services
-          </Link>
+          </a>
         </div>
       </>
     )
@@ -532,9 +532,9 @@ export const allNewBlogPosts = {
           <p className="text-gray-200 mb-6">
             Enjoy the game, celebrate the win, tailgate with friends — without worrying about parking or designated drivers. Pre-book your game day transportation and focus on what matters: your team.
           </p>
-          <Link to="/service/game-day-transport" className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all">
+          <a href="/service/game-day-transport" className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all">
             Book Game Day Service
-          </Link>
+          </a>
         </div>
       </>
     )
@@ -696,9 +696,9 @@ export const allNewBlogPosts = {
           <p className="text-gray-200 mb-6">
             Private transportation means everyone enjoys the day. No designated driver guilt, no rigid schedules, no rideshare wait times. Just great wine, great company, and zero stress.
           </p>
-          <Link to="/service/hourly-charters" className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all">
+          <a href="/service/hourly-charters" className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all">
             Book Your Wine Tour
-          </Link>
+          </a>
         </div>
 
         <h2 className="text-3xl font-bold text-gray-900 mt-10 mb-6">Sample Woodinville Itinerary</h2>
@@ -931,9 +931,9 @@ export const allNewBlogPosts = {
           <p className="text-gray-200 mb-6">
             Professional corporate transportation transforms business travel from logistical hassle into productive advantage. Arrive on time, work en route, project success.
           </p>
-          <Link to="/service/executive-transportation" className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all">
+          <a href="/service/executive-transportation" className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all">
             Explore Executive Service
-          </Link>
+          </a>
         </div>
       </>
     )

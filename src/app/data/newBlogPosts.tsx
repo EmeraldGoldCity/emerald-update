@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+
 
 // New blog posts content for Emerald City Limos
 // These will be integrated into the existing blog system
@@ -186,12 +186,12 @@ export const newBlogPosts = {
           <p className="text-gray-200 mb-6">
             There's no single "best" way — it depends on your budget, group size, luggage, arrival time, and preferences. What we can tell you from 15 years of driving this route: travelers who pre-plan their airport transportation have a dramatically better experience than those who figure it out in baggage claim at 11 PM with a dead phone.
           </p>
-          <Link
-            to="/airport-transfers"
+          <a
+            href="/airport-transfers"
             className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all"
           >
             Learn About Our Airport Service
-          </Link>
+          </a>
         </div>
       </>
     )
@@ -459,12 +459,12 @@ export const newBlogPosts = {
           <p className="text-gray-200 mb-6">
             Your wedding transportation is the invisible infrastructure of your biggest day. When it works perfectly, nobody talks about it. When it fails, it's the story everyone remembers. Invest the time to plan it properly.
           </p>
-          <Link
-            to="/service/wedding-transportation"
+          <a
+            href="/service/wedding-transportation"
             className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all"
           >
             Explore Wedding Transportation
-          </Link>
+          </a>
         </div>
       </>
     )

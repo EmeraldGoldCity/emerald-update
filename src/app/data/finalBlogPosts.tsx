@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+
 
 // Final 3 blog posts (8-10) for Emerald City Limos
 
@@ -273,9 +273,9 @@ export const finalBlogPosts = {
           <p className="text-gray-200 mb-6">
             Professional ferry coordination means you enjoy the island without logistics stress. Perfect for weddings, wine tours, and special occasions.
           </p>
-          <Link to="/locations/kitsap-county/bainbridge-island" className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all">
+          <a href="/locations/kitsap-county/bainbridge-island" className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all">
             Explore Island Service
-          </Link>
+          </a>
         </div>
       </>
     )
@@ -481,9 +481,9 @@ export const finalBlogPosts = {
           <p className="text-gray-200 mb-6">
             Don't let transportation stress or DUI risk ruin your holidays. Professional service means you celebrate fully, arrive safely, and start the new year right.
           </p>
-          <Link to="/service/special-occasions" className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all">
+          <a href="/service/special-occasions" className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all">
             Book Holiday Transportation
-          </Link>
+          </a>
         </div>
       </>
     )
@@ -760,9 +760,9 @@ export const finalBlogPosts = {
           <p className="text-gray-200 mb-6">
             Turn Seattle day trips into effortless adventures. Professional transportation means you enjoy every moment without driving stress, navigation worries, or designated driver debates.
           </p>
-          <Link to="/service/hourly-charters" className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all">
+          <a href="/service/hourly-charters" className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all">
             Book Your Day Trip
-          </Link>
+          </a>
         </div>
       </>
     )

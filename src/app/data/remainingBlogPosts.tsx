@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+
 
 // Remaining 5 blog posts (6-10) for Emerald City Limos
 
@@ -247,9 +247,9 @@ export const remainingBlogPosts = {
           <p className="text-gray-200 mb-6">
             Don't let transportation stress mar the start of your dream vacation. Professional cruise port service gets you to the ship relaxed, on time, and ready to sail.
           </p>
-          <Link to="/service/cruise-transportation" className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all">
+          <a href="/service/cruise-transportation" className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all">
             Book Cruise Transfer
-          </Link>
+          </a>
         </div>
       </>
     )
@@ -508,9 +508,9 @@ export const remainingBlogPosts = {
           <p className="text-gray-200 mb-6">
             Professional prom transportation combines the VIP experience your teen wants with the safety and accountability you need. Book early for best availability.
           </p>
-          <Link to="/service/special-occasions" className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all">
+          <a href="/service/special-occasions" className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all">
             Book Prom Service
-          </Link>
+          </a>
         </div>
       </>
     )
