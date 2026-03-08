@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+
 import { ChevronLeft, ChevronRight, Search, Calendar, ArrowRight, Tag, ChevronDown } from 'lucide-react';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 
@@ -325,7 +325,7 @@ function FeaturedSlider() {
   return (
     <div className="relative group">
       <div className="relative h-[500px] overflow-hidden rounded-2xl">
-        <Link to={`/blog/${featuredPosts[currentIndex].slug}`}>
+        <a href={`/blog/${featuredPosts[currentIndex].slug}`}>
           <div className="relative h-full">
             <ImageWithFallback
               src={featuredPosts[currentIndex].image}
@@ -349,7 +349,7 @@ function FeaturedSlider() {
               </div>
             </div>
           </div>
-        </Link>
+        </a>
       </div>
 
       {/* Navigation Arrows */}
@@ -466,9 +466,9 @@ export function BlogPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPosts.map((post) => (
-              <Link
+              <a
                 key={post.id}
-                to={`/blog/${post.slug}`}
+                href={`/blog/${post.slug}`}
                 className="group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
               >
                 <div className="relative h-56 overflow-hidden">
@@ -507,7 +507,7 @@ export function BlogPage() {
                     Read More <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
-              </Link>
+              </a>
             ))}
           </div>
 
@@ -528,12 +528,12 @@ export function BlogPage() {
           <p className="text-xl mb-8 text-gray-200">
             Book your premium limousine service today
           </p>
-          <Link
-            to="/book-now"
+          <a
+            href="/book-now"
             className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-12 py-4 rounded-lg text-lg font-bold transition-all inline-flex items-center justify-center shadow-lg hover:shadow-xl"
           >
             BOOK NOW
-          </Link>
+          </a>
         </div>
       </section>
 
@@ -1000,12 +1000,12 @@ function FAQSection() {
             >
               Call (206) 595-9675
             </a>
-            <Link
-              to="/book-now"
+            <a
+              href="/book-now"
               className="bg-white hover:bg-gray-100 text-emerald-900 px-8 py-4 rounded-lg font-bold transition-all inline-flex items-center justify-center"
             >
               Book Online Now
-            </Link>
+            </a>
           </div>
         </div>
       </div>

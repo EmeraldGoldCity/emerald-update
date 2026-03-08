@@ -1,4 +1,4 @@
-import { useParams, Link, Navigate } from 'react-router-dom';
+
 import { Calendar, Clock, ArrowLeft, Tag, ArrowRight } from 'lucide-react';
 import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
 import { allNewBlogPosts } from '@/app/data/allNewBlogPosts';
@@ -105,12 +105,12 @@ const blogContent: BlogPostContent = {
           <p className="text-gray-200 mb-6">
             Experience the A1 Charters difference. Book your Sea-Tac transfer today and discover why thousands of Seattle travelers trust us for their airport transportation needs.
           </p>
-          <Link
-            to="/book-now"
+          <a
+            href="/book-now"
             className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all"
           >
             Book Airport Transfer Now
-          </Link>
+          </a>
         </div>
       </>
     )
@@ -234,12 +234,12 @@ const blogContent: BlogPostContent = {
           <p className="text-gray-200 mb-6">
             Let A1 Charters handle your wedding transportation so you can focus on celebrating. Contact us today for a personalized quote and availability for your special day.
           </p>
-          <Link
-            to="/book-now"
+          <a
+            href="/book-now"
             className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all"
           >
             Request Wedding Quote
-          </Link>
+          </a>
         </div>
       </>
     )
@@ -348,12 +348,12 @@ const blogContent: BlogPostContent = {
           <p className="text-gray-200 mb-6">
             Experience the productivity and professionalism of A1 Charters executive transportation. Contact us to set up your corporate account or book your next business trip.
           </p>
-          <Link
-            to="/book-now"
+          <a
+            href="/book-now"
             className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all"
           >
             Book Executive Service
-          </Link>
+          </a>
         </div>
       </>
     )
@@ -472,12 +472,12 @@ const blogContent: BlogPostContent = {
           <p className="text-gray-200 mb-6">
             Make your next Seattle sports event unforgettable with A1 Charters. Book your game day transportation now and focus on cheering for your team!
           </p>
-          <Link
-            to="/book-now"
+          <a
+            href="/book-now"
             className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all"
           >
             Book Game Day Limo
-          </Link>
+          </a>
         </div>
       </>
     )
@@ -593,12 +593,12 @@ const blogContent: BlogPostContent = {
           <p className="text-gray-200 mb-6">
             Give your teen the prom experience they deserve while ensuring their safety. Book A1 Charters prom transportation today—spaces fill quickly during prom season!
           </p>
-          <Link
-            to="/book-now"
+          <a
+            href="/book-now"
             className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all"
           >
             Reserve Prom Transportation
-          </Link>
+          </a>
         </div>
       </>
     )
@@ -814,20 +814,19 @@ const blogContent: BlogPostContent = {
           <p className="text-gray-200 mb-6">
             Discover why discerning Seattle travelers choose A1 Charters for luxury, reliability, and exceptional service. Book your premium transportation today.
           </p>
-          <Link
-            to="/book-now"
+          <a
+            href="/book-now"
             className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all"
           >
             Book Your Luxury Ride
-          </Link>
+          </a>
         </div>
       </>
     )
   }
 };
 
-export function BlogPostPage() {
-  const { slug } = useParams<{ slug: string }>();
+export function BlogPostPage({ slug }: { slug: string }) {
   const post = slug ? blogContent[slug] : null;
 
   if (!post) {
@@ -836,13 +835,13 @@ export function BlogPostPage() {
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Article Not Found</h1>
           <p className="text-gray-600 mb-8">The blog post you're looking for doesn't exist.</p>
-          <Link
-            to="/blog"
+          <a
+            href="/blog"
             className="inline-flex items-center text-emerald-700 font-semibold hover:text-emerald-800"
           >
             <ArrowLeft className="w-5 h-5 mr-2" />
             Back to Blog
-          </Link>
+          </a>
         </div>
       </div>
     );
@@ -860,13 +859,13 @@ export function BlogPostPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
         <div className="absolute bottom-0 left-0 right-0 p-8">
           <div className="max-w-4xl mx-auto">
-            <Link
-              to="/blog"
+            <a
+              href="/blog"
               className="inline-flex items-center text-white/90 hover:text-white mb-4 transition-colors"
             >
               <ArrowLeft className="w-5 h-5 mr-2" />
               Back to Blog
-            </Link>
+            </a>
             <div className="inline-block bg-[#d4af37] text-black px-4 py-1 rounded-full text-sm font-semibold mb-4">
               {post.category}
             </div>
@@ -912,16 +911,16 @@ export function BlogPostPage() {
             <h3 className="text-2xl font-bold text-gray-900 mb-6">Related Links</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {post.relatedLinks.map((link, index) => (
-                <Link
+                <a
                   key={index}
-                  to={link.url}
+                  href={link.url}
                   className="flex items-center justify-between p-4 bg-white rounded-lg shadow hover:shadow-lg transition-all group"
                 >
                   <span className="font-semibold text-gray-900 group-hover:text-emerald-700">
                     {link.text}
                   </span>
                   <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-emerald-700 group-hover:translate-x-1 transition-all" />
-                </Link>
+                </a>
               ))}
             </div>
           </div>
@@ -932,12 +931,12 @@ export function BlogPostPage() {
       <section className="py-16 bg-gradient-to-r from-emerald-900 to-emerald-800 text-white">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold mb-6">Explore More Articles</h2>
-          <Link
-            to="/blog"
+          <a
+            href="/blog"
             className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all"
           >
             View All Blog Posts
-          </Link>
+          </a>
         </div>
       </section>
     </div>

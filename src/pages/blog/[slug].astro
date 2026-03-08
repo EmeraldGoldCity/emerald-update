@@ -1,0 +1,12 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import { BlogPostPage } from '@/app/pages/BlogPostPage';
+
+const { slug } = Astro.params;
+---
+<MainLayout
+  title="Blog | Emerald City Limos"
+  description="Seattle limo service tips, guides and news from Emerald City Limos."
+>
+  <BlogPostPage slug={slug} client:load />
+</MainLayout>
