@@ -1,33 +1,236 @@
 ---
+import MainLayout from '@/layouts/MainLayout.astro';
 ---
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Site Unavailable</title>
-    <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #064e3b;
-        font-family: sans-serif;
-        color: white;
-        text-align: center;
-        padding: 20px;
-      }
-      h1 { font-size: 2.5rem; color: #d4af37; margin-bottom: 1rem; }
-      p { font-size: 1.2rem; color: #d1fae5; margin-bottom: 0.5rem; }
-    </style>
-  </head>
-  <body>
-    <div>
-      <h1>This website is currently unavailable</h1>
-      <p>This site has been suspended pending outstanding payment.</p>
-      <p>To restore this website please contact the developer.</p>
+
+<MainLayout 
+  title="Seattle Limo Service | Airport Transfers & Black Car | Emerald City Limos"
+  description="Premium Seattle limousine service. Flat-rate SeaTac airport transfers, corporate travel, weddings and special events. 24/7 service with professional chauffeurs. Call (206) 595-9675."
+  keywords="seattle limo service, seatac airport limo, luxury car service seattle, black car service seattle, seattle airport transportation, corporate limo seattle, wedding limo seattle"
+>
+  <section class="relative h-[600px] md:h-[700px] flex items-center justify-center overflow-hidden">
+    <picture>
+      <source media="(max-width: 768px)" srcset="/images/hero-background.jpeg" type="image/jpeg" width="640" height="360" />
+      <source srcset="/images/hero-background.jpeg" type="image/jpeg" width="1920" height="1080" />
+      <img
+        src="/images/hero-background.jpeg"
+        alt="Luxury limousine service Seattle - Emerald City Limos black car"
+        class="absolute inset-0 w-full h-full object-cover"
+        width="1920"
+        height="1080"
+        loading="eager"
+        fetchpriority="high"
+        decoding="sync"
+      />
+    </picture>
+    <div class="absolute inset-0 bg-black/30 z-10"></div>
+    <div class="relative z-20 text-center text-white max-w-4xl mx-auto px-4" style="min-height: 280px;">
+      <h1 class="text-5xl md:text-6xl font-bold mb-6">
+        Seattle's Premier <span class="text-[#d4af37]">Limo & Black Car Service</span>
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 text-gray-200">
+        Airport transfers, corporate travel, weddings and special events. Serving Seattle, Bellevue, Tacoma and beyond.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/book-now"
+          class="bg-[#d4af37] hover:bg-[#b8941f] text-black px-12 py-5 rounded-lg text-xl font-bold transition-all shadow-2xl inline-flex items-center justify-center"
+          role="button"
+          aria-label="Book your luxury limousine service now"
+        >
+          BOOK NOW
+        </a>
+        <a
+          href="tel:+12065959675"
+          class="bg-transparent border-2 border-white hover:bg-white hover:text-emerald-900 text-white px-12 py-5 rounded-lg text-xl font-bold transition-all inline-flex items-center justify-center"
+        >
+          (206) 595-9675
+        </a>
+      </div>
     </div>
-  </body>
-</html>
+    <a
+      href="https://www.youtube.com/watch?v=kcUFqF7MUWc"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="absolute bottom-8 right-8 z-30"
+      aria-label="Watch Our Video"
+    >
+      <div class="flex items-center gap-2 bg-black/60 hover:bg-black/80 text-white px-4 py-2 rounded-full transition-all">
+        <svg class="w-6 h-6 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <span class="text-sm font-semibold">Watch Video</span>
+      </div>
+    </a>
+  </section>
+
+  <!-- About Section -->
+  <section class="py-20 bg-gradient-to-br from-emerald-50 to-yellow-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            About <span class="text-emerald-700">Emerald City Limos</span>
+          </h2>
+          <p class="text-lg text-gray-700 mb-4">
+            Since 2010, we have been providing the Greater Seattle area with unparalleled luxury transportation services. Our fleet of premium vehicles and professional chauffeurs ensure that every journey is comfortable, safe, and memorable.
+          </p>
+          <p class="text-lg text-gray-700 mb-6">
+            Whether you are heading to SeaTac Airport, celebrating a wedding, attending a Seahawks game, cruising from Seattle port, or need executive black car service, we deliver excellence every time. Proudly serving King County, Snohomish County, Pierce County, and the greater Seattle-Tacoma metro area.
+          </p>
+          <a
+            href="/locations"
+            class="inline-flex items-center text-emerald-700 font-semibold hover:text-emerald-800 transition-colors"
+          >
+            View All Service Areas
+          </a>
+        </div>
+        <div class="relative h-96 rounded-lg overflow-hidden shadow-2xl">
+          <img
+            src="/images/cad1.webp"
+            alt="Emerald City Limos luxury Cadillac Escalade Seattle airport transfer"
+            class="w-full h-full object-cover"
+            width="600"
+            height="400"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          Our <span class="text-emerald-700">Premium Services</span>
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Luxury Seattle transportation solutions for every occasion
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <a href="/airport-transfers" class="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
+          <div class="p-6">
+            <div class="text-5xl mb-4 text-center">✈️</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2 text-center group-hover:text-emerald-700 transition-colors">Airport Transfers</h3>
+            <p class="text-gray-600 text-center text-sm">Flat-rate SeaTac airport limo service. 24/7 flight tracking and meet and greet.</p>
+          </div>
+        </a>
+        <a href="/service/hourly-charters" class="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
+          <div class="p-6">
+            <div class="text-5xl mb-4 text-center">⏰</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2 text-center group-hover:text-emerald-700 transition-colors">Hourly Charters</h3>
+            <p class="text-gray-600 text-center text-sm">Flexible hourly limo service for Seattle tours, shopping, and business meetings.</p>
+          </div>
+        </a>
+        <a href="/service/wedding-transportation" class="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
+          <div class="p-6">
+            <div class="text-5xl mb-4 text-center">💍</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2 text-center group-hover:text-emerald-700 transition-colors">Wedding Transport</h3>
+            <p class="text-gray-600 text-center text-sm">Seattle wedding limousine service. Red carpet arrival for your special day.</p>
+          </div>
+        </a>
+        <a href="/service/game-day-transport" class="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
+          <div class="p-6">
+            <div class="text-5xl mb-4 text-center">🏈</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2 text-center group-hover:text-emerald-700 transition-colors">Game Day Transport</h3>
+            <p class="text-gray-600 text-center text-sm">Seattle Seahawks, Mariners, Sounders and Kraken game day transportation.</p>
+          </div>
+        </a>
+        <a href="/service/executive-transportation" class="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
+          <div class="p-6">
+            <div class="text-5xl mb-4 text-center">💼</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2 text-center group-hover:text-emerald-700 transition-colors">Executive Transportation</h3>
+            <p class="text-gray-600 text-center text-sm">Seattle corporate black car service for executives and business travelers.</p>
+          </div>
+        </a>
+        <a href="/service/cruise-transportation" class="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
+          <div class="p-6">
+            <div class="text-5xl mb-4 text-center">🚢</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2 text-center group-hover:text-emerald-700 transition-colors">Cruise Transportation</h3>
+            <p class="text-gray-600 text-center text-sm">Seattle cruise terminal transfers. Smith Cove and Bell Street pier service.</p>
+          </div>
+        </a>
+        <a href="/service/infant-car-seats" class="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
+          <div class="p-6">
+            <div class="text-5xl mb-4 text-center">👶</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2 text-center group-hover:text-emerald-700 transition-colors">Infant Car Seats</h3>
+            <p class="text-gray-600 text-center text-sm">Pre-installed car seats and booster seats for safe Seattle family travel.</p>
+          </div>
+        </a>
+        <a href="/service/special-occasions" class="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-2">
+          <div class="p-6">
+            <div class="text-5xl mb-4 text-center">🎉</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2 text-center group-hover:text-emerald-700 transition-colors">Special Occasions</h3>
+            <p class="text-gray-600 text-center text-sm">Seattle birthday, anniversary and prom limo service. Celebrate in luxury.</p>
+          </div>
+        </a>
+      </div>
+      <div class="text-center mt-10">
+        <a href="/services" class="inline-flex items-center text-emerald-700 font-semibold hover:text-emerald-800 text-lg transition-colors">
+          View All Services
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Areas -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-4xl font-bold text-gray-900 mb-4">Seattle Area Limo Service Coverage</h2>
+      <p class="text-xl text-gray-600 mb-10">Serving all major cities across King, Snohomish and Pierce counties</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-full text-sm font-medium">Seattle</span>
+        <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-full text-sm font-medium">Bellevue</span>
+        <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-full text-sm font-medium">Redmond</span>
+        <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-full text-sm font-medium">Kirkland</span>
+        <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-full text-sm font-medium">Renton</span>
+        <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-full text-sm font-medium">Tacoma</span>
+        <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-full text-sm font-medium">Everett</span>
+        <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-full text-sm font-medium">Lynnwood</span>
+        <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-full text-sm font-medium">Edmonds</span>
+        <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-full text-sm font-medium">Bothell</span>
+        <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-full text-sm font-medium">Woodinville</span>
+        <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-full text-sm font-medium">Auburn</span>
+        <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-full text-sm font-medium">Federal Way</span>
+        <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-full text-sm font-medium">Sammamish</span>
+        <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-full text-sm font-medium">Kent</span>
+        <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-full text-sm font-medium">Lakewood</span>
+        <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-full text-sm font-medium">Puyallup</span>
+        <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-full text-sm font-medium">Marysville</span>
+        <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-full text-sm font-medium">SeaTac Airport</span>
+        <span class="bg-emerald-50 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-full text-sm font-medium">Boeing Field</span>
+      </div>
+      <div class="mt-8">
+        <a href="/locations" class="inline-flex items-center text-emerald-700 font-semibold hover:text-emerald-800 text-lg transition-colors">
+          View All Locations
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-r from-emerald-900 to-emerald-800 text-white">
+    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl font-bold mb-6">Ready to Experience Luxury?</h2>
+      <p class="text-xl mb-8 text-gray-200">
+        Book your premium Seattle limousine service today and travel in style
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/book-now"
+          class="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-semibold transition-all inline-flex items-center justify-center"
+        >
+          BOOK NOW
+        </a>
+        <a
+          href="tel:+12065959675"
+          class="bg-transparent border-2 border-white hover:bg-white hover:text-emerald-900 text-white px-8 py-4 rounded-lg font-semibold transition-all inline-flex items-center justify-center"
+        >
+          (206) 595-9675
+        </a>
+      </div>
+    </div>
+  </section>
+
+</MainLayout>
