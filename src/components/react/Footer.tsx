@@ -72,12 +72,12 @@ export function Footer() {
             <h3 className="font-bold mb-4 text-[#d4af37]">Our Services</h3>
             <ul className="space-y-2 text-sm" role="list">
               <li><a href="/airport-transfers" className="text-gray-300 hover:text-[#d4af37] transition-colors">Airport Transfers</a></li>
-              <li><a href="/services/hourly-charters" className="text-gray-300 hover:text-[#d4af37] transition-colors">Hourly Charters</a></li>
-              <li><a href="/services/wedding-transportation" className="text-gray-300 hover:text-[#d4af37] transition-colors">Wedding Transportation</a></li>
+              <li><a href="/service/hourly-charters" className="text-gray-300 hover:text-[#d4af37] transition-colors">Hourly Charters</a></li>
+              <li><a href="/service/wedding-transportation" className="text-gray-300 hover:text-[#d4af37] transition-colors">Wedding Transportation</a></li>
               <li><a href="/services/sports-events" className="text-gray-300 hover:text-[#d4af37] transition-colors">Game Day Transport</a></li>
-              <li><a href="/services/special-occasions" className="text-gray-300 hover:text-[#d4af37] transition-colors">Special Occasions</a></li>
+              <li><a href="/service/special-occasions" className="text-gray-300 hover:text-[#d4af37] transition-colors">Special Occasions</a></li>
               <li><a href="/services/corporate-transportation" className="text-gray-300 hover:text-[#d4af37] transition-colors">Corporate Events</a></li>
-              <li><a href="/services/executive-transportation" className="text-gray-300 hover:text-[#d4af37] transition-colors">Executive Transportation</a></li>
+              <li><a href="/service/executive-transportation" className="text-gray-300 hover:text-[#d4af37] transition-colors">Executive Transportation</a></li>
               <li><a href="/services/cruise-port-transfers" className="text-gray-300 hover:text-[#d4af37] transition-colors">Cruise Transportation</a></li>
             </ul>
           </nav>
