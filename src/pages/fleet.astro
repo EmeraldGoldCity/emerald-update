@@ -4,20 +4,22 @@ import { VehicleCarousel } from '@/components/react/VehicleCarousel';
 const fleetHeroBg = "https://images.unsplash.com/photo-1720828979857-10fc03d19cfe?w=1920&h=1080&fit=crop&q=85&fm=webp&auto=format";
 
 // Vehicle images (using Unsplash CDN - Optimized with WebP)
-const imgCarCadillacEscalade1 = "/images/cadl1.webp";
-const imgCarCadillacEscalade2 = "/images/cadl2.webp";
-const imgCarCadillacEscalade3 = "/images/cadl3.webp";
-const imgMercedesSClass = "/images/merc.webp";
-const imgCarCadillacXt6_1 = "/images/cad1.webp";
-const imgCarCadillacXt6_2 = "/images/cad1.webp";
-const imgCarCadillacXt6_3 = "/images/cad2.webp";
-const imgFreightlinerMinibus = "/images/freightliner.webp";
+const imgCarCadillacEscalade1 = "/images/escalade-1.jpeg";
+const imgCarCadillacEscalade2 = "/images/escalade-2.jpeg";
+const imgCarCadillacEscalade3 = "/images/escalade-inside1.jpeg";
+const imgMercedesSClass = "/images/sedan-2.jpeg";
+const imgCarCadillacXt6_1 = "/images/SUV.jpeg";
+const imgCarCadillacXt6_2 = "/images/suv-2.jpeg";
+const imgCarCadillacXt6_3 = "/images/interior-suv.jpeg";
+const imgFreightlinerMinibus = "/images/bus-outside.jpeg";
 const imgPartyBus = "/images/party1.webp";
-const imgMotorcoach = "/images/motorcoach.webp";
+const imgMotorcoach = "/images/bus-outside.jpeg";
 
-const imgSprinterExterior = "/images/merc-interior1.webp";
-const imgSprinterInterior1 = "/images/merc-inter2.webp";
-const imgSprinterInterior2 = "/images/merc-interior1.webp";
+const imgSprinterExterior = "/images/SPRINTER.jpeg";
+const imgSprinterInterior1 = "/images/SPRINTER-INSIDE.jpeg";
+const imgSprinterInterior2 = "/images/14-sprinter-inside.jpeg";
+
+
 const imgInfantSeat = "/images/carseatfront.avif";
 const imgToddlerSeat = "/images/rearseattoddler.avif";
 const imgBoosterSeat = "images/boosterseat.avif";
@@ -112,8 +114,7 @@ const vehicles = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {vehicles.map((vehicle, index) => (
-          <a
-            href="/book-now"
+          <div
             class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
           >
             <div class="bg-gradient-to-br from-gray-50 to-white p-4 text-center">
@@ -136,12 +137,12 @@ const vehicles = [
                 </p>
               </div>
             </div>
-            <div class="bg-gray-100 py-4 text-center">
+            <a href="/book-now" class="block bg-gray-100 py-4 text-center">
               <span class="inline-block text-sm uppercase tracking-widest text-gray-700 hover:text-emerald-700 transition-colors">
                 Reserve Now
               </span>
-            </div>
-          </a>
+            </a>
+          </div>
         ))}
       </div>
     </div>
