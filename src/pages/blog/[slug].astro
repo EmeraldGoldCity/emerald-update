@@ -2,6 +2,11 @@
 import MainLayout from '@/layouts/MainLayout.astro';
 import { BlogPostPage } from '@/app/pages/BlogPostPage';
 
+export async function getStaticPaths() {
+  const { blogContent } = await import('@/app/pages/BlogPostPage');
+  return Object.keys(blogContent).map((slug) => ({ params: { slug } }));
+}
+
 const { slug } = Astro.params;
 ---
 <MainLayout

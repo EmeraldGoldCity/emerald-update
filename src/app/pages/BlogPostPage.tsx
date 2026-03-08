@@ -19,7 +19,7 @@ interface BlogPostContent {
   };
 }
 
-const blogContent: BlogPostContent = {
+export const blogContent: BlogPostContent = {
   // ===== NEW BLOG POSTS (10 comprehensive SEO-optimized posts) =====
   ...allNewBlogPosts,
   ...remainingBlogPosts,
