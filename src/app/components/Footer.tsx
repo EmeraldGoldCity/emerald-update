@@ -38,7 +38,7 @@ export function Footer() {
                 <YouTubeIcon />
               </a>
               <a href="https://www.tiktok.com/@emeraldcitylimos" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="text-white hover:text-[#d4af37] transition-colors">
-                <img src="/images/icon-tiktok.png" alt="TikTok" className="w-5 h-5" />
+                <TikTokIcon />
               </a>
             </div>
           </div>
