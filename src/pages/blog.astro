@@ -1,0 +1,11 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import { BlogPage } from '@/app/pages/BlogPage';
+---
+<MainLayout
+  title="Seattle Limo Service Blog | Tips & News | Emerald City Limos"
+  description="Expert tips on Seattle airport transfers, luxury transportation, wedding limos, and travel advice from Emerald City Limos."
+  keywords="seattle limo blog, airport transfer tips, seattle transportation news, luxury limo advice"
+>
+  <BlogPage client:load />
+</MainLayout>
