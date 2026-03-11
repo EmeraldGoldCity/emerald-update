@@ -81,9 +81,9 @@ export function HomePage() {
     <source
       type="image/webp"
       srcSet="
-        /images/hero-background.jpeg 768w,
-        /images/hero-background.jpeg 1280w,
-        /images/hero-background.jpeg 1920w
+        /images/hero-background.webp 768w,
+        /images/hero-background.webp 1280w,
+        /images/hero-background.webp 1920w
       "
       sizes="100vw"
     />
