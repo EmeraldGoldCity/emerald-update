@@ -1,6 +1,7 @@
-
 import sharp from 'sharp';
+
 await sharp('public/images/hero-background.jpeg')
-  .webp({ quality: 50 })
-  .toFile('public/images/hero-background.webp');
-console.log('✅ done');
+  .resize(640)
+  .webp({ quality: 60 })
+  .toFile('public/images/hero-mobile.webp');
+console.log('✅ hero-mobile.webp done');

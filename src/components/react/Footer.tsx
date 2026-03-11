@@ -45,7 +45,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-bold mb-4 text-[#d4af37] text-lg">Quick Links</h4>
+            <h3 className="font-bold mb-4 text-[#d4af37] text-lg">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li><a href="/" className="text-gray-200 hover:text-[#d4af37] transition-colors">Home</a></li>
               <li><a href="/services" className="text-gray-200 hover:text-[#d4af37] transition-colors">Services</a></li>
