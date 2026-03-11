@@ -35,7 +35,7 @@ export function Navigation() {
             aria-label="Emerald City Limos - Return to homepage"
           >
             <img
-              src="/images/logo.png"
+              src="/images/logo.webp"
               alt="Emerald City Limos"
               className="h-12 w-auto"
             />
