@@ -1,0 +1,96 @@
+---
+import type { Vehicle } from '@/data/fleet';
+
+interface Props {
+  vehicle: Vehicle;
+}
+
+const { vehicle } = Astro.props;
+---
+
+<article
+  data-fleet-featured
+  data-category={vehicle.category}
+  role="article"
+  aria-label={`${vehicle.name} — ${vehicle.category}`}
+  class="group relative flex h-full flex-col overflow-hidden border-l-2 border-brand-gold bg-white shadow-[0_1px_0_0_rgba(10,35,24,0.04)] ring-1 ring-brand-forest/10 transition-shadow duration-500 hover:ring-brand-gold/40"
+>
+  {/* ── Image area (16:9). Real photography swap-in: set `imageSrc` on the
+      vehicle in src/data/fleet.ts. Until then this brand-styled placeholder
+      ships and looks intentional. ──────────────────────────────────────── */}
+  <div class="relative aspect-[16/9] w-full overflow-hidden bg-brand-forest">
+    {vehicle.imageSrc ? (
+      <img
+        src={vehicle.imageSrc}
+        alt={vehicle.imageAlt}
+        loading="lazy"
+        decoding="async"
+        width="1280"
+        height="720"
+        class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+      />
+    ) : (
+      <div class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+        <span
+          class="absolute inset-0"
+          style="background: radial-gradient(ellipse 60% 55% at center, var(--color-brand-gold-soft) 0%, transparent 70%); opacity: 0.18;"
+        ></span>
+        <span class="absolute left-5 top-5 h-px w-10 bg-brand-gold/50"></span>
+        <span class="absolute left-5 top-5 h-10 w-px bg-brand-gold/50"></span>
+        <span class="absolute bottom-5 right-5 h-px w-10 bg-brand-gold/50"></span>
+        <span class="absolute bottom-5 right-5 h-10 w-px bg-brand-gold/50"></span>
+        <span class="relative font-sans text-xs font-semibold uppercase tracking-[0.22em] text-brand-gold-soft">
+          {vehicle.category}
+        </span>
+      </div>
+    )}
+  </div>
+
+  {/* ── Body ───────────────────────────────────────────────────────────── */}
+  <div class="flex flex-1 flex-col gap-5 p-7 sm:p-9 lg:p-10">
+    <div class="flex items-center justify-between gap-4">
+      <p class="font-sans text-xs font-semibold uppercase tracking-[0.22em] text-brand-gold">
+        {vehicle.category}
+      </p>
+      <span class="inline-flex items-center border border-brand-forest/15 px-3 py-1 font-sans text-[11px] font-medium uppercase tracking-[0.18em] text-brand-forest tabular-nums">
+        {vehicle.capacity} pax
+      </span>
+    </div>
+
+    <h3 class="font-display text-3xl font-light leading-[1.1] tracking-tight text-brand-forest sm:text-4xl">
+      {vehicle.name}
+    </h3>
+
+    <p class="font-sans text-sm font-light text-neutral-600">
+      {vehicle.capacityLabel} &middot; {vehicle.bestFor.join(' · ')}
+    </p>
+
+    <ul role="list" class="mt-1 grid grid-cols-1 gap-x-6 gap-y-2.5 sm:grid-cols-2">
+      {vehicle.features.map((f: string) => (
+        <li class="flex items-start gap-3 font-sans text-sm font-light text-neutral-700">
+          <span aria-hidden="true" class="mt-2 h-px w-3 flex-shrink-0 bg-brand-gold"></span>
+          <span>{f}</span>
+        </li>
+      ))}
+    </ul>
+
+    <div class="mt-3 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-brand-forest/10 pt-6">
+      <a
+        href="/book-now"
+        data-cta="fleet_featured_book"
+        aria-label={`Book the ${vehicle.name}`}
+        class="ecl-btn-primary ecl-focusable inline-flex min-h-[48px] items-center gap-2 border border-brand-gold-soft bg-brand-gold-soft px-7 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-brand-forest"
+      >
+        Book This Vehicle
+        <span class="ecl-arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a
+        href={vehicle.href}
+        class="ecl-focusable inline-flex items-center gap-2 border-b border-brand-gold pb-1 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-brand-forest transition-colors duration-300 hover:text-brand-gold"
+      >
+        Vehicle details
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</article>

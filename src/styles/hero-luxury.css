@@ -1,0 +1,149 @@
+/* ============================================
+   Hero — luxury motion + button micro-interactions
+   Additive only. Brand tokens come from theme.css.
+   ============================================ */
+
+/* ── Easing tokens ──────────────────────────────────────────────────────── */
+:root {
+  --ease-luxury:  cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-reveal:  cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Hero container ─────────────────────────────────────────────────────── */
+.ecl-hero {
+  /* svh accounts for mobile browser chrome; vh fallback for older engines */
+  min-height: 100vh;
+  min-height: 100svh;
+  background-color: var(--color-brand-forest, #0A2318);
+}
+
+/* ── Animation keyframes ────────────────────────────────────────────────── */
+@keyframes ecl-fade-up {
+  from { opacity: 0; transform: translate3d(0, 14px, 0); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes ecl-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes ecl-line-grow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes ecl-scroll-bob {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, 6px, 0); }
+}
+
+/* ── Animation classes ──────────────────────────────────────────────────── */
+.ecl-anim {
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-timing-function: var(--ease-reveal);
+  will-change: opacity, transform;
+}
+
+.ecl-anim-fade-up { animation-name: ecl-fade-up; }
+.ecl-anim-fade-in { animation-name: ecl-fade-in; }
+.ecl-anim-line    { animation-name: ecl-line-grow; transform-origin: left; }
+
+.ecl-delay-1 { animation-delay: 200ms;  animation-duration: 700ms; }
+.ecl-delay-2 { animation-delay: 380ms;  animation-duration: 700ms; }
+.ecl-delay-3 { animation-delay: 540ms;  animation-duration: 750ms; }
+.ecl-delay-4 { animation-delay: 700ms;  animation-duration: 750ms; }
+.ecl-delay-5 { animation-delay: 860ms;  animation-duration: 700ms; }
+.ecl-delay-6 { animation-delay: 1020ms; animation-duration: 650ms; }
+.ecl-delay-7 { animation-delay: 1180ms; animation-duration: 600ms; }
+.ecl-delay-8 { animation-delay: 1340ms; animation-duration: 550ms; }
+
+.ecl-scroll-indicator { animation: ecl-scroll-bob 2.2s var(--ease-luxury) infinite; }
+
+/* ── Reduced motion ─────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .ecl-anim {
+    opacity: 1 !important;
+    animation: none !important;
+    transform: none !important;
+  }
+  .ecl-scroll-indicator { animation: none !important; }
+}
+
+/* ── Buttons ────────────────────────────────────────────────────────────── */
+.ecl-btn-primary,
+.ecl-btn-secondary {
+  position: relative;
+  overflow: hidden;
+  transition:
+    background-color 250ms var(--ease-luxury),
+    box-shadow      250ms var(--ease-luxury),
+    border-color    250ms var(--ease-luxury),
+    transform       150ms var(--ease-luxury);
+}
+
+.ecl-btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.10);
+  opacity: 0;
+  transition: opacity 250ms var(--ease-luxury);
+  pointer-events: none;
+}
+
+.ecl-btn-primary:hover::after { opacity: 1; }
+.ecl-btn-primary:hover {
+  box-shadow: 0 8px 32px rgba(163, 126, 44, 0.35);
+}
+.ecl-btn-primary:active { transform: translateY(1px); }
+
+.ecl-btn-secondary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateX(-101%);
+  transition: transform 350ms var(--ease-luxury);
+  pointer-events: none;
+}
+.ecl-btn-secondary:hover::before { transform: translateX(0); }
+
+/* Arrow advance on hover */
+.ecl-btn-primary .ecl-arrow {
+  display: inline-block;
+  transition: transform 250ms var(--ease-luxury);
+}
+.ecl-btn-primary:hover .ecl-arrow { transform: translateX(4px); }
+
+/* ── Focus ring ─────────────────────────────────────────────────────────── */
+.ecl-focusable:focus-visible {
+  outline: 2px solid var(--color-brand-gold-soft, #c39a45);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* ── Fine SVG noise overlay (cinematic depth) ───────────────────────────── */
+.ecl-noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+/* ── Print: drop cinematic effects ──────────────────────────────────────── */
+@media print {
+  .ecl-hero { background: #fff !important; min-height: auto !important; }
+  .ecl-hero img,
+  .ecl-noise::after { display: none !important; }
+  .ecl-hero .text-white,
+  .ecl-hero .text-white\/75,
+  .ecl-hero .text-white\/60 { color: #000 !important; }
+}

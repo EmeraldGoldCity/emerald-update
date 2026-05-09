@@ -1,32 +1,69 @@
-/* ============================================ */
-/* FONT DEFINITIONS                             */
-/* Emerald City Limos Brand Typography          */
-/* ============================================ */
+/* ============================================
+   FONT DEFINITIONS
+   Emerald City Limos Brand Typography
 
-/* Import Inter for body text and headings */
+   Pairing:
+     • Display  — Cormorant Garamond (luxury serif, h1–h3)
+     • UI/Body  — Inter (highly readable sans, default)
+   ============================================ */
+
+/* Cormorant Garamond — variable, italic + roman, 300–700 */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
+
+/* Inter — already bundled via @fontsource-variable/inter */
 @import '@fontsource-variable/inter';
 
-/* Base font configuration */
 html {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  font-family: var(--font-sans);
   font-weight: 400;
   line-height: 1.6;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11'; /* Inter stylistic alts */
 }
 
-/* Heading font weights */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-  font-weight: 700;
+/* Display headings use the serif for editorial luxury feel.
+   Tracking is slightly tightened — Cormorant has wide default sidebearings. */
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
 }
 
-/* Navigation and button text */
-nav, button, .btn {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+h1 { font-weight: 600; }
+h2 { font-weight: 600; }
+h3 { font-weight: 500; }
+
+/* Sub-display headings stay sans for UI density. */
+h4,
+h5,
+h6 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* Navigation / buttons explicitly stay sans — uppercase tracking premium look */
+nav,
+button,
+.btn,
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Tabular numerals for phone, times, prices, ratings */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
 }

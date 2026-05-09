@@ -1,143 +1,849 @@
-import { Menu, X, Mail } from 'lucide-react';
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  Briefcase,
+  ChevronDown,
+  Clock,
+  Heart,
+  MapPin,
+  Menu,
+  Phone,
+  Plane,
+  Sparkles,
+  X,
+} from 'lucide-react';
 
-export function Navigation() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
-  // Get current path from window.location in the browser
-  const currentPath = typeof window !== 'undefined' ? window.location.pathname : '/';
+/* =========================================================
+   Emerald City Limos — Primary Navigation
+   ---------------------------------------------------------
+   Theming: brand tokens live in src/styles/theme.css.
+   Use Tailwind utilities only — no hex literals here.
 
-  const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Services', path: '/services' },
-    { name: 'Airport Transfers', path: '/airport-transfers' },
-    { name: 'Our Fleet', path: '/fleet' },
-    { name: 'Locations', path: '/locations' },
-    { name: 'Blog', path: '/blog' },
-  ];
+     Color: bg-brand-forest, bg-brand-forest-deep,
+            text-brand-gold, text-brand-gold-soft,
+            text-brand-champagne, bg-brand-emerald
+     Type:  font-display (Cormorant Garamond), default sans (Inter)
 
-  const isActive = (path: string) => {
-    return currentPath === path;
+   Behavior: fixed, transparent over hero, glass on scroll,
+   shrinks slightly on scroll, mega menus open on hover/click,
+   mobile drawer is focus-trapped and scroll-locked.
+   ========================================================= */
+
+const PHONE_DISPLAY = '(206) 595-9675';
+const PHONE_HREF = 'tel:+12065959675';
+
+type MegaKey = 'services' | 'locations';
+type Mega = MegaKey | null;
+
+const SERVICES = [
+  {
+    name: 'Airport Transfers',
+    href: '/airport-transfers',
+    icon: Plane,
+    desc: 'SEA-TAC, BFI, PAE — flight tracked, on time.',
+  },
+  {
+    name: 'Corporate Travel',
+    href: '/service/executive-transportation',
+    icon: Briefcase,
+    desc: 'Executive ground transport with discretion.',
+  },
+  {
+    name: 'Weddings',
+    href: '/service/wedding-transportation',
+    icon: Heart,
+    desc: 'White-glove service for the day that matters.',
+  },
+  {
+    name: 'Hourly Chauffeur',
+    href: '/service/hourly-charters',
+    icon: Clock,
+    desc: 'On-demand chauffeur, by the hour.',
+  },
+  {
+    name: 'Special Events',
+    href: '/service/special-occasions',
+    icon: Sparkles,
+    desc: 'Galas, anniversaries, milestone moments.',
+  },
+] as const;
+
+const LOCATIONS = {
+  king: {
+    label: 'King County',
+    items: [
+      { name: 'Seattle', href: '/location/seattle' },
+      { name: 'Bellevue', href: '/location/bellevue' },
+      { name: 'Redmond', href: '/location/redmond' },
+      { name: 'Kirkland', href: '/location/kirkland' },
+      { name: 'Sammamish', href: '/location/sammamish' },
+      { name: 'Renton', href: '/location/renton' },
+      { name: 'Kent', href: '/location/kent' },
+      { name: 'Auburn', href: '/location/auburn' },
+      { name: 'Federal Way', href: '/location/federal-way' },
+      { name: 'Woodinville', href: '/location/woodinville' },
+    ],
+  },
+  snohomish: {
+    label: 'Snohomish County',
+    items: [
+      { name: 'Everett', href: '/location/everett' },
+      { name: 'Marysville', href: '/location/marysville' },
+      { name: 'Lynnwood', href: '/location/lynnwood' },
+      { name: 'Edmonds', href: '/location/edmonds' },
+      { name: 'Bothell', href: '/location/bothell' },
+    ],
+  },
+  pierce: {
+    label: 'Pierce County',
+    items: [
+      { name: 'Tacoma', href: '/location/tacoma' },
+      { name: 'Lakewood', href: '/location/lakewood' },
+      { name: 'Puyallup', href: '/location/puyallup' },
+      { name: 'University Place', href: '/location/university-place' },
+    ],
+  },
+  extended: {
+    label: 'Extended Areas',
+    items: [
+      { name: 'Spokane', href: '/location/spokane' },
+      { name: 'Wenatchee', href: '/location/wenatchee' },
+      { name: 'Yakima', href: '/location/yakima' },
+      { name: 'Vancouver, BC', href: '/location/vancouver-bc' },
+      { name: 'Portland, OR', href: '/location/portland-or' },
+      { name: 'Cannon Beach, OR', href: '/location/cannon-beach-or' },
+    ],
+  },
+} as const;
+
+const AIRPORTS = [
+  { name: 'Sea-Tac (SEA)', href: '/airport/sea-tac', tag: 'Most popular' },
+  { name: 'Boeing Field (BFI)', href: '/airport/boeing-field' },
+  { name: 'Paine Field (PAE)', href: '/airport/paine-field' },
+] as const;
+
+type NavItem =
+  | { type: 'link'; name: string; href: string }
+  | { type: 'mega'; name: string; key: MegaKey };
+
+const NAV: NavItem[] = [
+  // { type: 'link', name: 'Home', href: '/' },
+  { type: 'mega', name: 'Services', key: 'services' },
+  { type: 'link', name: 'Fleet', href: '/fleet' },
+  { type: 'mega', name: 'Locations', key: 'locations' },
+  { type: 'link', name: 'About', href: '/#about' },
+  { type: 'link', name: 'Blog', href: '/blog' },
+  { type: 'link', name: 'Contact', href: '/book-now#contact' },
+];
+
+const SERVICES_PATH_PREFIXES = ['/services', '/service/', '/airport-transfers'];
+const LOCATIONS_PATH_PREFIXES = ['/locations', '/location/', '/airport/'];
+
+/* Shared focus-ring class (extracted because it's used everywhere) */
+const RING =
+  'outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-forest';
+const RING_TIGHT = 'outline-none focus-visible:ring-2 focus-visible:ring-brand-gold';
+
+interface NavigationProps {
+  /** Force solid mode (use on pages without a dark hero). Defaults to overlay. */
+  variant?: 'overlay' | 'solid';
+}
+
+export function Navigation({ variant = 'overlay' }: NavigationProps) {
+  const [scrolled, setScrolled] = useState(variant === 'solid');
+  const [pathname, setPathname] = useState<string>('');
+  const [openMega, setOpenMega] = useState<Mega>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileSection, setMobileSection] = useState<Mega>(null);
+
+  const headerRef = useRef<HTMLElement | null>(null);
+  const closeTimer = useRef<number | null>(null);
+  const triggerRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const hamburgerRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    if (variant === 'solid') return;
+    const onScroll = () => setScrolled((window.scrollY || 0) > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [variant]);
+
+  useEffect(() => {
+    setPathname(window.location.pathname);
+  }, []);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      if (openMega) {
+        const k = openMega;
+        setOpenMega(null);
+        triggerRefs.current[k]?.focus();
+      } else if (mobileOpen) {
+        setMobileOpen(false);
+      }
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [openMega, mobileOpen]);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [mobileOpen]);
+
+  useEffect(() => {
+    if (!openMega) return;
+    const onPointer = (e: PointerEvent) => {
+      const el = headerRef.current;
+      if (el && !el.contains(e.target as Node)) setOpenMega(null);
+    };
+    document.addEventListener('pointerdown', onPointer);
+    return () => document.removeEventListener('pointerdown', onPointer);
+  }, [openMega]);
+
+  const isLinkActive = useCallback(
+    (href: string) => {
+      if (!pathname) return false;
+      if (href === '/') return pathname === '/';
+      const bare = href.split('#')[0];
+      if (!bare) return false;
+      return pathname === bare || pathname.startsWith(bare + '/');
+    },
+    [pathname]
+  );
+
+  const isMegaActive = useCallback(
+    (key: MegaKey) => {
+      if (!pathname) return false;
+      const prefixes = key === 'services' ? SERVICES_PATH_PREFIXES : LOCATIONS_PATH_PREFIXES;
+      return prefixes.some((p) => pathname === p || pathname.startsWith(p));
+    },
+    [pathname]
+  );
+
+  const cancelClose = () => {
+    if (closeTimer.current) {
+      window.clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
   };
+  const scheduleClose = () => {
+    cancelClose();
+    closeTimer.current = window.setTimeout(() => setOpenMega(null), 140);
+  };
+  const closeMobile = () => setMobileOpen(false);
+
+  const isSolid = variant === 'solid' || scrolled || openMega !== null;
 
   return (
-    <nav 
-      className="bg-gradient-to-r from-emerald-900 to-emerald-800 text-white shadow-lg sticky top-0 z-50"
-      role="navigation"
-      aria-label="Main navigation"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <a 
-            href="/"
-            className="flex items-center space-x-2"
-            aria-label="Emerald City Limos - Return to homepage"
+    <>
+      <header
+        ref={headerRef}
+        data-scrolled={isSolid ? 'true' : 'false'}
+        className={[
+          'fixed inset-x-0 top-0 z-50',
+          'transition-[background-color,backdrop-filter,box-shadow] duration-300 ease-out motion-reduce:transition-none',
+          isSolid
+            ? 'bg-brand-forest/90 backdrop-blur-md shadow-[0_1px_0_rgba(163,126,44,0.18),0_8px_28px_-12px_rgba(0,0,0,0.5)]'
+            : 'bg-gradient-to-b from-black/45 via-black/15 to-transparent',
+        ].join(' ')}
+      >
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div
+            className={[
+              'flex items-center justify-between gap-4',
+              'transition-[height] duration-300 ease-out motion-reduce:transition-none',
+              isSolid ? 'h-16 md:h-[72px]' : 'h-20 md:h-24',
+            ].join(' ')}
           >
-            <img
-              src="/images/logo.webp"
-              alt="Emerald City Limos"
-              className="h-12 w-auto"
-            />
-          </a>
+            <a
+              href="/"
+              className={`group flex items-center gap-3 rounded-md ${RING}`}
+              aria-label="Emerald City Limos — return to homepage"
+            >
+              <img
+                src="/images/logo.webp"
+                alt=""
+                width={180}
+                height={48}
+                className={[
+                  'w-auto transition-[height] duration-300 ease-out motion-reduce:transition-none',
+                  isSolid ? 'h-9 md:h-10' : 'h-11 md:h-12',
+                ].join(' ')}
+              />
+              <span className="sr-only">Emerald City Limos</span>
+            </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8" role="list">
-            {navLinks.map((link) => (
+            <nav
+              className="hidden lg:block"
+              aria-label="Primary"
+              onMouseLeave={scheduleClose}
+            >
+              <ul className="flex items-center gap-1" role="list">
+                {NAV.map((item) =>
+                  item.type === 'link' ? (
+                    <li key={item.name}>
+                      <NavLink
+                        href={item.href}
+                        active={isLinkActive(item.href)}
+                        label={item.name}
+                      />
+                    </li>
+                  ) : (
+                    <li key={item.name} className="relative">
+                      <MegaTrigger
+                        label={item.name}
+                        controlsId={`mega-${item.key}`}
+                        open={openMega === item.key}
+                        active={isMegaActive(item.key)}
+                        onOpen={() => {
+                          cancelClose();
+                          setOpenMega(item.key);
+                        }}
+                        onToggle={() =>
+                          setOpenMega((cur) => (cur === item.key ? null : item.key))
+                        }
+                        registerRef={(el) => {
+                          triggerRefs.current[item.key] = el;
+                        }}
+                      />
+                    </li>
+                  )
+                )}
+              </ul>
+            </nav>
+
+            <div className="hidden items-center gap-2 lg:flex">
               <a
-                key={link.path}
-                href={link.path}
-                className={`text-sm font-medium transition-colors hover:text-[#d4af37] ${
-                  isActive(link.path) ? 'text-[#d4af37] border-b-2 border-[#d4af37]' : 'text-white'
-                }`}
-                aria-current={isActive(link.path) ? 'page' : undefined}
+                href={PHONE_HREF}
+                className={`group inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-extra-light text-brand-champagne transition-colors hover:text-brand-gold-soft ${RING_TIGHT}`}
+                aria-label={`Call us at ${PHONE_DISPLAY}, available twenty-four hours a day`}
               >
-                {link.name}
+                <Phone className="h-4 w-4" aria-hidden="true" />
+                <span className="tabular-nums">{PHONE_DISPLAY}</span>
               </a>
-            ))}
+              
+              <a
+                href="/book-now"
+                className={`inline-flex items-center rounded-sm bg-brand-gold px-5 py-2.5 text-sm font-semibold tracking-wide text-brand-forest shadow-[0_2px_0_rgba(0,0,0,0.08)] transition-[background-color,box-shadow] duration-200 hover:bg-brand-gold-soft hover:shadow-[0_6px_20px_-6px_rgba(163,126,44,0.6)] motion-reduce:transition-none ${RING}`}
+              >
+                Book Now
+              </a>
+            </div>
+
+            <div className="flex items-center gap-1 lg:hidden">
+              <a
+                href={PHONE_HREF}
+                className={`inline-flex h-11 w-11 items-center justify-center rounded-md text-brand-champagne transition-colors hover:text-brand-gold-soft ${RING_TIGHT}`}
+                aria-label={`Call ${PHONE_DISPLAY}`}
+              >
+                <Phone className="h-5 w-5" aria-hidden="true" />
+              </a>
+              <button
+                ref={hamburgerRef}
+                type="button"
+                onClick={() => setMobileOpen(true)}
+                className={`inline-flex h-11 w-11 items-center justify-center rounded-md text-brand-champagne transition-colors hover:text-brand-gold-soft ${RING_TIGHT}`}
+                aria-label="Open navigation menu"
+                aria-expanded={mobileOpen}
+                aria-controls="mobile-drawer"
+              >
+                <Menu className="h-6 w-6" aria-hidden="true" />
+              </button>
+            </div>
           </div>
 
-          {/* Contact Info */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <a 
-              href="/book-now" 
-              className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-6 py-2 rounded-lg font-semibold transition-all"
-              role="button"
-              aria-label="Book your limousine service now"
-            >
-              BOOK NOW
-            </a>
-            <a 
-              href="mailto:client@emeraldcitylimos.com" 
-              className="flex items-center space-x-2 text-sm hover:text-[#d4af37] transition-colors"
-              aria-label="Email us at client@emeraldcitylimos.com"
-            >
-              <Mail className="w-4 h-4" aria-hidden="true" focusable="false" />
-              <span className="sr-only">client@emeraldcitylimos.com</span>
-            </a>
-          </div>
-
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-md hover:bg-emerald-700 transition-colors"
-            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-            aria-expanded={mobileMenuOpen}
-            aria-controls="mobile-navigation"
+          {/* Mega menu — anchored to the header content container so it
+              never overflows the viewport. Sibling of the flex bar above
+              so it can span the full max-w-7xl content rails with
+              consistent left/right breathing room (px matches the header). */}
+          <div
+            className={[
+              'absolute inset-x-4 top-full z-10 hidden sm:inset-x-6 lg:inset-x-8 lg:block',
+              'transition-[opacity,transform] duration-200 ease-out motion-reduce:transition-none',
+              openMega
+                ? 'translate-y-0 opacity-100 pointer-events-auto'
+                : '-translate-y-1 opacity-0 pointer-events-none',
+            ].join(' ')}
+            onMouseEnter={cancelClose}
+            onMouseLeave={scheduleClose}
           >
-            {mobileMenuOpen ? (
-              <X className="w-6 h-6" aria-hidden="true" focusable="false" />
-            ) : (
-              <Menu className="w-6 h-6" aria-hidden="true" focusable="false" />
-            )}
+            <div className="mx-auto w-full max-w-[72rem]">
+              {openMega === 'services' && (
+                <ServicesMega onSelect={() => setOpenMega(null)} />
+              )}
+              {openMega === 'locations' && (
+                <LocationsMega onSelect={() => setOpenMega(null)} />
+              )}
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <MobileDrawer
+        open={mobileOpen}
+        onClose={closeMobile}
+        section={mobileSection}
+        setSection={setMobileSection}
+        isLinkActive={isLinkActive}
+        returnFocusRef={hamburgerRef}
+      />
+    </>
+  );
+}
+
+/* ==================== Subcomponents ==================== */
+
+function NavLink({
+  href,
+  label,
+  active,
+}: {
+  href: string;
+  label: string;
+  active: boolean;
+}) {
+  return (
+    <a
+      href={href}
+      aria-current={active ? 'page' : undefined}
+      className={[
+        'relative inline-flex items-center px-4 py-2 text-[0.78rem] font-medium uppercase tracking-[0.1em]',
+        'text-brand-champagne/85 transition-colors hover:text-brand-champagne',
+        'rounded-md',
+        RING_TIGHT,
+        'after:absolute after:inset-x-4 after:bottom-1 after:h-px after:bg-brand-gold',
+        'after:origin-center after:scale-x-0 after:transition-transform after:duration-200 motion-reduce:after:transition-none',
+        'hover:after:scale-x-100',
+        active ? 'text-brand-champagne after:scale-x-100' : '',
+      ].join(' ')}
+    >
+      {label}
+    </a>
+  );
+}
+
+function MegaTrigger({
+  label,
+  controlsId,
+  open,
+  active,
+  onOpen,
+  onToggle,
+  registerRef,
+}: {
+  label: string;
+  controlsId: string;
+  open: boolean;
+  active: boolean;
+  onOpen: () => void;
+  onToggle: () => void;
+  registerRef: (el: HTMLButtonElement | null) => void;
+}) {
+  return (
+    <button
+      ref={registerRef}
+      type="button"
+      aria-haspopup="true"
+      aria-expanded={open}
+      aria-controls={controlsId}
+      onMouseEnter={onOpen}
+      onFocus={onOpen}
+      onClick={onToggle}
+      className={[
+        'relative inline-flex items-center gap-1 px-4 py-2 text-[0.78rem] font-medium uppercase tracking-[0.1em]',
+        'text-brand-champagne/85 transition-colors hover:text-brand-champagne',
+        'rounded-md',
+        RING_TIGHT,
+        'after:absolute after:inset-x-4 after:bottom-1 after:h-px after:bg-brand-gold',
+        'after:origin-center after:scale-x-0 after:transition-transform after:duration-200 motion-reduce:after:transition-none',
+        open || active ? 'text-brand-champagne after:scale-x-100' : 'hover:after:scale-x-100',
+      ].join(' ')}
+    >
+      {label}
+      <ChevronDown
+        className={`h-3.5 w-3.5 transition-transform duration-200 motion-reduce:transition-none ${
+          open ? 'rotate-180' : ''
+        }`}
+        aria-hidden="true"
+      />
+    </button>
+  );
+}
+
+function ServicesMega({ onSelect }: { onSelect: () => void }) {
+  return (
+    <div
+      id="mega-services"
+      className="mt-3 overflow-hidden rounded-2xl border border-brand-gold/20 bg-brand-forest-deep/95 shadow-[0_24px_56px_-16px_rgba(0,0,0,0.65)] backdrop-blur-xl"
+    >
+      <ul role="list" className="grid grid-cols-1 gap-1 p-3 md:grid-cols-2 lg:grid-cols-3">
+        {SERVICES.map((s) => (
+          <li key={s.href}>
+            <a
+              href={s.href}
+              onClick={onSelect}
+              className={`group flex items-start gap-3 rounded-xl p-4 transition-colors hover:bg-brand-gold/10 ${RING_TIGHT}`}
+            >
+              <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-brand-gold/15 text-brand-gold transition-colors group-hover:bg-brand-gold group-hover:text-brand-forest">
+                <s.icon className="h-4 w-4" aria-hidden="true" />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-sm font-semibold text-brand-champagne">
+                  {s.name}
+                </span>
+                <span className="mt-0.5 block text-xs leading-relaxed text-brand-champagne/65">
+                  {s.desc}
+                </span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <div className="flex flex-col gap-2 border-t border-brand-gold/15 bg-brand-forest px-5 py-3 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-xs text-brand-champagne/70">
+          Need something custom? We charter for any occasion.
+        </p>
+        <a
+          href="/services"
+          onClick={onSelect}
+          className={`rounded-sm text-xs font-semibold tracking-wide text-brand-gold transition-colors hover:text-brand-gold-soft ${RING_TIGHT}`}
+        >
+          View all services →
+        </a>
+      </div>
+    </div>
+  );
+}
+
+function LocationsMega({ onSelect }: { onSelect: () => void }) {
+  return (
+    <div
+      id="mega-locations"
+      className="mt-3 overflow-hidden rounded-2xl border border-brand-gold/20 bg-brand-forest-deep/95 shadow-[0_24px_56px_-16px_rgba(0,0,0,0.65)] backdrop-blur-xl"
+    >
+      <div className="grid gap-6 p-6 md:grid-cols-4">
+        {Object.entries(LOCATIONS).map(([k, group]) => (
+          <div key={k}>
+            <p className="mb-3 flex items-center gap-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-brand-gold">
+              <MapPin className="h-3 w-3" aria-hidden="true" />
+              {group.label}
+            </p>
+            <ul role="list" className="space-y-0.5">
+              {group.items.map((c) => (
+                <li key={c.href}>
+                  <a
+                    href={c.href}
+                    onClick={onSelect}
+                    className={`block rounded-md px-2 py-1.5 text-sm text-brand-champagne/85 transition-colors hover:bg-brand-gold/10 hover:text-brand-champagne ${RING_TIGHT}`}
+                  >
+                    {c.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <div className="border-t border-brand-gold/15 bg-brand-forest px-6 py-5">
+        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="mb-2 flex items-center gap-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-brand-gold">
+              <Plane className="h-3 w-3" aria-hidden="true" />
+              Airports
+            </p>
+            <ul role="list" className="flex flex-wrap gap-2">
+              {AIRPORTS.map((a) => (
+                <li key={a.href}>
+                  <a
+                    href={a.href}
+                    onClick={onSelect}
+                    className={`inline-flex items-center gap-2 rounded-full border border-brand-gold/25 bg-brand-forest px-3 py-1.5 text-xs text-brand-champagne transition-colors hover:border-brand-gold hover:text-brand-gold-soft ${RING_TIGHT}`}
+                  >
+                    {a.name}
+                    {'tag' in a && a.tag && (
+                      <span className="rounded-full bg-brand-emerald/20 px-1.5 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wide text-brand-emerald">
+                        {a.tag}
+                      </span>
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <a
+            href="/locations"
+            onClick={onSelect}
+            className={`self-start rounded-sm text-xs font-semibold tracking-wide text-brand-gold transition-colors hover:text-brand-gold-soft md:self-auto ${RING_TIGHT}`}
+          >
+            View all locations →
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+interface MobileDrawerProps {
+  open: boolean;
+  onClose: () => void;
+  section: Mega;
+  setSection: (s: Mega) => void;
+  isLinkActive: (h: string) => boolean;
+  returnFocusRef: React.RefObject<HTMLButtonElement | null>;
+}
+
+function MobileDrawer({
+  open,
+  onClose,
+  section,
+  setSection,
+  isLinkActive,
+  returnFocusRef,
+}: MobileDrawerProps) {
+  const drawerRef = useRef<HTMLElement | null>(null);
+  const closeBtnRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const t = window.setTimeout(() => closeBtnRef.current?.focus(), 30);
+    return () => window.clearTimeout(t);
+  }, [open]);
+
+  useEffect(() => {
+    if (open) return;
+    returnFocusRef.current?.focus();
+  }, [open, returnFocusRef]);
+
+  useEffect(() => {
+    if (!open) return;
+    const drawer = drawerRef.current;
+    if (!drawer) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+      const focusable = drawer.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+      if (e.shiftKey && active === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    drawer.addEventListener('keydown', onKey);
+    return () => drawer.removeEventListener('keydown', onKey);
+  }, [open]);
+
+  return (
+    <>
+      <div
+        className={[
+          'fixed inset-0 z-40 bg-black/60 backdrop-blur-sm',
+          'transition-opacity duration-300 ease-out motion-reduce:transition-none',
+          open ? 'opacity-100' : 'pointer-events-none opacity-0',
+        ].join(' ')}
+        onClick={onClose}
+        aria-hidden="true"
+      />
+      <aside
+        id="mobile-drawer"
+        ref={drawerRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site navigation"
+        className={[
+          'fixed right-0 top-0 z-50 flex h-[100dvh] w-[88vw] max-w-sm flex-col',
+          'bg-brand-forest text-brand-champagne shadow-2xl',
+          'transition-transform duration-300 ease-out motion-reduce:transition-none',
+          open ? 'translate-x-0' : 'translate-x-full',
+        ].join(' ')}
+      >
+        <div className="flex items-center justify-between border-b border-brand-gold/15 px-5 py-4">
+          <a
+            href="/"
+            onClick={onClose}
+            className={`flex items-center gap-2 rounded-md ${RING_TIGHT}`}
+            aria-label="Emerald City Limos — homepage"
+          >
+            <img src="/images/logo.webp" alt="" className="h-9 w-auto" />
+            <span className="sr-only">Emerald City Limos</span>
+          </a>
+          <button
+            ref={closeBtnRef}
+            type="button"
+            onClick={onClose}
+            className={`inline-flex h-11 w-11 items-center justify-center rounded-md text-brand-champagne transition-colors hover:text-brand-gold-soft ${RING_TIGHT}`}
+            aria-label="Close navigation menu"
+          >
+            <X className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
 
-        {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <div 
-            id="mobile-navigation"
-            className="md:hidden pb-4 space-y-2"
-            role="menu"
-            aria-label="Mobile navigation menu"
+        <nav
+          className="flex-1 overflow-y-auto overscroll-contain px-3 py-4"
+          aria-label="Mobile primary"
+        >
+          <ul role="list" className="space-y-1">
+            {NAV.map((item) => {
+              if (item.type === 'link') {
+                const active = isLinkActive(item.href);
+                return (
+                  <li key={item.name}>
+                    <a
+                      href={item.href}
+                      onClick={onClose}
+                      aria-current={active ? 'page' : undefined}
+                      className={[
+                        'flex min-h-[48px] items-center rounded-lg px-4 text-base',
+                        RING_TIGHT,
+                        active
+                          ? 'bg-brand-gold/15 font-semibold text-brand-gold-soft'
+                          : 'font-medium text-brand-champagne hover:bg-brand-gold/10',
+                      ].join(' ')}
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                );
+              }
+              const isOpen = section === item.key;
+              const panelId = `m-${item.key}`;
+              return (
+                <li key={item.name}>
+                  <button
+                    type="button"
+                    onClick={() => setSection(isOpen ? null : item.key)}
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                    className={`flex min-h-[48px] w-full items-center justify-between rounded-lg px-4 text-base font-medium text-brand-champagne transition-colors hover:bg-brand-gold/10 ${RING_TIGHT}`}
+                  >
+                    {item.name}
+                    <ChevronDown
+                      className={`h-4 w-4 text-brand-gold transition-transform duration-200 motion-reduce:transition-none ${
+                        isOpen ? 'rotate-180' : ''
+                      }`}
+                      aria-hidden="true"
+                    />
+                  </button>
+                  <div
+                    id={panelId}
+                    hidden={!isOpen}
+                    className="ml-4 mt-1 mb-2 border-l border-brand-gold/20 pl-3"
+                  >
+                    {item.key === 'services' ? (
+                      <ul role="list" className="space-y-0.5">
+                        {SERVICES.map((s) => (
+                          <li key={s.href}>
+                            <a
+                              href={s.href}
+                              onClick={onClose}
+                              className={`flex min-h-[44px] items-center rounded-md px-3 text-sm text-brand-champagne/85 transition-colors hover:bg-brand-gold/10 hover:text-brand-champagne ${RING_TIGHT}`}
+                            >
+                              {s.name}
+                            </a>
+                          </li>
+                        ))}
+                        <li>
+                          <a
+                            href="/services"
+                            onClick={onClose}
+                            className={`flex min-h-[44px] items-center rounded-md px-3 text-sm font-semibold text-brand-gold hover:text-brand-gold-soft ${RING_TIGHT}`}
+                          >
+                            View all services →
+                          </a>
+                        </li>
+                      </ul>
+                    ) : (
+                      <div className="space-y-3">
+                        <ul role="list" className="flex flex-wrap gap-1.5">
+                          {AIRPORTS.map((a) => (
+                            <li key={a.href}>
+                              <a
+                                href={a.href}
+                                onClick={onClose}
+                                className={`inline-flex min-h-[40px] items-center rounded-full border border-brand-gold/25 px-3 text-xs font-semibold text-brand-champagne transition-colors hover:border-brand-gold hover:text-brand-gold-soft ${RING_TIGHT}`}
+                              >
+                                {a.name}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                        {Object.entries(LOCATIONS).map(([k, group]) => (
+                          <div key={k}>
+                            <p className="px-1 pt-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-brand-gold">
+                              {group.label}
+                            </p>
+                            <ul role="list" className="space-y-0.5">
+                              {group.items.map((c) => (
+                                <li key={c.href}>
+                                  <a
+                                    href={c.href}
+                                    onClick={onClose}
+                                    className={`flex min-h-[40px] items-center rounded-md px-3 text-sm text-brand-champagne/80 transition-colors hover:bg-brand-gold/10 hover:text-brand-champagne ${RING_TIGHT}`}
+                                  >
+                                    {c.name}
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                        <a
+                          href="/locations"
+                          onClick={onClose}
+                          className={`block rounded-sm px-1 py-2 text-sm font-semibold text-brand-gold hover:text-brand-gold-soft ${RING_TIGHT}`}
+                        >
+                          View all locations →
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+
+        <div className="space-y-2.5 border-t border-brand-gold/15 bg-brand-forest-deep px-5 py-4">
+          <a
+            href="/book-now"
+            onClick={onClose}
+            className="flex min-h-[52px] w-full items-center justify-center rounded-md bg-brand-gold px-5 font-semibold tracking-wide text-brand-forest outline-none transition-colors hover:bg-brand-gold-soft focus-visible:ring-2 focus-visible:ring-brand-champagne"
           >
-            {navLinks.map((link) => (
-              <a
-                key={link.path}
-                href={link.path}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`block px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                  isActive(link.path)
-                    ? 'bg-emerald-700 text-yellow-400'
-                    : 'text-white hover:bg-emerald-700'
-                }`}
-                role="menuitem"
-                aria-current={isActive(link.path) ? 'page' : undefined}
-              >
-                {link.name}
-              </a>
-            ))}
-            <div className="px-4 py-2 space-y-2 border-t border-emerald-700 mt-2 pt-4">
-              <a 
-                href="/book-now" 
-                className="block w-full text-center bg-[#d4af37] hover:bg-[#b8941f] text-black px-6 py-2 rounded-lg font-semibold transition-all"
-                role="button"
-                aria-label="Book your limousine service now"
-              >
-                BOOK NOW
-              </a>
-              <a 
-                href="mailto:client@emeraldcitylimos.com" 
-                className="flex items-center space-x-2 text-sm hover:text-[#d4af37]"
-                aria-label="Email us at client@emeraldcitylimos.com"
-              >
-                <Mail className="w-4 h-4" aria-hidden="true" focusable="false" />
-                <span>client@emeraldcitylimos.com</span>
-              </a>
-            </div>
-          </div>
-        )}
-      </div>
-    </nav>
+            Book Now
+          </a>
+          <a
+            href="/book-now?intent=quote"
+            onClick={onClose}
+            className={`flex min-h-[48px] w-full items-center justify-center rounded-md border border-brand-champagne/30 px-5 font-semibold text-brand-champagne transition-colors hover:border-brand-gold hover:text-brand-gold-soft ${RING_TIGHT}`}
+          >
+            Get a Quote
+          </a>
+          <a
+            href={PHONE_HREF}
+            onClick={onClose}
+            className={`flex min-h-[48px] w-full items-center justify-center gap-2 rounded-md text-brand-champagne transition-colors hover:text-brand-gold-soft ${RING_TIGHT}`}
+            aria-label={`Call ${PHONE_DISPLAY}`}
+          >
+            <Phone className="h-4 w-4" aria-hidden="true" />
+            <span className="text-base font-semibold tabular-nums">{PHONE_DISPLAY}</span>
+          </a>
+          <p className="text-center text-xs text-brand-champagne/55">
+            Available 24 hours · Seven days a week
+          </p>
+        </div>
+      </aside>
+    </>
   );
 }

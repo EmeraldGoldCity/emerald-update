@@ -1,0 +1,80 @@
+---
+import type { Vehicle } from '@/data/fleet';
+
+interface Props {
+  vehicle: Vehicle;
+}
+
+const { vehicle } = Astro.props;
+---
+
+<article
+  data-fleet-card
+  data-category={vehicle.category}
+  role="article"
+  aria-label={`${vehicle.name} — ${vehicle.category}`}
+  class="ecl-fleet-card group relative flex h-full flex-col overflow-hidden border-l-2 border-brand-gold/60 bg-white ring-1 ring-brand-forest/10 transition-[border-color,box-shadow] duration-300 hover:border-brand-gold hover:shadow-[0_8px_28px_-12px_rgba(10,35,24,0.18)] focus-within:border-brand-gold"
+>
+  {/* Whole-card link — keeps the card a single tap target for mobile and
+      a single tab stop for keyboard users. The visible "View Details"
+      pill is decorative-only (aria-hidden). */}
+  <a
+    href={vehicle.href}
+    class="ecl-focusable absolute inset-0 z-10"
+    aria-label={`View details for ${vehicle.name} (${vehicle.category}, ${vehicle.capacityLabel})`}
+  >
+    <span class="sr-only">View details</span>
+  </a>
+
+  {/* ── Image area (4:3). Drop a real photo by setting `imageSrc` on the
+      vehicle in src/data/fleet.ts. ─────────────────────────────────────── */}
+  <div class="relative aspect-[4/3] w-full overflow-hidden bg-brand-forest">
+    {vehicle.imageSrc ? (
+      <img
+        src={vehicle.imageSrc}
+        alt={vehicle.imageAlt}
+        loading="lazy"
+        decoding="async"
+        width="800"
+        height="600"
+        class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+      />
+    ) : (
+      <div class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+        <span
+          class="absolute inset-0"
+          style="background: radial-gradient(ellipse 60% 55% at center, var(--color-brand-gold-soft) 0%, transparent 70%); opacity: 0.16;"
+        ></span>
+        <span class="absolute left-3 top-3 h-px w-6 bg-brand-gold/50"></span>
+        <span class="absolute left-3 top-3 h-6 w-px bg-brand-gold/50"></span>
+        <span class="absolute bottom-3 right-3 h-px w-6 bg-brand-gold/50"></span>
+        <span class="absolute bottom-3 right-3 h-6 w-px bg-brand-gold/50"></span>
+        <span class="relative font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-gold-soft">
+          {vehicle.category}
+        </span>
+      </div>
+    )}
+
+    {/* Hover/focus reveal — "View Details" pill slides up over the image */}
+    <span
+      aria-hidden="true"
+      class="ecl-fleet-card__reveal pointer-events-none absolute inset-x-0 bottom-0 flex translate-y-full items-center justify-between bg-brand-forest/92 px-4 py-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-white opacity-0 transition-[transform,opacity] duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100"
+    >
+      View Details
+      <span class="text-brand-gold-soft">&rarr;</span>
+    </span>
+  </div>
+
+  {/* ── Body ───────────────────────────────────────────────────────────── */}
+  <div class="flex flex-1 flex-col gap-2 p-5 sm:p-6">
+    <p class="font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+      {vehicle.category}
+    </p>
+    <h3 class="font-display text-xl font-medium leading-snug text-brand-forest transition-colors duration-300 group-hover:text-brand-gold">
+      {vehicle.name}
+    </h3>
+    <p class="font-sans text-xs font-light text-neutral-600 tabular-nums">
+      {vehicle.capacityLabel}
+    </p>
+  </div>
+</article>

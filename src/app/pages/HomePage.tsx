@@ -1,292 +1,123 @@
-import { Link } from 'react-router-dom';
-import { ArrowRight, Star, Clock, Shield, Users } from 'lucide-react';
-import { SEOHead, LocalBusinessSchema } from '@/app/components/SEOHead';
+---
+/**
+ * Emerald City Limos — Homepage
+ *
+ * The hero section is the primary above-the-fold experience.
+ * Sections below the hero (services, fleet, testimonials, etc.)
+ * would follow here using the same design system.
+ */
 
-export function HomePage() {
-  const services = [
-    {
-      title: 'Airport Transfers',
-      description: 'Reliable and punctual airport transportation to Sea-Tac and beyond.',
-      icon: '✈️',
-      link: '/airport-transfers'
-    },
-    {
-      title: 'Hourly Charters',
-      description: 'Flexible hourly services for shopping, tours, or business meetings.',
-      icon: '⏰',
-      link: '/service/hourly-charters'
-    },
-    {
-      title: 'Wedding',
-      description: 'Make your special day perfect with our elegant wedding limousines.',
-      icon: '💍',
-      link: '/service/wedding-transportation'
-    },
-    {
-      title: 'Game Day',
-      description: 'Arrive in style for Seahawks, Mariners, Sounders, and Kraken games.',
-      icon: '🏈',
-      link: '/service/game-day-transport'
-    },
-    {
-      title: 'Executive',
-      description: 'Professional chauffeur service for executives and business travelers.',
-      icon: '💼',
-      link: '/service/executive-transportation'
-    },
-    {
-      title: 'Cruise',
-      description: 'Seamless transfers to and from Seattle cruise terminals.',
-      icon: '🚢',
-      link: '/service/cruise-transportation'
-    },
-    {
-      title: 'Infant Car Seats',
-      description: 'Pre-installed car seats and booster seats for safe family travel.',
-      icon: '👶',
-      link: '/service/infant-car-seats'
-    },
-    {
-      title: 'Special Occasions',
-      description: 'Celebrate birthdays, anniversaries, and all life\'s special moments.',
-      icon: '⭐',
-      link: '/service/special-occasions'
-    },
-  ];
+import Layout from '../layouts/Layout.astro'
+import Hero   from '../components/hero/Hero.astro'
 
-  const features = [
-    { icon: <Star className="w-8 h-8" />, title: '5-Star Service', description: 'Highest rated limo service in Seattle' },
-    { icon: <Clock className="w-8 h-8" />, title: 'Always On Time', description: 'Punctuality guaranteed' },
-    { icon: <Shield className="w-8 h-8" />, title: 'Fully Insured', description: 'Your safety is our priority' },
-    { icon: <Users className="w-8 h-8" />, title: 'Professional Chauffeurs', description: 'Experienced and courteous drivers' },
-  ];
+import type { HeroProps } from '../types/hero'
 
-  return (
-    <>
-      <SEOHead
-        title="Emerald City Limos - Seattle's Premier Limousine Service"
-        description="Professional luxury transportation in Seattle since 2010. Airport transfers, corporate travel, weddings, special events. 24/7 service. Book your limo now!"
-        canonical="/"
-        keywords="seattle limo service, seatac airport transportation, luxury car service seattle, corporate transportation, wedding limo seattle"
-        schema={LocalBusinessSchema}
-      />
-      <div className="min-h-screen">
-        {/* Hero Section - Mobile Performance Optimized */}
-        <section className="relative h-[600px] flex items-center justify-center overflow-hidden">
-          {/* Optimized Background Image - Purple SUV in modern building */}
-          {/* Optimized Background Image - New Hero Image */}
-<div className="absolute inset-0">
-  <picture>
-    {/* WebP - High Quality */}
-    <source
-      type="image/webp"
-      srcSet="
-        /images/hero-background.webp 768w,
-        /images/hero-background.webp 1280w,
-        /images/hero-background.webp 1920w
-      "
-      sizes="100vw"
-    />
+// ── Hero Configuration ─────────────────────────────────────────────────────
+// Edit these values to customise the hero copy, links, and image.
+// The image src should point to a real photo in your /public/images/ directory.
 
-    {/* JPEG Fallback */}
-    <img
-      src="https://images.unsplash.com/photo-1768024175224-db216683d310?w=1920&h=1080&fit=crop&q=80&auto=format"
-      alt="Luxury limousine service vehicle - Emerald City Limos Seattle"
-      className="absolute inset-0 w-full h-full object-cover object-center"
-      width="1920"
-      height="1080"
-      loading="eager"
-      fetchpriority="high"
-      decoding="sync"
-      style={{
-        objectPosition: 'center center',
-        width: '100%',
-        height: '100%',
-        objectFit: 'cover'
-      }}
-    />
-  </picture>
-</div>
-          <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/90 to-emerald-800/80 z-10"></div>
-          
-          {/* Optional: Video Link Overlay (opens YouTube in new tab instead of embedding) */}
-          <a 
-            href="https://www.youtube.com/watch?v=kcUFqF7MUWc"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="absolute bottom-8 right-8 z-30 group"
-            aria-label="Watch Our Video"
-          >
-            <div className="flex items-center gap-2 bg-black/60 hover:bg-black/80 text-white px-4 py-2 rounded-full" style={{
-              transition: 'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1), opacity 150ms cubic-bezier(0.4, 0, 0.2, 1)'
-            }}>
-              <svg className="w-6 h-6 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
-              <span className="text-sm font-semibold">Watch Video</span>
-            </div>
-          </a>
+const heroConfig = {
+  // Copy
+  eyebrow:        "Seattle's Premier Chauffeur Service",
+  headline:       "Refined Chauffeur Experiences Wherever You Travel",
+  headlineAccent: "Luxury Chauffeur",
+  headlineEnd:    "Experience",
+  tagline:        "Arrive impeccably. Every journey crafted with discretion, comfort, and absolute precision.",
 
-          <div className="relative z-20 text-center text-white max-w-4xl mx-auto px-4">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 drop-shadow-2xl">
-              <span className="text-[#d4af37]">Emerald City Limos</span>
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-white drop-shadow-lg">
-              Airport transfers, corporate travel, weddings & special events. Serving Seattle, Bellevue, Tacoma & beyond.
-            </p>
-            <div className="flex justify-center">
-              <Link
-                to="/book-now"
-                className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-12 py-5 rounded-lg text-xl font-bold transition-all shadow-2xl hover:shadow-3xl hover:scale-105 inline-flex items-center justify-center"
-              >
-                BOOK NOW
-              </Link>
-            </div>
-          </div>
-        </section>
+  // CTAs
+  ctaPrimary: {
+    label: 'Book Your Ride',
+    href:  '/book',
+    id:    'cta-book-hero',
+  },
+  ctaSecondary: {
+    label: 'Call Now',
+    href:  '/contact',
+    id:    'cta-call-hero',
+  },
 
-        {/* Features */}
-        <section className="py-16 bg-white" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 500px' }}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {features.map((feature, index) => (
-                <div key={index} className="text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full mb-4">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">{feature.title}</h3>
-                  <p className="text-gray-600">{feature.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+  // Phone — displayed in secondary CTA on mobile
+  phone: '(206) 555-0192',
 
-        {/* About Section */}
-        <section className="py-20 bg-gradient-to-br from-emerald-50 to-yellow-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                  About <span className="text-emerald-700">Emerald City Limos</span>
-                </h2>
-                <p className="text-lg text-gray-700 mb-4">
-                  Since 2010, we've been providing the Greater Seattle area with unparalleled luxury transportation services. Our fleet of premium vehicles and professional chauffeurs ensure that every journey is comfortable, safe, and memorable.
-                </p>
-                <p className="text-lg text-gray-700 mb-6">
-                  Whether you're heading to Sea-Tac Airport, celebrating a wedding, attending a sporting event, cruising from Seattle's port, or need executive transportation, we deliver excellence every time.
-                </p>
-                <Link
-                  to="/locations"
-                  className="inline-flex items-center text-emerald-700 font-semibold hover:text-emerald-800"
-                  style={{
-                    transition: 'color 150ms cubic-bezier(0.4, 0, 0.2, 1)'
-                  }}
-                >
-                  View Service Areas <ArrowRight className="ml-2 w-5 h-5" />
-                </Link>
-              </div>
-              <div className="relative h-96 rounded-lg overflow-hidden shadow-2xl">
-                <picture>
-                  {/* WebP Format */}
-                  <source
-                    type="image/webp"
-                    srcSet="https://images.unsplash.com/photo-1631730666263-37c41034d5ea?w=400&h=300&fit=crop&q=70&fm=webp 400w,
-                            https://images.unsplash.com/photo-1631730666263-37c41034d5ea?w=600&h=450&fit=crop&q=75&fm=webp 600w,
-                            https://images.unsplash.com/photo-1631730666263-37c41034d5ea?w=800&h=600&fit=crop&q=80&fm=webp 800w"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                  {/* JPEG Fallback */}
-                  <img
-                    src="https://images.unsplash.com/photo-1631730666263-37c41034d5ea?w=600&h=450&fit=crop&q=75&auto=format"
-                    alt="Professional Chauffeur with Luxury Black SUV - Emerald City Limos Premium Airport Transportation"
-                    className="w-full h-full object-cover"
-                    width="600"
-                    height="450"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </picture>
-              </div>
-            </div>
-          </div>
-        </section>
+  // Trust indicators (label + icon name)
+  trustIndicators: [
+    { label: 'Licensed & Insured',      icon: 'shield' as const },
+    { label: 'Professional Chauffeurs', icon: 'user'   as const },
+    { label: '24/7 Availability',       icon: 'clock'  as const },
+    { label: 'Premium Fleet',           icon: 'car'    as const },
+  ],
 
-        {/* Services Grid */}
-        <section className="py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
-              <p className="text-xl text-gray-600">Luxury transportation for every occasion</p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {services.map((service, index) => (
-                <Link
-                  key={index}
-                  to={service.link}
-                  className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-emerald-500 hover:shadow-xl group flex flex-col"
-                  style={{
-                    transition: 'border-color 150ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1), transform 150ms cubic-bezier(0.4, 0, 0.2, 1)'
-                  }}
-                >
-                  {/* Icon Container - Fixed Position */}
-                  <div className="flex justify-center mb-4">
-                    <div className="text-6xl">{service.icon}</div>
-                  </div>
-                  
-                  {/* Content Container - Structured Layout */}
-                  <div className="flex flex-col flex-1">
-                    {/* Title - Fixed Height */}
-                    <h3 
-                      className="text-center text-xl font-bold text-gray-900 mb-4 group-hover:text-emerald-700 leading-snug min-h-[3.5rem] flex items-center justify-center"
-                      style={{
-                        transition: 'color 150ms cubic-bezier(0.4, 0, 0.2, 1)'
-                      }}
-                    >
-                      {service.title}
-                    </h3>
-                    
-                    {/* Description - Fixed Min Height */}
-                    <p className="text-center text-base text-gray-600 leading-relaxed mb-6 min-h-[4.5rem]">
-                      {service.description}
-                    </p>
-                    
-                    {/* Button - Always at Bottom */}
-                    <div className="mt-auto flex justify-center">
-                      <span 
-                        className="inline-flex items-center text-emerald-700 font-semibold text-base px-6 py-2 border-2 border-emerald-700 rounded-lg group-hover:bg-emerald-700 group-hover:text-white"
-                        style={{
-                          transition: 'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1), color 150ms cubic-bezier(0.4, 0, 0.2, 1)'
-                        }}
-                      >
-                        Learn More <ArrowRight className="ml-2 w-4 h-4" />
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
+  // Background image
+  // IMPORTANT: Add your own luxury vehicle/chauffeur photograph here.
+  // See Hero.astro for image guidelines.
+  // Recommended: Unsplash free-license images, tagged 'luxury car' or 'limousine night'
+  image: {
+    // For demo purposes we reference a dark placeholder.
+    // In production, replace with: '/images/hero.webp'
+    src:       '/images/emerald-hero.webp',
+    srcMobile: '/images/hero-mobile.webp',
+    alt:       'A luxury black chauffeur vehicle at night, illuminated by city lights in Seattle — Emerald City Limos premium fleet',
+    width:     2400,
+    height:    1600,
+  },
 
-        {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-emerald-900 to-emerald-800 text-white">
-          <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-            <h2 className="text-4xl font-bold mb-6">Ready to Experience Luxury?</h2>
-            <p className="text-xl mb-8 text-white">
-              Book your premium limousine service today and travel in style
-            </p>
-            <div className="flex justify-center">
-              <Link
-                to="/book-now"
-                className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-semibold transition-all inline-flex items-center justify-center"
-              >
-                BOOK NOW
-              </Link>
-            </div>
-          </div>
-        </section>
-      </div>
-    </>
-  );
+  showScrollIndicator: true,
+  minHeight:           '100svh',
+} satisfies Omit<HeroProps, 'headline'> & {
+  headline:       string
+  headlineAccent: string
+  headlineEnd?:   string
 }
+---
+
+<Layout
+  title="Emerald City Limos | Luxury Chauffeur Service Seattle, WA"
+  description="Seattle's most trusted luxury chauffeur and limousine service. Professional drivers, premium fleet, available 24/7. Book airport transfers, weddings, corporate events, and more."
+  heroImageSrc={heroConfig.image.src}
+>
+  <!-- ── HERO ─────────────────────────────────────────────────────────── -->
+  <Hero {...heroConfig} />
+
+  <!-- ── BELOW FOLD ────────────────────────────────────────────────────── -->
+  <!--
+    The sections below are structural placeholders.
+    Build each as its own Astro component following the same design system.
+    Recommended section order for conversion:
+      1. Services overview (airport, wedding, corporate, events)
+      2. Fleet showcase with vehicle cards
+      3. Social proof (testimonials + star ratings)
+      4. How it works (3-step process)
+      5. Coverage area / service locations
+      6. Final CTA section
+      7. Footer
+  -->
+  <main id="main-content" tabindex="-1">
+
+    <!-- Services Section Placeholder -->
+    <section
+      class="py-24 px-6 sm:px-8 bg-brand-ivory"
+      aria-labelledby="services-heading"
+    >
+      <div class="max-w-6xl mx-auto text-center">
+        <p class="font-sans text-[10px] font-semibold tracking-[0.22em] uppercase text-brand-gold mb-4">
+          Our Services
+        </p>
+        <h2
+          id="services-heading"
+          class="font-display font-light text-brand-green-deep mb-6"
+          style="font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.015em; line-height: 1.1;"
+        >
+          Every Journey,<br />
+          <em class="text-brand-gold" style="font-style: italic;">Perfected</em>
+        </h2>
+        <p class="font-sans font-light text-brand-charcoal max-w-xl mx-auto"
+           style="font-size: 1.05rem; line-height: 1.8;">
+          From seamless airport transfers to unforgettable wedding arrivals —
+          Emerald City Limos brings white-glove service to every occasion.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+</Layout>

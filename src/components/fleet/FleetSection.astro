@@ -1,0 +1,154 @@
+---
+import {
+  fleet,
+  defaultFeaturedId,
+  fleetCategoryTabs,
+  type Vehicle,
+} from '@/data/fleet';
+import FleetFeaturedCard from './FleetFeaturedCard.astro';
+import FleetCard from './FleetCard.astro';
+import { FleetFilterTabs } from './FleetFilterTabs';
+
+interface Props {
+  /** Override which vehicle id renders as the featured card. */
+  featuredId?: string;
+  /** Hide the category filter tabs (renders as pure-static Astro). */
+  showFilters?: boolean;
+}
+
+const { featuredId = defaultFeaturedId, showFilters = true } = Astro.props;
+
+const featured: Vehicle =
+  fleet.find((v) => v.id === featuredId) ?? fleet[0];
+const supporting: Vehicle[] = fleet.filter((v) => v.id !== featured.id);
+---
+
+<section
+  class="ecl-fleet-section relative bg-brand-champagne py-20 sm:py-24 lg:py-32"
+  aria-labelledby="fleet-heading"
+>
+  <div class="mx-auto max-w-7xl px-6 sm:px-8">
+
+    {/* ── Header ──────────────────────────────────────────────────────── */}
+    <header class="mx-auto mb-12 max-w-2xl text-center sm:mb-14 lg:mb-16">
+      <p class="font-sans text-xs font-semibold uppercase tracking-[0.22em] text-brand-gold">
+        Our Fleet
+      </p>
+      <h2
+        id="fleet-heading"
+        class="mt-4 font-display text-3xl font-light leading-[1.08] tracking-tight text-brand-forest sm:text-4xl lg:text-5xl"
+      >
+        Travel in Absolute
+        <em class="italic text-brand-gold">Comfort</em>.
+      </h2>
+      <p class="mt-5 font-sans text-base font-light leading-relaxed text-neutral-700 sm:text-lg">
+        Five distinct vehicles. One consistent standard &mdash; meticulously
+        maintained, professionally chauffeured, ready when you are.
+      </p>
+    </header>
+
+    {/* ── Filter tabs (small React island, hydrates on visibility) ───── */}
+    {showFilters && (
+      <div class="mb-12 flex justify-center sm:mb-14">
+        <FleetFilterTabs client:visible tabs={fleetCategoryTabs} />
+      </div>
+    )}
+
+    {/* ── Showcase layout ─────────────────────────────────────────────
+         data-active-category is mutated by the React island. CSS in the
+         scoped <style> block below reacts to it (hides featured, expands
+         supporting grid to full width when filtering).                  */}
+    <div
+      data-fleet-layout
+      data-active-category="All"
+      class="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-8"
+    >
+
+      {/* Featured card */}
+      <div
+        data-fleet-featured-wrap
+        data-category={featured.category}
+        class="lg:col-span-7 xl:col-span-8"
+      >
+        <FleetFeaturedCard vehicle={featured} />
+      </div>
+
+      {/* Supporting: horizontal scroll on mobile, 2x2 grid from sm up */}
+      <div
+        data-fleet-supporting
+        class="lg:col-span-5 xl:col-span-4"
+      >
+        <ul
+          role="list"
+          class="ecl-fleet-rail -mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-3 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0"
+        >
+          {supporting.map((v) => (
+            <li
+              data-fleet-card-wrap
+              data-category={v.category}
+              class="w-[78%] flex-shrink-0 snap-start sm:w-auto"
+            >
+              <FleetCard vehicle={v} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    {/* ── Bottom CTA strip ────────────────────────────────────────────── */}
+    <div class="mt-16 text-center sm:mt-20">
+      <p class="font-sans text-base font-light text-neutral-700">
+        Explore our complete fleet of luxury vehicles.
+      </p>
+      <a
+        href="/fleet"
+        data-cta="fleet_view_all"
+        class="ecl-focusable mt-6 inline-flex min-h-[48px] items-center justify-center gap-2 border border-brand-forest bg-transparent px-8 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-brand-forest transition-colors duration-300 hover:bg-brand-forest hover:text-white"
+      >
+        View Full Fleet
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* When a category filter is active (anything except "All"):
+     - the featured card hides
+     - the supporting rail spans the full grid and lays out as 4-up on lg+ */
+  .ecl-fleet-section [data-fleet-layout][data-active-category]:not([data-active-category='All']) [data-fleet-supporting] {
+    grid-column: 1 / -1;
+  }
+
+  @media (min-width: 1024px) {
+    .ecl-fleet-section [data-fleet-layout][data-active-category]:not([data-active-category='All']) [data-fleet-supporting] > ul {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  /* Hide native scrollbar on the mobile rail without losing scrollability */
+  .ecl-fleet-rail {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(163, 126, 44, 0.4) transparent;
+  }
+  .ecl-fleet-rail::-webkit-scrollbar {
+    height: 4px;
+  }
+  .ecl-fleet-rail::-webkit-scrollbar-thumb {
+    background: rgba(163, 126, 44, 0.35);
+  }
+
+  /* Respect user motion preferences — strip transforms and transitions */
+  @media (prefers-reduced-motion: reduce) {
+    .ecl-fleet-section [data-fleet-card] *,
+    .ecl-fleet-section [data-fleet-featured] *,
+    .ecl-fleet-section .ecl-fleet-card__reveal {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+    .ecl-fleet-section img {
+      transform: none !important;
+    }
+  }
+</style>
