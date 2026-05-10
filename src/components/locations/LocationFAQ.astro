@@ -1,0 +1,69 @@
+---
+/**
+ * LocationFAQ
+ * -----------
+ * Native <details>/<summary> accordion — zero JS, fully keyboard accessible,
+ * indexable by Google with no hydration cost. Pairs with LocationSchema.astro
+ * which emits the FAQPage JSON-LD from the same data.
+ */
+import type { Location } from '@/data/locations';
+
+interface Props {
+  location: Location;
+}
+
+const { location } = Astro.props;
+const faqs = location.faqs ?? [];
+---
+
+{faqs.length > 0 && (
+  <section
+    class="bg-white py-16 sm:py-20 lg:py-24"
+    aria-labelledby={`faq-${location.slug}`}
+  >
+    <div class="mx-auto max-w-3xl px-6 sm:px-8 lg:px-12">
+
+      <div class="mb-12 text-center sm:mb-16">
+        <p class="mb-3 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+          Frequently Asked
+        </p>
+        <h2
+          id={`faq-${location.slug}`}
+          class="font-display font-light leading-[1.1] text-brand-forest"
+          style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);"
+        >
+          {location.name} chauffeur service questions
+        </h2>
+      </div>
+
+      <ul class="m-0 list-none divide-y divide-brand-forest/10 border-y border-brand-forest/10 p-0">
+        {faqs.map((faq, i) => (
+          <li>
+            <details class="group ecl-faq-item" name={`faq-${location.slug}`} open={i === 0}>
+              <summary class="ecl-focusable flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-display text-lg text-brand-forest hover:text-brand-gold">
+                <span>{faq.question}</span>
+                <span
+                  class="ecl-faq-icon flex h-6 w-6 flex-shrink-0 items-center justify-center text-brand-gold transition-transform duration-300 group-open:rotate-180"
+                  aria-hidden="true"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                  </svg>
+                </span>
+              </summary>
+              <p class="pb-5 font-sans text-base leading-relaxed text-brand-forest/80">
+                {faq.answer}
+              </p>
+            </details>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+
+<style>
+  /* Hide default disclosure marker across browsers */
+  .ecl-faq-item summary::-webkit-details-marker { display: none; }
+  .ecl-faq-item summary::marker { content: ''; }
+</style>

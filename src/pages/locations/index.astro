@@ -1,0 +1,182 @@
+---
+/**
+ * /locations
+ * ----------
+ * Master index for all service areas. Groups locations by county so users
+ * scanning for their city don't have to scroll a flat list of 20 cards.
+ *
+ * The page itself is conversion-focused (hero + grid + CTA), but it also
+ * gives Google a clean internal-link surface — every /locations/[slug] page
+ * is exactly one click from this hub.
+ */
+import LocationLayout from '@/layouts/LocationLayout.astro';
+import LocationCTA from '@/components/locations/LocationCTA.astro';
+import { locations, type Location } from '@/data/locations';
+
+const title = 'Service Areas | Emerald City Limos';
+const description =
+  'Luxury chauffeur and black-car service across the Seattle metro — King, Pierce, and Snohomish counties. 20 service areas including SEA-TAC, Boeing Field, Bellevue, Tacoma, and Everett.';
+const keywords =
+  'seattle chauffeur service areas, bellevue limo, tacoma chauffeur, sea-tac airport transfer, eastside black car service';
+const canonical = 'https://emeraldcitylimos.com/locations';
+
+// Group by county, preserve source order within each county.
+const byCounty = locations.reduce<Record<string, Location[]>>((acc, loc) => {
+  (acc[loc.county] ??= []).push(loc);
+  return acc;
+}, {});
+
+// Display counties in deliberate order — King first (largest), then Pierce, then Snohomish.
+const COUNTY_ORDER = ['King County', 'Pierce County', 'Snohomish County'];
+const orderedCounties = [
+  ...COUNTY_ORDER.filter((c) => byCounty[c]),
+  ...Object.keys(byCounty).filter((c) => !COUNTY_ORDER.includes(c)),
+];
+
+// A "synthetic" location for the page-end CTA — re-uses the same component
+// without binding to a single city.
+const ctaLocation: Location = {
+  name: 'the Pacific Northwest',
+  slug: 'all',
+  county: 'Washington',
+  coordinates: { lat: 47.6062, lng: -122.3321 },
+  zipCodes: [],
+  heroImage: '',
+  heroImageAlt: '',
+  heroSupporting: '',
+  localValueProp: '',
+  nearbyLandmarks: [],
+  airportProximity: [],
+  popularRoutes: [],
+  faqs: [],
+  meta: { title: '', description: '', keywords: [] },
+};
+---
+
+<LocationLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonical={canonical}
+>
+  <!-- ─────────── Hero ─────────── -->
+  <section
+    class="ecl-noise relative w-full overflow-hidden bg-brand-forest"
+    aria-labelledby="locations-hero"
+  >
+    <div
+      class="absolute inset-0"
+      style="background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(163,126,44,0.10) 0%, transparent 70%);"
+      aria-hidden="true"
+    ></div>
+
+    <div
+      class="absolute top-0 left-0 right-0 h-px"
+      style="background: linear-gradient(90deg, transparent, rgba(163,126,44,0.5), transparent);"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative z-10 px-6 pb-20 pt-32 sm:px-8 sm:pb-24 sm:pt-40 md:px-12">
+      <div class="mx-auto max-w-4xl text-center">
+
+        <div class="mb-5 flex items-center justify-center gap-3 sm:mb-7">
+          <span class="hidden h-px w-12 sm:block" style="background: linear-gradient(to right, transparent, rgba(163,126,44,0.6));" aria-hidden="true"></span>
+          <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold-soft sm:text-[11px]">
+            Service Areas
+          </p>
+          <span class="hidden h-px w-12 sm:block" style="background: linear-gradient(to left, transparent, rgba(163,126,44,0.6));" aria-hidden="true"></span>
+        </div>
+
+        <h1
+          id="locations-hero"
+          class="mb-6 font-display font-extralight leading-[1.05] tracking-[-0.02em] text-white"
+          style="font-size: clamp(2rem, 5.2vw + 0.35rem, 4rem);"
+        >
+          Luxury chauffeur service
+          <span class="block italic text-brand-gold-soft">across the Pacific Northwest</span>
+        </h1>
+
+        <p class="mx-auto max-w-2xl font-sans font-light leading-relaxed text-white/80 sm:text-lg">
+          {locations.length} service areas across King, Pierce, and Snohomish counties — including SEA-TAC, Boeing Field, and Paine Field. Flat-rate pricing, flight-tracked airport pickups, business-attired chauffeurs.
+        </p>
+      </div>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 h-px" style="background: linear-gradient(90deg, transparent, rgba(163,126,44,0.3), transparent);" aria-hidden="true"></div>
+  </section>
+
+  <!-- ─────────── Locations grid (grouped by county) ─────────── -->
+  <section class="bg-brand-champagne py-16 sm:py-20 lg:py-24" aria-label="All service areas">
+    <div class="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+      {orderedCounties.map((county) => (
+        <div class="mb-14 last:mb-0">
+
+          <!-- County heading -->
+          <div class="mb-8 flex items-end justify-between gap-4">
+            <h2 class="font-display text-2xl font-light text-brand-forest sm:text-3xl">
+              {county}
+            </h2>
+            <span class="font-sans text-xs uppercase tracking-[0.2em] text-brand-forest/50 tabular-nums">
+              {byCounty[county].length} {byCounty[county].length === 1 ? 'area' : 'areas'}
+            </span>
+          </div>
+
+          <!-- Grid -->
+          <ul class="m-0 grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {byCounty[county].map((loc) => (
+              <li>
+                <a
+                  href={`/locations/${loc.slug}`}
+                  class="ecl-focusable group flex h-full flex-col gap-2 border-l-2 border-brand-gold/60 bg-white p-5 ring-1 ring-brand-forest/10 transition-[border-color,box-shadow] duration-300 hover:border-brand-gold hover:shadow-[0_8px_28px_-12px_rgba(10,35,24,0.18)]"
+                  aria-label={`${loc.name} chauffeur service — view details`}
+                >
+                  <h3 class="font-display text-xl font-medium leading-snug text-brand-forest transition-colors duration-300 group-hover:text-brand-gold">
+                    {loc.name}
+                  </h3>
+                  <p class="font-sans text-xs uppercase tracking-[0.18em] text-brand-forest/55">
+                    {loc.county}
+                  </p>
+                  <p class="mt-2 font-sans text-sm leading-relaxed text-brand-forest/75 line-clamp-3">
+                    {loc.heroSupporting}
+                  </p>
+                  <span class="mt-auto inline-flex items-center gap-1.5 pt-3 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-gold">
+                    View details
+                    <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ─────────── Final CTA ─────────── -->
+  <LocationCTA location={ctaLocation} />
+
+  <!-- ─────────── Schema: BreadcrumbList + ItemList ─────────── -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home',          item: 'https://emeraldcitylimos.com' },
+          { '@type': 'ListItem', position: 2, name: 'Service Areas', item: canonical },
+        ],
+      },
+      {
+        '@type': 'ItemList',
+        name: 'Emerald City Limos service areas',
+        numberOfItems: locations.length,
+        itemListElement: locations.map((loc, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          url: `https://emeraldcitylimos.com/locations/${loc.slug}`,
+          name: loc.name,
+        })),
+      },
+    ],
+  })} />
+</LocationLayout>

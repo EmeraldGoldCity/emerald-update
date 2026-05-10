@@ -1,0 +1,134 @@
+---
+import type { Location } from '@/data/locations';
+
+interface Props {
+  location: Location;
+}
+
+const { location } = Astro.props;
+
+const chipGroups = [
+  { title: 'Landmarks We Serve',  items: location.nearbyLandmarks },
+  { title: 'Business Districts',  items: location.businessDistricts ?? [] },
+  { title: 'Hotels',              items: location.hotels ?? [] },
+  { title: 'Event Venues',        items: location.eventVenues ?? [] },
+].filter((g) => g.items.length > 0);
+---
+
+<section
+  class="relative bg-brand-ivory py-16 sm:py-20 lg:py-24 overflow-hidden"
+  aria-labelledby={`intro-${location.slug}`}
+>
+
+  <!-- Decorative background rule -->
+  <div
+    class="pointer-events-none absolute inset-0 flex items-center justify-center"
+    aria-hidden="true"
+  >
+    <div class="h-full w-px bg-gradient-to-b from-transparent via-brand-gold/10 to-transparent" />
+  </div>
+
+  <div class="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+    <div class="grid gap-14 lg:grid-cols-[1.25fr_1fr] lg:gap-20">
+
+      <!-- ── Copy column ──────────────────────────────────────── -->
+      <div>
+        <!-- Gold rule -->
+        <div
+          class="mb-5 h-px w-9 bg-brand-gold"
+          aria-hidden="true"
+        />
+
+        <p class="mb-4 font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+          Trusted in {location.name}
+        </p>
+
+        <h2
+          id={`intro-${location.slug}`}
+          class="mb-7 font-display font-light leading-[1.08] text-brand-green-deep"
+          style="font-size: clamp(1.85rem, 3.4vw, 2.5rem); letter-spacing: -0.01em;"
+        >
+          Why {location.name} riders choose
+          <em class="not-italic italic text-brand-gold">
+            Emerald City Limos
+          </em>
+        </h2>
+
+        <p class="font-sans text-base font-light leading-[1.9] text-brand-green-deep/80 sm:text-[1.05rem]">
+          {location.localValueProp}
+        </p>
+
+        {location.localValuePropExtended && (
+          <>
+            <!-- Vertical spacer with faint gold pip -->
+            <div class="my-6 flex items-center gap-4" aria-hidden="true">
+              <div class="h-px flex-1 bg-brand-gold/15" />
+              <div class="h-1 w-1 rounded-full bg-brand-gold/40" />
+              <div class="h-px flex-1 bg-brand-gold/15" />
+            </div>
+
+            <p class="font-sans text-base font-light leading-[1.9] text-brand-green-deep/80 sm:text-[1.05rem]">
+              {location.localValuePropExtended}
+            </p>
+          </>
+        )}
+      </div>
+
+      <!-- ── Chip groups column ────────────────────────────────── -->
+      <aside
+        class="flex flex-col gap-7 lg:pt-1"
+        aria-label={`Areas we serve in ${location.name}`}
+      >
+        {chipGroups.map((group) => (
+          <div>
+            <!-- Group label with trailing hairline -->
+            <h3 class="mb-3 flex items-center gap-3 font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+              {group.title}
+              <span
+                class="flex-1 border-t border-brand-gold/20"
+                aria-hidden="true"
+              />
+            </h3>
+
+            <ul class="flex list-none flex-wrap gap-2 p-0 m-0">
+              {group.items.map((item) => (
+                <li class="group/chip cursor-default border border-brand-green-deep/10 bg-white px-3 py-[5px] font-sans text-[11px] font-normal leading-none text-brand-green-deep/70 transition-colors duration-200 hover:border-brand-gold/40 hover:bg-brand-gold/[0.04] hover:text-brand-green-deep">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+
+        {location.zipCodes.length > 0 && (
+          <div>
+            <h3 class="mb-3 flex items-center gap-3 font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+              ZIP Codes Served
+              <span
+                class="flex-1 border-t border-brand-gold/20"
+                aria-hidden="true"
+              />
+            </h3>
+
+            <ul class="flex list-none flex-wrap gap-2 p-0 m-0">
+              {location.zipCodes.map((zip) => (
+                <li class="cursor-default border border-brand-green-deep/8 bg-brand-green-deep/[0.03] px-3 py-[5px] font-sans text-[11px] font-normal tabular-nums leading-none text-brand-green-deep/55 tracking-[0.05em] transition-colors duration-200 hover:border-brand-gold/30 hover:text-brand-green-deep/75">
+                  {zip}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- Bottom decorative rule -->
+  <div
+    class="pointer-events-none absolute bottom-0 left-0 right-0 h-px"
+    style="background: linear-gradient(to right, transparent, rgba(163,126,44,0.2), transparent);"
+    aria-hidden="true"
+  />
+
+</section>

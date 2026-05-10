@@ -1,0 +1,74 @@
+---
+/**
+ * LocationRoutes
+ * --------------
+ * Popular point-to-point routes from the location. Renders as a card list
+ * (mobile-first) instead of a table — tables are awkward on phones and
+ * don't add SEO weight here. Starting prices are optional per route.
+ *
+ * If `from` is omitted, the parent location's name is used.
+ */
+import type { Location } from '@/data/locations';
+
+interface Props {
+  location: Location;
+}
+
+const { location } = Astro.props;
+const routes = location.popularRoutes ?? [];
+---
+
+{routes.length > 0 && (
+  <section
+    class="bg-white py-16 sm:py-20 lg:py-24"
+    aria-labelledby={`routes-${location.slug}`}
+  >
+    <div class="mx-auto max-w-5xl px-6 sm:px-8 lg:px-12">
+
+      <div class="mb-12 text-center sm:mb-16">
+        <p class="mb-3 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+          Popular Routes
+        </p>
+        <h2
+          id={`routes-${location.slug}`}
+          class="font-display font-light leading-[1.1] text-brand-forest"
+          style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);"
+        >
+          Most-booked rides from
+          <span class="italic text-brand-gold">{location.name}</span>
+        </h2>
+      </div>
+
+      <ul class="m-0 list-none divide-y divide-brand-forest/10 border-y border-brand-forest/10 p-0">
+        {routes.map((route) => {
+          const from = route.from ?? location.name;
+          return (
+            <li class="grid items-center gap-3 py-4 sm:grid-cols-[1.4fr_auto_auto_auto] sm:gap-6 sm:py-5">
+              <div class="font-display text-lg text-brand-forest">
+                <span>{from}</span>
+                <span class="mx-2 text-brand-gold" aria-hidden="true">→</span>
+                <span>{route.to}</span>
+              </div>
+
+              <div class="font-sans text-xs uppercase tracking-[0.18em] text-brand-forest/60 tabular-nums">
+                {route.driveTime}
+              </div>
+
+              <div class="font-sans text-xs uppercase tracking-[0.18em] text-brand-forest/60 tabular-nums">
+                {route.distanceMiles} mi
+              </div>
+
+              <div class="font-sans text-sm font-semibold tabular-nums text-brand-forest">
+                {route.startingPriceUSD ? `from $${route.startingPriceUSD}` : 'On request'}
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+
+      <p class="mt-6 text-center font-sans text-xs text-brand-forest/60">
+        Flat-rate pricing. All-inclusive — no surge, no hidden tolls.
+      </p>
+    </div>
+  </section>
+)}

@@ -67,50 +67,46 @@ const SERVICES = [
   },
 ] as const;
 
+// Mirror of src/data/locations.ts — keep in sync when adding new cities.
 const LOCATIONS = {
   king: {
     label: 'King County',
     items: [
-      { name: 'Seattle', href: '/location/seattle' },
-      { name: 'Bellevue', href: '/location/bellevue' },
-      { name: 'Redmond', href: '/location/redmond' },
-      { name: 'Kirkland', href: '/location/kirkland' },
-      { name: 'Sammamish', href: '/location/sammamish' },
-      { name: 'Renton', href: '/location/renton' },
-      { name: 'Kent', href: '/location/kent' },
-      { name: 'Auburn', href: '/location/auburn' },
-      { name: 'Federal Way', href: '/location/federal-way' },
-      { name: 'Woodinville', href: '/location/woodinville' },
+      { name: 'Seattle', href: '/locations/seattle' },
+      { name: 'Bellevue', href: '/locations/bellevue' },
+      { name: 'Redmond', href: '/locations/redmond' },
+      { name: 'Kirkland', href: '/locations/kirkland' },
+      { name: 'Sammamish', href: '/locations/sammamish' },
+      { name: 'Renton', href: '/locations/renton' },
+      { name: 'Kent', href: '/locations/kent' },
+      { name: 'Auburn', href: '/locations/auburn' },
+      { name: 'Federal Way', href: '/locations/federal-way' },
+      { name: 'Woodinville', href: '/locations/woodinville' },
     ],
   },
   snohomish: {
     label: 'Snohomish County',
     items: [
-      { name: 'Everett', href: '/location/everett' },
-      { name: 'Marysville', href: '/location/marysville' },
-      { name: 'Lynnwood', href: '/location/lynnwood' },
-      { name: 'Edmonds', href: '/location/edmonds' },
-      { name: 'Bothell', href: '/location/bothell' },
+      { name: 'Everett', href: '/locations/everett' },
+      { name: 'Marysville', href: '/locations/marysville' },
+      { name: 'Lynnwood', href: '/locations/lynnwood' },
+      { name: 'Edmonds', href: '/locations/edmonds' },
+      { name: 'Bothell', href: '/locations/bothell' },
     ],
   },
   pierce: {
     label: 'Pierce County',
     items: [
-      { name: 'Tacoma', href: '/location/tacoma' },
-      { name: 'Lakewood', href: '/location/lakewood' },
-      { name: 'Puyallup', href: '/location/puyallup' },
-      { name: 'University Place', href: '/location/university-place' },
+      { name: 'Tacoma', href: '/locations/tacoma' },
+      { name: 'Lakewood', href: '/locations/lakewood' },
+      { name: 'Puyallup', href: '/locations/puyallup' },
     ],
   },
-  extended: {
-    label: 'Extended Areas',
+  airports: {
+    label: 'Airports',
     items: [
-      { name: 'Spokane', href: '/location/spokane' },
-      { name: 'Wenatchee', href: '/location/wenatchee' },
-      { name: 'Yakima', href: '/location/yakima' },
-      { name: 'Vancouver, BC', href: '/location/vancouver-bc' },
-      { name: 'Portland, OR', href: '/location/portland-or' },
-      { name: 'Cannon Beach, OR', href: '/location/cannon-beach-or' },
+      { name: 'SeaTac (SEA)', href: '/locations/seatac-airport' },
+      { name: 'Boeing Field (BFI)', href: '/locations/boeing-field' },
     ],
   },
 } as const;
@@ -136,7 +132,7 @@ const NAV: NavItem[] = [
 ];
 
 const SERVICES_PATH_PREFIXES = ['/services', '/service/', '/airport-transfers'];
-const LOCATIONS_PATH_PREFIXES = ['/locations', '/location/', '/airport/'];
+const LOCATIONS_PATH_PREFIXES = ['/locations', '/airport/'];
 
 /* Shared focus-ring class (extracted because it's used everywhere) */
 const RING =
@@ -330,7 +326,7 @@ export function Navigation({ variant = 'overlay' }: NavigationProps) {
               
               <a
                 href="/book-now"
-                className={`inline-flex items-center rounded-sm bg-brand-gold px-5 py-2.5 text-sm font-semibold tracking-wide text-brand-forest shadow-[0_2px_0_rgba(0,0,0,0.08)] transition-[background-color,box-shadow] duration-200 hover:bg-brand-gold-soft hover:shadow-[0_6px_20px_-6px_rgba(163,126,44,0.6)] motion-reduce:transition-none ${RING}`}
+                className={`inline-flex items-center rounded-none bg-brand-gold px-5 py-2.5 text-sm font-semibold tracking-wide text-brand-forest shadow-[0_2px_0_rgba(0,0,0,0.08)] transition-[background-color,box-shadow] duration-200 hover:bg-brand-gold-soft hover:shadow-[0_6px_20px_-6px_rgba(163,126,44,0.6)] motion-reduce:transition-none ${RING}`}
               >
                 Book Now
               </a>
@@ -480,7 +476,7 @@ function ServicesMega({ onSelect }: { onSelect: () => void }) {
   return (
     <div
       id="mega-services"
-      className="mt-3 overflow-hidden rounded-2xl border border-brand-gold/20 bg-brand-forest-deep/95 shadow-[0_24px_56px_-16px_rgba(0,0,0,0.65)] backdrop-blur-xl"
+      className="-mt-5 overflow-hidden rounded-2xl border border-brand-gold/20 bg-brand-forest-deep/95 shadow-[0_24px_56px_-16px_rgba(0,0,0,0.65)] backdrop-blur-xl"
     >
       <ul role="list" className="grid grid-cols-1 gap-1 p-3 md:grid-cols-2 lg:grid-cols-3">
         {SERVICES.map((s) => (
@@ -525,7 +521,7 @@ function LocationsMega({ onSelect }: { onSelect: () => void }) {
   return (
     <div
       id="mega-locations"
-      className="mt-3 overflow-hidden rounded-2xl border border-brand-gold/20 bg-brand-forest-deep/95 shadow-[0_24px_56px_-16px_rgba(0,0,0,0.65)] backdrop-blur-xl"
+      className="-mt-5 overflow-hidden rounded-2xl border border-brand-gold/20 bg-brand-forest-deep/95 shadow-[0_24px_56px_-16px_rgba(0,0,0,0.65)] backdrop-blur-xl"
     >
       <div className="grid gap-6 p-6 md:grid-cols-4">
         {Object.entries(LOCATIONS).map(([k, group]) => (
@@ -819,14 +815,14 @@ function MobileDrawer({
           <a
             href="/book-now"
             onClick={onClose}
-            className="flex min-h-[52px] w-full items-center justify-center rounded-md bg-brand-gold px-5 font-semibold tracking-wide text-brand-forest outline-none transition-colors hover:bg-brand-gold-soft focus-visible:ring-2 focus-visible:ring-brand-champagne"
+            className="flex min-h-[52px] w-full items-center justify-center rounded-none bg-brand-gold px-5 font-semibold tracking-wide text-brand-forest outline-none transition-colors hover:bg-brand-gold-soft focus-visible:ring-2 focus-visible:ring-brand-champagne"
           >
             Book Now
           </a>
           <a
             href="/book-now?intent=quote"
             onClick={onClose}
-            className={`flex min-h-[48px] w-full items-center justify-center rounded-md border border-brand-champagne/30 px-5 font-semibold text-brand-champagne transition-colors hover:border-brand-gold hover:text-brand-gold-soft ${RING_TIGHT}`}
+            className={`flex min-h-[48px] w-full items-center justify-center rounded-none border border-brand-champagne/30 px-5 font-semibold text-brand-champagne transition-colors hover:border-brand-gold hover:text-brand-gold-soft ${RING_TIGHT}`}
           >
             Get a Quote
           </a>

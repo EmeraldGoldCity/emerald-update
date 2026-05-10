@@ -1,0 +1,65 @@
+---
+/**
+ * LocationFleet
+ * -------------
+ * Reuses the existing FleetCard component to keep visual parity with the
+ * /fleet page. Shows up to 4 vehicles spanning Sedan, SUV, Van, and Limo so
+ * every location surfaces the full category mix without scrolling.
+ */
+import type { Location } from '@/data/locations';
+import { fleet } from '@/data/fleet';
+import FleetCard from '@/components/fleet/FleetCard.astro';
+
+interface Props {
+  location: Location;
+}
+
+const { location } = Astro.props;
+
+// One representative vehicle per category (visual order matches spec).
+const CATEGORY_ORDER = ['Luxury Sedan', 'Luxury SUV', 'Executive Van', 'Limousine'] as const;
+
+const previewVehicles = CATEGORY_ORDER.map((category) =>
+  fleet.find((v) => v.category === category)
+).filter((v): v is NonNullable<typeof v> => Boolean(v));
+---
+
+<section
+  class="bg-brand-champagne py-16 sm:py-20 lg:py-24"
+  aria-labelledby={`fleet-${location.slug}`}
+>
+  <div class="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+
+    <div class="mb-12 flex flex-col items-start justify-between gap-4 sm:mb-16 sm:flex-row sm:items-end">
+      <div>
+        <p class="mb-3 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+          The Fleet
+        </p>
+        <h2
+          id={`fleet-${location.slug}`}
+          class="font-display font-light leading-[1.1] text-brand-forest"
+          style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);"
+        >
+          Vehicles dispatched to
+          <span class="italic text-brand-gold">{location.name}</span>
+        </h2>
+      </div>
+
+      <a
+        href="/fleet"
+        class="ecl-focusable inline-flex items-center gap-1.5 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-gold hover:text-brand-forest"
+      >
+        View full fleet
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <ul class="m-0 grid list-none gap-6 p-0 sm:grid-cols-2 lg:grid-cols-4">
+      {previewVehicles.map((vehicle) => (
+        <li class="h-full">
+          <FleetCard vehicle={vehicle} />
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

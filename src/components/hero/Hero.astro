@@ -62,7 +62,7 @@ const {
   showScrollIndicator = true,
 } = Astro.props;
 
-// Heroicons outline paths — single source of truth, no duplicate icon files
+// Hero icons outline paths — single source of truth, no duplicate icon files
 const ICON_PATHS: Record<TrustIndicator['icon'], string> = {
   shield: 'M12 2.25 3.75 6v4.5c0 4.95 3.563 9.578 8.25 10.875 4.688-1.297 8.25-5.925 8.25-10.875V6L12 2.25z',
   clock:  'M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z',
@@ -100,7 +100,7 @@ const telHref   = telDigits ? `tel:+1${telDigits}` : ctaSecondary.href;
   </picture>
 
   <!-- ── Three-layer overlay (darken + readability gradient + vignette) ── -->
-  <div class="absolute inset-0 bg-brand-forest/55" aria-hidden="true"></div>
+  <div class="absolute inset-0 bg-brand-forest/10" aria-hidden="true"></div>
   <div
     class="absolute inset-0"
     style="background: linear-gradient(to bottom, rgba(10,35,24,0.15) 0%, rgba(10,35,24,0.30) 35%, rgba(10,35,24,0.72) 65%, rgba(10,35,24,0.92) 100%);"
@@ -144,8 +144,7 @@ const telHref   = telDigits ? `tel:+1${telDigits}` : ctaSecondary.href;
         <!-- H1 — three-line cinematic; line 2 is the emotional accent -->
         <h1
           id="hero-headline"
-          class="font-display font-extra-light text-white leading-[1.04] tracking-[-0.02em] mb-4 sm:mb-6"
-          style="font-size: clamp(2rem, 5.2vw + 0.35rem, 4.25rem);"
+          class="font-display text-[clamp(36px,5.5vw,70px)]  font-extra-light text-white leading-[1.04] tracking-[-0.02em] mb-2 sm:mb-4"
         >
           <span class="ecl-anim ecl-anim-fade-up ecl-delay-2 block">{headline}</span>
           <span
@@ -159,7 +158,7 @@ const telHref   = telDigits ? `tel:+1${telDigits}` : ctaSecondary.href;
         <!-- Tagline -->
         <p
           class="ecl-anim ecl-anim-fade-up ecl-delay-5 font-sans font-light text-white/75 leading-relaxed tracking-[0.01em] mb-4 sm:mb-8 mx-auto max-w-xl"
-          style="font-size: clamp(0.95rem, 1.6vw, 1.075rem);"
+          style="font-size: clamp(0.875rem, 1.1vw, 1rem);"        
         >
           {tagline}
         </p>
@@ -175,7 +174,7 @@ const telHref   = telDigits ? `tel:+1${telDigits}` : ctaSecondary.href;
             id={ctaPrimary.id ?? 'cta-hero-primary'}
             data-cta="hero_book_now"
             aria-label={`${ctaPrimary.label} — Emerald City Limos`}
-            class="ecl-btn-primary ecl-focusable inline-flex items-center justify-center gap-2 w-full sm:w-auto min-h-[52px] px-8 font-sans text-[11px] font-semibold tracking-[0.2em] uppercase bg-brand-gold-soft text-brand-forest border border-brand-gold-soft rounded-sm"
+            class="ecl-btn-primary ecl-focusable inline-flex items-center justify-center gap-2 w-full sm:w-auto min-h-[52px] px-8 font-sans text-[11px] font-semibold tracking-[0.2em] uppercase bg-brand-gold-soft text-brand-forest border border-brand-gold-soft rounded-none"
           >
             {ctaPrimary.label}
             <span aria-hidden="true" class="ecl-arrow">→</span>
@@ -186,7 +185,7 @@ const telHref   = telDigits ? `tel:+1${telDigits}` : ctaSecondary.href;
             id={ctaSecondary.id ?? 'cta-hero-secondary'}
             data-cta={phone ? 'hero_call_now' : 'hero_secondary'}
             aria-label={phone ? `Call us at ${phone}` : `${ctaSecondary.label} — Emerald City Limos`}
-            class="ecl-btn-secondary ecl-focusable inline-flex items-center justify-center gap-2 w-full sm:w-auto min-h-[52px] px-8 font-sans text-[11px] font-semibold tracking-[0.2em] uppercase bg-transparent text-white border border-white/40 hover:border-white/70 rounded-sm"
+            class="ecl-btn-secondary ecl-focusable inline-flex items-center justify-center gap-2 w-full sm:w-auto min-h-[52px] px-8 font-sans text-[11px] font-semibold tracking-[0.2em] uppercase bg-transparent text-white border border-white/40 hover:border-white/70 rounded-none"
           >
             {phone && (
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14" aria-hidden="true">
@@ -196,66 +195,9 @@ const telHref   = telDigits ? `tel:+1${telDigits}` : ctaSecondary.href;
             <span class="tabular-nums">{phone ?? ctaSecondary.label}</span>
           </a>
         </div>
-
-        <!-- Trust strip -->
-        <div class="ecl-anim ecl-anim-fade-in ecl-delay-7">
-          <div
-            class="mx-auto mb-6 w-px h-6 opacity-30 bg-brand-gold-soft"
-            aria-hidden="true"
-          ></div>
-          <ul
-            class="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 sm:gap-x-8 list-none p-0 m-0"
-            role="list"
-            aria-label="Service credentials"
-          >
-            {trustIndicators.map((item) => (
-              <li class="flex items-center gap-2 text-white/60 hover:text-white/85 font-sans text-[10px] sm:text-[11px] font-medium tracking-[0.14em] uppercase transition-colors duration-300">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  width="13"
-                  height="13"
-                  class="text-brand-gold flex-shrink-0"
-                  aria-hidden="true"
-                >
-                  <path stroke-linecap="round" stroke-linejoin="round" d={ICON_PATHS[item.icon]} />
-                </svg>
-                {item.label}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Scroll indicator -->
-    {showScrollIndicator && (
-      <div
-        class="ecl-anim ecl-anim-fade-in ecl-delay-8 hidden sm:flex flex-col items-center pb-8 gap-2"
-        aria-hidden="true"
-      >
-        <span class="font-sans text-[9px] font-medium tracking-[0.2em] uppercase text-white/30">
-          Scroll
-        </span>
-        <span class="ecl-scroll-indicator flex flex-col items-center gap-1">
-          <span class="block w-px h-8" style="background: linear-gradient(to bottom, rgba(163,126,44,0.5), transparent);"></span>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="12" height="12" class="text-brand-gold/60">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-          </svg>
-        </span>
-      </div>
-    )}
   </div>
 
-  <!-- Bottom decorative gold rule -->
-  <div
-    class="absolute bottom-0 left-0 right-0 h-px"
-    style="background: linear-gradient(90deg, transparent, rgba(163,126,44,0.3), transparent);"
-    aria-hidden="true"
-  ></div>
+  
 </section>
 
 <!-- Inline analytics (zero JS framework cost) -->

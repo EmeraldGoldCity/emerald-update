@@ -1,0 +1,70 @@
+---
+/**
+ * /locations/[slug]
+ * -----------------
+ * Dynamic per-city landing page. Each route is statically rendered at build
+ * time from src/data/locations.ts (one path per `locationSlugs` entry).
+ *
+ * Composition order matches the spec exactly:
+ *   1. Hero      — H1 + supporting + CTAs + trust badges
+ *   2. Intro     — local value prop + landmarks/districts/hotels/venues
+ *   3. Services  — 5-card grid of chauffeur services
+ *   4. Fleet     — 4-vehicle preview (Sedan, SUV, Van, Limo)
+ *   5. WhyChoose — 5 universal trust signals
+ *   6. Routes    — popular point-to-point rides from this city
+ *   7. Reviews   — verified Google rating block
+ *   8. FAQ       — city-specific questions/answers
+ *   9. CTA       — final conversion section
+ *  10. Schema    — JSON-LD: LocalBusiness + Service[] + FAQPage + Breadcrumb
+ *
+ * SEO data flows: meta.title / meta.description / meta.keywords -> LocationLayout
+ * -> BaseLayout, which emits <title>, <meta>, OG, Twitter, canonical, etc.
+ */
+import LocationLayout from '@/layouts/LocationLayout.astro';
+import LocationHero from '@/components/locations/LocationHero.astro';
+import LocationIntro from '@/components/locations/LocationIntro.astro';
+import LocationServices from '@/components/locations/LocationServices.astro';
+import LocationFleet from '@/components/locations/LocationFleet.astro';
+import LocationWhyChoose from '@/components/locations/LocationWhyChoose.astro';
+import LocationRoutes from '@/components/locations/LocationRoutes.astro';
+// import LocationReviews from '@/components/locations/LocationReviews.astro';
+import LocationFAQ from '@/components/locations/LocationFAQ.astro';
+import LocationCTA from '@/components/locations/LocationCTA.astro';
+import LocationSchema from '@/components/locations/LocationSchema.astro';
+import { locations, type Location } from '@/data/locations';
+
+export async function getStaticPaths() {
+  return locations.map((loc) => ({
+    params: { slug: loc.slug },
+    props: { location: loc },
+  }));
+}
+
+interface Props {
+  location: Location;
+}
+
+const { location } = Astro.props;
+
+const canonical = `https://emeraldcitylimos.com/locations/${location.slug}`;
+const ogImage = location.meta.ogImage ?? location.heroImage;
+---
+
+<LocationLayout
+  title={location.meta.title}
+  description={location.meta.description}
+  keywords={location.meta.keywords.join(', ')}
+  ogImage={ogImage}
+  canonical={canonical}
+>
+  <LocationHero      location={location} />
+  <LocationIntro     location={location} />
+  <LocationServices  location={location} />
+  <LocationFleet     location={location} />
+  <LocationWhyChoose location={location} />
+  <LocationRoutes    location={location} />
+  <!-- <LocationReviews   location={location} /> -->
+  <LocationFAQ       location={location} />
+  <LocationCTA       location={location} />
+  <LocationSchema    location={location} />
+</LocationLayout>

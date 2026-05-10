@@ -1,0 +1,74 @@
+---
+/**
+ * LocationServices
+ * ----------------
+ * Renders the 5 chauffeur services available in every city.
+ * Source of truth: src/data/locationServices.ts (do not duplicate copy here).
+ *
+ * The {location.name} interpolation in card titles tightens local relevance
+ * without drifting from the canonical service description.
+ */
+import type { Location } from '@/data/locations';
+import { locationServices } from '@/data/locationServices';
+
+interface Props {
+  location: Location;
+}
+
+const { location } = Astro.props;
+---
+
+<section
+  class="bg-white py-16 sm:py-20 lg:py-24"
+  aria-labelledby={`services-${location.slug}`}
+>
+  <div class="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+
+    <!-- Section heading -->
+    <div class="mb-12 text-center sm:mb-16">
+      <p class="mb-3 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+        Services
+      </p>
+      <h2
+        id={`services-${location.slug}`}
+        class="font-display font-light leading-[1.1] text-brand-forest"
+        style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);"
+      >
+        Chauffeur services available in
+        <span class="italic text-brand-gold">{location.name}</span>
+      </h2>
+    </div>
+
+    <!-- Cards grid -->
+    <ul class="m-0 grid list-none gap-6 p-0 sm:grid-cols-2 lg:grid-cols-3">
+      {locationServices.map((svc) => (
+        <li>
+          <a
+            href={svc.href}
+            class="ecl-focusable group flex h-full flex-col gap-3 border-l-2 border-brand-gold/60 bg-white p-6 ring-1 ring-brand-forest/10 transition-[border-color,box-shadow] duration-300 hover:border-brand-gold hover:shadow-[0_8px_28px_-12px_rgba(10,35,24,0.18)] sm:p-7"
+            aria-label={`${svc.title} in ${location.name} — learn more`}
+          >
+            <div class="flex h-12 w-12 items-center justify-center rounded-sm bg-brand-forest text-brand-gold-soft">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d={svc.iconPath} />
+              </svg>
+            </div>
+
+            <h3 class="font-display text-xl font-medium leading-snug text-brand-forest transition-colors duration-300 group-hover:text-brand-gold">
+              {svc.title}
+            </h3>
+
+            <p class="font-sans text-sm leading-relaxed text-brand-forest/75">
+              {svc.description}
+            </p>
+
+            <span class="mt-auto inline-flex items-center gap-1.5 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-gold">
+              Learn more
+              <span aria-hidden="true" class="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
