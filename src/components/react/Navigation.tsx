@@ -234,7 +234,10 @@ export function Navigation({ variant = 'overlay' }: NavigationProps) {
   };
   const closeMobile = () => setMobileOpen(false);
 
-  const isSolid = variant === 'solid' || scrolled || openMega !== null;
+  // Scrolled is the ONLY trigger for visual changes. Opening a mega menu
+  // never affects the navbar's own appearance — the dropdown is a pure
+  // absolute overlay below it.
+  const isSolid = variant === 'solid' || scrolled;
 
   return (
     <>
@@ -243,34 +246,29 @@ export function Navigation({ variant = 'overlay' }: NavigationProps) {
         data-scrolled={isSolid ? 'true' : 'false'}
         className={[
           'fixed inset-x-0 top-0 z-50',
+          // Only color/blur/shadow transition — never height/padding/layout.
           'transition-[background-color,backdrop-filter,box-shadow] duration-300 ease-out motion-reduce:transition-none',
           isSolid
-            ? 'bg-brand-forest/90 backdrop-blur-md shadow-[0_1px_0_rgba(163,126,44,0.18),0_8px_28px_-12px_rgba(0,0,0,0.5)]'
+            ? 'bg-brand-forest/90 shadow-[0_1px_0_rgba(163,126,44,0.18),0_8px_28px_-12px_rgba(0,0,0,0.5)] backdrop-blur-md'
             : 'bg-gradient-to-b from-black/45 via-black/15 to-transparent',
         ].join(' ')}
       >
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div
-            className={[
-              'flex items-center justify-between gap-4',
-              'transition-[height] duration-300 ease-out motion-reduce:transition-none',
-              isSolid ? 'h-16 md:h-[72px]' : 'h-20 md:h-24',
-            ].join(' ')}
-          >
+          {/* Inner bar — height is FIXED. Never bind padding, height, or flex
+              alignment to scroll/menu state. Any layout shift here = bug. */}
+          <div className="flex h-16 items-center justify-between gap-4 md:h-20">
             <a
               href="/"
               className={`group flex items-center gap-3 rounded-md ${RING}`}
               aria-label="Emerald City Limos — return to homepage"
             >
               <img
-                src="/images/logo.webp"
-                alt=""
-                width={180}
-                height={48}
-                className={[
-                  'w-auto transition-[height] duration-300 ease-out motion-reduce:transition-none',
-                  isSolid ? 'h-9 md:h-10' : 'h-11 md:h-12',
-                ].join(' ')}
+                src="/icons/emerald.svg"
+                alt="Emerald City Limos"
+                height={60}
+                className="h-10 w-auto object-contain"
+                fetchpriority="high"
+                decoding="async"
               />
               <span className="sr-only">Emerald City Limos</span>
             </a>
@@ -354,18 +352,19 @@ export function Navigation({ variant = 'overlay' }: NavigationProps) {
             </div>
           </div>
 
-          {/* Mega menu — anchored to the header content container so it
-              never overflows the viewport. Sibling of the flex bar above
-              so it can span the full max-w-7xl content rails with
-              consistent left/right breathing room (px matches the header). */}
+          {/* Mega menu — pure absolute overlay anchored to the header content
+              container. Out of document flow: opening/closing this NEVER
+              affects the navbar's height, padding, or surrounding layout.
+              Only opacity and transform animate. */}
           <div
             className={[
               'absolute inset-x-4 top-full z-10 hidden sm:inset-x-6 lg:inset-x-8 lg:block',
               'transition-[opacity,transform] duration-200 ease-out motion-reduce:transition-none',
               openMega
-                ? 'translate-y-0 opacity-100 pointer-events-auto'
-                : '-translate-y-1 opacity-0 pointer-events-none',
+                ? 'pointer-events-auto translate-y-0 opacity-100'
+                : 'pointer-events-none -translate-y-1 opacity-0',
             ].join(' ')}
+            aria-hidden={openMega ? undefined : 'true'}
             onMouseEnter={cancelClose}
             onMouseLeave={scheduleClose}
           >

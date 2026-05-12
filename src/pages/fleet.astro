@@ -1,5 +1,7 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import TrustStrip from '@/components/shared/TrustStrip.astro';
 import { VehicleCarousel } from '@/components/react/VehicleCarousel';
 const fleetHeroBg = "https://images.unsplash.com/photo-1720828979857-10fc03d19cfe?w=1920&h=1080&fit=crop&q=85&fm=webp&auto=format";
 
@@ -82,30 +84,19 @@ const vehicles = [
   description="Explore Emerald City Limos' premium fleet: Cadillac Escalade, Mercedes S-Class, Sprinter vans, motorcoaches. Professional luxury vehicles for 3-57 passengers in Seattle."
   keywords="luxury car fleet seattle, cadillac escalade limo, mercedes sprinter van, motorcoach rental seattle, party bus seattle, emerald city limos"
 >
-  {/* Hero Section with Fleet Image Background */}
-  <section class="relative bg-gradient-to-r from-emerald-900 to-emerald-800 text-white py-20 overflow-hidden">
-    {/* Background Image */}
-    <div class="absolute inset-0">
-      <img
-        src={fleetHeroBg}
-        alt="Emerald City Limos Fleet"
-        class="w-full h-full object-cover object-center"
-      />
-    </div>
-    
-    {/* Overlay Gradient */}
-    <div class="absolute inset-0 bg-gradient-to-r from-emerald-900/50 to-emerald-800/50"></div>
-    
-    {/* Content */}
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-5xl md:text-6xl font-bold mb-6 drop-shadow-2xl">
-        Our <span class="text-[#d4af37]">Fleet</span>
-      </h1>
-      <p class="text-xl text-gray-200 max-w-3xl mx-auto drop-shadow-lg">
-        Premium luxury vehicles meticulously maintained to ensure your comfort, safety, and satisfaction
-      </p>
-    </div>
-  </section>
+  <PageHero
+    eyebrow="The Fleet"
+    headline="Premium vehicles,"
+    headlineAccent="meticulously maintained"
+    supporting="From Cadillac Escalades and Mercedes S-Class sedans to Sprinter executive vans, minibuses, and motorcoaches — for parties of 3 to 57, every vehicle is detailed and safety-checked between every ride."
+    image={{
+      src: fleetHeroBg,
+      alt: 'Emerald City Limos luxury fleet — Cadillac Escalade with Seattle skyline backdrop',
+    }}
+    size="page"
+    id="fleet-hero"
+  />
+  <TrustStrip />
 
   {/* Fleet Grid */}
   <section class="py-20 bg-gradient-to-b from-white to-gray-50">

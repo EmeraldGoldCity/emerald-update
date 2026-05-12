@@ -1,29 +1,28 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import TrustStrip from '@/components/shared/TrustStrip.astro';
 ---
 
-<MainLayout 
+<MainLayout
   title="Game Day Transport - Emerald City Limos Seattle"
   description="Safe transportation to Seahawks, Mariners, Sounders, and Kraken games. Avoid parking hassles and enjoy the ride."
   keywords="seahawks limo, mariners transportation, sounders transport, kraken limo service, game day transportation seattle"
 >
-  <section class="relative h-[500px] flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-r from-emerald-950/90 to-emerald-900/80 z-10"></div>
-    <img
-      src="https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1920&h=1080&fit=crop&q=80"
-      alt="Game Day Transport"
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="eager"
-    />
-    <div class="relative z-20 text-center text-white max-w-4xl mx-auto px-4">
-      <div class="text-6xl mb-4">🏈</div>
-      <h1 class="text-5xl md:text-6xl font-bold mb-4">Game Day Transport</h1>
-      <p class="text-2xl text-gray-200 mb-8">Tailgate in style, avoid parking hassles</p>
-      <a href="/book-now" class="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold text-xl transition-all">
-        Book Game Day Transportation
-      </a>
-    </div>
-  </section>
+  <PageHero
+    eyebrow="Game Day"
+    headline="Skip parking,"
+    headlineAccent="arrive in style"
+    supporting="Door-to-door transport for Seahawks, Mariners, Sounders, Kraken, and Huskies games. Designated-driver headaches gone — your whole group rides together, safely."
+    ctaPrimary={{ label: 'Book Game Day Ride', href: '/book-now', id: 'cta-gameday-book' }}
+    image={{
+      src: 'https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1920&h=1080&fit=crop&q=80',
+      alt: 'Group of fans arriving at Seattle stadium via luxury chauffeur transport',
+    }}
+    size="page"
+    id="gameday-hero"
+  />
+  <TrustStrip />
 
   <section class="py-16 bg-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

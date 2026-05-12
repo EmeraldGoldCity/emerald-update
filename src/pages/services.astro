@@ -1,32 +1,27 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
-import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
-const heroBg = "/images/cadl1.webp";
+import PageHero from '@/components/shared/PageHero.astro';
+import TrustStrip from '@/components/shared/TrustStrip.astro';
 ---
 
-<MainLayout 
+<MainLayout
   title="Our Services - Emerald City Limos Seattle Luxury Transportation"
   description="Comprehensive luxury transportation services in Seattle: Airport transfers, hourly charters, weddings, corporate events, game day transport, and more. Professional chauffeurs available 24/7."
   keywords="seattle limo services, airport transfer seattle, wedding transportation seattle, corporate car service seattle, hourly charter seattle, emerald city limos"
 >
-  {/* Hero Section */}
-  <section class="relative h-[400px] flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-r from-emerald-950/70 to-emerald-900/60 z-10"></div>
-    <img
-      src={heroBg}
-      alt="Emerald City Limos Professional Service"
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="eager"
-    />
-    <div class="relative z-20 text-center text-white max-w-4xl mx-auto px-4">
-      <h1 class="text-5xl md:text-6xl font-bold mb-4 drop-shadow-2xl">
-        Our <span class="text-[#d4af37]">Services</span>
-      </h1>
-      <p class="text-xl text-gray-200 drop-shadow-lg">
-        Luxury transportation for every occasion
-      </p>
-    </div>
-  </section>
+  <PageHero
+    eyebrow="What We Do"
+    headline="Luxury Transportation,"
+    headlineAccent="every occasion"
+    supporting="Airport transfers, hourly charters, weddings, corporate travel, cruise transfers, game day and special occasions — professional chauffeurs, 24/7."
+    image={{
+      src: '/images/cadl1.webp',
+      alt: 'Emerald City Limos professional chauffeur service Seattle',
+    }}
+    size="page"
+    id="services-hero"
+  />
+  <TrustStrip />
 
   {/* Services Grid */}
   <section class="py-20 bg-white">

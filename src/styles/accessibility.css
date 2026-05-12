@@ -16,20 +16,29 @@
 }
 
 /* Show on Focus - For Keyboard Navigation */
-.sr-only-focusable:active,
 .sr-only-focusable:focus,
 .sr-only-focusable:focus-within {
-  position: static;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+
+  display: inline-flex;
+  align-items: center;
+
+  padding: 0.75rem 1rem;
+  background: #d4af37;
+  color: #000;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+
+  border-radius: 6px;
+  z-index: 99999;
+
+  clip: auto;
   width: auto;
   height: auto;
   overflow: visible;
-  clip: auto;
-  white-space: normal;
-  padding: 0.5rem 1rem;
-  background-color: #d4af37;
-  color: #000;
-  font-weight: 600;
-  z-index: 10000;
 }
 
 /* Skip to Main Content Link */

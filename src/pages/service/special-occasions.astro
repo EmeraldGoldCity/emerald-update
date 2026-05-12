@@ -1,29 +1,28 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import TrustStrip from '@/components/shared/TrustStrip.astro';
 ---
 
-<MainLayout 
+<MainLayout
   title="Special Occasions Limo Service - Emerald City Limos Seattle"
   description="Luxury limousine service for birthdays, anniversaries, proms, quinceañeras, and all special celebrations in Seattle."
   keywords="prom limo seattle, birthday limo seattle, anniversary transportation, quinceañera limo, party limo seattle"
 >
-  <section class="relative h-[500px] flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-r from-emerald-950/90 to-emerald-900/80 z-10"></div>
-    <img
-      src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1920&h=1080&fit=crop&q=80"
-      alt="Special Occasions"
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="eager"
-    />
-    <div class="relative z-20 text-center text-white max-w-4xl mx-auto px-4">
-      <div class="text-6xl mb-4">⭐</div>
-      <h1 class="text-5xl md:text-6xl font-bold mb-4">Special Occasions</h1>
-      <p class="text-2xl text-gray-200 mb-8">Celebrate life's memorable moments in luxury</p>
-      <a href="/book-now" class="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold text-xl transition-all">
-        Book For Your Special Event
-      </a>
-    </div>
-  </section>
+  <PageHero
+    eyebrow="Celebrations"
+    headline="Special"
+    headlineAccent="Occasions"
+    supporting="Milestone birthdays, anniversaries, prom, quinceañeras — every moment that matters deserves measured luxury. Sedans, SUVs, Sprinters, and stretch limos for groups of any size."
+    ctaPrimary={{ label: 'Book Your Event', href: '/book-now', id: 'cta-occasion-book' }}
+    image={{
+      src: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1920&h=1080&fit=crop&q=80',
+      alt: 'Elegant celebration arrival with luxury limo at evening event',
+    }}
+    size="page"
+    id="occasion-hero"
+  />
+  <TrustStrip />
 
   <section class="py-16 bg-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

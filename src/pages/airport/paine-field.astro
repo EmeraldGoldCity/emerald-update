@@ -1,5 +1,7 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import TrustStrip from '@/components/shared/TrustStrip.astro';
 ---
 
 <MainLayout
@@ -7,37 +9,26 @@ import MainLayout from '@/layouts/MainLayout.astro';
   description="Professional limo service to Paine Field / Snohomish County Airport (PAE) in Everett, WA. Alaska Airlines transfers, 24/7 availability, meet and greet included. Book your PAE airport car now."
   keywords="paine field limo service, PAE airport car service, everett airport transportation, snohomish county airport limo, paine field airport transfer, alaska airlines everett limo"
 >
-
-  <!-- Hero -->
-  <section class="relative h-[500px] flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 bg-black/50 z-10"></div>
-    <img
-      src="https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=1920&h=1080&fit=crop&q=85"
-      alt="Paine Field Snohomish County Airport limo service Everett"
-      class="absolute inset-0 w-full h-full object-cover"
-      width="1920"
-      height="1080"
-      loading="eager"
-      fetchpriority="high"
-    />
-    <div class="relative z-20 text-center text-white max-w-4xl mx-auto px-4">
-      <div class="inline-block bg-emerald-700 text-white px-4 py-1 rounded-full text-sm font-semibold mb-4">PAE Airport</div>
-      <h1 class="text-5xl md:text-6xl font-bold mb-6 drop-shadow-2xl">
-        Paine Field <span class="text-[#d4af37]">Limo Service</span>
-      </h1>
-      <p class="text-xl md:text-2xl mb-8 text-gray-100">
-        Professional airport transfers to Snohomish County Airport in Everett, WA
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/book-now" class="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all inline-block">
-          BOOK PAINE FIELD TRANSFER
-        </a>
-        <a href="tel:+12065959675" class="bg-transparent border-2 border-white hover:bg-white hover:text-emerald-900 text-white px-8 py-4 rounded-lg font-bold transition-all inline-block">
-          (206) 595-9675
-        </a>
-      </div>
-    </div>
-  </section>
+  <PageHero
+    eyebrow="PAE Airport"
+    headline="Paine Field"
+    headlineAccent="Limo Service"
+    supporting="Professional airport transfers to Snohomish County Airport in Everett, WA. Alaska Airlines departures and arrivals, 24/7 availability, and meet-and-greet at the terminal."
+    ctaPrimary={{ label: 'Book Paine Field Transfer', href: '/book-now', id: 'cta-pae-book' }}
+    ctaSecondary={{
+      label: 'Get a Quote',
+      href: 'tel:+12065959675',
+      id: 'cta-pae-call',
+      phone: '(206) 595-9675',
+    }}
+    image={{
+      src: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?w=1920&h=1080&fit=crop&q=85',
+      alt: 'Paine Field / Snohomish County Airport runway with luxury chauffeur transfer in Everett, WA',
+    }}
+    size="page"
+    id="paine-hero"
+  />
+  <TrustStrip />
 
   <!-- Quick Stats -->
   <section class="py-12 bg-emerald-900 text-white">

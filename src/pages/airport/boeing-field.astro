@@ -1,5 +1,7 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import TrustStrip from '@/components/shared/TrustStrip.astro';
 ---
 
 <MainLayout
@@ -7,37 +9,26 @@ import MainLayout from '@/layouts/MainLayout.astro';
   description="Premium limo service to Boeing Field / King County International Airport (BFI). Private jet, charter flight and corporate transportation. Meet and greet available. Call (206) 595-9675."
   keywords="boeing field limo service, BFI airport car service, king county international airport transportation, boeing field car service seattle, private jet limo seattle, charter flight transportation seattle"
 >
-
-  <!-- Hero -->
-  <section class="relative h-[500px] flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 bg-black/50 z-10"></div>
-    <img
-      src="https://images.unsplash.com/photo-1540339832862-474599807836?w=1920&h=1080&fit=crop&q=85"
-      alt="Boeing Field King County International Airport limo service"
-      class="absolute inset-0 w-full h-full object-cover"
-      width="1920"
-      height="1080"
-      loading="eager"
-      fetchpriority="high"
-    />
-    <div class="relative z-20 text-center text-white max-w-4xl mx-auto px-4">
-      <div class="inline-block bg-emerald-700 text-white px-4 py-1 rounded-full text-sm font-semibold mb-4">BFI Airport</div>
-      <h1 class="text-5xl md:text-6xl font-bold mb-6 drop-shadow-2xl">
-        Boeing Field <span class="text-[#d4af37]">Limo Service</span>
-      </h1>
-      <p class="text-xl md:text-2xl mb-8 text-gray-100">
-        Premium private jet and charter flight transportation to King County International Airport
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/book-now" class="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all inline-block">
-          BOOK BOEING FIELD TRANSFER
-        </a>
-        <a href="tel:+12065959675" class="bg-transparent border-2 border-white hover:bg-white hover:text-emerald-900 text-white px-8 py-4 rounded-lg font-bold transition-all inline-block">
-          (206) 595-9675
-        </a>
-      </div>
-    </div>
-  </section>
+  <PageHero
+    eyebrow="BFI Airport"
+    headline="Boeing Field"
+    headlineAccent="Limo Service"
+    supporting="Premium private jet and charter flight transportation to King County International Airport (BFI). Discreet FBO access, executive sedans and SUVs, dispatcher reachable 24/7."
+    ctaPrimary={{ label: 'Book Boeing Field Transfer', href: '/book-now', id: 'cta-bfi-book' }}
+    ctaSecondary={{
+      label: 'Get a Quote',
+      href: 'tel:+12065959675',
+      id: 'cta-bfi-call',
+      phone: '(206) 595-9675',
+    }}
+    image={{
+      src: 'https://images.unsplash.com/photo-1540339832862-474599807836?w=1920&h=1080&fit=crop&q=85',
+      alt: 'Private jet at Boeing Field with luxury chauffeur SUV ready for FBO transfer',
+    }}
+    size="page"
+    id="bfi-hero"
+  />
+  <TrustStrip />
 
   <!-- Quick Stats -->
   <section class="py-12 bg-emerald-900 text-white">

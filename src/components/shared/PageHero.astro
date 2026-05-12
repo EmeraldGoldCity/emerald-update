@@ -1,0 +1,268 @@
+---
+/**
+ * PageHero — shared hero for all landing & sub-pages
+ * --------------------------------------------------
+ * Unified bottom-left composition: eyebrow → H1 (with italic gold accent line)
+ * → supporting paragraph → primary + secondary CTAs. Single source of truth
+ * for layout, overlay, gold rules, animations, and a11y.
+ *
+ * Variants
+ *   size="full" — 100svh, homepage-style
+ *   size="page" — 68svh,  default for sub-pages
+ *
+ * Slots
+ *   below — optional content rendered AFTER the CTAs (e.g. inline trust micro
+ *           or scroll cue). Trust strip should live in <TrustStrip /> right
+ *           below the hero in the page, not inside this component.
+ *
+ * Accessibility
+ *   - <h1> with id (aria-labelledby on the <section>)
+ *   - 52px min tap targets, focus-visible ring via .ecl-focusable
+ *   - prefers-reduced-motion handled in hero-luxury.css
+ *   - aria-hidden on every decorative layer
+ *
+ * Performance
+ *   - One <img> as LCP candidate (fetchpriority="high", explicit width/height)
+ *   - Optional <source media="(max-width: 767px)"> for mobile crop
+ *   - No JS island; CTA analytics via inline script
+ */
+
+interface CTA {
+  label: string;
+  href: string;
+  id?: string;
+  /** When set, secondary CTA renders the phone icon and treats href as tel:. */
+  phone?: string;
+}
+
+interface HeroImage {
+  src: string;
+  srcMobile?: string;
+  alt: string;
+  width?: number;
+  height?: number;
+}
+
+export interface Props {
+  /** Small uppercase label rendered above the H1. */
+  eyebrow?: string;
+  /** First line of the H1 (regular weight, white). */
+  headline: string;
+  /** Second line of the H1 (italic, gold). */
+  headlineAccent?: string;
+  /** Paragraph below the H1. */
+  supporting: string;
+  /** Primary CTA. Default: Book Now → /book-now. */
+  ctaPrimary?: CTA;
+  /** Secondary CTA. Default: tel:+1 (206) 595-9675. */
+  ctaSecondary?: CTA;
+  /** Background image (LCP candidate). Omit to render a brand-forest hero with no photo. */
+  image?: HeroImage;
+  /** "full" = 100svh (homepage), "page" = 68svh (sub-pages). Defaults to "page". */
+  size?: 'full' | 'page';
+  /** Unique id for aria-labelledby. Defaults to "page-hero". */
+  id?: string;
+  /** Disable the entrance animations (default: enabled). */
+  noAnim?: boolean;
+}
+
+const {
+  eyebrow,
+  headline,
+  headlineAccent,
+  supporting,
+  ctaPrimary = { label: 'Book Now', href: '/book-now', id: 'cta-hero-primary' },
+  ctaSecondary = {
+    label: 'Get a Quote',
+    href: 'tel:+12065959675',
+    id: 'cta-hero-secondary',
+    phone: '(206) 595-9675',
+  },
+  image,
+  size = 'page',
+  id = 'page-hero',
+  noAnim = false,
+} = Astro.props as Props;
+
+const sectionMinH = size === 'full' ? 'h-[100svh]' : 'h-[68svh]';
+
+const anim = (cls: string) => (noAnim ? '' : cls);
+---
+
+<section
+  class:list={['ecl-hero ecl-noise relative w-full overflow-hidden', sectionMinH]}
+  aria-labelledby={id}
+>
+  {image && (
+    <picture>
+      {image.srcMobile && (
+        <source media="(max-width: 767px)" srcset={image.srcMobile} />
+      )}
+      <img
+        src={image.src}
+        alt={image.alt}
+        width={image.width ?? 1920}
+        height={image.height ?? 1080}
+        fetchpriority="high"
+        loading="eager"
+        decoding="async"
+        class="absolute inset-0 h-full w-full object-cover object-center"
+      />
+    </picture>
+  )}
+
+  <!-- Base + three-layer overlay tuned for bottom-left legibility -->
+  <div class:list={['absolute inset-0', image ? 'bg-brand-forest/15' : 'bg-brand-forest']} aria-hidden="true"></div>
+  <div
+    class="absolute inset-0"
+    style="background: linear-gradient(to bottom, rgba(10,35,24,0.15) 0%, rgba(10,35,24,0.35) 40%, rgba(10,35,24,0.78) 75%, rgba(10,35,24,0.94) 100%);"
+    aria-hidden="true"
+  ></div>
+  <div
+    class="absolute inset-0"
+    style="background: radial-gradient(ellipse 75% 65% at 20% 85%, rgba(10,35,24,0.55) 0%, transparent 70%);"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Top decorative gold rule -->
+  <div
+    class:list={['absolute left-0 right-0 top-0 h-px', anim('ecl-anim ecl-anim-line ecl-delay-1')]}
+    style="background: linear-gradient(90deg, transparent, rgba(163,126,44,0.5), transparent);"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Content (bottom-left) -->
+ <div
+  class:list={[
+    size === 'full'
+      ? 'relative z-10 flex h-full flex-col justify-end px-6 pb-12 pt-24 sm:px-10 sm:pb-16 sm:pt-32 md:px-14 lg:px-20 lg:pb-20'
+      : 'relative z-10 flex h-full flex-col justify-end px-6 pb-8 pt-0 sm:px-10 sm:pb-12 md:px-14 lg:px-20 lg:pb-14',
+    sectionMinH,
+  ]}
+>
+    <div class="w-full max-w-xl text-left">
+
+      {eyebrow && (
+        <div
+          class:list={['mb-4 flex items-center gap-3 sm:mb-6', anim('ecl-anim ecl-anim-fade-in ecl-delay-2')]}
+        >
+          <span
+            class="h-px w-10 sm:w-12"
+            style="background: linear-gradient(to right, rgba(163,126,44,0.6), transparent);"
+            aria-hidden="true"
+          ></span>
+          <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold-soft sm:text-[11px]">
+            {eyebrow}
+          </p>
+        </div>
+      )}
+
+      <h1
+        id={id}
+        class="mb-2 font-display font-light text-[clamp(36px,5.5vw,74px)] leading-[1.04] tracking-[-0.02em] text-[#F5F0E8] sm:mb-4"
+      >
+        {headline === 'Luxury Chauffeur Service' ? (
+          <>
+            <span class="whitespace-nowrap">
+              Luxury Chauffeur Service
+            </span>
+
+            <br />
+
+            <span class="italic whitespace-nowrap">
+              <span class="text-white">in </span>
+              <span class="text-brand-gold-soft">{headlineAccent}</span>
+            </span>
+          </>
+        ) : (
+          <>
+            <span class:list={[anim('ecl-anim ecl-anim-fade-up ecl-delay-2')]}>
+              {headline}
+            </span>
+
+            {headlineAccent && (
+              <>
+                <br />
+                <span
+                  class:list={[
+                    'italic text-[#c39a45]',
+                    anim('ecl-anim ecl-anim-fade-up ecl-delay-3'),
+                  ]}
+                >
+                  {headlineAccent}
+                </span>
+              </>
+            )}
+          </>
+        )}
+      </h1>
+
+      <p
+        class:list={[
+          'mb-4 max-w-xl font-sans font-light leading-relaxed tracking-[0.01em] text-white/80 sm:mb-6',
+          anim('ecl-anim ecl-anim-fade-up ecl-delay-5'),
+        ]}
+        style="font-size: clamp(0.90rem, 1.5vw, 1.rem);"
+      >
+        {supporting}
+      </p>
+
+      <div
+        class:list={[
+          'flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-start sm:gap-4',
+          anim('ecl-anim ecl-anim-fade-up ecl-delay-6'),
+        ]}
+        role="group"
+        aria-label="Booking options"
+      >
+        <a
+          href={ctaPrimary.href}
+          id={ctaPrimary.id ?? 'cta-hero-primary'}
+          data-cta="hero_primary"
+          aria-label={`${ctaPrimary.label} — Emerald City Limos`}
+          class="ecl-btn-primary ecl-focusable inline-flex min-h-[52px] w-full items-center justify-center gap-2 rounded-none border border-brand-gold-soft bg-brand-gold-soft px-8 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-forest sm:w-auto"
+        >
+          {ctaPrimary.label}
+          <span aria-hidden="true" class="ecl-arrow">→</span>
+        </a>
+
+        <a
+          href={ctaSecondary.href}
+          id={ctaSecondary.id ?? 'cta-hero-secondary'}
+          data-cta="hero_secondary"
+          aria-label={
+            ctaSecondary.phone
+              ? `Call us at ${ctaSecondary.phone}`
+              : `${ctaSecondary.label} — Emerald City Limos`
+          }
+          class="ecl-btn-secondary ecl-focusable inline-flex min-h-[52px] w-full items-center justify-center gap-2 rounded-none border border-white/40 bg-transparent px-8 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-white hover:border-white/70 sm:w-auto"
+        >
+          {ctaSecondary.phone && (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+            </svg>
+          )}
+          <span class="tabular-nums">{ctaSecondary.phone ?? ctaSecondary.label}</span>
+        </a>
+      </div>
+
+      <slot name="below" />
+    </div>
+  </div>
+
+  <!-- Bottom decorative gold rule -->
+  <div
+    class="absolute bottom-0 left-0 right-0 h-px"
+    style="background: linear-gradient(90deg, transparent, rgba(163,126,44,0.3), transparent);"
+    aria-hidden="true"
+  ></div>
+</section>
+
+<script is:inline>
+  document.querySelectorAll('section.ecl-hero a[data-cta]').forEach((el) => {
+    el.addEventListener('click', () => {
+      const label = el.getAttribute('data-cta');
+      if (window.gtag) window.gtag('event', 'click', { event_category: 'hero_cta', event_label: label });
+    });
+  });
+</script>

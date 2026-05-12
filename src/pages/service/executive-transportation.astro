@@ -1,29 +1,28 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import TrustStrip from '@/components/shared/TrustStrip.astro';
 ---
 
-<MainLayout 
+<MainLayout
   title="Executive Transportation - Emerald City Limos Seattle"
   description="Professional chauffeur service for business executives in Seattle. Corporate accounts, Wi-Fi equipped vehicles, and punctual service."
   keywords="executive car service seattle, corporate transportation seattle, business chauffeur seattle, executive sedan seattle"
 >
-  <section class="relative h-[500px] flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-r from-emerald-950/90 to-emerald-900/80 z-10"></div>
-    <img
-      src="https://images.unsplash.com/photo-1549924231-f129b911e442?w=1920&h=1080&fit=crop&q=80"
-      alt="Executive Transportation"
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="eager"
-    />
-    <div class="relative z-20 text-center text-white max-w-4xl mx-auto px-4">
-      <div class="text-6xl mb-4">💼</div>
-      <h1 class="text-5xl md:text-6xl font-bold mb-4">Executive Transportation</h1>
-      <p class="text-2xl text-gray-200 mb-8">Professional chauffeur service for business leaders</p>
-      <a href="/book-now" class="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold text-xl transition-all">
-        Book Executive Service
-      </a>
-    </div>
-  </section>
+  <PageHero
+    eyebrow="Corporate Travel"
+    headline="Executive"
+    headlineAccent="Transportation"
+    supporting="Discreet black-car service for Seattle business travel. Punctual chauffeurs, Wi-Fi-equipped sedans and SUVs, and corporate accounts for repeat travelers."
+    ctaPrimary={{ label: 'Book Executive Service', href: '/book-now', id: 'cta-exec-book' }}
+    image={{
+      src: 'https://images.unsplash.com/photo-1549924231-f129b911e442?w=1920&h=1080&fit=crop&q=80',
+      alt: 'Executive chauffeur opening luxury black sedan door for business traveler',
+    }}
+    size="page"
+    id="executive-hero"
+  />
+  <TrustStrip />
 
   <section class="py-16 bg-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

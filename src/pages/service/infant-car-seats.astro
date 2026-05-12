@@ -1,32 +1,31 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import TrustStrip from '@/components/shared/TrustStrip.astro';
 const imgInfantSeat = "/images/carseatfront.avif";
 const imgToddlerSeat = "/images/rearseattoddler.avif";
 const imgBoosterSeat = "images/boosterseat.avif";
 ---
 
-<MainLayout 
+<MainLayout
   title="Infant Car Seats & Booster Seats - Emerald City Limos Seattle"
   description="Safe travel for children with professionally installed car seats. Infant seats, toddler seats, and booster seats available at no extra charge."
   keywords="car seat limo service seattle, child car seat transportation, infant car seat limo, booster seat car service seattle"
 >
-  <section class="relative h-[500px] flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-r from-emerald-950/90 to-emerald-900/80 z-10"></div>
-    <img
-      src="/images/carseatfront.avif"
-      alt="Infant Car Seats"
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="eager"
-    />
-    <div class="relative z-20 text-center text-white max-w-4xl mx-auto px-4">
-      <div class="text-6xl mb-4">👶</div>
-      <h1 class="text-5xl md:text-6xl font-bold mb-4">Infant Car Seats & Booster Seats</h1>
-      <p class="text-2xl text-gray-200 mb-8">Safe travel for your little ones</p>
-      <a href="/book-now" class="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold text-xl transition-all">
-        Book With Car Seats
-      </a>
-    </div>
-  </section>
+  <PageHero
+    eyebrow="Family Travel"
+    headline="Infant Car Seats"
+    headlineAccent="& Booster Seats"
+    supporting="Professionally installed infant, convertible, and booster seats — fitted properly before your chauffeur arrives. No extra charge, no fumbling at the curb with your own."
+    ctaPrimary={{ label: 'Book With Car Seats', href: '/book-now', id: 'cta-carseat-book' }}
+    image={{
+      src: '/images/carseatfront.avif',
+      alt: 'Properly installed infant car seat in luxury SUV interior for family ride',
+    }}
+    size="page"
+    id="carseat-hero"
+  />
+  <TrustStrip />
 
   <section class="py-16 bg-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

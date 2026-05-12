@@ -1,29 +1,28 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import TrustStrip from '@/components/shared/TrustStrip.astro';
 ---
 
-<MainLayout 
+<MainLayout
   title="Cruise Transportation - Emerald City Limos Seattle"
   description="Seamless transportation to Seattle cruise terminals at Pier 91 and Bell Street Pier. Start your voyage stress-free."
   keywords="cruise terminal transportation seattle, pier 91 limo service, bell street pier transportation, cruise port shuttle seattle"
 >
-  <section class="relative h-[500px] flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-r from-emerald-950/90 to-emerald-900/80 z-10"></div>
-    <img
-      src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1920&h=1080&fit=crop&q=80"
-      alt="Cruise Transportation"
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="eager"
-    />
-    <div class="relative z-20 text-center text-white max-w-4xl mx-auto px-4">
-      <div class="text-6xl mb-4">🚢</div>
-      <h1 class="text-5xl md:text-6xl font-bold mb-4">Cruise Transportation</h1>
-      <p class="text-2xl text-gray-200 mb-8">Start your voyage stress-free</p>
-      <a href="/book-now" class="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold text-xl transition-all">
-        Book Cruise Transportation
-      </a>
-    </div>
-  </section>
+  <PageHero
+    eyebrow="Cruise Transfers"
+    headline="Cruise"
+    headlineAccent="Transportation"
+    supporting="Door-to-pier service for Seattle cruise terminals at Pier 91 and Bell Street Pier. Luggage handled, timing planned around boarding windows — your voyage begins stress-free."
+    ctaPrimary={{ label: 'Book Cruise Transfer', href: '/book-now', id: 'cta-cruise-book' }}
+    image={{
+      src: 'https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1920&h=1080&fit=crop&q=80',
+      alt: 'Cruise ship docked at Seattle Pier 91 with luxury chauffeur transfer arriving',
+    }}
+    size="page"
+    id="cruise-hero"
+  />
+  <TrustStrip />
 
   <section class="py-16 bg-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

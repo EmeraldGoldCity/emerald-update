@@ -1,34 +1,28 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import TrustStrip from '@/components/shared/TrustStrip.astro';
 ---
 
-<MainLayout 
+<MainLayout
   title="Book Now - Emerald City Limos Seattle Limo Service"
   description="Book your luxury transportation with Emerald City Limos. Professional chauffeur service available 24/7 in Seattle and surrounding areas."
   keywords="book limo seattle, reserve car service seattle, seattle limo booking, emerald city limos"
 >
-  <div class="min-h-screen bg-gray-50">
-    {/* Hero Section */}
-    <section class="relative h-[300px] flex items-center justify-center overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-r from-emerald-950/90 to-emerald-900/80 z-10"></div>
-      <img
-        src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1920&h=1080&fit=crop&q=85&fm=webp&auto=format"
-        alt="Book Your Luxury Ride"
-        class="absolute inset-0 w-full h-full object-cover"
-        width="1920"
-        height="1080"
-        loading="eager"
-        fetchpriority="high"
-      />
-      <div class="relative z-20 text-center text-white max-w-4xl mx-auto px-4">
-        <h1 class="text-5xl md:text-6xl font-bold mb-6">
-          <span class="text-[#d4af37]">Book</span> Your Ride
-        </h1>
-        <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-4">
-          Experience luxury transportation with Emerald City Limos - Seattle's premier limousine service
-        </p>
-      </div>
-    </section>
+  <div class="bg-gray-50">
+    <PageHero
+      eyebrow="Reserve in 60 Seconds"
+      headline="Book Your"
+      headlineAccent="Seattle Luxury Ride"
+      supporting="Reserve any vehicle in our fleet — sedan, SUV, Sprinter, or motorcoach — in under a minute. Confirmation, flight tracking, and a dedicated dispatcher follow instantly."
+      image={{
+        src: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1920&h=1080&fit=crop&q=85&fm=webp&auto=format',
+        alt: 'Luxury black car at night ready for booking',
+      }}
+      size="page"
+      id="book-now-hero"
+    />
+    <TrustStrip />
 
     {/* Booking Portal */}
     <section class="py-12">

@@ -21,7 +21,8 @@
  * -> BaseLayout, which emits <title>, <meta>, OG, Twitter, canonical, etc.
  */
 import LocationLayout from '@/layouts/LocationLayout.astro';
-import LocationHero from '@/components/locations/LocationHero.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import TrustStrip from '@/components/shared/TrustStrip.astro';
 import LocationIntro from '@/components/locations/LocationIntro.astro';
 import LocationServices from '@/components/locations/LocationServices.astro';
 import LocationFleet from '@/components/locations/LocationFleet.astro';
@@ -57,7 +58,17 @@ const ogImage = location.meta.ogImage ?? location.heroImage;
   ogImage={ogImage}
   canonical={canonical}
 >
-  <LocationHero      location={location} />
+  <PageHero
+    eyebrow={location.county}
+    headline="Luxury Chauffeur Service"
+    headlineAccent={location.name}
+    supporting={location.heroSupporting}
+    image={{ src: location.heroImage, alt: location.heroImageAlt }}
+    id={`hero-${location.slug}`}
+    size="page"
+    noAnim
+  />
+  <TrustStrip />
   <LocationIntro     location={location} />
   <LocationServices  location={location} />
   <LocationFleet     location={location} />

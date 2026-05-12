@@ -1,36 +1,28 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import TrustStrip from '@/components/shared/TrustStrip.astro';
 ---
 
-<MainLayout 
+<MainLayout
   title="Hourly Charter Service Seattle - Flexible Limo Rentals | Emerald City Limos"
   description="Flexible hourly limousine charter service in Seattle. Perfect for business meetings, wine tours, shopping trips, and sightseeing. 3-hour minimum, professional chauffeurs."
   keywords="hourly limo service seattle, charter car service seattle, seattle limo by the hour, wine tour transportation seattle, emerald city limos"
 >
-  {/* Hero Section */}
-  <section class="relative h-[500px] flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-emerald-950/70 via-emerald-900/50 to-transparent z-10"></div>
-    <img
-      src="/images/charter.jpeg"
-      alt="Professional Chauffeur"
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="eager"
-    />
-    <div class="relative z-20 text-center text-white max-w-4xl mx-auto px-4">
-      <h1 class="text-5xl md:text-6xl font-bold mb-6">
-        <span class="text-[#d4af37]">Hourly Charter</span> Service
-      </h1>
-      <p class="text-xl md:text-2xl mb-8 text-gray-100">
-        Flexible luxury transportation by the hour
-      </p>
-      <a
-        href="/book-now"
-        class="bg-[#d4af37] hover:bg-[#b8941f] text-black px-10 py-4 rounded-lg font-semibold text-lg transition-all inline-block shadow-2xl"
-      >
-        Book Chauffeur Now
-      </a>
-    </div>
-  </section>
+  <PageHero
+    eyebrow="By The Hour"
+    headline="Hourly Charter"
+    headlineAccent="Service"
+    supporting="Your own chauffeur and luxury vehicle, on your schedule. Business meetings, Woodinville wine tours, multi-stop shopping, sightseeing — 3-hour minimum, fully flexible itinerary."
+    ctaPrimary={{ label: 'Book Chauffeur Now', href: '/book-now', id: 'cta-hourly-book' }}
+    image={{
+      src: '/images/charter.jpeg',
+      alt: 'Professional chauffeur waiting beside luxury vehicle for hourly charter ride',
+    }}
+    size="page"
+    id="hourly-hero"
+  />
+  <TrustStrip />
 
   {/* Service Overview */}
   <section class="py-20 bg-white">

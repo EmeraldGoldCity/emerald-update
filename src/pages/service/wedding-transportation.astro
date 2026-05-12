@@ -1,35 +1,28 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import TrustStrip from '@/components/shared/TrustStrip.astro';
 ---
 
-<MainLayout 
+<MainLayout
   title="Wedding Transportation - Emerald City Limos Seattle"
   description="Elegant wedding limousine service in Seattle. Red carpet service, champagne, professional chauffeurs, and luxury vehicles for your special day."
   keywords="wedding limo seattle, wedding transportation seattle, wedding car service seattle, bridal transportation, emerald city limos wedding"
 >
-  {/* Hero Section */}
-  <section class="relative h-[500px] flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-r from-emerald-950/90 to-emerald-900/80 z-10"></div>
-    <img
-      src="https://images.unsplash.com/photo-1507309270028-9121e9937409?w=1920&h=1080&fit=crop&q=80"
-      alt="Wedding Transportation"
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="eager"
-    />
-    <div class="relative z-20 text-center text-white max-w-4xl mx-auto px-4">
-      <div class="text-6xl mb-4">💍</div>
-      <h1 class="text-5xl md:text-6xl font-bold mb-4">
-        Wedding Transportation
-      </h1>
-      <p class="text-2xl text-gray-200 mb-8">Make your special day absolutely perfect</p>
-      <a 
-        href="/book-now"
-        class="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold text-xl transition-all"
-      >
-        Book Your Wedding Transportation
-      </a>
-    </div>
-  </section>
+  <PageHero
+    eyebrow="Weddings"
+    headline="Wedding"
+    headlineAccent="Transportation"
+    supporting="Red-carpet arrivals, bridal-party logistics handled like a venue coordinator. Pacific Northwest weddings deserve chauffeurs who think two steps ahead — and dress the part."
+    ctaPrimary={{ label: 'Book Wedding Transport', href: '/book-now', id: 'cta-wedding-book' }}
+    image={{
+      src: 'https://images.unsplash.com/photo-1507309270028-9121e9937409?w=1920&h=1080&fit=crop&q=80',
+      alt: 'Bride arriving at wedding venue in elegant white luxury limousine',
+    }}
+    size="page"
+    id="wedding-hero"
+  />
+  <TrustStrip />
 
   {/* Description */}
   <section class="py-16 bg-white">

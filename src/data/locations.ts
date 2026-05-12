@@ -100,7 +100,41 @@ export interface Location {
   meta: LocationMeta;
 }
 
+// Fallback hero used when a slug has no entry in HERO_IMAGES below.
 const HERO_DEFAULT = '/images/cad1.webp';
+
+/**
+ * Per-location hero images.
+ *
+ * Each /locations/[slug] route shows the image keyed by its slug. To swap
+ * one out: drop a new file in /public/images/ (or anywhere under public/)
+ * and update its path here. The map is applied to the `locations` array
+ * below, so the rest of the file stays untouched.
+ *
+ * Slugs without an entry fall back to HERO_DEFAULT.
+ */
+const HERO_IMAGES: Record<string, string> = {
+  seattle:          '/images/seattle-landmark.jpg',
+  bellevue:         '/images/Bellevue-landmark.jpg',
+  redmond:          '/images/Redmond-landmark.webp',
+  kirkland:         '/images/kirkland-landmark.jpg',
+  renton:           '/images/renton-landmark.jpg',
+  tacoma:           '/images/tacoma.jpg',
+  everett:          '/images/everrett.webp',
+  lynnwood:         '/images/lynnwood.jpg',
+  edmonds:          '/images/edmond.webp',
+  bothell:          '/images/bothell.png',
+  woodinville:      '/images/woodinville.webp',
+  auburn:           '/images/auburn-landmark.jpg',
+  'federal-way':    '/images/federal-way-landmark.webp',
+  sammamish:        '/images/sammamish-landmark.jpg',
+  kent:             '/images/kent-landmark.jpg',
+  lakewood:         '/images/lakewood.jpg',
+  puyallup:         '/images/puyallup.webp',
+  marysville:       '/images/marysville.jpg',
+  'seatac-airport': '/images/seatac-airport.webp',
+  'boeing-field':   '/images/Boeing-Field-airport.jpg',
+};
 
 export const locations: Location[] = [
   {
@@ -1142,6 +1176,11 @@ export const locations: Location[] = [
     },
   },
 ];
+
+// Apply per-slug hero images from HERO_IMAGES, falling back to HERO_DEFAULT.
+locations.forEach((loc) => {
+  loc.heroImage = HERO_IMAGES[loc.slug] ?? HERO_DEFAULT;
+});
 
 export const locationsBySlug: Record<string, Location> =
   Object.fromEntries(locations.map((loc) => [loc.slug, loc]));

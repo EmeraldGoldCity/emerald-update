@@ -10,6 +10,8 @@
  * is exactly one click from this hub.
  */
 import LocationLayout from '@/layouts/LocationLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import TrustStrip from '@/components/shared/TrustStrip.astro';
 import LocationCTA from '@/components/locations/LocationCTA.astro';
 import { locations, type Location } from '@/data/locations';
 
@@ -59,51 +61,15 @@ const ctaLocation: Location = {
   keywords={keywords}
   canonical={canonical}
 >
-  <!-- ─────────── Hero ─────────── -->
-  <section
-    class="ecl-noise relative w-full overflow-hidden bg-brand-forest"
-    aria-labelledby="locations-hero"
-  >
-    <div
-      class="absolute inset-0"
-      style="background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(163,126,44,0.10) 0%, transparent 70%);"
-      aria-hidden="true"
-    ></div>
-
-    <div
-      class="absolute top-0 left-0 right-0 h-px"
-      style="background: linear-gradient(90deg, transparent, rgba(163,126,44,0.5), transparent);"
-      aria-hidden="true"
-    ></div>
-
-    <div class="relative z-10 px-6 pb-20 pt-32 sm:px-8 sm:pb-24 sm:pt-40 md:px-12">
-      <div class="mx-auto max-w-4xl text-center">
-
-        <div class="mb-5 flex items-center justify-center gap-3 sm:mb-7">
-          <span class="hidden h-px w-12 sm:block" style="background: linear-gradient(to right, transparent, rgba(163,126,44,0.6));" aria-hidden="true"></span>
-          <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold-soft sm:text-[11px]">
-            Service Areas
-          </p>
-          <span class="hidden h-px w-12 sm:block" style="background: linear-gradient(to left, transparent, rgba(163,126,44,0.6));" aria-hidden="true"></span>
-        </div>
-
-        <h1
-          id="locations-hero"
-          class="mb-6 font-display font-extralight leading-[1.05] tracking-[-0.02em] text-white"
-          style="font-size: clamp(2rem, 5.2vw + 0.35rem, 4rem);"
-        >
-          Luxury chauffeur service
-          <span class="block italic text-brand-gold-soft">across the Pacific Northwest</span>
-        </h1>
-
-        <p class="mx-auto max-w-2xl font-sans font-light leading-relaxed text-white/80 sm:text-lg">
-          {locations.length} service areas across King, Pierce, and Snohomish counties — including SEA-TAC, Boeing Field, and Paine Field. Flat-rate pricing, flight-tracked airport pickups, business-attired chauffeurs.
-        </p>
-      </div>
-    </div>
-
-    <div class="absolute bottom-0 left-0 right-0 h-px" style="background: linear-gradient(90deg, transparent, rgba(163,126,44,0.3), transparent);" aria-hidden="true"></div>
-  </section>
+  <PageHero
+    eyebrow="Service Areas"
+    headline="Luxury chauffeur service"
+    headlineAccent="across the Pacific Northwest"
+    supporting={`${locations.length} service areas across King, Pierce, and Snohomish counties — including SEA-TAC, Boeing Field, and Paine Field. Flat-rate pricing, flight-tracked airport pickups, business-attired chauffeurs.`}
+    size="page"
+    id="locations-hero"
+  />
+  <TrustStrip />
 
   <!-- ─────────── Locations grid (grouped by county) ─────────── -->
   <section class="bg-brand-champagne py-16 sm:py-20 lg:py-24" aria-label="All service areas">
