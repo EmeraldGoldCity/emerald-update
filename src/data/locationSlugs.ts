@@ -1,0 +1,43 @@
+const CITY_SLUG_MAP: Record<string, string> = {
+  'Seattle':            'seattle',
+  'Bellevue':           'bellevue',
+  'Redmond':            'redmond',
+  'Kirkland':           'kirkland',
+  'Renton':             'renton',
+  'Auburn':             'auburn',
+  'Federal Way':        'federal-way',
+  'Sammamish':          'sammamish',
+  'Kent':               'kent',
+  'Bothell':            'bothell',
+  'Bothell North':      'bothell',
+  'SeaTac':             'seatac-airport',
+  'SeaTac Airport':     'seatac-airport',
+  'Everett':            'everett',
+  'Lynnwood':           'lynnwood',
+  'Edmonds':            'edmonds',
+  'Mukilteo':           'mukilteo',
+  'Marysville':         'marysville',
+  'Mountlake Terrace':  'mountlake-terrace',
+  'Shoreline':          'shoreline',
+  'Woodinville':        'woodinville',
+  'Mill Creek':         'mill-creek',
+  'Snohomish':          'snohomish',
+  'Monroe':             'monroe',
+  'Arlington':          'arlington',
+  'Tacoma':             'tacoma',
+  'Lakewood':           'lakewood',
+  'Puyallup':           'puyallup',
+  'Gig Harbor':         'gig-harbor',
+  'Bonney Lake':        'bonney-lake',
+  'Sumner':             'sumner',
+  'Fife':               'fife',
+  'University Place':   'university-place',
+  'Steilacoom':         'steilacoom',
+  'DuPont':             'dupont',
+  'Boeing Field':       'boeing-field',
+};
+
+export function cityHref(city: string): string {
+  const slug = CITY_SLUG_MAP[city];
+  return slug ? `/locations/${slug}` : '/locations';
+}

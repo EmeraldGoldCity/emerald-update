@@ -1,0 +1,104 @@
+---
+/**
+ * AirportPickupInfo
+ * -----------------
+ * Side-by-side arrivals & departures pickup info. Two-column on lg+,
+ * stacks on smaller screens. Detail rows render from a label/value pair
+ * list per block so it adapts to airport-specific variants (FBO pickup
+ * for BFI, terminal gates for SEA, etc.).
+ */
+import type { Airport } from '@/data/airports';
+
+interface Props {
+  airport: Airport;
+}
+
+const { airport } = Astro.props;
+
+const blocks = [
+  { kind: 'arrivals', data: airport.pickupInfo.arrivals },
+  { kind: 'departures', data: airport.pickupInfo.departures },
+] as const;
+---
+
+<section
+  class="bg-brand-champagne py-16 sm:py-20 lg:py-24"
+  aria-labelledby={`pickup-${airport.slug}`}
+>
+  <div class="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+
+    <div class="mb-10 text-center sm:mb-12">
+      <div class="mb-3 flex items-center justify-center gap-3">
+        <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
+        <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+          Pickup & Drop-off
+        </p>
+        <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
+      </div>
+      <h2
+        id={`pickup-${airport.slug}`}
+        class="font-display font-light leading-[1.1] text-brand-forest"
+        style="font-size: clamp(1.75rem, 3.4vw, 2.4rem); letter-spacing: -0.01em;"
+      >
+        How it works
+        <em class="italic text-brand-gold">at {airport.code}.</em>
+      </h2>
+    </div>
+
+    <div class="grid gap-4 md:grid-cols-2 md:gap-5">
+      {blocks.map(({ kind, data }) => (
+        <article class="relative flex flex-col border border-brand-forest/10 bg-white p-6 sm:p-7">
+          <div class="mb-4 flex items-center gap-3">
+            <span class="inline-flex h-10 w-10 items-center justify-center bg-brand-gold/10 text-brand-gold">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                width="18"
+                height="18"
+                aria-hidden="true"
+              >
+                {kind === 'arrivals' ? (
+                  <path d="M3 19.5h18m-2.25-3.75-15-2.25 1.5-3 4.5.75 1.5-9 3 .75-.75 9 4.5 1.5-2.25 3z" />
+                ) : (
+                  <path d="m3.75 19.5 16.5-3.375M3.75 19.5l1.5-3 4.5.75 1.5-9 3 .75-.75 9 4.5 1.5L18 11.25M3.75 19.5h.008v.008H3.75V19.5z" />
+                )}
+              </svg>
+            </span>
+            <div>
+              <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+                {kind === 'arrivals' ? 'On Arrival' : 'On Departure'}
+              </p>
+              <h3 class="font-display text-xl font-medium leading-tight text-brand-forest">
+                {data.heading}
+              </h3>
+            </div>
+          </div>
+
+          <p class="font-sans text-[0.92rem] font-light leading-[1.7] text-brand-forest/80">
+            {data.description}
+          </p>
+
+          {data.details.length > 0 && (
+            <dl class="mt-5 m-0 divide-y divide-brand-forest/8 border-t border-brand-forest/8 p-0">
+              {data.details.map((detail) => (
+                <div class="flex items-start justify-between gap-6 py-3">
+                  <dt class="font-sans text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-brand-forest/55">
+                    {detail.label}
+                  </dt>
+                  <dd class="text-right font-sans text-[0.88rem] font-medium leading-snug text-brand-forest">
+                    {detail.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          )}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

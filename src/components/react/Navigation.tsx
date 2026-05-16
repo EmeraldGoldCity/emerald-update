@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
+  Baby,
   Briefcase,
   ChevronDown,
   Clock,
@@ -8,7 +9,10 @@ import {
   Menu,
   Phone,
   Plane,
+  Ship,
   Sparkles,
+  Star,
+  Trophy,
   X,
 } from 'lucide-react';
 
@@ -37,7 +41,7 @@ type Mega = MegaKey | null;
 const SERVICES = [
   {
     name: 'Airport Transfers',
-    href: '/airport-transfers',
+    href: '/service/airport-transfer',
     icon: Plane,
     desc: 'SEA-TAC, BFI, PAE — flight tracked, on time.',
   },
@@ -65,6 +69,30 @@ const SERVICES = [
     icon: Sparkles,
     desc: 'Galas, anniversaries, milestone moments.',
   },
+  {
+    name: 'Cruise Transportation',
+    href: '/service/cruise-transportation',
+    icon: Ship,
+    desc: 'Pier 91 & 66 transfers timed to your sailing.',
+  },
+  {
+    name: 'Game Day Transport',
+    href: '/service/game-day-transport',
+    icon: Trophy,
+    desc: 'Lumen, T-Mobile Park, Climate Pledge & Husky.',
+  },
+  {
+    name: 'Personal Chauffeur',
+    href: '/service/personal-chauffeur',
+    icon: Star,
+    desc: 'Same driver on retainer — family & business.',
+  },
+  {
+    name: 'Infant & Booster Seats',
+    href: '/service/infant-car-seats',
+    icon: Baby,
+    desc: 'Complimentary seats, pre-installed before pickup.',
+  },
 ] as const;
 
 // Mirror of src/data/locations.ts — keep in sync when adding new cities.
@@ -88,10 +116,15 @@ const LOCATIONS = {
     label: 'Snohomish County',
     items: [
       { name: 'Everett', href: '/locations/everett' },
+      { name: 'Mukilteo', href: '/locations/mukilteo' },
       { name: 'Marysville', href: '/locations/marysville' },
-      { name: 'Lynnwood', href: '/locations/lynnwood' },
+      { name: 'Mountlake Terrace', href: '/locations/mountlake-terrace' },
+      { name: 'Mill Creek', href: '/locations/mill-creek' },
+      { name: 'Bothell North', href: '/locations/bothell-north' },
+      { name: 'Snohomish', href: '/locations/snohomish' },
+      { name: 'Monroe', href: '/locations/monroe' },
+      { name: 'Arlington', href: '/locations/arlington' },
       { name: 'Edmonds', href: '/locations/edmonds' },
-      { name: 'Bothell', href: '/locations/bothell' },
     ],
   },
   pierce: {
@@ -100,13 +133,22 @@ const LOCATIONS = {
       { name: 'Tacoma', href: '/locations/tacoma' },
       { name: 'Lakewood', href: '/locations/lakewood' },
       { name: 'Puyallup', href: '/locations/puyallup' },
+      { name: 'Gig Harbor', href: '/locations/gig-harbor' },
+      { name: 'Bonney Lake', href: '/locations/bonney-lake' },
+      { name: 'Sumner', href: '/locations/sumner' },
+      { name: 'Fife', href: '/locations/fife' },
+      { name: 'University Place', href: '/locations/university-place' },
+      { name: 'DuPont', href: '/locations/dupont' },
+      { name: 'Steilacoom', href: '/locations/steilacoom' },
     ],
   },
   airports: {
     label: 'Airports',
     items: [
-      { name: 'SeaTac (SEA)', href: '/locations/seatac-airport' },
+      { name: 'SeaTac Airport (SEA)', href: '/locations/seatac-airport' },
       { name: 'Boeing Field (BFI)', href: '/locations/boeing-field' },
+      { name: 'Paine Field (PAE)', href: '/airport/paine-field' },
+      { name: 'Tacoma Narrows Airport (TIW)', href: '/airport/tacoma-narrows-airport' },
     ],
   },
 } as const;
@@ -115,6 +157,8 @@ const AIRPORTS = [
   { name: 'Sea-Tac (SEA)', href: '/airport/sea-tac', tag: 'Most popular' },
   { name: 'Boeing Field (BFI)', href: '/airport/boeing-field' },
   { name: 'Paine Field (PAE)', href: '/airport/paine-field' },
+  { name: 'Tacoma Narrows Airport (TIW)', href: '/airport/tacoma-narrows-airport' },
+
 ] as const;
 
 type NavItem =
@@ -126,9 +170,9 @@ const NAV: NavItem[] = [
   { type: 'mega', name: 'Services', key: 'services' },
   { type: 'link', name: 'Fleet', href: '/fleet' },
   { type: 'mega', name: 'Locations', key: 'locations' },
-  { type: 'link', name: 'About', href: '/#about' },
+  { type: 'link', name: 'About', href: '/about' },
   { type: 'link', name: 'Blog', href: '/blog' },
-  { type: 'link', name: 'Contact', href: '/book-now#contact' },
+  { type: 'link', name: 'Contact', href: '/contact' },
 ];
 
 const SERVICES_PATH_PREFIXES = ['/services', '/service/', '/airport-transfers'];
@@ -665,15 +709,7 @@ function MobileDrawer({
         ].join(' ')}
       >
         <div className="flex items-center justify-between border-b border-brand-gold/15 px-5 py-4">
-          <a
-            href="/"
-            onClick={onClose}
-            className={`flex items-center gap-2 rounded-md ${RING_TIGHT}`}
-            aria-label="Emerald City Limos — homepage"
-          >
-            <img src="/images/logo.webp" alt="" className="h-9 w-auto" />
-            <span className="sr-only">Emerald City Limos</span>
-          </a>
+
           <button
             ref={closeBtnRef}
             type="button"

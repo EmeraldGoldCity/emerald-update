@@ -38,7 +38,7 @@ const businessNode = {
   url: PAGE_URL,
   telephone: PHONE,
   email: 'client@emeraldcitylimos.com',
-  image: new URL(location.heroImage, SITE_URL).href,
+  image: new URL(location.heroImage.src, SITE_URL).href,
   priceRange: '$$',
   address: {
     '@type': 'PostalAddress',
@@ -105,8 +105,12 @@ const breadcrumbNode = {
   ],
 };
 
-const graph = [businessNode, ...serviceNodes, breadcrumbNode];
-if (faqNode) graph.push(faqNode);
+const graph = [
+  businessNode,
+  ...serviceNodes,
+  breadcrumbNode,
+  ...(faqNode ? [faqNode] : []),
+];
 
 const payload = {
   '@context': 'https://schema.org',

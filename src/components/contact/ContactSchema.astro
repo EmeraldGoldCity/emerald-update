@@ -1,0 +1,59 @@
+---
+/**
+ * ContactSchema
+ * -------------
+ * Emits ContactPage + BreadcrumbList JSON-LD for /contact, plus a
+ * ContactPoint reference for telephone and email. BaseLayout's
+ * site-wide LimousineBusiness schema covers the business entity; this
+ * adds the page-specific entries.
+ */
+const SITE_URL = 'https://emeraldcitylimos.com';
+const canonical = `${SITE_URL}/contact`;
+
+const contactPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  '@id': `${canonical}#contactpage`,
+  name: 'Contact Emerald City Limos',
+  description:
+    'Contact Emerald City Limos for quotes, corporate accounts, and 24/7 chauffeur dispatch across Seattle and the Puget Sound metro.',
+  url: canonical,
+  inLanguage: 'en-US',
+  mainEntity: {
+    '@type': 'LimousineBusiness',
+    '@id': SITE_URL,
+    name: 'Emerald City Limos',
+    url: SITE_URL,
+    telephone: '+1-206-595-9675',
+    email: 'client@emeraldcitylimos.com',
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        contactType: 'reservations',
+        telephone: '+1-206-595-9675',
+        email: 'client@emeraldcitylimos.com',
+        availableLanguage: ['English'],
+        hoursAvailable: {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+          opens: '00:00',
+          closes: '23:59',
+        },
+        areaServed: { '@type': 'City', name: 'Seattle' },
+      },
+    ],
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Contact', item: canonical },
+  ],
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(contactPageSchema)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

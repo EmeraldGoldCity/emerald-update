@@ -1,0 +1,82 @@
+---
+/**
+ * ServiceSchema
+ * -------------
+ * Emits per-service Service + FAQPage JSON-LD. Crawled by Google for
+ * rich results and by AI search (Perplexity, ChatGPT) for service
+ * descriptions and FAQ snippets.
+ *
+ * BaseLayout already emits the site-wide LimousineBusiness schema; this
+ * component adds the page-specific Service and FAQPage entries.
+ */
+import type { Service } from '@/data/services';
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+
+const SITE_URL = 'https://emeraldcitylimos.com';
+const canonical = `${SITE_URL}${service.href}`;
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${canonical}#service`,
+  name: service.name,
+  description: service.cardDescription,
+  url: canonical,
+  serviceType: service.name,
+  areaServed: {
+    '@type': 'City',
+    name: 'Seattle',
+    sameAs: 'https://en.wikipedia.org/wiki/Seattle',
+  },
+  provider: {
+    '@type': 'LimousineBusiness',
+    name: 'Emerald City Limos',
+    '@id': SITE_URL,
+    url: SITE_URL,
+    telephone: '+1-206-595-9675',
+  },
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    url: `${SITE_URL}/book-now`,
+    priceCurrency: 'USD',
+  },
+};
+
+const faqSchema = service.faqs.length > 0
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      '@id': `${canonical}#faq`,
+      mainEntity: service.faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
+    }
+  : null;
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/services` },
+    { '@type': 'ListItem', position: 3, name: service.name, item: canonical },
+  ],
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+{faqSchema && (
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+)}
+<script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

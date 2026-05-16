@@ -26,6 +26,11 @@
  *   - Optional <source media="(max-width: 767px)"> for mobile crop
  *   - No JS island; CTA analytics via inline script
  */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Breadcrumbs from '@/components/shared/Breadcrumbs.astro';
+import type { BreadcrumbItem } from '@/components/shared/Breadcrumbs.astro';
+
 
 interface CTA {
   label: string;
@@ -36,8 +41,8 @@ interface CTA {
 }
 
 interface HeroImage {
-  src: string;
-  srcMobile?: string;
+  src: ImageMetadata;
+  srcMobile?: ImageMetadata;
   alt: string;
   width?: number;
   height?: number;
@@ -64,6 +69,12 @@ export interface Props {
   id?: string;
   /** Disable the entrance animations (default: enabled). */
   noAnim?: boolean;
+  /**
+   * Breadcrumb trail rendered at the top of the hero, below the fixed nav.
+   * First item should be { label: 'Home', href: '/' }.
+   * Last item (current page) should have no href.
+   */
+  breadcrumbs?: BreadcrumbItem[];
 }
 
 const {
@@ -82,9 +93,15 @@ const {
   size = 'page',
   id = 'page-hero',
   noAnim = false,
+  breadcrumbs,
 } = Astro.props as Props;
 
 const sectionMinH = size === 'full' ? 'h-[100svh]' : 'h-[68svh]';
+
+/* Smaller clamp for sub-pages prevents long titles from wrapping beyond 2 lines */
+const h1Size = size === 'full'
+  ? 'text-[clamp(22px,4.5vw,52px)]'
+  : 'text-[clamp(24px,3.5vw,48px)]';
 
 const anim = (cls: string) => (noAnim ? '' : cls);
 ---
@@ -96,16 +113,21 @@ const anim = (cls: string) => (noAnim ? '' : cls);
   {image && (
     <picture>
       {image.srcMobile && (
-        <source media="(max-width: 767px)" srcset={image.srcMobile} />
+        <source
+          media="(max-width: 767px)"
+          srcset={image.srcMobile.src}
+        />
       )}
-      <img
+
+      <Image
         src={image.src}
         alt={image.alt}
-        width={image.width ?? 1920}
-        height={image.height ?? 1080}
-        fetchpriority="high"
+        width={image.width ?? image.src.width}
+        height={image.height ?? image.src.height}
         loading="eager"
         decoding="async"
+        format="webp"
+        quality={85}
         class="absolute inset-0 h-full w-full object-cover object-center"
       />
     </picture>
@@ -115,7 +137,7 @@ const anim = (cls: string) => (noAnim ? '' : cls);
   <div class:list={['absolute inset-0', image ? 'bg-brand-forest/15' : 'bg-brand-forest']} aria-hidden="true"></div>
   <div
     class="absolute inset-0"
-    style="background: linear-gradient(to bottom, rgba(10,35,24,0.15) 0%, rgba(10,35,24,0.35) 40%, rgba(10,35,24,0.78) 75%, rgba(10,35,24,0.94) 100%);"
+    style="background: linear-gradient(to left, rgba(10,35,24,0.15) 0%, rgba(10,35,24,0.35) 40%, rgba(10,35,24,0.78) 75%, rgba(10,35,24,0.94) 100%);"
     aria-hidden="true"
   ></div>
   <div
@@ -130,6 +152,13 @@ const anim = (cls: string) => (noAnim ? '' : cls);
     style="background: linear-gradient(90deg, transparent, rgba(163,126,44,0.5), transparent);"
     aria-hidden="true"
   ></div>
+
+  <!-- Breadcrumbs — sits below fixed nav (top-20 ≈ 80 px), above hero content -->
+  {breadcrumbs && breadcrumbs.length > 1 && (
+    <div class="absolute left-6 top-20 z-20 sm:left-10 md:left-14 lg:left-20">
+      <Breadcrumbs items={breadcrumbs} scheme="on-dark" />
+    </div>
+  )}
 
   <!-- Content (bottom-left) -->
  <div
@@ -159,39 +188,44 @@ const anim = (cls: string) => (noAnim ? '' : cls);
 
       <h1
         id={id}
-        class="mb-2 font-display font-light text-[clamp(36px,5.5vw,74px)] leading-[1.04] tracking-[-0.02em] text-[#F5F0E8] sm:mb-4"
+        class:list={['mb-2 font-display font-light leading-[1.04] tracking-[-0.02em] text-[#F5F0E8] sm:mb-4', h1Size]}
       >
         {headline === 'Luxury Chauffeur Service' ? (
+          /* Homepage special case — full-size hero, kept verbatim */
           <>
-            <span class="whitespace-nowrap">
+            <span class="block whitespace-nowrap">
               Luxury Chauffeur Service
             </span>
-
-            <br />
-
-            <span class="italic whitespace-nowrap">
+            <span class="block italic whitespace-nowrap">
               <span class="text-white">in </span>
               <span class="text-brand-gold-soft">{headlineAccent}</span>
             </span>
           </>
         ) : (
           <>
-            <span class:list={[anim('ecl-anim ecl-anim-fade-up ecl-delay-2')]}>
+            {/* block + line-clamp-1 caps headline to exactly one line on sub-pages */}
+            <span
+              class:list={[
+                'block',
+                size === 'page' && 'line-clamp-1',
+                size === 'full' && 'whitespace-nowrap',
+                anim('ecl-anim ecl-anim-fade-up ecl-delay-2'),
+              ]}
+            >
               {headline}
             </span>
 
             {headlineAccent && (
-              <>
-                <br />
-                <span
-                  class:list={[
-                    'italic text-[#c39a45]',
-                    anim('ecl-anim ecl-anim-fade-up ecl-delay-3'),
-                  ]}
-                >
-                  {headlineAccent}
-                </span>
-              </>
+              <span
+                class:list={[
+                  'block italic text-[#c39a45]',
+                  size === 'page' && 'line-clamp-1',
+                  size === 'full' && 'whitespace-nowrap',
+                  anim('ecl-anim ecl-anim-fade-up ecl-delay-3'),
+                ]}
+              >
+                {headlineAccent}
+              </span>
             )}
           </>
         )}
@@ -202,7 +236,7 @@ const anim = (cls: string) => (noAnim ? '' : cls);
           'mb-4 max-w-xl font-sans font-light leading-relaxed tracking-[0.01em] text-white/80 sm:mb-6',
           anim('ecl-anim ecl-anim-fade-up ecl-delay-5'),
         ]}
-        style="font-size: clamp(0.90rem, 1.5vw, 1.rem);"
+        style="font-size: clamp(0.90rem, 1.5vw, 1rem);"
       >
         {supporting}
       </p>
@@ -262,7 +296,7 @@ const anim = (cls: string) => (noAnim ? '' : cls);
   document.querySelectorAll('section.ecl-hero a[data-cta]').forEach((el) => {
     el.addEventListener('click', () => {
       const label = el.getAttribute('data-cta');
-      if (window.gtag) window.gtag('event', 'click', { event_category: 'hero_cta', event_label: label });
+      if ('gtag' in window && window.gtag) window.gtag('event', 'click', { event_category: 'hero_cta', event_label: label });
     });
   });
 </script>

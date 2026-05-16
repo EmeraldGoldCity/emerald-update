@@ -48,7 +48,7 @@ interface Props {
 const { location } = Astro.props;
 
 const canonical = `https://emeraldcitylimos.com/locations/${location.slug}`;
-const ogImage = location.meta.ogImage ?? location.heroImage;
+const ogImage = location.meta.ogImage ?? location.heroImage.src;
 ---
 
 <LocationLayout
@@ -67,6 +67,7 @@ const ogImage = location.meta.ogImage ?? location.heroImage;
     id={`hero-${location.slug}`}
     size="page"
     noAnim
+    breadcrumbs={[{label:'Home',href:'/'},{label:'Locations',href:'/locations'},{label:location.name}]}
   />
   <TrustStrip />
   <LocationIntro     location={location} />

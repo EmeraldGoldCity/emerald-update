@@ -1,0 +1,44 @@
+---
+/**
+ * AirportQuickStats
+ * -----------------
+ * Dark four-stat band shown directly under the hero on each detail page.
+ * Renders airport.quickStats verbatim.
+ */
+import type { Airport } from '@/data/airports';
+
+interface Props {
+  airport: Airport;
+}
+
+const { airport } = Astro.props;
+---
+
+<section
+  class="relative overflow-hidden bg-brand-forest py-10 text-brand-champagne sm:py-12"
+  aria-label={`${airport.fullName} key facts`}
+>
+  <div
+    class="pointer-events-none absolute inset-0"
+    style="background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(163,126,44,0.14) 0%, transparent 70%);"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+    <ul
+      role="list"
+      class="m-0 grid list-none grid-cols-2 gap-px overflow-hidden border border-white/8 bg-white/8 p-0 lg:grid-cols-4"
+    >
+      {airport.quickStats.map((stat) => (
+        <li class="flex flex-col items-center justify-center gap-1.5 bg-brand-forest px-5 py-6 text-center sm:py-8">
+          <p class="font-display text-2xl font-light tabular-nums text-brand-gold-soft sm:text-3xl">
+            {stat.value}
+          </p>
+          <p class="font-sans text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-white/70">
+            {stat.label}
+          </p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

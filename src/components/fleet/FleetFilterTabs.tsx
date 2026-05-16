@@ -1,18 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import type { FleetCategoryTab } from '@/data/fleet';
 
-/**
- * WAI-ARIA tabs pattern with manual activation.
- * Hydrated as a small island via `client:visible` from FleetSection.astro.
- * Mutates the sibling layout's `data-active-category` and toggles each
- * card's `hidden` attribute — keeping the cards themselves as static Astro
- * markup (zero hydration cost for the cards).
- */
-
 interface Props {
   tabs: FleetCategoryTab[];
   initial?: string;
-  /** CSS selector for the layout container that holds the cards. */
   layoutSelector?: string;
 }
 
@@ -31,11 +22,6 @@ export function FleetFilterTabs({
     if (!layout) return;
 
     layout.dataset.activeCategory = active;
-
-    const featured = layout.querySelector<HTMLElement>('[data-fleet-featured-wrap]');
-    if (featured) {
-      featured.hidden = active !== 'All';
-    }
 
     const cards = layout.querySelectorAll<HTMLElement>('[data-fleet-card-wrap]');
     cards.forEach((wrap) => {
@@ -84,9 +70,7 @@ export function FleetFilterTabs({
             id={`fleet-tab-${tab.value.replace(/\s+/g, '-').toLowerCase()}`}
             aria-selected={isActive}
             tabIndex={isActive ? 0 : -1}
-            ref={(el) => {
-              buttonRefs.current[i] = el;
-            }}
+            ref={(el) => { buttonRefs.current[i] = el; }}
             onClick={() => setActive(tab.value)}
             className="ecl-focusable group relative inline-flex items-center pb-2 font-sans text-xs font-medium uppercase tracking-[0.2em] transition-colors duration-300"
           >

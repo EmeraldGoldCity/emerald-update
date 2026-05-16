@@ -1,0 +1,112 @@
+---
+/**
+ * Breadcrumbs
+ * -----------
+ * Accessible breadcrumb trail + inline BreadcrumbList JSON-LD.
+ *
+ * Usage
+ *   <Breadcrumbs items={[
+ *     { label: 'Home',   href: '/' },
+ *     { label: 'Fleet',  href: '/fleet' },
+ *     { label: 'Cadillac Escalade ESV' },   // last item — no href
+ *   ]} />
+ *
+ * Schemes
+ *   on-dark  (default) — white/gold text for use inside a dark hero
+ *   on-light            — forest text for use on a light background
+ *
+ * Accessibility
+ *   - <nav aria-label="Breadcrumb"> wraps the list
+ *   - <ol role="list"> for screen-reader semantics
+ *   - Last item has aria-current="page"
+ *   - Chevron separators are aria-hidden
+ *
+ * SEO
+ *   - JSON-LD BreadcrumbList schema injected inline
+ *   - Google supports JSON-LD in the document body
+ */
+
+export interface BreadcrumbItem {
+  label: string;
+  /** Omit for the current (last) page item. */
+  href?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+  /** Color scheme: 'on-dark' for hero overlays, 'on-light' for body sections. */
+  scheme?: 'on-dark' | 'on-light';
+}
+
+const { items, scheme = 'on-dark' } = Astro.props;
+
+const origin = Astro.site?.origin ?? 'https://emeraldcitylimos.com';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((item, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: item.label,
+    ...(item.href ? { item: `${origin}${item.href}` } : {}),
+  })),
+};
+
+const dark = scheme === 'on-dark';
+
+const linkCls = dark
+  ? 'font-sans text-[0.68rem] font-medium uppercase tracking-[0.14em] text-white/55 underline-offset-2 outline-none transition-colors duration-150 hover:text-brand-gold-soft focus-visible:text-brand-gold-soft focus-visible:underline focus-visible:outline-none'
+  : 'font-sans text-[0.68rem] font-medium uppercase tracking-[0.14em] text-brand-forest/55 underline-offset-2 outline-none transition-colors duration-150 hover:text-brand-gold focus-visible:text-brand-gold focus-visible:underline focus-visible:outline-none';
+
+const currentCls = dark
+  ? 'font-sans text-[0.68rem] font-medium uppercase tracking-[0.14em] text-white/35'
+  : 'font-sans text-[0.68rem] font-medium uppercase tracking-[0.14em] text-brand-forest/40';
+
+const sepCls = dark ? 'text-white/25' : 'text-brand-forest/25';
+---
+
+<nav aria-label="Breadcrumb">
+  <ol role="list" class="m-0 flex list-none flex-wrap items-center gap-x-1.5 gap-y-1 p-0">
+    {items.map((item, index) => {
+      const isLast = index === items.length - 1;
+      return (
+        <li class="flex items-center gap-1.5">
+          {index > 0 && (
+            <svg
+              viewBox="0 0 12 12"
+              fill="none"
+              width="9"
+              height="9"
+              aria-hidden="true"
+              class={sepCls}
+            >
+              <path
+                d="m4 2 4 4-4 4"
+                stroke="currentColor"
+                stroke-width="1.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          )}
+
+          {!isLast && item.href ? (
+            <a href={item.href} class={linkCls}>
+              {item.label}
+            </a>
+          ) : (
+            <span
+              class={currentCls}
+              aria-current={isLast ? 'page' : undefined}
+            >
+              {item.label}
+            </span>
+          )}
+        </li>
+      );
+    })}
+  </ol>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

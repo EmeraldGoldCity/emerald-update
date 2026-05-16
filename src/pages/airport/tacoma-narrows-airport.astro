@@ -1,0 +1,55 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import TrustStrip from '@/components/shared/TrustStrip.astro';
+import AirportQuickStats from '@/components/airports/AirportQuickStats.astro';
+import AirportIntro from '@/components/airports/AirportIntro.astro';
+import AirportRoutes from '@/components/airports/AirportRoutes.astro';
+import AirportPickupInfo from '@/components/airports/AirportPickupInfo.astro';
+import AirportFAQ from '@/components/airports/AirportFAQ.astro';
+import AirportCTA from '@/components/airports/AirportCTA.astro';
+import AirportSchema from '@/components/airports/AirportSchema.astro';
+import { getAirport } from '@/data/airports';
+
+const airport = getAirport('tacoma-narrows-airport');
+if (!airport) throw new Error('Airport "tacoma-narrows-airport" not found in src/data/airports.ts');
+---
+
+<MainLayout
+  title={airport.meta.title}
+  description={airport.meta.description}
+  keywords={airport.meta.keywords.join(', ')}
+>
+  <PageHero
+    eyebrow={airport.eyebrow}
+    headline={airport.headline}
+    headlineAccent={airport.headlineAccent}
+    supporting={airport.heroSupporting}
+    ctaPrimary={{
+      label: `Book ${airport.code} Transfer`,
+      href: '/book-now',
+      id: `cta-${airport.slug}-book`
+    }}
+    ctaSecondary={{
+      label: 'Get a Quote',
+      href: 'tel:+12065959675',
+      id: `cta-${airport.slug}-call`,
+      phone: '(206) 595-9675',
+    }}
+    image={airport.heroImage}
+    size="page"
+    id={`${airport.slug}-hero`}
+    breadcrumbs={[{label:'Home',href:'/'},{label:'Airports',href:'/airport'},{label:airport.name}]}
+  />
+
+  <TrustStrip />
+
+  <AirportQuickStats airport={airport} />
+  <AirportIntro airport={airport} />
+  <AirportRoutes airport={airport} />
+  <AirportPickupInfo airport={airport} />
+  <AirportFAQ airport={airport} />
+  <AirportCTA airport={airport} />
+
+  <AirportSchema airport={airport} />
+</MainLayout>

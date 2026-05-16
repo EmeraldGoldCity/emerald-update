@@ -5,9 +5,7 @@
  * Layout for /locations and /locations/[slug].
  *
  * Wraps BaseLayout (which carries all global <head> SEO + business JSON-LD)
- * and adds the React Navigation header. Footer is intentionally omitted
- * per design spec — pages render their own conversion CTA before the page
- * ends.
+ * and adds the React Navigation header + shared Footer.
  *
  * Per-page LocalBusiness / Service / FAQPage / BreadcrumbList JSON-LD is
  * emitted inline via <LocationSchema> at the bottom of the page; Google and
@@ -15,6 +13,7 @@
  */
 import BaseLayout from './BaseLayout.astro';
 import { Navigation } from '@/components/react/Navigation';
+import { Footer } from '@/components/react/Footer';
 
 interface Props {
   title: string;
@@ -37,4 +36,6 @@ const props = Astro.props;
   <main id="main-content" role="main">
     <slot />
   </main>
+
+  <Footer />
 </BaseLayout>

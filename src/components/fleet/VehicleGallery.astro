@@ -1,0 +1,272 @@
+---
+/**
+ * VehicleGallery
+ * --------------
+ * CSS scroll-snap carousel showing every angle (interior, exterior, etc.)
+ * of a vehicle. Zero React island — uses native horizontal scroll-snap
+ * plus a small inline script for arrow buttons, dot indicators, and
+ * keyboard navigation.
+ *
+ * Behavior
+ *   - Native swipe / drag on touch + trackpad.
+ *   - Arrow buttons scroll by container width (one slide at a time).
+ *   - Dot indicators reflect the visible slide (IntersectionObserver).
+ *   - Left / Right keys navigate when the region is focused.
+ *   - prefers-reduced-motion: scroll behavior falls back to auto.
+ *
+ * Accessibility
+ *   - Region role + aria-roledescription="carousel".
+ *   - Each slide role="group" aria-roledescription="slide" aria-label="N of M".
+ *   - Arrow buttons have explicit aria-labels.
+ *   - First slide eager-loaded as LCP candidate; rest lazy.
+ */
+import type { Vehicle } from '@/data/fleet';
+
+interface Props {
+  vehicle: Vehicle;
+}
+
+const { vehicle } = Astro.props;
+
+const slides = vehicle.gallery && vehicle.gallery.length > 0
+  ? vehicle.gallery
+  : vehicle.imageSrc
+    ? [{ src: vehicle.imageSrc, alt: vehicle.imageAlt, view: 'Exterior' as const }]
+    : [];
+
+if (slides.length === 0) return null;
+
+const galleryId = `gallery-${vehicle.id}`;
+---
+
+<section
+  class="bg-brand-forest-deep py-12 sm:py-16 lg:py-20"
+  aria-labelledby={`${galleryId}-heading`}
+>
+  <div class="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+
+    <div class="mb-6 flex items-end justify-between gap-4 sm:mb-8">
+      <div>
+        <div class="mb-2 flex items-center gap-3">
+          <span class="h-px w-8 bg-brand-gold-soft" aria-hidden="true"></span>
+          <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold-soft">
+            Photo Gallery
+          </p>
+        </div>
+        <h2
+          id={`${galleryId}-heading`}
+          class="font-display text-2xl font-light leading-tight text-white sm:text-3xl"
+          style="letter-spacing: -0.01em;"
+        >
+          Every angle of the <em class="italic text-brand-gold-soft">{vehicle.name}</em>
+        </h2>
+      </div>
+      <p class="hidden font-sans text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-white/40 sm:block tabular-nums">
+        <span data-current-slide>1</span>
+        <span aria-hidden="true">/</span>
+        <span>{slides.length}</span>
+      </p>
+    </div>
+
+    <div
+      class="relative"
+      data-vehicle-gallery
+      role="region"
+      aria-roledescription="carousel"
+      aria-label={`${vehicle.name} photo gallery`}
+      tabindex="0"
+    >
+      <!-- Scroll-snap track -->
+      <ul
+        role="list"
+        data-gallery-track
+        class="m-0 flex list-none snap-x snap-mandatory gap-3 overflow-x-auto overflow-y-hidden p-0 scrollbar-none scroll-smooth motion-reduce:scroll-auto"
+        style="scrollbar-width: none; -ms-overflow-style: none;"
+      >
+        {slides.map((slide, index) => (
+          <li
+            data-gallery-slide
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`Slide ${index + 1} of ${slides.length}: ${slide.view}`}
+            class="relative w-full shrink-0 snap-center overflow-hidden bg-brand-forest"
+          >
+            <div class="relative aspect-[16/10] w-full sm:aspect-[16/9]">
+              <img
+                src={typeof slide.src === 'string' ? slide.src : slide.src.src}
+                alt={slide.alt}
+                loading={index === 0 ? 'eager' : 'lazy'}
+                fetchpriority={index === 0 ? 'high' : 'auto'}
+                decoding={index === 0 ? 'sync' : 'async'}
+                width="1600"
+                height="900"
+                class="absolute inset-0 h-full w-full object-cover object-center"
+              />
+              <!-- Bottom-edge view label badge -->
+              <span class="absolute bottom-3 left-3 inline-flex items-center gap-1.5 bg-brand-forest-deep/85 px-2.5 py-1 font-sans text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-brand-gold-soft backdrop-blur-sm">
+                {slide.view}
+              </span>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      {slides.length > 1 && (
+        <>
+          <!-- Prev / Next buttons -->
+          <button
+            type="button"
+            data-gallery-prev
+            class="absolute left-3 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-white/15 bg-brand-forest-deep/75 text-white outline-none backdrop-blur-sm transition-[background-color,border-color] hover:border-brand-gold-soft hover:bg-brand-forest-deep focus-visible:border-brand-gold-soft focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-forest-deep disabled:cursor-not-allowed disabled:opacity-40 sm:left-5"
+            aria-label="Previous slide"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              width="18"
+              height="18"
+              aria-hidden="true"
+            >
+              <path d="M15.75 19.5 8.25 12l7.5-7.5" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            data-gallery-next
+            class="absolute right-3 top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-white/15 bg-brand-forest-deep/75 text-white outline-none backdrop-blur-sm transition-[background-color,border-color] hover:border-brand-gold-soft hover:bg-brand-forest-deep focus-visible:border-brand-gold-soft focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-forest-deep disabled:cursor-not-allowed disabled:opacity-40 sm:right-5"
+            aria-label="Next slide"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              width="18"
+              height="18"
+              aria-hidden="true"
+            >
+              <path d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+            </svg>
+          </button>
+
+          <!-- Dot indicators -->
+          <div
+            class="mt-5 flex items-center justify-center gap-2"
+            role="tablist"
+            aria-label="Gallery slide selector"
+          >
+            {slides.map((slide, index) => (
+              <button
+                type="button"
+                data-gallery-dot
+                data-index={index}
+                role="tab"
+                aria-selected={index === 0 ? 'true' : 'false'}
+                aria-label={`Go to slide ${index + 1}: ${slide.view}`}
+                class="h-2 w-8 cursor-pointer border-0 bg-white/20 outline-none transition-[background-color,width] duration-300 hover:bg-white/40 focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-forest-deep aria-selected:bg-brand-gold-soft aria-selected:w-12"
+              ></button>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hide the native scrollbar — accessible navigation remains via arrows, dots, keyboard. */
+  [data-gallery-track]::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const galleries = document.querySelectorAll('[data-vehicle-gallery]');
+
+    galleries.forEach((gallery) => {
+      const track = gallery.querySelector('[data-gallery-track]');
+      const slides = Array.from(gallery.querySelectorAll('[data-gallery-slide]'));
+      const prevBtn = gallery.querySelector('[data-gallery-prev]');
+      const nextBtn = gallery.querySelector('[data-gallery-next]');
+      const dots = Array.from(gallery.querySelectorAll('[data-gallery-dot]'));
+      const counter = document.querySelector('[data-current-slide]');
+
+      if (!track || slides.length === 0) return;
+
+      let activeIndex = 0;
+
+      function setActive(index) {
+        activeIndex = Math.max(0, Math.min(slides.length - 1, index));
+        dots.forEach((dot, i) =>
+          dot.setAttribute('aria-selected', i === activeIndex ? 'true' : 'false')
+        );
+        if (counter) counter.textContent = String(activeIndex + 1);
+        if (prevBtn) prevBtn.toggleAttribute('disabled', activeIndex === 0);
+        if (nextBtn)
+          nextBtn.toggleAttribute('disabled', activeIndex === slides.length - 1);
+      }
+
+      function scrollToIndex(index) {
+        const target = slides[Math.max(0, Math.min(slides.length - 1, index))];
+        if (!target) return;
+        track.scrollTo({
+          left: target.offsetLeft - track.offsetLeft,
+          behavior: 'smooth',
+        });
+      }
+
+      // Update indicator as user scroll-snaps via touch/trackpad
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+                const idx = slides.indexOf(entry.target);
+                if (idx !== -1) setActive(idx);
+              }
+            });
+          },
+          { root: track, threshold: [0.6] }
+        );
+        slides.forEach((s) => io.observe(s));
+      }
+
+      prevBtn?.addEventListener('click', () => scrollToIndex(activeIndex - 1));
+      nextBtn?.addEventListener('click', () => scrollToIndex(activeIndex + 1));
+
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          const idx = parseInt(dot.dataset.index || '0', 10);
+          scrollToIndex(idx);
+        });
+      });
+
+      gallery.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          scrollToIndex(activeIndex - 1);
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          scrollToIndex(activeIndex + 1);
+        } else if (e.key === 'Home') {
+          e.preventDefault();
+          scrollToIndex(0);
+        } else if (e.key === 'End') {
+          e.preventDefault();
+          scrollToIndex(slides.length - 1);
+        }
+      });
+
+      setActive(0);
+    });
+  })();
+</script>

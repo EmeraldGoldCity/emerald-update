@@ -2,87 +2,23 @@
 import MainLayout from '@/layouts/MainLayout.astro';
 import PageHero from '@/components/shared/PageHero.astro';
 import TrustStrip from '@/components/shared/TrustStrip.astro';
-import { VehicleCarousel } from '@/components/react/VehicleCarousel';
-const fleetHeroBg = "https://images.unsplash.com/photo-1720828979857-10fc03d19cfe?w=1920&h=1080&fit=crop&q=85&fm=webp&auto=format";
-
-// Vehicle images (using Unsplash CDN - Optimized with WebP)
-const imgCarCadillacEscalade1 = "/images/SUV.jpeg";
-const imgCarCadillacEscalade2 = "/images/suv-2.jpeg";
-const imgCarCadillacEscalade3 = "/images/escalade-inside1.jpeg";
-const imgMercedesSClass = "/images/sedan-2.jpeg";
-const imgCarCadillacXt6_1 = "/images/escalade-1.jpeg";
-const imgCarCadillacXt6_2 = "/images/escalade-inside1.jpeg";
-const imgCarCadillacXt6_3 = "/images/interior-suv.jpeg";
-const imgFreightlinerMinibus = "/images/bus-outside.jpeg";
-const imgPartyBus = "/images/party1.webp";
-const imgMotorcoach = "/images/bus-outside.jpeg";
-
-const imgSprinterExterior = "/images/SPRINTER.jpeg";
-const imgSprinterInterior1 = "/images/SPRINTER-INSIDE.jpeg";
-const imgSprinterInterior2 = "/images/14-sprinter-inside.jpeg";
+import FleetGrid from '@/components/fleet/FleetGrid.astro';
+import fleetHeroBg from '@/assets/images/fleet/hero/fleet-hero.png';
 
 
-
-
-
-
-
-const vehicles = [
-  {
-    name: 'Cadillac Escalade ESV',
-    category: 'Premium SUV',
-    images: [imgCarCadillacEscalade1, imgCarCadillacEscalade2, imgCarCadillacEscalade3],
-    passengers: '6',
-  },
-  {
-    name: 'Mercedes S-Class',
-    category: 'Premium Sedan',
-    images: [imgMercedesSClass],
-    passengers: '3',
-  },
-  {
-    name: 'Cadillac XT6',
-    category: 'Mid-Size SUV',
-    images: [imgCarCadillacXt6_1, imgCarCadillacXt6_2, imgCarCadillacXt6_3],
-    passengers: '3',
-  },
-  {
-    name: 'Mercedes Benz Sprinter',
-    category: 'Mercedes Benz 14 Seater Sprinter',
-    images: [imgSprinterExterior, imgSprinterInterior1, imgSprinterInterior2],
-    passengers: '14',
-  },
-  {
-    name: 'Mercedes Benz Sprinter',
-    category: 'Mercedes Benz 9 Seater Executive Van',
-    images: [imgSprinterExterior, imgSprinterInterior1, imgSprinterInterior2],
-    passengers: '9',
-  },
-  {
-    name: 'Freightliner Minibus',
-    category: 'Minibus',
-    images: [imgFreightlinerMinibus],
-    passengers: '24-38',
-  },
-  {
-    name: 'Party Bus',
-    category: 'Party Bus',
-    images: [imgPartyBus],
-    passengers: '30',
-  },
-  {
-    name: 'Motorcoach',
-    category: 'Executive Motor Coach',
-    images: [imgMotorcoach],
-    passengers: '57',
-  },
+/* Trust-band stats — universal, no per-vehicle copy. */
+const stats = [
+  { value: '9', label: 'Vehicles in service' },
+  { value: '3–57', label: 'Passenger range' },
+  { value: '$1.5M', label: 'Liability coverage' },
+  { value: '24/7', label: 'Dispatch availability' },
 ];
 ---
 
-<MainLayout 
-  title="Our Fleet - Luxury Vehicles | Emerald City Limos Seattle"
-  description="Explore Emerald City Limos' premium fleet: Cadillac Escalade, Mercedes S-Class, Sprinter vans, motorcoaches. Professional luxury vehicles for 3-57 passengers in Seattle."
-  keywords="luxury car fleet seattle, cadillac escalade limo, mercedes sprinter van, motorcoach rental seattle, party bus seattle, emerald city limos"
+<MainLayout
+  title="Luxury Fleet Seattle | Emerald City Limos"
+  description="Explore the Emerald City Limos fleet — Cadillac Escalade ESV, Mercedes S-Class, Sprinter, motorcoaches and more. Licensed Washington carrier, $1.5M insured, 24/7."
+  keywords="seattle luxury fleet, cadillac escalade limo, mercedes sprinter seattle, seattle motorcoach, seattle party bus"
 >
   <PageHero
     eyebrow="The Fleet"
@@ -95,101 +31,126 @@ const vehicles = [
     }}
     size="page"
     id="fleet-hero"
+    breadcrumbs={[{label:'Home',href:'/'},{label:'Fleet'}]}
   />
   <TrustStrip />
 
-  {/* Fleet Grid */}
-  <section class="py-20 bg-gradient-to-b from-white to-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {vehicles.map((vehicle, index) => (
-          <div
-            class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
-          >
-            <div class="bg-gradient-to-br from-gray-50 to-white p-4 text-center">
-              <p class="text-sm uppercase tracking-wider text-gray-500 mb-4">
-                {vehicle.category}
-              </p>
-              <VehicleCarousel 
-                client:load 
-                images={vehicle.images} 
-                alt={vehicle.name}
-              />
-              <div class="border-t border-[#d4af37] w-20 mx-auto mb-4"></div>
-              <h3 class="text-lg uppercase text-gray-700 mb-6">
-                {vehicle.name}
-              </h3>
-              <div class="mb-6 text-gray-800">
-                <p>
-                  <span class="text-base">Passengers: </span>
-                  <span class="text-xl font-medium">{vehicle.passengers}</span>
-                </p>
-              </div>
-            </div>
-            <a href="/book-now" class="block bg-gray-100 py-4 text-center">
-              <span class="inline-block text-sm uppercase tracking-widest text-gray-700 hover:text-emerald-700 transition-colors">
-                Reserve Now
-              </span>
-            </a>
-          </div>
+  <FleetGrid />
+
+  <!-- ── Trust-stat band ─────────────────────────────────── -->
+  <section
+    class="relative overflow-hidden bg-brand-forest py-16 text-brand-champagne sm:py-20 lg:py-24"
+    aria-labelledby="fleet-trust-heading"
+  >
+    <div
+      class="pointer-events-none absolute inset-0"
+      style="background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(163,126,44,0.16) 0%, transparent 70%);"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+      <div class="mb-12 text-center sm:mb-14">
+        <div class="mb-3 flex items-center justify-center gap-3">
+          <span class="h-px w-8 bg-brand-gold-soft" aria-hidden="true"></span>
+          <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold-soft">
+            Fleet Standards
+          </p>
+          <span class="h-px w-8 bg-brand-gold-soft" aria-hidden="true"></span>
+        </div>
+        <h2
+          id="fleet-trust-heading"
+          class="font-display font-light leading-[1.1] text-white"
+          style="font-size: clamp(1.85rem, 3.8vw, 2.6rem); letter-spacing: -0.01em;"
+        >
+          Licensed, insured,
+          <em class="italic text-brand-gold-soft">and inspected.</em>
+        </h2>
+      </div>
+
+      <ul
+        role="list"
+        class="m-0 grid list-none grid-cols-2 gap-px overflow-hidden border border-white/8 bg-white/8 p-0 lg:grid-cols-4"
+      >
+        {stats.map((stat) => (
+          <li class="flex flex-col items-center justify-center gap-2 bg-brand-forest px-6 py-10 text-center sm:py-12">
+            <p class="font-display text-3xl font-light tabular-nums text-brand-gold-soft sm:text-4xl">
+              {stat.value}
+            </p>
+            <p class="font-sans text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-white/70">
+              {stat.label}
+            </p>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   </section>
 
-  
+  <!-- ── Closing CTA band ────────────────────────────────── -->
+  <section
+    class="relative overflow-hidden bg-brand-champagne py-16 sm:py-20 lg:py-24"
+    aria-labelledby="fleet-cta-heading"
+  >
+    <div
+      class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-gold/25 to-transparent"
+      aria-hidden="true"
+    ></div>
 
-  {/* Features Section */}
-  <section class="py-20 bg-gradient-to-br from-emerald-50 to-yellow-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold text-gray-900 mb-4">All Vehicles Include</h2>
-        <p class="text-xl text-gray-600">Premium amenities in every ride</p>
+    <div class="relative mx-auto max-w-3xl px-6 text-center sm:px-8 lg:px-12">
+      <div class="mb-3 flex items-center justify-center gap-3">
+        <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
+        <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+          Reserve Now
+        </p>
+        <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="text-center">
-          <div class="text-5xl mb-4">✨</div>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">Immaculate Condition</h3>
-          <p class="text-gray-700">Professionally detailed before every trip</p>
-        </div>
-        <div class="text-center">
-          <div class="text-5xl mb-4">🛡️</div>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">Fully Insured</h3>
-          <p class="text-gray-700">Commercial insurance for your peace of mind</p>
-        </div>
-        <div class="text-center">
-          <div class="text-5xl mb-4">⚙️</div>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">Regular Maintenance</h3>
-          <p class="text-gray-700">Strict maintenance schedule for reliability</p>
-        </div>
-        <div class="text-center">
-          <div class="text-5xl mb-4">👶</div>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">Child Safety Available</h3>
-          <p class="text-gray-700">Car seats & booster seats for kids upon request</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  {/* CTA Section */}
-  <section class="py-20 bg-gradient-to-r from-emerald-900 to-emerald-800 text-white">
-    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-      <h2 class="text-4xl font-bold mb-6">Ready to Reserve Your Vehicle?</h2>
-      <p class="text-xl mb-8 text-gray-200">
-        Contact us today to book the perfect vehicle for your needs
+      <h2
+        id="fleet-cta-heading"
+        class="mb-4 font-display font-light leading-[1.1] text-brand-forest"
+        style="font-size: clamp(1.85rem, 3.8vw, 2.6rem); letter-spacing: -0.01em;"
+      >
+        Pick a vehicle.
+        <em class="italic text-brand-gold">We'll handle the rest.</em>
+      </h2>
+
+      <p class="mx-auto mb-8 max-w-xl font-sans text-[0.98rem] font-light leading-relaxed text-brand-forest/75">
+        Online in under two minutes, or call dispatch — a human picks up,
+        every hour of every day.
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+
+      <div
+        class="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4"
+        role="group"
+        aria-label="Book or call"
+      >
         <a
           href="/book-now"
-          class="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-semibold transition-all"
+          class="inline-flex min-h-[52px] items-center justify-center gap-2 border border-brand-gold bg-brand-gold px-8 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-forest outline-none transition-[background-color,box-shadow] duration-200 hover:bg-brand-gold-soft hover:shadow-[0_12px_28px_-12px_rgba(163,126,44,0.5)] focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-champagne motion-reduce:transition-none"
         >
-          BOOK NOW
+          Reserve a Ride
+          <span aria-hidden="true">→</span>
         </a>
         <a
           href="tel:+12065959675"
-          class="bg-transparent border-2 border-white hover:bg-white hover:text-emerald-900 text-white px-8 py-4 rounded-lg font-semibold transition-all"
+          class="inline-flex min-h-[52px] items-center justify-center gap-2 border border-brand-forest/25 bg-white px-8 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-forest outline-none transition-colors duration-200 hover:border-brand-gold focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-champagne motion-reduce:transition-none"
+          aria-label="Call Emerald City Limos at (206) 595-9675, available 24 hours"
         >
-          Call (206) 595-9675
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            width="14"
+            height="14"
+            class="text-brand-gold"
+            aria-hidden="true"
+          >
+            <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+          </svg>
+          <span class="tabular-nums">(206) 595-9675</span>
         </a>
       </div>
     </div>

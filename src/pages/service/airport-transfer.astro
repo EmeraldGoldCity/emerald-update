@@ -1,0 +1,40 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import TrustStrip from '@/components/shared/TrustStrip.astro';
+import ServiceIntro from '@/components/services/ServiceIntro.astro';
+import ServiceFleetMatch from '@/components/services/ServiceFleetMatch.astro';
+import ServiceFAQ from '@/components/services/ServiceFAQ.astro';
+import ServiceCTA from '@/components/services/ServiceCTA.astro';
+import ServiceSchema from '@/components/services/ServiceSchema.astro';
+import { getService } from '@/data/services';
+
+const service = getService('airport-transfers');
+if (!service) throw new Error('Service "airport-transfers" not found in src/data/services.ts');
+---
+
+<MainLayout
+  title={service.meta.title}
+  description={service.meta.description}
+  keywords={service.meta.keywords.join(', ')}
+>
+  <PageHero
+    eyebrow={service.eyebrow}
+    headline={service.headline}
+    headlineAccent={service.headlineAccent}
+    supporting={service.heroSupporting}
+    ctaPrimary={{ label: 'Book a Transfer', href: '/book-now', id: `cta-${service.slug}-book` }}
+    image={service.heroImage}
+    size="page"
+    id={`${service.slug}-hero`}
+    breadcrumbs={[{label:'Home',href:'/'},{label:'Services',href:'/services'},{label:service.name}]}
+  />
+  <TrustStrip />
+
+  <ServiceIntro service={service} />
+  <ServiceFleetMatch service={service} />
+  <ServiceFAQ service={service} />
+  <ServiceCTA service={service} />
+
+  <ServiceSchema service={service} />
+</MainLayout>

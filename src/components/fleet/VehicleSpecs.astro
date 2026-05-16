@@ -1,0 +1,100 @@
+---
+/**
+ * VehicleSpecs
+ * ------------
+ * Spec sheet rendered as a 2-column key/value table on the detail page.
+ * Pulls from vehicle.specs; bails gracefully when not provided.
+ */
+import type { Vehicle } from '@/data/fleet';
+
+interface Props {
+  vehicle: Vehicle;
+}
+
+const { vehicle } = Astro.props;
+
+if (!vehicle.specs) return null;
+
+const baseRows = [
+  { label: 'Passengers', value: vehicle.capacityLabel },
+  { label: 'Luggage', value: vehicle.specs.luggage },
+  { label: 'Drivetrain', value: vehicle.specs.drivetrain },
+  { label: 'Transmission', value: vehicle.specs.transmission },
+  { label: 'Model years', value: vehicle.specs.yearRange },
+];
+const rows = [...baseRows, ...(vehicle.specs.extras ?? [])];
+---
+
+<section
+  class="bg-brand-champagne py-16 sm:py-20 lg:py-24"
+  aria-labelledby={`specs-${vehicle.id}`}
+>
+  <div class="mx-auto max-w-5xl px-6 sm:px-8 lg:px-12">
+
+    <div class="mb-10 text-center sm:mb-12">
+      <div class="mb-3 flex items-center justify-center gap-3">
+        <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
+        <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+          Specifications
+        </p>
+        <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
+      </div>
+      <h2
+        id={`specs-${vehicle.id}`}
+        class="font-display font-light leading-[1.1] text-brand-forest"
+        style="font-size: clamp(1.75rem, 3.4vw, 2.4rem); letter-spacing: -0.01em;"
+      >
+        {vehicle.name},
+        <em class="italic text-brand-gold">by the numbers.</em>
+      </h2>
+    </div>
+
+    <dl
+      class="m-0 grid grid-cols-1 gap-px overflow-hidden border border-brand-forest/10 bg-brand-forest/10 sm:grid-cols-2"
+    >
+      {rows.map((row) => (
+        <div class="flex items-baseline justify-between gap-6 bg-white px-5 py-4 sm:px-6 sm:py-5">
+          <dt class="font-sans text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-brand-forest/55">
+            {row.label}
+          </dt>
+          <dd class="text-right font-sans text-[0.92rem] font-medium leading-snug tabular-nums text-brand-forest">
+            {row.value}
+          </dd>
+        </div>
+      ))}
+    </dl>
+
+    {vehicle.features.length > 0 && (
+      <div class="mt-10 sm:mt-12">
+        <div class="mb-4 flex items-center gap-3">
+          <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
+          <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+            Cabin Features
+          </p>
+        </div>
+        <ul role="list" class="m-0 grid list-none grid-cols-1 gap-2.5 p-0 sm:grid-cols-2">
+          {vehicle.features.map((feature) => (
+            <li class="flex items-start gap-3 border border-brand-forest/8 bg-white px-4 py-3 font-sans text-[0.88rem] font-medium leading-snug text-brand-forest/85">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                width="16"
+                height="16"
+                class="mt-0.5 shrink-0 text-brand-gold"
+                aria-hidden="true"
+              >
+                <path d="m4.5 12.75 6 6 9-13.5" />
+              </svg>
+              {feature}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </div>
+</section>

@@ -1,0 +1,102 @@
+---
+/**
+ * AirportsGrid
+ * ------------
+ * Data-driven card grid for the /airport index. One card per airport
+ * in src/data/airports.ts. Zero JS, brand-token only.
+ */
+import { airports } from '@/data/airports';
+---
+
+<section
+  class="bg-brand-champagne py-16 sm:py-20 lg:py-24"
+  aria-labelledby="airports-grid-heading"
+>
+  <div class="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+
+    <div class="mb-12 max-w-2xl sm:mb-14">
+      <div class="mb-4 flex items-center gap-3">
+        <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
+        <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+          The Airports
+        </p>
+      </div>
+      <h2
+        id="airports-grid-heading"
+        class="font-display font-light leading-[1.08] text-brand-forest"
+        style="font-size: clamp(1.85rem, 3.4vw, 2.5rem); letter-spacing: -0.01em;"
+      >
+        Three airports.
+        <em class="italic text-brand-gold">One dispatch line.</em>
+      </h2>
+    </div>
+
+    <ul role="list" class="m-0 grid list-none grid-cols-1 gap-5 p-0 md:grid-cols-3">
+      {airports.map((airport) => (
+        <li class="m-0 p-0">
+          <a
+            href={airport.href}
+            class="group relative flex h-full flex-col overflow-hidden border border-brand-forest/8 bg-white outline-none transition-[border-color,box-shadow,transform] duration-300 hover:border-brand-gold/45 hover:shadow-[0_24px_48px_-32px_rgba(10,35,24,0.28)] focus-visible:border-brand-gold focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-champagne motion-reduce:transition-none"
+            aria-label={`${airport.fullName} (${airport.code}) — view airport transfer service`}
+          >
+            <!-- Photo header -->
+            <div class="relative aspect-[16/10] w-full overflow-hidden bg-brand-forest">
+              <img
+                src={airport.heroImage.src}
+                alt={airport.heroImage.alt}
+                loading="lazy"
+                decoding="async"
+                width="1280"
+                height="800"
+                class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+              />
+              <div
+                class="absolute inset-0"
+                style="background: linear-gradient(to bottom, rgba(10,35,24,0.05) 0%, rgba(10,35,24,0.55) 90%);"
+                aria-hidden="true"
+              ></div>
+              <span class="absolute left-3 top-3 inline-flex items-center gap-1.5 bg-brand-forest/85 px-2 py-1 font-sans text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-brand-gold-soft backdrop-blur-sm">
+                {airport.code}
+              </span>
+              <div class="absolute bottom-4 left-4 right-4">
+                <h3 class="font-display text-2xl font-medium leading-tight text-white">
+                  {airport.name}
+                </h3>
+                <p class="font-sans text-[0.72rem] font-medium uppercase tracking-[0.16em] text-white/75">
+                  {airport.distanceFromDowntownMiles} mi from downtown Seattle
+                </p>
+              </div>
+            </div>
+
+            <!-- Body -->
+            <div class="flex flex-1 flex-col gap-4 p-5 sm:p-6">
+              <p class="font-sans text-[0.92rem] font-light leading-[1.65] text-brand-forest/80">
+                {airport.tagline}
+              </p>
+
+              <ul role="list" class="m-0 flex list-none flex-wrap gap-1.5 p-0">
+                {airport.popularRoutes.slice(0, 3).map((route) => (
+                  <li class="border border-brand-forest/10 bg-brand-champagne/60 px-2.5 py-1 font-sans text-[0.7rem] font-medium leading-tight text-brand-forest/75">
+                    {route.from}
+                  </li>
+                ))}
+              </ul>
+
+              <span class="mt-auto inline-flex items-center gap-1.5 pt-2 font-sans text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-brand-gold transition-colors group-hover:text-brand-gold-soft">
+                View {airport.code} transfers
+                <svg
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  class="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5"
+                  aria-hidden="true"
+                >
+                  <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

@@ -2,6 +2,8 @@
 import MainLayout from '@/layouts/MainLayout.astro';
 import PageHero from '@/components/shared/PageHero.astro';
 import TrustStrip from '@/components/shared/TrustStrip.astro';
+import airportImage from '@/assets/images/services/airport/airport-2.png';
+
 ---
 
 <MainLayout
@@ -15,11 +17,12 @@ import TrustStrip from '@/components/shared/TrustStrip.astro';
     headlineAccent="Limo Service"
     supporting="Flat-rate transfers to SeaTac (SEA), Boeing Field (BFI) and Paine Field (PAE). 24/7 flight tracking and meet-and-greet service included on every ride."
     image={{
-      src: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&h=1080&fit=crop&q=85&fm=webp&auto=format',
+      src: airportImage,
       alt: 'Airport tarmac at twilight with luxury black SUV awaiting passenger transfer',
     }}
     size="page"
     id="airport-transfers-hero"
+    breadcrumbs={[{label:'Home',href:'/'},{label:'Airport Transfers'}]}
   />
   <TrustStrip />
 

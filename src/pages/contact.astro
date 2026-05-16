@@ -1,0 +1,44 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import TrustStrip from '@/components/shared/TrustStrip.astro';
+import ContactMethods from '@/components/contact/ContactMethods.astro';
+import ContactForm from '@/components/contact/ContactForm.astro';
+import ContactHours from '@/components/contact/ContactHours.astro';
+import ContactSchema from '@/components/contact/ContactSchema.astro';
+import contactHeroBg from '@/assets/images/contact/contact.png';
+---
+
+<MainLayout
+  title="Contact Emerald City Limos | Seattle Chauffeur Dispatch"
+  description="Reach Emerald City Limos 24/7 — call (206) 595-9675, email client@emeraldcitylimos.com, or send a quote request. Licensed Washington carrier, $1.5M insured."
+  keywords="contact emerald city limos, seattle limo dispatch, seattle chauffeur contact, seattle limo phone number"
+  canonical="https://emeraldcitylimos.com/contact"
+>
+  <PageHero
+    eyebrow="Contact Us"
+    headline="Get in touch,"
+    headlineAccent="any hour"
+    supporting="A human picks up the dispatch line 24/7. Email, call, or send a quote request — we respond within one business hour."
+    ctaPrimary={{ label: 'Call Dispatch', href: 'tel:+12065959675', id: 'cta-contact-call' }}
+    ctaSecondary={{
+      label: 'Open Booking',
+      href: '/book-now',
+      id: 'cta-contact-book',
+    }}
+    image={{
+      src: contactHeroBg,
+      alt: 'Emerald City Limos dispatch operator with luxury fleet ready in the background',
+    }}
+    size="page"
+    id="contact-hero"
+    breadcrumbs={[{label:'Home',href:'/'},{label:'Contact'}]}
+  />
+  <TrustStrip />
+
+  <ContactMethods />
+  <ContactForm />
+  <ContactHours />
+
+  <ContactSchema />
+</MainLayout>

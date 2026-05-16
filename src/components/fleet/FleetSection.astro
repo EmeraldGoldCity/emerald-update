@@ -1,26 +1,21 @@
 ---
 import {
   fleet,
-  defaultFeaturedId,
   fleetCategoryTabs,
   type Vehicle,
 } from '@/data/fleet';
-import FleetFeaturedCard from './FleetFeaturedCard.astro';
 import FleetCard from './FleetCard.astro';
 import { FleetFilterTabs } from './FleetFilterTabs';
 
 interface Props {
-  /** Override which vehicle id renders as the featured card. */
-  featuredId?: string;
-  /** Hide the category filter tabs (renders as pure-static Astro). */
   showFilters?: boolean;
+  limit?: number;
 }
 
-const { featuredId = defaultFeaturedId, showFilters = true } = Astro.props;
+const { showFilters = true, limit } = Astro.props;
 
-const featured: Vehicle =
-  fleet.find((v) => v.id === featuredId) ?? fleet[0];
-const supporting: Vehicle[] = fleet.filter((v) => v.id !== featured.id);
+const vehicles: Vehicle[] = limit ? fleet.slice(0, limit) : fleet;
+
 ---
 
 <section
@@ -29,7 +24,7 @@ const supporting: Vehicle[] = fleet.filter((v) => v.id !== featured.id);
 >
   <div class="mx-auto max-w-7xl px-6 sm:px-8">
 
-    {/* ── Header ──────────────────────────────────────────────────────── */}
+    {/* ── Header ── */}
     <header class="mx-auto mb-12 max-w-2xl text-center sm:mb-14 lg:mb-16">
       <p class="font-sans text-xs font-semibold uppercase tracking-[0.22em] text-brand-gold">
         Our Fleet
@@ -42,60 +37,37 @@ const supporting: Vehicle[] = fleet.filter((v) => v.id !== featured.id);
         <em class="italic text-brand-gold">Comfort</em>.
       </h2>
       <p class="mt-5 font-sans text-base font-light leading-relaxed text-neutral-700 sm:text-lg">
-        Five distinct vehicles. One consistent standard &mdash; meticulously
+        Five distinct vehicles. One consistent standard — meticulously
         maintained, professionally chauffeured, ready when you are.
       </p>
     </header>
 
-    {/* ── Filter tabs (small React island, hydrates on visibility) ───── */}
+    {/* ── Filter tabs ── */}
     {showFilters && (
       <div class="mb-12 flex justify-center sm:mb-14">
         <FleetFilterTabs client:visible tabs={fleetCategoryTabs} />
       </div>
     )}
 
-    {/* ── Showcase layout ─────────────────────────────────────────────
-         data-active-category is mutated by the React island. CSS in the
-         scoped <style> block below reacts to it (hides featured, expands
-         supporting grid to full width when filtering).                  */}
-    <div
+    {/* ── Equal card grid ── */}
+    <ul
+      role="list"
       data-fleet-layout
       data-active-category="All"
-      class="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-8"
+      class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
     >
-
-      {/* Featured card */}
-      <div
-        data-fleet-featured-wrap
-        data-category={featured.category}
-        class="lg:col-span-7 xl:col-span-8"
-      >
-        <FleetFeaturedCard vehicle={featured} />
-      </div>
-
-      {/* Supporting: horizontal scroll on mobile, 2x2 grid from sm up */}
-      <div
-        data-fleet-supporting
-        class="lg:col-span-5 xl:col-span-4"
-      >
-        <ul
-          role="list"
-          class="ecl-fleet-rail -mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-3 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0"
+      {vehicles.map((v) => (
+        <li
+          data-fleet-card-wrap
+          data-category={v.category}
+          class="flex"
         >
-          {supporting.map((v) => (
-            <li
-              data-fleet-card-wrap
-              data-category={v.category}
-              class="w-[78%] flex-shrink-0 snap-start sm:w-auto"
-            >
-              <FleetCard vehicle={v} />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+          <FleetCard vehicle={v} />
+        </li>
+      ))}
+    </ul>
 
-    {/* ── Bottom CTA strip ────────────────────────────────────────────── */}
+    {/* ── Bottom CTA ── */}
     <div class="mt-16 text-center sm:mt-20">
       <p class="font-sans text-base font-light text-neutral-700">
         Explore our complete fleet of luxury vehicles.
@@ -114,36 +86,8 @@ const supporting: Vehicle[] = fleet.filter((v) => v.id !== featured.id);
 </section>
 
 <style>
-  /* When a category filter is active (anything except "All"):
-     - the featured card hides
-     - the supporting rail spans the full grid and lays out as 4-up on lg+ */
-  .ecl-fleet-section [data-fleet-layout][data-active-category]:not([data-active-category='All']) [data-fleet-supporting] {
-    grid-column: 1 / -1;
-  }
-
-  @media (min-width: 1024px) {
-    .ecl-fleet-section [data-fleet-layout][data-active-category]:not([data-active-category='All']) [data-fleet-supporting] > ul {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-  }
-
-  /* Hide native scrollbar on the mobile rail without losing scrollability */
-  .ecl-fleet-rail {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(163, 126, 44, 0.4) transparent;
-  }
-  .ecl-fleet-rail::-webkit-scrollbar {
-    height: 4px;
-  }
-  .ecl-fleet-rail::-webkit-scrollbar-thumb {
-    background: rgba(163, 126, 44, 0.35);
-  }
-
-  /* Respect user motion preferences — strip transforms and transitions */
   @media (prefers-reduced-motion: reduce) {
-    .ecl-fleet-section [data-fleet-card] *,
-    .ecl-fleet-section [data-fleet-featured] *,
-    .ecl-fleet-section .ecl-fleet-card__reveal {
+    .ecl-fleet-section * {
       transition-duration: 0.01ms !important;
       animation-duration: 0.01ms !important;
     }

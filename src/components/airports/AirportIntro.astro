@@ -1,0 +1,93 @@
+---
+/**
+ * AirportIntro
+ * ------------
+ * Lead + feature grid intro for an airport detail page. Mirrors the
+ * services/locations intro pattern — lead paragraph, optional second
+ * paragraph as a quoted block, and a visualized feature grid on the side.
+ */
+import type { Airport } from '@/data/airports';
+
+interface Props {
+  airport: Airport;
+}
+
+const { airport } = Astro.props;
+---
+
+<section
+  class="relative overflow-hidden bg-brand-champagne py-16 sm:py-20 lg:py-24"
+  aria-labelledby={`intro-${airport.slug}`}
+>
+  <div
+    class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-gold/25 to-transparent"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+    <div class="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16 xl:gap-20">
+
+      <!-- ── Copy column ───────────────────────────────────── -->
+      <div class="flex flex-col">
+        <div class="mb-4 flex items-center gap-3">
+          <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
+          <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+            {airport.code} · {airport.fullName.split('/')[0].trim()}
+          </p>
+        </div>
+
+        <h2
+          id={`intro-${airport.slug}`}
+          class="mb-6 font-display font-light leading-[1.08] text-brand-forest"
+          style="font-size: clamp(1.85rem, 3.4vw, 2.5rem); letter-spacing: -0.01em;"
+        >
+          {airport.name} transfers,
+          <em class="italic text-brand-gold">by Emerald City Limos.</em>
+        </h2>
+
+        <p class="font-sans text-[0.98rem] font-light leading-[1.8] text-brand-forest/85 sm:text-[1.02rem]">
+          {airport.lead}
+        </p>
+
+        {airport.leadExtended && (
+          <p class="mt-5 border-l-2 border-brand-gold/30 pl-4 font-sans text-[0.92rem] font-light italic leading-[1.75] text-brand-forest/70">
+            {airport.leadExtended}
+          </p>
+        )}
+      </div>
+
+      <!-- ── Features grid ─────────────────────────────────── -->
+      <ul
+        class="m-0 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2"
+        aria-label={`${airport.name} service features`}
+      >
+        {airport.features.map((feature) => (
+          <li class="group relative flex flex-col gap-3 border border-brand-forest/8 bg-white p-5 transition-colors duration-300 hover:border-brand-gold/45">
+            <span class="inline-flex h-10 w-10 items-center justify-center bg-brand-gold/10 text-brand-gold transition-colors duration-300 group-hover:bg-brand-gold group-hover:text-white">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                width="18"
+                height="18"
+                aria-hidden="true"
+              >
+                <path d={feature.iconPath} />
+              </svg>
+            </span>
+            <h3 class="font-display text-base font-medium leading-snug text-brand-forest">
+              {feature.title}
+            </h3>
+            <p class="font-sans text-[0.82rem] leading-relaxed text-brand-forest/70">
+              {feature.description}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

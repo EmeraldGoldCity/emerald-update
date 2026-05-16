@@ -2,208 +2,39 @@
 import MainLayout from '@/layouts/MainLayout.astro';
 import PageHero from '@/components/shared/PageHero.astro';
 import TrustStrip from '@/components/shared/TrustStrip.astro';
-const imgInfantSeat = "/images/carseatfront.avif";
-const imgToddlerSeat = "/images/rearseattoddler.avif";
-const imgBoosterSeat = "images/boosterseat.avif";
+import ServiceIntro from '@/components/services/ServiceIntro.astro';
+import ServiceFleetMatch from '@/components/services/ServiceFleetMatch.astro';
+import ServiceFAQ from '@/components/services/ServiceFAQ.astro';
+import ServiceCTA from '@/components/services/ServiceCTA.astro';
+import ServiceSchema from '@/components/services/ServiceSchema.astro';
+import { getService } from '@/data/services';
+
+const service = getService('infant-car-seats');
+if (!service) throw new Error('Service "infant-car-seats" not found in src/data/services.ts');
 ---
 
 <MainLayout
-  title="Infant Car Seats & Booster Seats - Emerald City Limos Seattle"
-  description="Safe travel for children with professionally installed car seats. Infant seats, toddler seats, and booster seats available at no extra charge."
-  keywords="car seat limo service seattle, child car seat transportation, infant car seat limo, booster seat car service seattle"
+  title={service.meta.title}
+  description={service.meta.description}
+  keywords={service.meta.keywords.join(', ')}
 >
   <PageHero
-    eyebrow="Family Travel"
-    headline="Infant Car Seats"
-    headlineAccent="& Booster Seats"
-    supporting="Professionally installed infant, convertible, and booster seats — fitted properly before your chauffeur arrives. No extra charge, no fumbling at the curb with your own."
-    ctaPrimary={{ label: 'Book With Car Seats', href: '/book-now', id: 'cta-carseat-book' }}
-    image={{
-      src: '/images/carseatfront.avif',
-      alt: 'Properly installed infant car seat in luxury SUV interior for family ride',
-    }}
+    eyebrow={service.eyebrow}
+    headline={service.headline}
+    headlineAccent={service.headlineAccent}
+    supporting={service.heroSupporting}
+    ctaPrimary={{ label: 'Reserve a Ride', href: '/book-now', id: `cta-${service.slug}-book` }}
+    image={service.heroImage}
     size="page"
-    id="carseat-hero"
+    id={`${service.slug}-hero`}
+    breadcrumbs={[{label:'Home',href:'/'},{label:'Services',href:'/services'},{label:service.name}]}
   />
   <TrustStrip />
 
-  <section class="py-16 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <p class="text-xl text-gray-700 leading-relaxed">
-        Traveling with children requires special care and attention to safety. Our vehicles can be equipped with professionally-installed infant car seats, convertible car seats, and booster seats appropriate for children of all ages. Your child's safety is our top priority.
-      </p>
-    </div>
-  </section>
+  <ServiceIntro service={service} />
+  <ServiceFleetMatch service={service} />
+  <ServiceFAQ service={service} />
+  <ServiceCTA service={service} />
 
-  <section class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">Available Car Seats</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-white rounded-xl p-8 shadow-lg text-center">
-          <div class="w-20 h-20 bg-emerald-700 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl">
-            👶
-          </div>
-          <h3 class="text-2xl font-bold text-gray-900 mb-2">Infant Seat</h3>
-          <p class="text-gray-600 mb-4">Rear-facing for newborns and babies</p>
-          <p class="text-sm text-gray-500">4-35 lbs • Birth to 12 months</p>
-        </div>
-
-        <div class="bg-white rounded-xl p-8 shadow-lg text-center">
-          <div class="w-20 h-20 bg-[#d4af37] rounded-full flex items-center justify-center mx-auto mb-4 text-4xl">
-            🧒
-          </div>
-          <h3 class="text-2xl font-bold text-gray-900 mb-2">Toddler Seat</h3>
-          <p class="text-gray-600 mb-4">Front-facing for growing toddlers</p>
-          <p class="text-sm text-gray-500">20-65 lbs • 1-4 years old</p>
-        </div>
-
-        <div class="bg-white rounded-xl p-8 shadow-lg text-center">
-          <div class="w-20 h-20 bg-emerald-700 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl">
-            🧒
-          </div>
-          <h3 class="text-2xl font-bold text-gray-900 mb-2">Booster Seat</h3>
-          <p class="text-gray-600 mb-4">Booster for older children</p>
-          <p class="text-sm text-gray-500">40-100 lbs • 4-8 years old</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {/* Child Safety Seats Section */}
-  <section class="py-20 bg-white overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-          Traveling with <span class="text-emerald-700">Little Ones?</span>
-        </h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-2">
-          We've got your family covered with premium child safety seats
-        </p>
-        <div class="w-24 h-1 bg-[#d4af37] mx-auto mt-6"></div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-        {/* Infant Seat */}
-        <a href="/book-now" class="group">
-          <div class="bg-gradient-to-br from-emerald-50 to-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-            <div class="flex items-center justify-center h-64 mb-6 overflow-hidden">
-              <img
-                src={imgInfantSeat}
-                alt="Infant Car Seat"
-                class="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-110"
-              />
-            </div>
-            <div class="text-center">
-              <div class="inline-block bg-emerald-700 text-white px-4 py-1 rounded-full text-sm font-semibold mb-4">
-                REAR-FACING
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900 mb-3">
-                Infant Seat
-              </h3>
-              <p class="text-gray-600 mb-4">
-                For newborns and babies
-              </p>
-              <div class="border-t border-[#d4af37] w-16 mx-auto mb-4"></div>
-              <p class="text-sm text-gray-500">
-                4-35 lbs • Birth to 12 months
-              </p>
-            </div>
-          </div>
-        </a>
-
-        {/* Toddler/Convertible Seat */}
-        <a href="/book-now" class="group">
-          <div class="bg-gradient-to-br from-yellow-50 to-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-            <div class="flex items-center justify-center h-64 mb-6 overflow-hidden">
-              <img
-                src={imgToddlerSeat}
-                alt="Toddler Car Seat"
-                class="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-110"
-              />
-            </div>
-            <div class="text-center">
-              <div class="inline-block bg-[#d4af37] text-black px-4 py-1 rounded-full text-sm font-semibold mb-4">
-                FRONT-FACING
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900 mb-3">
-                Toddler Seat
-              </h3>
-              <p class="text-gray-600 mb-4">
-                For growing toddlers
-              </p>
-              <div class="border-t border-[#d4af37] w-16 mx-auto mb-4"></div>
-              <p class="text-sm text-gray-500">
-                20-65 lbs • 1-4 years old
-              </p>
-            </div>
-          </div>
-        </a>
-
-        {/* Booster Seat */}
-        <a href="/book-now" class="group">
-          <div class="bg-gradient-to-br from-emerald-50 to-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-            <div class="flex items-center justify-center h-64 mb-6 overflow-hidden">
-              <img
-                src={imgBoosterSeat}
-                alt="Booster Seat"
-                class="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-110"
-              />
-            </div>
-            <div class="text-center">
-              <div class="inline-block bg-emerald-700 text-white px-4 py-1 rounded-full text-sm font-semibold mb-4">
-                BOOSTER
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900 mb-3">
-                Booster Seat
-              </h3>
-              <p class="text-gray-600 mb-4">
-                For older children
-              </p>
-              <div class="border-t border-[#d4af37] w-16 mx-auto mb-4"></div>
-              <p class="text-sm text-gray-500">
-                40-100 lbs • 4-8 years old
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="mt-16 text-center bg-gradient-to-r from-emerald-900 to-emerald-800 rounded-2xl p-10 text-white">
-        <h3 class="text-2xl font-bold mb-4">
-          🎯 Request Your Child Seat at Booking
-        </h3>
-        <p class="text-lg text-emerald-100 mb-6 max-w-2xl mx-auto">
-          All child safety seats are complimentary and professionally installed by our trained chauffeurs. 
-          Simply let us know your needs when you book, and we'll have everything ready for your family's safe journey.
-        </p>
-        <div class="flex flex-wrap justify-center gap-4 text-sm">
-          <div class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
-            <span class="text-[#d4af37]">✓</span>
-            <span>Safety Certified</span>
-          </div>
-          <div class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
-            <span class="text-[#d4af37]">✓</span>
-            <span>Professionally Installed</span>
-          </div>
-          <div class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
-            <span class="text-[#d4af37]">✓</span>
-            <span>Complimentary Service</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-
-  <section class="py-20 bg-gradient-to-r from-emerald-900 to-emerald-800 text-white">
-    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-      <h2 class="text-4xl font-bold mb-6">Book Service With Car Seats</h2>
-      <p class="text-xl mb-8 text-gray-200">Complimentary with any service - just let us know when booking</p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/book-now" class="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-semibold transition-all">BOOK NOW</a>
-        <a href="tel:+12065959675" class="bg-transparent border-2 border-white hover:bg-white hover:text-emerald-900 text-white px-8 py-4 rounded-lg font-semibold transition-all">Call: (206) 595-9675</a>
-      </div>
-    </div>
-  </section>
+  <ServiceSchema service={service} />
 </MainLayout>

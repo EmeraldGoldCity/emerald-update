@@ -21,7 +21,7 @@ const { vehicle } = Astro.props;
   <div class="relative aspect-[16/9] w-full overflow-hidden bg-brand-forest">
     {vehicle.imageSrc ? (
       <img
-        src={vehicle.imageSrc}
+        src={typeof vehicle.imageSrc === 'string' ? vehicle.imageSrc : vehicle.imageSrc!.src}
         alt={vehicle.imageAlt}
         loading="lazy"
         decoding="async"

@@ -13,11 +13,8 @@ const { vehicle } = Astro.props;
   data-category={vehicle.category}
   role="article"
   aria-label={`${vehicle.name} — ${vehicle.category}`}
-  class="ecl-fleet-card group relative flex h-full flex-col overflow-hidden border-l-2 border-brand-gold/60 bg-white ring-1 ring-brand-forest/10 transition-[border-color,box-shadow] duration-300 hover:border-brand-gold hover:shadow-[0_8px_28px_-12px_rgba(10,35,24,0.18)] focus-within:border-brand-gold"
+  class="ecl-fleet-card group relative flex h-full w-full flex-col overflow-hidden border-l-2 border-brand-gold/60 bg-white ring-1 ring-brand-forest/10 transition-[border-color,box-shadow] duration-300 hover:border-brand-gold hover:shadow-[0_8px_28px_-12px_rgba(10,35,24,0.18)] focus-within:border-brand-gold"
 >
-  {/* Whole-card link — keeps the card a single tap target for mobile and
-      a single tab stop for keyboard users. The visible "View Details"
-      pill is decorative-only (aria-hidden). */}
   <a
     href={vehicle.href}
     class="ecl-focusable absolute inset-0 z-10"
@@ -26,12 +23,11 @@ const { vehicle } = Astro.props;
     <span class="sr-only">View details</span>
   </a>
 
-  {/* ── Image area (4:3). Drop a real photo by setting `imageSrc` on the
-      vehicle in src/data/fleet.ts. ─────────────────────────────────────── */}
+  {/* ── Image ── */}
   <div class="relative aspect-[4/3] w-full overflow-hidden bg-brand-forest">
     {vehicle.imageSrc ? (
       <img
-        src={vehicle.imageSrc}
+        src={typeof vehicle.imageSrc === 'string' ? vehicle.imageSrc : vehicle.imageSrc.src}
         alt={vehicle.imageAlt}
         loading="lazy"
         decoding="async"
@@ -55,7 +51,7 @@ const { vehicle } = Astro.props;
       </div>
     )}
 
-    {/* Hover/focus reveal — "View Details" pill slides up over the image */}
+    {/* Hover reveal pill */}
     <span
       aria-hidden="true"
       class="ecl-fleet-card__reveal pointer-events-none absolute inset-x-0 bottom-0 flex translate-y-full items-center justify-between bg-brand-forest/92 px-4 py-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-white opacity-0 transition-[transform,opacity] duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100"
@@ -65,7 +61,7 @@ const { vehicle } = Astro.props;
     </span>
   </div>
 
-  {/* ── Body ───────────────────────────────────────────────────────────── */}
+  {/* ── Body ── */}
   <div class="flex flex-1 flex-col gap-2 p-5 sm:p-6">
     <p class="font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
       {vehicle.category}

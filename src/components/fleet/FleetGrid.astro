@@ -1,0 +1,115 @@
+---
+/**
+ * FleetGrid
+ * ---------
+ * Modern, brand-token grid for /fleet. Every card links to /fleet/<id>.
+ * Zero JS, fully accessible, lazy-loaded imagery. Drop-in replacement
+ * for the previous inline grid on src/pages/fleet.astro.
+ */
+import { fleet } from '@/data/fleet';
+import { Image } from "astro:assets";
+import type { ImageMetadata } from 'astro';
+---
+
+<section
+  class="bg-brand-champagne py-16 sm:py-20 lg:py-24"
+  aria-labelledby="fleet-grid-heading"
+>
+  <div class="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+
+    <div class="mb-12 max-w-2xl sm:mb-14">
+      <div class="mb-4 flex items-center gap-3">
+        <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
+        <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+          The Fleet
+        </p>
+      </div>
+      <h2
+        id="fleet-grid-heading"
+        class="font-display font-light leading-[1.08] text-brand-forest"
+        style="font-size: clamp(1.85rem, 3.4vw, 2.5rem); letter-spacing: -0.01em;"
+      >
+        Choose the right
+        <em class="italic text-brand-gold">vehicle.</em>
+      </h2>
+    </div>
+
+    <ul
+      role="list"
+      class="m-0 grid list-none grid-cols-1 gap-5 p-0 sm:grid-cols-2 lg:grid-cols-3"
+    >
+      {fleet.map((vehicle) => (
+        <li class="m-0 p-0">
+          <a
+            href={vehicle.href}
+            class="group relative flex h-full flex-col overflow-hidden border border-brand-forest/8 bg-white outline-none transition-[border-color,box-shadow,transform] duration-300 hover:border-brand-gold/45 hover:shadow-[0_24px_48px_-32px_rgba(10,35,24,0.28)] focus-visible:border-brand-gold focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-champagne motion-reduce:transition-none"
+            aria-label={`${vehicle.name} — ${vehicle.category}, ${vehicle.capacityLabel.toLowerCase()}`}
+          >
+            <!-- Image area (4:3) -->
+            <div class="relative aspect-[4/3] w-full overflow-hidden bg-brand-forest">
+              {vehicle.imageSrc ? (
+                <Image
+                  src={vehicle.imageSrc as ImageMetadata}
+                  alt={vehicle.imageAlt}
+                  loading="lazy"
+                  decoding="async"
+                  width={800}
+                  height={600}
+                  class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                />
+              ) : (
+                <div class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+                  <span
+                    class="absolute inset-0"
+                    style="background: radial-gradient(ellipse 60% 55% at center, var(--color-brand-gold-soft) 0%, transparent 70%); opacity: 0.18;"
+                  ></span>
+                  <span class="font-display text-3xl italic text-brand-gold-soft/70">
+                    {vehicle.category}
+                  </span>
+                </div>
+              )}
+              <span
+                class="absolute left-3 top-3 inline-flex items-center gap-1.5 bg-brand-forest/85 px-2 py-1 font-sans text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-brand-gold-soft backdrop-blur-sm"
+              >
+                {vehicle.category}
+              </span>
+              <span
+                class="absolute bottom-3 right-3 inline-flex items-center gap-1.5 bg-white/85 px-2 py-1 font-sans text-[0.7rem] font-semibold tabular-nums text-brand-forest backdrop-blur-sm"
+              >
+                {vehicle.capacityLabel}
+              </span>
+            </div>
+
+            <!-- Body -->
+            <div class="flex flex-1 flex-col gap-3 p-5">
+              <h3 class="font-display text-xl font-medium leading-tight text-brand-forest">
+                {vehicle.name}
+              </h3>
+
+              <ul role="list" class="m-0 list-none space-y-1 p-0">
+                {vehicle.features.slice(0, 3).map((feature) => (
+                  <li class="flex items-start gap-2 font-sans text-[0.78rem] leading-snug text-brand-forest/70">
+                    <span class="mt-1.5 inline-block h-1 w-1 shrink-0 rounded-full bg-brand-gold" aria-hidden="true"></span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              <span class="mt-auto inline-flex items-center gap-1.5 pt-2 font-sans text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-brand-gold transition-colors group-hover:text-brand-gold-soft">
+                View vehicle
+                <svg
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  class="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5"
+                  aria-hidden="true"
+                >
+                  <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

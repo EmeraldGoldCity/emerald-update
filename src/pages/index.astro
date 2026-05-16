@@ -1,8 +1,12 @@
 ---
+import { Image } from 'astro:assets';
 import MainLayout from '@/layouts/MainLayout.astro';
 import PageHero from '@/components/shared/PageHero.astro';
 import TrustStrip from '@/components/shared/TrustStrip.astro';
 import FleetSection from '@/components/fleet/FleetSection.astro';
+import heroImage from "@/assets/images/hero/emerald-city-hero.png";
+import mobileHero from "@/assets/images/hero/emerald-city-hero.webp";
+import aboutImage from "@/assets/images/about/about.png"
 
 const PHONE_DISPLAY = '(206) 595-9675';
 const PHONE_TEL     = 'tel:+12065959675';
@@ -74,9 +78,26 @@ const ICONS: Record<string, string> = {
 
 // Service-area chips: keep one-keyword-per-chip for SEO, restyle for luxury feel.
 const areas = [
-  'Seattle','Bellevue','Redmond','Kirkland','Renton','Tacoma','Everett',
-  'Lynnwood','Edmonds','Bothell','Woodinville','Auburn','Federal Way',
-  'Sammamish','Kent','Lakewood','Puyallup','Marysville','SeaTac Airport','Boeing Field',
+  { name: 'Seattle',        href: '/locations/seattle'        },
+  { name: 'Bellevue',       href: '/locations/bellevue'       },
+  { name: 'Redmond',        href: '/locations/redmond'        },
+  { name: 'Kirkland',       href: '/locations/kirkland'       },
+  { name: 'Renton',         href: '/locations/renton'         },
+  { name: 'Tacoma',         href: '/locations/tacoma'         },
+  { name: 'Everett',        href: '/locations/everett'        },
+  { name: 'Lynnwood',       href: '/locations/lynnwood'       },
+  { name: 'Edmonds',        href: '/locations/edmonds'        },
+  { name: 'Bothell',        href: '/locations/bothell'        },
+  { name: 'Woodinville',    href: '/locations/woodinville'    },
+  { name: 'Auburn',         href: '/locations/auburn'         },
+  { name: 'Federal Way',    href: '/locations/federal-way'    },
+  { name: 'Sammamish',      href: '/locations/sammamish'      },
+  { name: 'Kent',           href: '/locations/kent'           },
+  { name: 'Lakewood',       href: '/locations/lakewood'       },
+  { name: 'Puyallup',       href: '/locations/puyallup'       },
+  { name: 'Marysville',     href: '/locations/marysville'     },
+  { name: 'SeaTac Airport', href: '/airport/sea-tac'          },
+  { name: 'Boeing Field',   href: '/airport/boeing-field'     },
 ];
 
 // LocalBusiness / LimousineService schema lives in BaseLayout — already wired
@@ -100,8 +121,8 @@ const areas = [
     ctaPrimary={{ label: 'Reserve Your Ride', href: '/book-now', id: 'cta-hero-book' }}
     ctaSecondary={{ label: PHONE_DISPLAY, href: PHONE_TEL, id: 'cta-hero-call', phone: PHONE_DISPLAY }}
     image={{
-      src: '/images/emerald-city-hero.webp',
-      srcMobile: '/images/hero-mobile.webp',
+      src: heroImage,
+      srcMobile: mobileHero,
       alt: 'Professional chauffeur beside a luxury black SUV with Seattle skyline and Mount Rainier in the background',
       width: 1672,
       height: 941,
@@ -189,163 +210,478 @@ const areas = [
     </div>
   </section>
 
-    <FleetSection />
+    <FleetSection
+      showFilters={false}
+      limit={4}
+    />
 
   <!-- ════════════════════════════════════════════════════════════════════
-       ABOUT — editorial luxury (replaces emerald/yellow gradient block)
-       ════════════════════════════════════════════════════════════════════ -->
-  <section class="bg-brand-champagne py-20 sm:py-28 px-6 sm:px-8" aria-labelledby="about-heading">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+     ABOUT — editorial asymmetric luxury layout
+     ════════════════════════════════════════════════════════════════════ -->
+  <section class="relative bg-brand-forest overflow-hidden py-20 sm:py-28 px-6 sm:px-8" aria-labelledby="about-heading">
 
-      <div class="lg:col-span-6">
-        <p class="font-sans text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] uppercase text-brand-gold mb-5">
-          Established 2010
+    <!-- Full-bleed background image -->
+    <Image
+      src={aboutImage}
+      alt=""
+      width={1200}
+      height={900}
+      loading="lazy"
+      decoding="async"
+      class="absolute inset-0 w-full h-full object-cover object-center"
+      aria-hidden="true"
+    />
+    <!-- Dark overlay for readability -->
+    <div class="absolute inset-0 bg-brand-forest/70" aria-hidden="true"></div>
+
+    <!-- Vertical rule — decorative left spine, desktop only -->
+    <div class="absolute left-0 top-0 hidden lg:block h-full w-px bg-white/[.07]" aria-hidden="true"></div>
+
+    <div class="max-w-6xl mx-auto relative z-10">
+
+      <!-- ── Top row: eyebrow + running headline ── -->
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-14 sm:mb-16 lg:mb-20">
+        <div class="flex items-center gap-4">
+          <div class="hidden sm:block h-px w-10 bg-brand-gold shrink-0" aria-hidden="true"></div>
+          <p class="font-sans text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] uppercase text-brand-gold">
+            Established Seattle &rsquo;10
+          </p>
+        </div>
+        <p class="font-sans text-[11px] font-medium tracking-[0.16em] uppercase text-white/40 sm:text-right">
+          King &middot; Snohomish &middot; Pierce
         </p>
-        <h2
-          id="about-heading"
-          class="font-display font-light text-brand-forest leading-[1.08] tracking-[-0.015em] mb-6"
-          style="font-size: clamp(2rem, 4vw, 3rem);"
-        >
-          A quieter standard of
-          <em class="text-brand-gold not-italic" style="font-style: italic;">arrival</em>.
-        </h2>
-        <p class="font-sans text-base sm:text-lg leading-[1.75] text-neutral-700 mb-5 max-w-xl">
-          For over a decade, Emerald City Limos has served the Greater Seattle area with chauffeurs who anticipate, vehicles that perform, and a standard of service that doesn&rsquo;t announce itself.
-        </p>
-        <p class="font-sans text-base sm:text-lg leading-[1.75] text-neutral-700 mb-8 max-w-xl">
-          Whether the destination is SeaTac at 4 a.m., a Pike Place wedding, a Seahawks Sunday, or a downtown board meeting — we deliver the same answer. Quietly, every time.
-        </p>
-        <a
-          href="/locations"
-          class="inline-flex items-center gap-2 font-sans text-[11px] font-semibold tracking-[0.2em] uppercase text-brand-forest border-b border-brand-gold pb-1 hover:text-brand-gold transition-colors"
-        >
-          View all service areas
-          <span aria-hidden="true">→</span>
-        </a>
       </div>
 
-      <div class="lg:col-span-6">
-        <div class="relative">
-          <!-- Gold offset border for editorial feel -->
-          <div class="absolute -top-3 -right-3 w-full h-full border border-brand-gold/40" aria-hidden="true"></div>
-          <img
-            src="/images/cad1.webp"
-            alt="Emerald City Limos luxury Cadillac Escalade — Seattle chauffeur fleet"
-            width="800"
-            height="600"
-            loading="lazy"
-            decoding="async"
-            class="relative w-full h-[360px] sm:h-[440px] object-cover"
-          />
+      <!-- ── Main editorial grid ── -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+        <!-- Left column: stacked content -->
+        <div class="flex flex-col">
+
+          <!-- Dominant heading -->
+          <h2
+            id="about-heading"
+            class="font-display font-light text-white leading-[1.04] tracking-[-0.025em] mb-10 lg:mb-0"
+            style="font-size: clamp(2.75rem, 6vw, 5rem);"
+          >
+            A quieter<br>
+            standard of<br>
+            <em class="text-brand-gold italic">arrival</em>.
+          </h2>
+
+          <!-- Stat cards — desktop only -->
+          <div class="hidden lg:flex flex-col gap-3 mt-10" aria-label="Company statistics">
+            {[
+              { value: '15+', label: 'Years serving Seattle' },
+              { value: '24/7', label: 'Available year-round'  },
+            ].map((stat) => (
+              <div
+                class="group flex items-center gap-5 bg-white px-6 py-4 ring-1 ring-brand-forest/10 transition-all duration-300text-ring-brand-gold w-[260px]"
+                role="listitem"
+                aria-label={`${stat.value} — ${stat.label}`}
+              >
+                <span
+                  class="font-display font-light text-brand-forest leading-none transition-colors duration-300 group-hover:text-brand-gold"
+                  style="font-size: clamp(1.5rem, 2.5vw, 2rem);"
+                >
+                  {stat.value}
+                </span>
+                <div class="h-8 w-px bg-brand-forest/10 shrink-0" aria-hidden="true"></div>
+                <span class="font-sans text-[10px] font-medium tracking-[0.14em] uppercase text-brand-forest/50">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </div>
+
+        </div>
+
+        <!-- Right column: copy card -->
+        <div class="relative mt-10 lg:mt-0">
+          <div class="relative bg-white ring-1 ring-brand-forest/10 px-7 py-8 sm:px-8 sm:py-9">
+            <!-- Animated gold hairline -->
+            <div
+              class="absolute inset-x-0 top-0 h-px origin-left bg-brand-gold scale-x-0 transition-transform duration-700 ease-out"
+              style="animation: scaleIn 1.2s cubic-bezier(0.25,0.46,0.45,0.94) 0.3s forwards;"
+              aria-hidden="true"
+            ></div>
+
+            <p class="font-sans text-sm sm:text-base leading-[1.78] text-neutral-700 mb-5">
+              For over a decade, Emerald City Limos has served the Greater Seattle area with chauffeurs who anticipate, vehicles that perform, and a standard of service that doesn&rsquo;t announce itself.
+            </p>
+            <p class="font-sans text-sm sm:text-base leading-[1.78] text-neutral-700 mb-7">
+              Whether the destination is SeaTac at 4&nbsp;a.m., a Pike Place wedding, a Seahawks Sunday, or a downtown board meeting &mdash; we deliver the same answer. Quietly, every time.
+            </p>
+
+            <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
+              <a href="/about"
+                class="ecl-focusable inline-flex items-center gap-2 font-sans text-[11px] font-semibold tracking-[0.2em] uppercase text-brand-forest border-b border-brand-gold pb-1 transition-colors hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2"
+                aria-label="Learn more about Emerald City Limos"
+              >
+                Our story
+                <span aria-hidden="true">→</span>
+              </a>
+              <a href="/locations"
+                class="ecl-focusable inline-flex items-center gap-2 font-sans text-[11px] font-semibold tracking-[0.2em] uppercase text-brand-forest/50 border-b border-brand-forest/20 pb-1 transition-colors hover:text-brand-forest hover:border-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2"
+                aria-label="View all service areas"
+              >
+                Service areas
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
+      <!-- Mobile stat row — shown below the grid on small screens -->
+      <div
+        class="lg:hidden mt-10 grid grid-cols-3 gap-px bg-white/10"
+        aria-label="Company statistics"
+      >
+        {[
+          { value: '15+',  label: 'Years'        },
+          { value: '24/7', label: 'Available'    },
+        ].map((stat) => (
+          <div
+            class="bg-white/10 flex flex-col items-center justify-center py-5 px-2 text-center"
+            role="listitem"
+            aria-label={`${stat.value} — ${stat.label}`}
+          >
+            <span class="font-display font-light text-white text-2xl leading-none mb-1">
+              {stat.value}
+            </span>
+            <span class="font-sans text-[9px] font-medium tracking-[0.14em] uppercase text-white/50">
+              {stat.label}
+            </span>
+          </div>
+        ))}
+      </div>
+
     </div>
   </section>
 
 
-
   <!-- ════════════════════════════════════════════════════════════════════
-       SERVICE AREAS — refined chips, brand colours
-       ════════════════════════════════════════════════════════════════════ -->
-  <section class="bg-brand-champagne py-20 sm:py-24 px-6 sm:px-8" aria-labelledby="areas-heading">
-    <div class="max-w-5xl mx-auto text-center">
-      <p class="font-sans text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] uppercase text-brand-gold mb-4">
-        Coverage
-      </p>
-      <h2
-        id="areas-heading"
-        class="font-display font-light text-brand-forest leading-[1.08] tracking-[-0.015em] mb-4"
-        style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);"
-      >
-        Greater Seattle &mdash;
-        <em class="text-brand-gold not-italic" style="font-style: italic;">end to end</em>.
-      </h2>
-      <p class="font-sans font-light text-neutral-700 mb-10 max-w-xl mx-auto">
-        Serving every major city across King, Snohomish and Pierce counties.
-      </p>
+     SERVICE AREAS — editorial map layout
+     ════════════════════════════════════════════════════════════════════ -->
+  <section
+    class="relative bg-brand-forest overflow-hidden py-20 sm:py-28 px-6 sm:px-8"
+    aria-labelledby="areas-heading"
+  >
 
-      <ul class="flex flex-wrap justify-center gap-2 sm:gap-3 list-none p-0" role="list">
-        {areas.map((area) => (
-          <li>
-            <span class="inline-flex items-center px-4 py-2 font-sans text-[11px] sm:text-xs font-medium tracking-[0.08em] text-brand-forest bg-white border border-brand-forest/15 hover:border-brand-gold transition-colors duration-300">
-              {area}
-            </span>
-          </li>
-        ))}
-      </ul>
+    <!-- Top gold rule -->
+    <div
+      class="absolute top-0 inset-x-0 h-px pointer-events-none"
+      style="background: linear-gradient(90deg, transparent, rgba(195,154,69,0.45), transparent);"
+      aria-hidden="true"
+    ></div>
 
-      <div class="mt-10">
-        <a
-          href="/locations"
-          class="inline-flex items-center gap-2 font-sans text-[11px] font-semibold tracking-[0.2em] uppercase text-brand-forest border-b border-brand-gold pb-1 hover:text-brand-gold transition-colors"
+    <!-- Subtle texture -->
+    <div
+      class="pointer-events-none absolute inset-0 opacity-[.03]"
+      style="background-image: repeating-linear-gradient(45deg,#fff 0px,#fff 1px,transparent 1px,transparent 8px);"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative z-10 max-w-6xl mx-auto">
+
+      <!-- ── Header row ── -->
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 lg:gap-16 items-end mb-16 sm:mb-20">
+        <div>
+          <p class="font-sans text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] uppercase text-brand-gold mb-4">
+            Coverage
+          </p>
+          <h2
+            id="areas-heading"
+            class="font-display font-light text-white leading-[1.04] tracking-[-0.025em]"
+            style="font-size: clamp(2.25rem, 5vw, 4rem);"
+          >
+            Greater Seattle&nbsp;&mdash;<br>
+            <em
+              class="not-italic"
+              style="font-style: italic !important; color: rgba(195,154,69,0.85);"
+            >
+              end to end
+            </em>.
+          </h2>
+        </div>
+
+        
+        <a  href="/locations"
+          class="ecl-focusable shrink-0 inline-flex items-center gap-2 font-sans text-[11px] font-semibold tracking-[0.2em] uppercase text-white/60 border-b border-white/20 pb-1 transition-colors hover:text-brand-gold hover:border-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-forest self-end"
+          aria-label="View all service area locations"
         >
-          View all locations
+          All locations
           <span aria-hidden="true">→</span>
         </a>
       </div>
-    </div>
-  </section>
 
+      <!-- ── Three-county columns ── -->
+      <div
+        class="grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/[.06] mb-14"
+        role="list"
+        aria-label="Service area counties"
+      >
+        {[
+          {
+            county: 'King County',
+            note:   'incl. SeaTac Airport',
+            cities: ['Seattle','Bellevue','Redmond','Kirkland','Renton','Auburn','Federal Way','Sammamish','Kenmore','Bothell','SeaTac','Tukwila','Mercer Island','Issaquah','Burien'],
+          },
+          {
+            county: 'Snohomish County',
+            note:   'incl. Paine Field',
+            cities: ['Everett','Lynnwood','Edmonds','Mukilteo','Marysville','Mountlake Terrace','Shoreline','Woodinville','Mill Creek','Snohomish','Monroe','Arlington','Bothell North'],
+          },
+          {
+            county: 'Pierce County',
+            note:   'incl. Tacoma Dome',
+            cities: ['Tacoma','Lakewood','Puyallup','Gig Harbor','Bonney Lake','Sumner','Fife','Milton','Edgewood','University Place','Steilacoom','DuPont'],
+          },
+        ].map((col) => (
+          <div
+            class="group relative bg-brand-forest px-7 py-8 sm:px-8 sm:py-10 transition-colors duration-300 hover:bg-white/[.04]"
+            role="listitem"
+            aria-label={`${col.county} service area`}
+          >
+            <!-- Animated gold top hairline -->
+            <span
+              class="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-brand-gold transition-transform duration-500 ease-out group-hover:scale-x-100"
+              aria-hidden="true"
+            ></span>
+
+            <!-- County heading -->
+            <div class="flex items-start justify-between gap-4 mb-6">
+              <div>
+                <h3 class="font-display font-normal text-white text-xl leading-snug mb-1">
+                  {col.county}
+                </h3>
+                <p class="font-sans text-[9px] font-medium tracking-[0.18em] uppercase text-brand-gold/70">
+                  {col.note}
+                </p>
+              </div>
+              <span
+                class="shrink-0 mt-1 font-display font-light text-white/15 leading-none select-none"
+                style="font-size: 2.5rem;"
+                aria-hidden="true"
+              >
+                {col.cities.length}
+              </span>
+            </div>
+
+            <!-- City list -->
+            <ul
+              class="list-none m-0 p-0 flex flex-col gap-2"
+              aria-label={`Cities served in ${col.county}`}
+            >
+              {col.cities.map((city) => (
+                <li class="flex items-center gap-2.5 font-sans font-light text-white/55 text-sm transition-colors duration-200 group-hover:text-white/65">
+                  <span class="w-1 h-1 rounded-full bg-brand-gold/50 shrink-0" aria-hidden="true"></span>
+                  {city}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <!-- ── Chip strip ── -->
+      <div class="flex flex-col items-center gap-6">
+        <p class="font-sans text-[9px] font-medium tracking-[0.22em] uppercase text-white/30">
+          All covered cities at a glance
+        </p>
+
+        <ul
+          class="flex flex-wrap justify-center gap-2 list-none m-0 p-0"
+          role="list"
+          aria-label="All service area cities"
+        >
+          {areas.map((area) => (
+            <li>
+              <a
+                href={area.href}
+                class="inline-flex items-center px-3.5 py-1.5 font-sans text-[10px] sm:text-[11px] font-medium tracking-[0.08em] text-white/55 border border-white/10 transition-colors duration-300 hover:border-brand-gold/60 hover:text-white/80"
+                role="listitem"
+              >
+                {area.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <p class="font-sans font-light text-white/30 text-xs text-center max-w-sm">
+          Interstate transfers to Portland, OR and Vancouver, BC available on request.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Bottom gold rule -->
+    <div
+      class="absolute bottom-0 inset-x-0 h-px pointer-events-none"
+      style="background: linear-gradient(90deg, transparent, rgba(195,154,69,0.25), transparent);"
+      aria-hidden="true"
+    ></div>
+
+  </section>
 
 
   <!-- ════════════════════════════════════════════════════════════════════
-       FINAL CTA — deep forest, gold rule, restrained
-       ════════════════════════════════════════════════════════════════════ -->
-  <section class="relative bg-brand-forest py-20 sm:py-28 px-6 sm:px-8 overflow-hidden" aria-labelledby="cta-heading">
-    <!-- Top decorative gold rule -->
+     FINAL CTA — cream/champagne, editorial, restrained
+     ════════════════════════════════════════════════════════════════════ -->
+  <section
+    class="relative bg-brand-champagne overflow-hidden py-20 sm:py-28 px-6 sm:px-8"
+    aria-labelledby="cta-heading"
+  >
+
+    <!-- Top forest rule -->
     <div
       class="absolute top-0 left-0 right-0 h-px"
-      style="background: linear-gradient(90deg, transparent, rgba(195,154,69,0.5), transparent);"
+      style="background: linear-gradient(90deg, transparent, rgba(10,35,24,0.15), transparent);"
       aria-hidden="true"
     ></div>
 
-    <div class="max-w-3xl mx-auto text-center">
-      <p class="font-sans text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] uppercase text-brand-gold-soft mb-5">
-        Reserve Now
-      </p>
-      <h2
-        id="cta-heading"
-        class="font-display font-light text-white leading-[1.08] tracking-[-0.015em] mb-6"
-        style="font-size: clamp(2rem, 4.5vw, 3.25rem);"
-      >
-        Ready to ride
-        <em class="text-brand-gold-soft not-italic" style="font-style: italic;">in luxury?</em>
-      </h2>
-      <p class="font-sans font-light text-white/75 leading-relaxed mb-10 max-w-xl mx-auto">
-        Book online in under 60 seconds — or speak to a chauffeur dispatcher 24/7.
-      </p>
+    <!-- Subtle vertical spines — decorative only -->
+    <div class="pointer-events-none absolute inset-y-0 left-1/4 w-px bg-brand-forest/[.05] hidden lg:block" aria-hidden="true"></div>
+    <div class="pointer-events-none absolute inset-y-0 right-1/4 w-px bg-brand-forest/[.05] hidden lg:block" aria-hidden="true"></div>
 
-      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center" role="group" aria-label="Booking options">
-        <a
-          href="/book-now"
-          data-cta="footer_book_now"
-          aria-label="Reserve your ride — Emerald City Limos"
-          class="ecl-btn-primary ecl-focusable inline-flex items-center justify-center gap-2 min-h-[52px] px-8 font-sans text-[11px] font-semibold tracking-[0.2em] uppercase bg-brand-gold-soft text-brand-forest border border-brand-gold-soft rounded-none"
-        >
-          Reserve Your Ride
-          <span aria-hidden="true" class="ecl-arrow">→</span>
-        </a>
-        <a
-          href={PHONE_TEL}
-          data-cta="footer_call_now"
-          aria-label={`Call us at ${PHONE_DISPLAY}`}
-          class="ecl-btn-secondary ecl-focusable inline-flex items-center justify-center gap-2 min-h-[52px] px-8 font-sans text-[11px] font-semibold tracking-[0.2em] uppercase bg-transparent text-white border border-white/40 hover:border-white/70 rounded-none"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
-          </svg>
-          <span class="tabular-nums">{PHONE_DISPLAY}</span>
-        </a>
+    <div class="relative z-10 max-w-6xl mx-auto">
+
+      <!-- ── Asymmetric editorial grid ── -->
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-12 lg:gap-20 items-end">
+
+        <!-- Left: heading block -->
+        <div>
+          <!-- Eyebrow with leading rule -->
+          <div class="flex items-center gap-4 mb-6">
+            <div class="h-px w-10 bg-brand-gold shrink-0" aria-hidden="true"></div>
+            <p class="font-sans text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] uppercase text-brand-gold">
+              Reserve Now
+            </p>
+          </div>
+
+          <h2
+            id="cta-heading"
+            class="font-display font-light text-brand-forest leading-[1.04] tracking-[-0.025em] mb-6"
+            style="font-size: clamp(2.5rem, 5.5vw, 4.5rem);"
+          >
+            Ready to ride<br>
+            <em
+              class="italic text-brand-gold"
+            >
+              in luxury?
+            </em>
+          </h2>
+
+          <p class="font-sans font-light text-neutral-600 leading-relaxed max-w-lg"
+            style="font-size: clamp(0.9375rem, 1.4vw, 1.0625rem);">
+            Book online in under 60 seconds — or speak to a chauffeur dispatcher 24&hairsp;/&hairsp;7.
+          </p>
+        </div>
+
+        <!-- Right: action card -->
+        <div class="shrink-0 w-full lg:w-[340px]">
+          <div class="relative bg-white ring-1 ring-brand-forest/10 px-8 py-9">
+
+            <!-- Animated gold hairline — consistent with card pattern -->
+            <span
+              class="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-brand-gold transition-transform duration-700 ease-out"
+              style="animation: scaleIn 1.2s cubic-bezier(0.25,0.46,0.45,0.94) 0.2s forwards;"
+              aria-hidden="true"
+            ></span>
+
+            <!-- Reassurances -->
+            <ul
+              class="list-none m-0 p-0 flex flex-col gap-3 mb-8"
+              aria-label="Booking reassurances"
+            >
+              {[
+                'Flat-rate — your quote is your final charge',
+                'Response within 60 minutes',
+                'Free cancellation up to 4 hours prior',
+              ].map((item) => (
+                <li class="flex items-start gap-3 font-sans text-sm font-light text-neutral-600">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    width="14"
+                    height="14"
+                    class="shrink-0 mt-[2px] text-brand-gold"
+                    aria-hidden="true"
+                  >
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/>
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            <!-- Divider -->
+            <div class="h-px bg-brand-forest/[.08] mb-8" aria-hidden="true"></div>
+
+            <!-- Buttons -->
+            <div
+              class="flex flex-col gap-3"
+              role="group"
+              aria-label="Booking options"
+            >
+              
+              <a  href="/book-now"
+                data-cta="footer_book_now"
+                aria-label="Reserve your ride — Emerald City Limos"
+                class="ecl-btn-primary ecl-focusable inline-flex items-center justify-center gap-2 min-h-[52px] px-8 font-sans text-[11px] font-semibold tracking-[0.2em] uppercase bg-brand-forest text-white border border-brand-forest rounded-none transition-colors duration-200 hover:bg-brand-forest/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2"
+              >
+                Reserve Your Ride
+                <span aria-hidden="true" class="ecl-arrow transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+              </a>
+
+              
+              <a  href={PHONE_TEL}
+                data-cta="footer_call_now"
+                aria-label={`Call us at ${PHONE_DISPLAY}`}
+                class="ecl-btn-secondary ecl-focusable inline-flex items-center justify-center gap-2.5 min-h-[52px] px-8 font-sans text-[11px] font-semibold tracking-[0.2em] uppercase bg-transparent text-brand-forest border border-brand-forest/25 rounded-none transition-colors duration-200 hover:border-brand-gold hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  width="14"
+                  height="14"
+                  aria-hidden="true"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
+                </svg>
+                <span class="tabular-nums">{PHONE_DISPLAY}</span>
+              </a>
+            </div>
+
+            <!-- Sub-note -->
+            <p class="mt-5 font-sans text-[10px] font-light text-neutral-400 text-center tracking-[0.04em]">
+              No payment until you confirm &middot; Corporate invoicing available
+            </p>
+          </div>
+        </div>
+
       </div>
     </div>
 
-    <!-- Bottom decorative gold rule -->
+    <!-- Bottom forest rule -->
     <div
       class="absolute bottom-0 left-0 right-0 h-px"
-      style="background: linear-gradient(90deg, transparent, rgba(195,154,69,0.3), transparent);"
+      style="background: linear-gradient(90deg, transparent, rgba(10,35,24,0.12), transparent);"
       aria-hidden="true"
     ></div>
+
   </section>
+
+  <style>
+    @keyframes scaleIn {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+  </style>
 
 </MainLayout>

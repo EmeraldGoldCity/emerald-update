@@ -1,0 +1,196 @@
+---
+/**
+ * BookingWidget
+ * -------------
+ * Wraps the Moovs booking iframe in a lazy-loading container.
+ *
+ * Strategy
+ *   - Render a styled, accessible placeholder block on first paint
+ *     (zero third-party JS, fast LCP).
+ *   - An IntersectionObserver watches the container with a 200px
+ *     rootMargin. When the container is near the viewport, the script
+ *     injects the iframe and removes the placeholder.
+ *   - If the browser doesn't support IntersectionObserver, the iframe
+ *     mounts immediately as a fallback.
+ *   - The browser's native `loading="lazy"` is also set as belt-and-
+ *     suspenders for the iframe itself.
+ */
+interface Props {
+  /** Operator iframe URL — defaults to current Moovs deployment. */
+  src?: string;
+  /** Minimum height while loading; keeps CLS at zero. */
+  minHeight?: string;
+}
+
+const {
+  src = 'https://customer.moovs.app/a1-charters-1/iframe',
+  minHeight = '820px',
+} = Astro.props;
+---
+
+<section
+  class="bg-brand-forest py-12 sm:py-16"
+  aria-labelledby="booking-widget-heading"
+>
+  <div class="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+    <div class="mb-6 flex flex-col gap-3 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <div class="mb-2 flex items-center gap-3">
+          <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
+          <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+            Reservation Portal
+          </p>
+        </div>
+        <h2
+          id="booking-widget-heading"
+          class="font-display text-white text-2xl font-light leading-tight text-brand-forest sm:text-3xl"
+          style="letter-spacing: -0.01em;"
+        >
+          Book in <em class="italic text-brand-gold">under two minutes.</em>
+        </h2>
+      </div>
+      <p class="hidden font-sans text-[0.78rem] text-brand-forest/60 sm:block">
+        Powered by Moovs · secured booking
+      </p>
+    </div>
+
+    <div
+      data-booking-widget
+      data-src={src}
+      class="relative overflow-hidden border border-brand-forest/10 bg-white shadow-[0_24px_48px_-32px_rgba(10,35,24,0.18)]"
+      style={`min-height: ${minHeight};`}
+    >
+      <!-- Placeholder: visible until the iframe is injected -->
+      <div
+        data-booking-placeholder
+        class="absolute inset-0 flex flex-col items-center justify-center gap-5 bg-brand-champagne px-6 text-center"
+        aria-hidden="false"
+      >
+        <span
+          class="pointer-events-none absolute inset-0"
+          style="background: radial-gradient(ellipse 60% 50% at center, rgba(195,154,69,0.10) 0%, transparent 70%);"
+          aria-hidden="true"
+        ></span>
+
+        <span class="relative inline-flex h-14 w-14 items-center justify-center border border-brand-gold/30 bg-brand-gold/5 text-brand-gold">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            width="26"
+            height="26"
+            aria-hidden="true"
+          >
+            <path d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+          </svg>
+        </span>
+
+        <div class="relative max-w-md">
+          <p class="font-display text-xl font-medium leading-tight text-brand-forest">
+            Loading booking portal
+          </p>
+          <p
+            data-booking-status
+            class="mt-1.5 font-sans text-[0.92rem] font-light leading-relaxed text-brand-forest/65"
+          >
+            Scroll down to load the reservation form, or call dispatch.
+          </p>
+        </div>
+
+        <div class="relative flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+          <a
+            href="tel:+12065959675"
+            class="inline-flex min-h-[48px] items-center justify-center gap-2 border border-brand-forest/25 bg-white px-5 font-sans text-[0.74rem] font-semibold uppercase tracking-[0.18em] text-brand-forest outline-none transition-colors duration-200 hover:border-brand-gold focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-champagne"
+            aria-label="Call dispatch at (206) 595-9675"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              width="14"
+              height="14"
+              class="text-brand-gold"
+              aria-hidden="true"
+            >
+              <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+            </svg>
+            Call (206) 595-9675
+          </a>
+          <button
+            type="button"
+            data-booking-load-now
+            class="inline-flex min-h-[48px] items-center justify-center gap-2 border border-brand-gold bg-brand-gold px-5 font-sans text-[0.74rem] font-semibold uppercase tracking-[0.18em] text-brand-forest outline-none transition-[background-color,box-shadow] duration-200 hover:bg-brand-gold-soft hover:shadow-[0_8px_20px_-8px_rgba(163,126,44,0.55)] focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-champagne motion-reduce:transition-none"
+          >
+            Load booking now
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    const widget = document.querySelector('[data-booking-widget]');
+    if (!widget) return;
+
+    const src = widget.getAttribute('data-src');
+    if (!src) return;
+
+    const placeholder = widget.querySelector('[data-booking-placeholder]');
+    const loadBtn = widget.querySelector('[data-booking-load-now]');
+    const status = widget.querySelector('[data-booking-status]');
+    let mounted = false;
+
+    function mount() {
+      if (mounted) return;
+      mounted = true;
+      if (status) status.textContent = 'Almost ready…';
+
+      const iframe = document.createElement('iframe');
+      iframe.src = src;
+      iframe.title = 'Emerald City Limos booking portal';
+      iframe.loading = 'lazy';
+      iframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+      iframe.className = 'absolute inset-0 h-full w-full border-0';
+      iframe.style.minHeight = widget.style.minHeight || '820px';
+
+      iframe.addEventListener('load', () => {
+        if (placeholder) placeholder.remove();
+      });
+
+      widget.appendChild(iframe);
+    }
+
+    // Click-to-load fallback button
+    loadBtn?.addEventListener('click', mount);
+
+    // Lazy-load via IntersectionObserver
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              mount();
+              io.disconnect();
+            }
+          });
+        },
+        { rootMargin: '200px' }
+      );
+      io.observe(widget);
+    } else {
+      // No IO support — mount immediately.
+      mount();
+    }
+  })();
+</script>

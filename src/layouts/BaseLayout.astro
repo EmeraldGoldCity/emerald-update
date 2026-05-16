@@ -1,6 +1,6 @@
 ---
-import '@/styles/index.css';
-import { ViewTransitions } from 'astro:transitions';
+import "@/styles/index.css";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title: string;
@@ -10,58 +10,68 @@ interface Props {
   canonical?: string;
 }
 
-const { 
-  title, 
-  description, 
-  keywords = 'luxury car service seattle, black car service seattle, limo service seattle, airport transportation seattle',
-  ogImage = '/og-image.jpg',
-  canonical
+const {
+  title,
+  description,
+  keywords = "luxury car service seattle, black car service seattle, limo service seattle, airport transportation seattle",
+  ogImage = "/og-image.jpg",
+  canonical,
 } = Astro.props;
 
-const siteUrl = 'https://emeraldcitylimos.com';
-const fullTitle = title.includes('Emerald City Limos') ? title : `${title} | Emerald City Limos - Seattle Luxury Transportation`;
+const siteUrl = "https://emeraldcitylimos.com";
+const fullTitle = title.includes("Emerald City Limos")
+  ? title
+  : `${title} | Emerald City Limos - Seattle Luxury Transportation`;
 const canonicalURL = canonical || new URL(Astro.url.pathname, siteUrl).href;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-   <!-- Google tag (gtag.js) -->
-  <script defer src="https://www.googletagmanager.com/gtag/js?id=G-2D3FQTSFK1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-2D3FQTSFK1');
-  </script>
+    <!-- Google tag (gtag.js) -->
+    <script
+      is:inline
+      defer
+      src="https://www.googletagmanager.com/gtag/js?id=G-2D3FQTSFK1"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-2D3FQTSFK1");
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    
+
     <!-- Primary Meta Tags -->
     <title>{fullTitle}</title>
     <meta name="title" content={fullTitle} />
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
     <link rel="canonical" href={canonicalURL} />
-    
+
     <!-- Author & Copyright -->
     <meta name="author" content="Emerald City Limos" />
     <meta name="copyright" content="Emerald City Limos" />
-    
+
     <!-- Robots -->
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+
     <!-- Geographic Targeting -->
     <meta name="geo.region" content="US-WA" />
     <meta name="geo.placename" content="Seattle" />
     <meta name="geo.position" content="47.6062;-122.3321" />
     <meta name="ICBM" content="47.6062, -122.3321" />
-    
+
     <!-- Language -->
     <meta http-equiv="content-language" content="en-US" />
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
@@ -72,38 +82,40 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, siteUrl).href;
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="Emerald City Limos" />
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={fullTitle} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={new URL(ogImage, siteUrl).href} />
-    
+
     <!-- Alternate Languages -->
     <link rel="alternate" hreflang="en-us" href={canonicalURL} />
     <link rel="alternate" hreflang="x-default" href={canonicalURL} />
-    
+
     <!-- Favicon & App Icons -->
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#d4af37" />
-    
+
     <!-- CRITICAL CSS - Inlined for Performance -->
     <style is:inline>
       /* Critical CSS - Mobile-First Performance Optimized */
     </style>
-    
+
     <!-- Preconnect to important origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://images.unsplash.com" />
     <link rel="preconnect" href="https://static.moovs.app" />
     <link rel="preconnect" href="https://api-production.moovs.app" />
+    <link rel="preconnect" href="https://customer.moovs.app" />
+    <link rel="dns-prefetch" href="https://customer.moovs.app" />
     <link rel="dns-prefetch" href="https://images.unsplash.com" />
-    
+
     <!-- Preload Critical Resources -->
     <link
       rel="preload"
@@ -121,179 +133,189 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, siteUrl).href;
       fetchpriority="high"
       media="(max-width: 767px)"
     />
-    
+
     <!-- Preload critical Unsplash images (until replaced with local) -->
-    <link 
-      rel="preload" 
-      as="image" 
+    <link
+      rel="preload"
+      as="image"
       href="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=640&h=360&fit=crop&q=70&fm=webp"
       type="image/webp"
       fetchpriority="high"
       media="(max-width: 768px)"
     />
-    <link 
-      rel="preload" 
-      as="image" 
+    <link
+      rel="preload"
+      as="image"
       href="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=1920&h=1080&fit=crop&q=75&fm=webp"
       type="image/webp"
       fetchpriority="high"
       media="(min-width: 769px)"
     />
-    
+
     <!-- View Transitions for instant navigation -->
-    <ViewTransitions />
-    
+    <ClientRouter />
+
     <!-- Business Schema -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "LimousineBusiness",
-      "name": "Emerald City Limos",
-      "image": new URL(ogImage, siteUrl).href,
-      "@id": siteUrl,
-      "url": siteUrl,
-      "telephone": "+1-206-595-9675",
-      "email": "client@emeraldcitylimos.com",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "",
-        "addressLocality": "Seattle",
-        "addressRegion": "WA",
-        "postalCode": "98101",
-        "addressCountry": "US"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 47.6062,
-        "longitude": -122.3321
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday"
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "LimousineBusiness",
+        name: "Emerald City Limos",
+        image: new URL(ogImage, siteUrl).href,
+        "@id": siteUrl,
+        url: siteUrl,
+        telephone: "+1-206-595-9675",
+        email: "client@emeraldcitylimos.com",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "",
+          addressLocality: "Seattle",
+          addressRegion: "WA",
+          postalCode: "98101",
+          addressCountry: "US",
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: 47.6062,
+          longitude: -122.3321,
+        },
+        openingHoursSpecification: {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday",
+          ],
+          opens: "00:00",
+          closes: "23:59",
+        },
+        priceRange: "$$",
+        sameAs: [
+          "https://www.facebook.com/emeraldcitylimos",
+          "https://www.instagram.com/emeraldcitylimos",
+          "https://www.linkedin.com/company/emeraldcitylimos",
+          "https://www.yelp.com/biz/emerald-city-limos-seattle",
         ],
-        "opens": "00:00",
-        "closes": "23:59"
-      },
-      "priceRange": "$$",
-      "sameAs": [
-        "https://www.facebook.com/emeraldcitylimos",
-        "https://www.instagram.com/emeraldcitylimos",
-        "https://www.linkedin.com/company/emeraldcitylimos",
-        "https://www.yelp.com/biz/emerald-city-limos-seattle"
-      ],
-      "areaServed": [
-        {
-          "@type": "City",
-          "name": "Seattle",
-          "containedInPlace": {
-            "@type": "State",
-            "name": "Washington"
+        areaServed: [
+          {
+            "@type": "City",
+            name: "Seattle",
+            containedInPlace: {
+              "@type": "State",
+              name: "Washington",
+            },
+            sameAs: "https://en.wikipedia.org/wiki/Seattle",
           },
-          "sameAs": "https://en.wikipedia.org/wiki/Seattle"
+          {
+            "@type": "City",
+            name: "Bellevue",
+            sameAs: "https://en.wikipedia.org/wiki/Bellevue,_Washington",
+          },
+          {
+            "@type": "City",
+            name: "Tacoma",
+            sameAs: "https://en.wikipedia.org/wiki/Tacoma,_Washington",
+          },
+          {
+            "@type": "City",
+            name: "Kirkland",
+          },
+          {
+            "@type": "City",
+            name: "Redmond",
+          },
+          {
+            "@type": "City",
+            name: "Everett",
+          },
+        ],
+        serviceType: [
+          "Airport Transportation",
+          "Corporate Car Service",
+          "Wedding Limo Service",
+          "Black Car Service",
+          "Luxury Transportation",
+          "Executive Transportation",
+        ],
+        potentialAction: {
+          "@type": "ReserveAction",
+          target: {
+            "@type": "EntryPoint",
+            urlTemplate: `${siteUrl}/book-now`,
+            actionPlatform: [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform",
+            ],
+          },
+          result: {
+            "@type": "Reservation",
+            name: "Book Limo Service",
+          },
         },
-        {
-          "@type": "City",
-          "name": "Bellevue",
-          "sameAs": "https://en.wikipedia.org/wiki/Bellevue,_Washington"
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.9",
+          reviewCount: "127",
+          bestRating: "5",
+          worstRating: "1",
         },
-        {
-          "@type": "City",
-          "name": "Tacoma",
-          "sameAs": "https://en.wikipedia.org/wiki/Tacoma,_Washington"
-        },
-        {
-          "@type": "City",
-          "name": "Kirkland"
-        },
-        {
-          "@type": "City",
-          "name": "Redmond"
-        },
-        {
-          "@type": "City",
-          "name": "Everett"
-        }
-      ],
-      "serviceType": [
-        "Airport Transportation",
-        "Corporate Car Service",
-        "Wedding Limo Service",
-        "Black Car Service",
-        "Luxury Transportation",
-        "Executive Transportation"
-      ],
-      "potentialAction": {
-        "@type": "ReserveAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": `${siteUrl}/book-now`,
-          "actionPlatform": [
-            "http://schema.org/DesktopWebPlatform",
-            "http://schema.org/MobileWebPlatform"
-          ]
-        },
-        "result": {
-          "@type": "Reservation",
-          "name": "Book Limo Service"
-        }
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "127",
-        "bestRating": "5",
-        "worstRating": "1"
-      }
-    })} />
+      })}
+    />
   </head>
   <body class="min-h-screen bg-white">
     <slot />
-    
+
     <!-- Performance Optimization Script -->
     <script is:inline>
-  (function() {
-    'use strict';
-    
-    // Prefetch likely next pages after page is idle
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(function() {
-        var pages = ['/book-now', '/services', '/airport-transfers', '/fleet', '/locations'];
-        pages.forEach(function(page) {
-          var link = document.createElement('link');
-          link.rel = 'prefetch';
-          link.href = page;
-          link.as = 'document';
-          document.head.appendChild(link);
-        });
-      });
-    }
-    
-    // Resource hint for booking system
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(function() {
-        var bookingHint = document.createElement('link');
-        bookingHint.rel = 'dns-prefetch';
-        bookingHint.href = 'https://customer.moovs.app';
-        document.head.appendChild(bookingHint);
-      });
-    }
-  })();
+      (function () {
+        "use strict";
 
-  // Moovs booking widget
-  window["moovsAPI"] = moovsAPI = window["moovsAPI"] || [];
-  moovsAPI.push(["operator", "d7ca8eda-6ef3-11ef-87b0-9b8d3824ce6b"]);
-  (function(m, oo, v, s) {
-    s = m.createElement(oo);
-    s.src = v;
-    s.async = 1;
-    m.head.appendChild(s);
-  })(document, "script", "https://static.moovs.app");
-</script>
+        // Prefetch likely next pages after page is idle
+        if ("requestIdleCallback" in window) {
+          requestIdleCallback(function () {
+            var pages = [
+              "/book-now",
+              "/services",
+              "/airport-transfers",
+              "/fleet",
+              "/locations",
+            ];
+            pages.forEach(function (page) {
+              var link = document.createElement("link");
+              link.rel = "prefetch";
+              link.href = page;
+              link.as = "document";
+              document.head.appendChild(link);
+            });
+          });
+        }
+
+        // Resource hint for booking system
+        if ("requestIdleCallback" in window) {
+          requestIdleCallback(function () {
+            var bookingHint = document.createElement("link");
+            bookingHint.rel = "dns-prefetch";
+            bookingHint.href = "https://customer.moovs.app";
+            document.head.appendChild(bookingHint);
+          });
+        }
+      })();
+
+      // Moovs booking widget
+      window["moovsAPI"] = moovsAPI = window["moovsAPI"] || [];
+      moovsAPI.push(["operator", "d7ca8eda-6ef3-11ef-87b0-9b8d3824ce6b"]);
+      (function (m, oo, v, s) {
+        s = m.createElement(oo);
+        s.src = v;
+        s.async = 1;
+        m.head.appendChild(s);
+      })(document, "script", "https://static.moovs.app");
+    </script>
   </body>
 </html>

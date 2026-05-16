@@ -1,0 +1,382 @@
+---
+/**
+ * VehicleDetails
+ * --------------
+ * Two-column section on the vehicle detail page:
+ *   Left  — scroll-snap photo carousel (4:3, full keyboard + touch support)
+ *   Right — specs table, onboard features, best-for tags, CTA cluster
+ *
+ * Replaces the separate VehicleIntro + VehicleGallery + VehicleSpecs sections.
+ * Zero React island. The carousel uses native scroll-snap + a small inline
+ * script (IntersectionObserver for dot sync, arrow keys, Home/End).
+ */
+import type { Vehicle } from '@/data/fleet';
+
+interface Props {
+  vehicle: Vehicle;
+}
+
+const { vehicle } = Astro.props;
+
+const slides =
+  vehicle.gallery && vehicle.gallery.length > 0
+    ? vehicle.gallery
+    : vehicle.imageSrc
+      ? [{ src: vehicle.imageSrc, alt: vehicle.imageAlt, view: 'Exterior' as const }]
+      : [];
+
+const specRows = [
+  { label: 'Passengers', value: vehicle.capacityLabel },
+  ...(vehicle.specs?.luggage       ? [{ label: 'Luggage',       value: vehicle.specs.luggage }]       : []),
+  ...(vehicle.specs?.drivetrain    ? [{ label: 'Drivetrain',    value: vehicle.specs.drivetrain }]    : []),
+  ...(vehicle.specs?.transmission  ? [{ label: 'Transmission',  value: vehicle.specs.transmission }]  : []),
+  ...(vehicle.specs?.yearRange     ? [{ label: 'Model years',   value: vehicle.specs.yearRange }]     : []),
+  ...(vehicle.specs?.extras        ?? []),
+];
+
+const PHONE_DISPLAY = '(206) 595-9675';
+const PHONE_HREF    = 'tel:+12065959675';
+---
+
+<section
+  class="bg-brand-champagne py-16 sm:py-20 lg:py-24"
+  aria-label={`${vehicle.name} gallery, specifications and features`}
+>
+  <div class="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+    <div class="grid grid-cols-1 items-start gap-12 lg:grid-cols-[7fr_5fr] lg:gap-14 xl:gap-16">
+
+      <!-- ══════════════════════════════════════════════
+           LEFT · Photo Carousel
+      ═══════════════════════════════════════════════ -->
+      <div class="min-w-0 lg:sticky lg:top-24 lg:self-start">
+
+        {slides.length > 0 ? (
+          <div
+            data-vehicle-gallery
+            role="region"
+            aria-roledescription="carousel"
+            aria-label={`${vehicle.name} photo gallery`}
+            tabindex="0"
+            class="outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-champagne"
+          >
+
+            <!-- Image scroll area — relative parent for prev/next buttons -->
+            <div class="relative overflow-hidden">
+              <ul
+                role="list"
+                data-gallery-track
+                class="m-0 flex list-none snap-x snap-mandatory overflow-x-auto overflow-y-hidden p-0 scroll-smooth motion-reduce:scroll-auto"
+                style="scrollbar-width: none; -ms-overflow-style: none;"
+              >
+                {slides.map((slide, index) => (
+                  <li
+                    data-gallery-slide
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label={`Slide ${index + 1} of ${slides.length}: ${slide.view}`}
+                    class="relative w-full shrink-0 snap-center bg-brand-forest"
+                  >
+                    <div class="relative aspect-[4/3] w-full">
+                      <img
+                        src={typeof slide.src === 'string' ? slide.src : slide.src.src}
+                        alt={slide.alt}
+                        loading={index === 0 ? 'eager' : 'lazy'}
+                        fetchpriority={index === 0 ? 'high' : 'auto'}
+                        decoding={index === 0 ? 'sync' : 'async'}
+                        width="1200"
+                        height="900"
+                        class="absolute inset-0 h-full w-full object-cover object-center"
+                      />
+
+                      <!-- View label -->
+                      <span class="absolute bottom-3 left-3 inline-flex items-center bg-brand-forest-deep/85 px-2.5 py-1 font-sans text-[0.67rem] font-semibold uppercase tracking-[0.16em] text-brand-gold-soft backdrop-blur-sm">
+                        {slide.view}
+                      </span>
+
+                      <!-- Slide counter -->
+                      <span
+                        class="absolute right-3 top-3 bg-black/40 px-2 py-0.5 font-sans text-[0.67rem] font-medium tabular-nums text-white/75 backdrop-blur-sm"
+                        aria-hidden="true"
+                      >
+                        {index + 1} / {slides.length}
+                      </span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              {slides.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    data-gallery-prev
+                    class="absolute left-3 top-1/2 z-10 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center border border-white/15 bg-brand-forest-deep/80 text-white outline-none backdrop-blur-sm transition-[background-color,border-color] duration-200 hover:border-brand-gold-soft hover:bg-brand-forest-deep focus-visible:border-brand-gold-soft focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-forest-deep disabled:cursor-not-allowed disabled:opacity-40 motion-reduce:transition-none"
+                    aria-label="Previous photo"
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true">
+                      <path d="M15.75 19.5 8.25 12l7.5-7.5"/>
+                    </svg>
+                  </button>
+
+                  <button
+                    type="button"
+                    data-gallery-next
+                    class="absolute right-3 top-1/2 z-10 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center border border-white/15 bg-brand-forest-deep/80 text-white outline-none backdrop-blur-sm transition-[background-color,border-color] duration-200 hover:border-brand-gold-soft hover:bg-brand-forest-deep focus-visible:border-brand-gold-soft focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-forest-deep disabled:cursor-not-allowed disabled:opacity-40 motion-reduce:transition-none"
+                    aria-label="Next photo"
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true">
+                      <path d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
+                    </svg>
+                  </button>
+                </>
+              )}
+            </div>
+
+            {/* Dot indicators — below the image area */}
+            {slides.length > 1 && (
+              <div
+                class="mt-4 flex items-center justify-center gap-2"
+                role="tablist"
+                aria-label="Gallery slide selector"
+              >
+                {slides.map((slide, index) => (
+                  <button
+                    type="button"
+                    data-gallery-dot
+                    data-index={index}
+                    role="tab"
+                    aria-selected={index === 0 ? 'true' : 'false'}
+                    aria-label={`Go to slide ${index + 1}: ${slide.view}`}
+                    class="h-1.5 w-7 cursor-pointer border-0 bg-brand-forest/20 p-0 outline-none transition-[background-color,width] duration-300 hover:bg-brand-forest/40 focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-champagne aria-selected:w-11 aria-selected:bg-brand-gold"
+                  />
+                ))}
+              </div>
+            )}
+
+          </div>
+        ) : (
+          /* Placeholder when no images */
+          <div class="flex aspect-[4/3] w-full items-center justify-center bg-brand-forest/8">
+            <span class="font-display text-2xl italic text-brand-forest/30">{vehicle.category}</span>
+          </div>
+        )}
+
+        {/* Extended description sits below the gallery — E-E-A-T trust copy */}
+        {vehicle.descriptionExtended && (
+          <p class="mt-6 border-l-2 border-brand-gold/25 pl-4 font-sans text-[0.88rem] font-light italic leading-[1.8] text-brand-forest/65">
+            {vehicle.descriptionExtended}
+          </p>
+        )}
+      </div>
+
+      <!-- ══════════════════════════════════════════════
+           RIGHT · Specs + Features + CTA
+      ═══════════════════════════════════════════════ -->
+      <aside class="flex flex-col gap-8">
+
+        <!-- Vehicle label -->
+        <div>
+          <div class="mb-2 flex items-center gap-3">
+            <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
+            <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+              {vehicle.category}
+            </p>
+          </div>
+          <p
+            class="font-display font-light leading-tight text-brand-forest"
+            style="font-size: clamp(1.4rem, 2.4vw, 1.85rem); letter-spacing: -0.01em;"
+          >
+            {vehicle.name}
+          </p>
+        </div>
+
+        <!-- ── Specifications ───────────────────────────────── -->
+        {specRows.length > 0 && (
+          <div>
+            <p class="mb-3 font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-forest/50">
+              Specifications
+            </p>
+            <dl class="m-0 divide-y divide-brand-forest/8 border border-brand-forest/10 bg-white p-0">
+              {specRows.map((row) => (
+                <div class="flex items-baseline justify-between gap-4 px-4 py-3 sm:px-5">
+                  <dt class="shrink-0 font-sans text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-brand-forest/55">
+                    {row.label}
+                  </dt>
+                  <dd class="text-right font-sans text-[0.88rem] font-medium leading-snug tabular-nums text-brand-forest">
+                    {row.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        )}
+
+        <!-- ── Onboard Features ─────────────────────────────── -->
+        {vehicle.features.length > 0 && (
+          <div>
+            <p class="mb-3 font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-forest/50">
+              Onboard Features
+            </p>
+            <ul role="list" class="m-0 list-none space-y-2 p-0">
+              {vehicle.features.map((feature) => (
+                <li class="flex items-center gap-3 border border-brand-forest/8 bg-white px-4 py-3 font-sans text-[0.88rem] font-medium leading-snug text-brand-forest/85">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    width="15"
+                    height="15"
+                    class="shrink-0 text-brand-gold"
+                    aria-hidden="true"
+                  >
+                    <path d="m4.5 12.75 6 6 9-13.5"/>
+                  </svg>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <!-- ── Best For ─────────────────────────────────────── -->
+        {vehicle.bestFor.length > 0 && (
+          <div>
+            <p class="mb-3 font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-forest/50">
+              Best For
+            </p>
+            <ul role="list" class="m-0 flex list-none flex-wrap gap-1.5 p-0">
+              {vehicle.bestFor.map((tag) => (
+                <li class="border border-brand-forest/12 bg-white px-3 py-1.5 font-sans text-[0.72rem] font-medium text-brand-forest/75">
+                  {tag}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <!-- ── Pricing note ────────────────────────────────── -->
+        <p class="font-sans text-[0.75rem] leading-relaxed text-brand-forest/55">
+          Pricing varies by route and duration —{' '}
+          <a
+            href="/book-now?intent=quote"
+            class="font-semibold text-brand-gold underline-offset-2 outline-none transition-colors hover:text-brand-gold-soft hover:underline focus-visible:underline focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-champagne"
+          >
+            request a quote
+          </a>.
+        </p>
+
+        <!-- ── CTA cluster ────────────────────────────────── -->
+        <div class="flex flex-col gap-3">
+          <a
+            href="/book-now"
+            class="inline-flex h-12 items-center justify-center gap-2 bg-brand-gold px-6 font-sans text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-brand-forest outline-none transition-[background-color,box-shadow] duration-200 hover:bg-brand-gold-soft hover:shadow-[0_6px_20px_-6px_rgba(163,126,44,0.55)] focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-champagne motion-reduce:transition-none"
+            aria-label={`Reserve the ${vehicle.name}`}
+          >
+            Reserve this Vehicle
+            <svg viewBox="0 0 20 20" fill="currentColor" class="h-3 w-3" aria-hidden="true">
+              <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd"/>
+            </svg>
+          </a>
+
+          <a
+            href={PHONE_HREF}
+            class="inline-flex h-12 items-center justify-center gap-2 border border-brand-forest/20 bg-transparent px-6 font-sans text-[0.78rem] font-semibold tabular-nums text-brand-forest outline-none transition-colors duration-200 hover:border-brand-gold hover:text-brand-gold focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-champagne motion-reduce:transition-none"
+            aria-label={`Call Emerald City Limos at ${PHONE_DISPLAY}, available 24/7`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="h-4 w-4 text-brand-gold"
+              aria-hidden="true"
+            >
+              <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/>
+            </svg>
+            <span>{PHONE_DISPLAY}</span>
+          </a>
+        </div>
+
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+  [data-gallery-track]::-webkit-scrollbar { display: none; }
+</style>
+
+<script is:inline>
+  (() => {
+    document.querySelectorAll('[data-vehicle-gallery]').forEach((gallery) => {
+      const track  = gallery.querySelector('[data-gallery-track]');
+      const slides = Array.from(gallery.querySelectorAll('[data-gallery-slide]'));
+      const prevBtn = gallery.querySelector('[data-gallery-prev]');
+      const nextBtn = gallery.querySelector('[data-gallery-next]');
+      const dots   = Array.from(gallery.querySelectorAll('[data-gallery-dot]'));
+
+      if (!track || slides.length === 0) return;
+
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let activeIndex = 0;
+
+      function setActive(index) {
+        activeIndex = Math.max(0, Math.min(slides.length - 1, index));
+        dots.forEach((dot, i) =>
+          dot.setAttribute('aria-selected', i === activeIndex ? 'true' : 'false')
+        );
+        if (prevBtn) prevBtn.toggleAttribute('disabled', activeIndex === 0);
+        if (nextBtn) nextBtn.toggleAttribute('disabled', activeIndex === slides.length - 1);
+      }
+
+      function scrollToIndex(index) {
+        const slide = slides[Math.max(0, Math.min(slides.length - 1, index))];
+        if (!slide) return;
+        track.scrollTo({
+          left: slide.offsetLeft - track.offsetLeft,
+          behavior: reducedMotion ? 'auto' : 'smooth',
+        });
+      }
+
+      /* Sync dots / buttons as user swipes or drags */
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+                const idx = slides.indexOf(entry.target);
+                if (idx !== -1) setActive(idx);
+              }
+            });
+          },
+          { root: track, threshold: [0.6] }
+        );
+        slides.forEach((s) => io.observe(s));
+      }
+
+      prevBtn?.addEventListener('click', () => scrollToIndex(activeIndex - 1));
+      nextBtn?.addEventListener('click', () => scrollToIndex(activeIndex + 1));
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () =>
+          scrollToIndex(parseInt(dot.dataset.index || '0', 10))
+        );
+      });
+
+      gallery.addEventListener('keydown', (e) => {
+        if      (e.key === 'ArrowLeft')  { e.preventDefault(); scrollToIndex(activeIndex - 1); }
+        else if (e.key === 'ArrowRight') { e.preventDefault(); scrollToIndex(activeIndex + 1); }
+        else if (e.key === 'Home')       { e.preventDefault(); scrollToIndex(0); }
+        else if (e.key === 'End')        { e.preventDefault(); scrollToIndex(slides.length - 1); }
+      });
+
+      setActive(0);
+    });
+  })();
+</script>
