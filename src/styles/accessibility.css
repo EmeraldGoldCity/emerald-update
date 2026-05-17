@@ -43,8 +43,8 @@
 
 /* Skip to Main Content Link */
 .skip-link {
-  position: absolute;
-  top: -48px;
+  position: fixed;
+  top: -100px;
   left: 0;
 
   background: #d4af37;

@@ -5,6 +5,7 @@
  * Data-driven card grid for the /airport index. One card per airport
  * in src/data/airports.ts. Zero JS, brand-token only.
  */
+import { Image } from 'astro:assets';
 import { airports } from '@/data/airports';
 ---
 
@@ -41,13 +42,13 @@ import { airports } from '@/data/airports';
           >
             <!-- Photo header -->
             <div class="relative aspect-[16/10] w-full overflow-hidden bg-brand-forest">
-              <img
+              <Image
                 src={airport.heroImage.src}
                 alt={airport.heroImage.alt}
                 loading="lazy"
                 decoding="async"
-                width="1280"
-                height="800"
+                width={1280}
+                height={800}
                 class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.03]"
               />
               <div

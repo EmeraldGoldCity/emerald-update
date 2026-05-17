@@ -308,13 +308,16 @@ export function Navigation({ variant = 'overlay' }: NavigationProps) {
             >
               <img
                 src="/icons/emerald.svg"
-                alt="Emerald City Limos"
+                alt="emerald city limos logo"
                 height={60}
-                className="h-10 w-auto object-contain"
+                className="h-12 w-auto object-contain"
                 fetchpriority="high"
                 decoding="async"
               />
-              <span className="sr-only">Emerald City Limos</span>
+              <span className="flex flex-col leading-none" aria-hidden="true">
+                <span className="font-display text-base font-semibold tracking-wide text-brand-gold">Emerald</span>
+                <span className="font-display text-[0.7rem] tracking-[0.18em] text-brand-champagne/75">City Limos</span>
+              </span>
             </a>
 
             <nav

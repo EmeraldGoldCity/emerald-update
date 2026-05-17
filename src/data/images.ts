@@ -5,26 +5,32 @@ import fleetHero from '@/assets/images/fleet/hero/fleet-hero.png';
 
 /* ── Cadillac Escalade ESV ──────────────────────────────────── */
 import escalade from '@/assets/images/fleet/cadillac/escalade.png';
-import escaladeFront from '@/assets/images/fleet/cadillac/cadillac-front.webp';
+import escaladeFront from '@/assets/images/fleet/cadillac/cadillac-esv-cockpit.png';
 import escaladeSide from '@/assets/images/fleet/cadillac/cadillac-side.webp';
-import escaladeRear from '@/assets/images/fleet/cadillac/cadillac-rear.webp';
+import escaladeRear from '@/assets/images/fleet/cadillac/cadillac-esv-rear.png';
 import escaladeInterior from '@/assets/images/fleet/cadillac/escalade-inside1.jpeg';
 
 /* ── Cadillac XT6 ───────────────────────────────────────────── */
-import cadillacXt6 from '@/assets/images/fleet/cadillac/caddiliacx60.webp';
+import cadillacXt6 from '@/assets/images/fleet/cadillac/cadillac-xt6.png';
+import cadillacExteriorXt6 from '@/assets/images/fleet/cadillac/cadillac-exterior-xt6.png';
+import cadillacRearCabinXt6 from '@/assets/images/fleet/cadillac/cadillac-interior-xt6.png';
+
 
 /* ── Lincoln Navigator L ────────────────────────────────────── */
 import navigatorPhoto from '@/assets/images/fleet/lincoln/luxury-sedan.png';
+import navigatorInterior from '@/assets/images/fleet/lincoln/lincoln-rear.png';
+import navigatorHero from '@/assets/images/fleet/lincoln/lincoln-hero.png';
 
 /* ── Mercedes-Benz Sprinter ─────────────────────────────────── */
-import sprinterMain from '@/assets/images/fleet/sprinter/SPRINTER.jpeg';
+import sprinterMain from '@/assets/images/fleet/sprinter/sprinter-hero.png';
+import sprinterCabin from '@/assets/images/fleet/sprinter/sprinter-interior.png';
 import sprinterInterior from '@/assets/images/fleet/sprinter/SPRINTER-INSIDE.jpeg';
-import sprinterCabin from '@/assets/images/fleet/sprinter/14-sprinter-inside.jpeg';
+
 
 /* ── Mercedes-Benz S-Class ──────────────────────────────────── */
-import mercedesMain from '@/assets/images/fleet/mercedes/merc.webp';
-import mercedesInterior from '@/assets/images/fleet/mercedes/merc-interior1.webp';
-import mercedesInterior2 from '@/assets/images/fleet/mercedes/mercerisland_limo_service.jpeg';
+import mercedesMain from '@/assets/images/fleet/mercedes/mercedes-exterior.png';
+import mercedesInterior from '@/assets/images/fleet/mercedes/mercedes-rear-cabin.png';
+import mercedesInterior2 from '@/assets/images/fleet/mercedes/s-class-hero.png';
 
 /* ── Lincoln Town Car Stretch / Limo ────────────────────────── */
 import limoMain from '@/assets/images/fleet/limo/limo.png';
@@ -32,13 +38,19 @@ import limoInterior from '@/assets/images/fleet/limo/interior.png';
 import limoPartyInterior from '@/assets/images/fleet/limo/party1.webp';
 
 /* ── Freightliner Minibus ───────────────────────────────────── */
-import freightlinerMain from '@/assets/images/fleet/freight-liner/freightliner.webp';
+import freightlinerMain from '@/assets/images/fleet/freight-liner/freightliner-exterior.png';
+import freightlinerExterior from '@/assets/images/fleet/freight-liner/freightliner.webp';
+import freightlinerInterior from '@/assets/images/fleet/freight-liner/freightliner-interior.png';
 
 /* ── Motor Coach ────────────────────────────────────────────── */
 import motorCoachMain from '@/assets/images/fleet/coach/motorcoach.webp';
 
 /* ── Rolls-Royce Ghost ──────────────────────────────────────── */
-import rollsRoyce from '@/assets/images/fleet/rolls-royce/rolls-royce.png';
+import cullinanMain from '@/assets/images/fleet/rolls-royce/cullinan-exterior.png';
+import cullinanExterior2 from '@/assets/images/fleet/rolls-royce/cullinan-exterior-2.png';
+import cullinanRearCabin from '@/assets/images/fleet/rolls-royce/cullinan-interior.png';
+import cullinanInterior2 from '@/assets/images/fleet/rolls-royce/cullinan-interior-2.png';
+import cullinanExterior from '@/assets/images/fleet/rolls-royce/rolls-royce.png';
 
 /* ── BMW X1 ─────────────────────────────────────────────────── */
 import bmwX1 from '@/assets/images/fleet/bmw/bmw-x1.png';
@@ -68,12 +80,13 @@ export const images = {
     },
 
     navigatorL: {
-      main: navigatorPhoto,
+      main: navigatorHero,
+      gallery: [navigatorHero, navigatorPhoto, navigatorInterior],
     },
 
     sprinter: {
       main: sprinterMain,
-      gallery: [sprinterMain, sprinterInterior, sprinterCabin],
+      gallery: [sprinterMain, sprinterCabin, sprinterInterior],
     },
 
     sClass: {
@@ -88,12 +101,12 @@ export const images = {
 
     cadillacXt6: {
       main: cadillacXt6,
-      gallery: [cadillacXt6],
+      gallery: [cadillacXt6, cadillacExteriorXt6, cadillacRearCabinXt6],
     },
 
     freightliner: {
       main: freightlinerMain,
-      gallery: [freightlinerMain],
+      gallery: [freightlinerMain, freightlinerInterior, freightlinerExterior],
     },
 
     partyBus: {
@@ -106,8 +119,9 @@ export const images = {
       gallery: [motorCoachMain],
     },
 
-    rollsRoyce: {
-      main: rollsRoyce,
+    cullinan: {
+      main: cullinanMain,
+      gallery: [cullinanMain, cullinanExterior2, cullinanInterior2, cullinanRearCabin, cullinanExterior],
     },
 
     bmw: {

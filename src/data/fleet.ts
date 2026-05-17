@@ -86,6 +86,68 @@ export interface Vehicle {
 
 export const fleet: Vehicle[] = [
   {
+    id: 'rolls-royce-cullinan',
+    name: 'Rolls-Royce Cullinan',
+    category: 'Luxury SUV',
+    capacity: 4,
+    capacityLabel: 'Up to 4 passengers',
+    features: [
+      'Starlight headliner',
+      'Executive rear seating',
+      'Privacy glass',
+      'Premium surround sound',
+    ],
+    bestFor: ['VIP airport transfers', 'Executive travel', 'Luxury occasions'],
+    imageSrc: images.fleet.cullinan.main,
+    imageAlt:
+      'Rolls-Royce Cullinan luxury SUV — Emerald City Limos chauffeur fleet',
+    gallery: [
+      {
+        src: images.fleet.cullinan.gallery[0],
+        alt: 'Rolls-Royce Cullinan — exterior view',
+        view: 'Exterior',
+      },
+      {
+        src: images.fleet.cullinan.gallery[1],
+        alt: 'Rolls-Royce Cullinan — rear executive seating',
+        view: 'Interior · Rear Cabin',
+      },
+      {
+        src: images.fleet.cullinan.gallery[2],
+        alt: 'Rolls-Royce Cullinan — luxury cockpit details',
+        view: 'Front Cockpit',
+      },
+      {
+        src: images.fleet.cullinan.gallery[3],
+        alt: 'Rolls-Royce Cullinan — luxury cabin details',
+        view: 'Interior',
+      },
+      {
+        src: images.fleet.cullinan.gallery[4],
+        alt: 'Rolls-Royce Cullinan — exterior view',
+        view: 'Exterior view',
+      },
+      
+    ],
+    specs: {
+      yearRange: '2022–Present',
+      drivetrain: 'AWD',
+      transmission: '8-speed automatic',
+      luggage: 'Up to 4 standard suitcases',
+      extras: [
+        { label: 'Engine', value: '6.75L Twin-Turbo V12' },
+        { label: 'Cabin', value: 'Starlight headliner, executive rear seating' },
+        { label: 'Entertainment', value: 'Premium surround sound with rear media controls' },
+      ],
+    },
+    description:
+      'The Rolls-Royce Cullinan delivers an ultra-luxury chauffeur experience designed for executives, VIP clients, and milestone occasions. With handcrafted interior finishes, whisper-quiet cabin insulation, and signature Rolls-Royce ride comfort, it offers unmatched prestige and comfort.',
+    descriptionExtended:
+      'Ideal for luxury airport transfers, executive transportation, private events, and elevated city travel. Every Cullinan booking includes a professionally dressed chauffeur, immaculate detailing, and a discreet premium service experience.',
+    featured: true,
+    href: '/fleet/rolls-royce-cullinan',
+  },
+  {
     id: 'escalade-esv',
     name: 'Cadillac Escalade ESV',
     category: 'Luxury SUV',
@@ -106,11 +168,6 @@ export const fleet: Vehicle[] = [
         src: images.fleet.escaladeEsv.gallery[0],
         alt: 'Black Cadillac Escalade ESV — front three-quarter view',
         view: 'Exterior · Front',
-      },
-      {
-        src: images.fleet.escaladeEsv.gallery[1],
-        alt: 'Black Cadillac Escalade ESV — side profile',
-        view: 'Exterior · Side',
       },
       {
         src: images.fleet.escaladeEsv.gallery[2],
@@ -157,6 +214,23 @@ export const fleet: Vehicle[] = [
     imageSrc: images.fleet.navigatorL.main,
     imageAlt:
       'Black Lincoln Navigator L luxury SUV — Emerald City Limos chauffeur fleet',
+      gallery: [
+        {
+          src: images.fleet.navigatorL.gallery[0],
+          alt: 'Lincoln Navigator L — exterior side profile',
+          view: 'Exterior · Side',
+        },
+        {
+          src: images.fleet.navigatorL.gallery[1],
+          alt: 'Lincoln Navigator L — premium executive rear cabin',
+          view: 'Interior · Cabin',
+        },
+        {
+          src: images.fleet.navigatorL.gallery[2],
+          alt: 'Lincoln Navigator L — spacious passenger interior',
+          view: 'Interior',
+        },
+      ],
     specs: {
       yearRange: '2022–2024',
       drivetrain: '4WD',
@@ -278,57 +352,6 @@ export const fleet: Vehicle[] = [
     href: '/fleet/s-class-s580',
   },
   {
-    id: 'town-car-stretch',
-    name: 'Lincoln Town Car Stretch',
-    category: 'Limousine',
-    capacity: 10,
-    capacityLabel: 'Up to 10 passengers',
-    features: [
-      'Fiber-optic lighting',
-      'Wet bar',
-      'Privacy divider',
-      'Rear entertainment system',
-    ],
-    bestFor: ['Weddings', 'Proms', 'Special occasions'],
-    imageSrc: images.fleet.townCar.main,
-    imageAlt:
-      'Lincoln Town Car stretch limousine — Emerald City Limos chauffeur fleet',
-    gallery: [
-      {
-        src: images.fleet.townCar.gallery[0],
-        alt: 'Lincoln Town Car stretch limousine — exterior view',
-        view: 'Exterior',
-      },
-      {
-        src: images.fleet.townCar.gallery[1],
-        alt: 'Lincoln Town Car stretch limousine — interior cabin',
-        view: 'Interior · Cabin',
-      },
-      {
-        src: images.fleet.townCar.gallery[2],
-        alt: 'Lincoln Town Car stretch limousine — lounge seating',
-        view: 'Interior',
-      },
-    ],
-    specs: {
-      yearRange: '2007–2011 (last-generation chassis, fully refurbished)',
-      drivetrain: 'RWD',
-      transmission: '4-speed automatic',
-      luggage: 'Up to 4 standard suitcases',
-      extras: [
-        { label: 'Engine', value: '4.6L V8' },
-        { label: 'Cabin', value: 'Fiber-optic lighting, wet bar, privacy divider' },
-        { label: 'Entertainment', value: 'Rear A/V system with Bluetooth audio' },
-      ],
-    },
-    description:
-      'The Town Car stretch is the traditional wedding-and-prom limousine — fiber-optic lighting, a wet bar, privacy divider, and lounge seating that holds ten in comfort. Our coaches are last-generation Town Car chassis fully refurbished and maintained on the same inspection schedule as the rest of the fleet.',
-    descriptionExtended:
-      'Decorations (florals, signage, "Just Married" placards) are coordinated with your planner ahead of pickup. Complimentary champagne service is included on every wedding booking for the couple’s first ride together.',
-    featured: false,
-    href: '/fleet/town-car-stretch',
-  },
-  {
     id: 'cadillac-xt6',
     name: 'Cadillac XT6',
     category: 'Mid-Size SUV',
@@ -349,6 +372,16 @@ export const fleet: Vehicle[] = [
         src: images.fleet.cadillacXt6.gallery[0],
         alt: 'Cadillac XT6 — exterior three-quarter view',
         view: 'Exterior',
+      },
+      {
+        src: images.fleet.cadillacXt6.gallery[1],
+        alt: 'Cadillac XT6 — exterior three-quarter view',
+        view: 'Exterior',
+      },
+      {
+        src: images.fleet.cadillacXt6.gallery[2],
+        alt: 'Cadillac XT6 — interior rear cabin view',
+        view: 'Interior Rear Cabin',
       },
     ],
     specs: {
@@ -388,6 +421,16 @@ export const fleet: Vehicle[] = [
     gallery: [
       {
         src: images.fleet.freightliner.gallery[0],
+        alt: 'Freightliner minibus — exterior side view',
+        view: 'Exterior · Side',
+      },
+      {
+        src: images.fleet.freightliner.gallery[1],
+        alt: 'Freightliner minibus — interior view',
+        view: 'Interior view',
+      },
+      {
+        src: images.fleet.freightliner.gallery[2],
         alt: 'Freightliner minibus — exterior side view',
         view: 'Exterior · Side',
       },

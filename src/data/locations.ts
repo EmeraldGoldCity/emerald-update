@@ -1192,6 +1192,122 @@ export const locations: Location[] = [
       keywords: ['woodinville wine tour', 'woodinville chauffeur', 'woodinville limo service', 'chateau ste michelle car service'],
     },
   },
+{
+  name: 'Bothell North',
+  slug: 'bothell-north',
+  county: 'Snohomish County',
+  coordinates: { lat: 47.8107, lng: -122.3774 },
+  zipCodes: ['98011', '98012', '98021'],
+  heroImage: HERO_DEFAULT,
+  heroImageAlt: 'Black luxury chauffeur SUV providing airport transportation in Bothell North',
+  heroSupporting:
+    'Professional chauffeur service in Bothell North, Canyon Park, and North Creek with flat-rate SEA-TAC airport transfers, executive travel, and hourly black car service.',
+
+  localValueProp:
+    'Emerald City Limos provides professional chauffeur service throughout Bothell North for airport transfers, executive transportation, private events, and hourly bookings. With regular service across Canyon Park, North Creek, Mill Creek, and the I-405 corridor, our chauffeurs understand local traffic patterns, airport timing requirements, and corporate transportation expectations for North End travelers.',
+
+  nearbyLandmarks: [
+    'Canyon Park Business Center',
+    'North Creek Trail',
+    'University of Washington Bothell',
+    'Country Village',
+  ],
+
+  businessDistricts: [
+    'Canyon Park',
+    'North Creek',
+    'Downtown Bothell',
+  ],
+
+  hotels: [
+    'Country Inn & Suites Bothell',
+    'Holiday Inn & Suites Bothell',
+  ],
+
+  eventVenues: [
+    'Hidden Meadows',
+    'The Cottage',
+    'North Creek Events Center',
+  ],
+
+  airportProximity: [
+    {
+      airport: 'SEA-TAC International Airport',
+      code: 'SEA',
+      distanceMiles: 28,
+      driveTime: '35–55 min',
+    },
+    {
+      airport: 'Paine Field',
+      code: 'PAE',
+      distanceMiles: 15,
+      driveTime: '20–30 min',
+    },
+  ],
+
+  popularRoutes: [
+    {
+      to: 'SEA-TAC Airport',
+      driveTime: '35–55 min',
+      distanceMiles: 28,
+      startingPriceUSD: 145,
+    },
+    {
+      to: 'Downtown Seattle',
+      driveTime: '30–45 min',
+      distanceMiles: 20,
+      startingPriceUSD: 135,
+    },
+    {
+      to: 'Paine Field',
+      driveTime: '20–30 min',
+      distanceMiles: 15,
+      startingPriceUSD: 95,
+    },
+    {
+      to: 'Bellevue',
+      driveTime: '20–30 min',
+      distanceMiles: 14,
+      startingPriceUSD: 110,
+    },
+  ],
+
+  faqs: [
+    {
+      question: 'Do you offer airport transportation from Bothell North to SEA-TAC?',
+      answer:
+        'Yes. Emerald City Limos provides pre-scheduled flat-rate airport transfers from Bothell North to SEA-TAC 24/7 with professional chauffeurs, flight tracking, and luggage assistance.',
+    },
+    {
+      question: 'Do you provide corporate transportation in Canyon Park and North Creek?',
+      answer:
+        'Yes. We regularly serve Canyon Park, North Creek, and surrounding business districts with executive sedan and SUV transportation for meetings, office transfers, and client travel.',
+    },
+    {
+      question: 'Can I book hourly chauffeur service in Bothell North?',
+      answer:
+        'Yes. Hourly chauffeur service is available for private events, business travel, dinners, and flexible transportation throughout Bothell, Bellevue, Seattle, and the Eastside.',
+    },
+    {
+      question: 'What vehicles are available in Bothell North?',
+      answer:
+        'Our Bothell North clients commonly book Cadillac Escalade ESV SUVs, executive sedans, Sprinter vans, and stretch limousines depending on passenger count and service type.',
+    },
+  ],
+
+  meta: {
+    title: 'Bothell North Chauffeur Service | Emerald City Limos',
+    description:
+      'Luxury chauffeur service in Bothell North, WA with flat-rate airport transfers, executive transportation, hourly black car service, and professional chauffeurs available 24/7.',
+    keywords: [
+      'bothell chauffeur service',
+      'bothell limo service',
+      'bothell airport transfer',
+      'canyon park car service',
+      'north creek black car service',
+    ],
+  },
+},
 
   {
     name: 'Auburn',

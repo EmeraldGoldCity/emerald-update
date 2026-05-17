@@ -18,17 +18,19 @@
  *   9. Final CTA          — champagne, asymmetric, action card right
  */
 
+import { Image } from 'astro:assets';
 import MainLayout from '@/layouts/MainLayout.astro';
 import PageHero   from '@/components/shared/PageHero.astro';
 import TrustStrip from '@/components/shared/TrustStrip.astro';
 import { cityHref } from '@/data/locationSlugs';
 import aboutHero   from '@/assets/images/about/about.png';
-import aboutUs from "@/assets/images/about/about-us.png";
+import aboutUs from "@/assets/images/team/keneth-dabb.jpg";
+import kennethDab from "@/assets/images/team/mr-kenneth.png";
 
 // ── Types ──────────────────────────────────────────────────────────────
 interface Stat       { value: string; suffix: string; label: string; sub: string; }
 interface Value      { number: string; title: string; body: string; }
-interface TeamMember { name: string; role: string; image: string; imageAlt: string; }
+interface TeamMember { name: string; role: string; image: ImageMetadata; imageAlt: string; }
 interface County     { name: string; note: string; href: string; cities: readonly string[]; }
 interface Credential { index: string; title: string; issuer: string; detail: string; }
 interface Testimonial{ quote: string; author: string; location: string; tripType: string; rating: number; }
@@ -65,10 +67,10 @@ const values: Value[] = [
 
 const team: TeamMember[] = [
   {
-    name:     'Kenneth Waweru',
-    role:     'Founder & Lead Chauffeur',
-    image:    '/images/team/kenneth-waweru.webp',
-    imageAlt: 'Kenneth Waweru, founder of Emerald City Limos, standing beside a black Cadillac Escalade in Seattle',
+    name:     'Ken Dabb',
+    role:     'Lead Chauffeur',
+    image:    kennethDab,
+    imageAlt: 'Ken Dabb, founder of Emerald City Limos, standing beside a black Cadillac Escalade in Seattle',
   },
 ];
 
@@ -220,13 +222,13 @@ const credentials: Credential[] = [
         <div class="lg:pr-16 pb-12 lg:pb-0">
           <div class="space-y-5 mb-8">
             <p class="font-sans text-sm leading-[1.8] text-neutral-600 max-w-lg">
-              Before Emerald City Limos existed, Kenneth Waweru spent ten years behind the wheel for Seattle's executive hospitality sector — hotels, law firms, tech campuses, and the city's busiest corporate travel desks.
+             Ken Dabb founded Emerald City Limos after building experience in Los Angeles, one of the country’s most demanding chauffeur markets. His background includes transportation for Coachella, film productions, NBA athletes, the Grammy Awards, and luxury hospitality clients including The Ritz-Carlton and The Beverly Hills Hotel.
             </p>
             <p class="font-sans text-sm leading-[1.8] text-neutral-600 max-w-lg">
-              In 2010, he started ECL with one Cadillac Escalade, a published flat-rate schedule, and a commitment that every driver who wore the ECL badge would meet a standard he'd be comfortable sitting behind himself. That standard hasn't changed.
+              After returning to Seattle, Ken launched Emerald City Limos to bring a higher standard of professionalism, reliability, and detail-driven service to the Pacific Northwest. In private transportation, reputation is earned one ride at a time, which is why every booking is handled with consistency and care.
             </p>
             <p class="font-sans text-sm leading-[1.8] text-neutral-600 max-w-lg">
-              Today ECL serves King, Snohomish, and Pierce counties. Every vehicle is owned by ECL. Every chauffeur is a W-2 employee. Every quote is flat-rate with zero surge logic.
+              Inspired by Seattle’s evergreen landscapes, Emerald City Limos reflects both the city and the standard we represent trusted chauffeured transportation, professional service, and a seamless ride experience clients can rely on.
             </p>
           </div>
 
@@ -243,7 +245,7 @@ const credentials: Credential[] = [
             </p>
             <footer class="mt-4">
               <cite class="font-sans not-italic text-sm font-medium tracking-[0.06em] text-brand-gold">
-                — Kenneth Waweru, Founder
+                — Ken Dabb, Lead Chauffeur
               </cite>
             </footer>
           </blockquote>
@@ -258,7 +260,7 @@ const credentials: Credential[] = [
 
           <img
             src={aboutUs.src}
-            alt="Emerald City Limos founder Kenneth Waweru beside a black Cadillac Escalade in downtown Seattle"
+            alt="Emerald City Limos founder Ken Dabb beside a black Cadillac Escalade in downtown Seattle"
             width="800"
             height="960"
             loading="lazy"
@@ -425,15 +427,15 @@ const credentials: Credential[] = [
           {team.map((member) => (
             <article aria-label={`${member.name} — ${member.role}`}>
               <div class="relative overflow-hidden group">
-                <img
+                <Image
                   src={member.image}
                   alt={member.imageAlt}
-                  width="480"
-                  height="600"
+                  width={480}
+                  height={600}
                   loading="lazy"
                   decoding="async"
                   class="w-full h-[360px] sm:h-[440px] object-cover object-top
-                         transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                         transition-transform duration-700 ease-out group-hover:scale-[1.03] shadow-md"
                 />
                 <!-- Gradient overlay -->
                 <div class="absolute inset-0 bg-gradient-to-t from-brand-forest/85 via-brand-forest/20 to-transparent pointer-events-none"></div>
