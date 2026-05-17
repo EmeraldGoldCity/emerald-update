@@ -64,7 +64,7 @@ export function KirklandPage() {
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto mb-8">Premium limousine service for Kirkland's lakefront community. Downtown waterfront, Juanita, Totem Lake & beyond.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/book-now" className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-semibold text-lg transition-all">BOOK KIRKLAND LIMO</Link>
+              <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-semibold text-lg transition-all">BOOK KIRKLAND LIMO</Link>
               <a href="tel:+12065959675" className="border-2 border-white text-white hover:bg-white hover:text-emerald-900 px-8 py-4 rounded-lg font-semibold text-lg transition-all">(206) 595-9675</a>
             </div>
           </div>
@@ -98,7 +98,7 @@ export function KirklandPage() {
                     <div>
                       <h3 className="font-bold text-gray-900 mb-1">{r.title}</h3>
                       <p className="text-sm text-gray-600 mb-2">{r.distance}</p>
-                      <p className="text-emerald-700 font-semibold text-sm">{r.price} · <Link to="/book-now" className="underline">Book</Link></p>
+                      <p className="text-emerald-700 font-semibold text-sm">{r.price} · <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="underline">Book</Link></p>
                     </div>
                   </div>
                 </div>
@@ -111,7 +111,7 @@ export function KirklandPage() {
           <div className="max-w-4xl mx-auto px-4">
             <h2 className="text-3xl font-bold mb-4">Book Your Kirkland Limo</h2>
             <p className="text-xl mb-8">Professional chauffeurs. Luxury vehicles. Flat-rate pricing.</p>
-            <Link to="/book-now" className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-10 py-4 rounded-lg font-bold text-lg inline-block transition-all">BOOK NOW</Link>
+            <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-10 py-4 rounded-lg font-bold text-lg inline-block transition-all">BOOK NOW</Link>
           </div>
         </section>
       </div>

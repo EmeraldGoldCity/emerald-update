@@ -57,7 +57,7 @@ export interface Props {
   headlineAccent?: string;
   /** Paragraph below the H1. */
   supporting: string;
-  /** Primary CTA. Default: Book Now → /book-now. */
+  /** Primary CTA. Default: Book Now → external booking page. */
   ctaPrimary?: CTA;
   /** Secondary CTA. Default: tel:+1 (206) 595-9675. */
   ctaSecondary?: CTA;
@@ -82,7 +82,7 @@ const {
   headline,
   headlineAccent,
   supporting,
-  ctaPrimary = { label: 'Book Now', href: '/book-now', id: 'cta-hero-primary' },
+  ctaPrimary = { label: 'Book Now', href: 'https://customer.moovs.app/a1-charters-1/new/info', id: 'cta-hero-primary' },
   ctaSecondary = {
     label: 'Get a Quote',
     href: 'tel:+12065959675',
@@ -253,6 +253,8 @@ const anim = (cls: string) => (noAnim ? '' : cls);
           href={ctaPrimary.href}
           id={ctaPrimary.id ?? 'cta-hero-primary'}
           data-cta="hero_primary"
+          target={ctaPrimary.href.startsWith('http') ? '_blank' : undefined}
+          rel={ctaPrimary.href.startsWith('http') ? 'noopener noreferrer' : undefined}
           aria-label={`${ctaPrimary.label} — Emerald City Limos`}
           class="ecl-btn-primary ecl-focusable inline-flex min-h-[52px] w-full items-center justify-center gap-2 rounded-none border border-brand-gold-soft bg-brand-gold-soft px-8 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-forest sm:w-auto"
         >
@@ -264,6 +266,8 @@ const anim = (cls: string) => (noAnim ? '' : cls);
           href={ctaSecondary.href}
           id={ctaSecondary.id ?? 'cta-hero-secondary'}
           data-cta="hero_secondary"
+          target={ctaSecondary.href.startsWith('http') ? '_blank' : undefined}
+          rel={ctaSecondary.href.startsWith('http') ? 'noopener noreferrer' : undefined}
           aria-label={
             ctaSecondary.phone
               ? `Call us at ${ctaSecondary.phone}`

@@ -14,7 +14,7 @@ export const allNewBlogPosts = {
     readTime: '12 min read',
     tags: ['Sea-Tac Airport', 'Downtown Seattle', 'Transportation', 'Travel Guide'],
     relatedLinks: [
-      { text: 'Book Airport Transfer', url: '/book-now' },
+      { text: 'Book Airport Transfer', url: 'https://customer.moovs.app/a1-charters-1/new/info' },
       { text: 'Airport Transfer Service', url: '/airport-transfers' },
       { text: 'Seattle Location Page', url: '/locations/king-county/seattle' }
     ],
@@ -156,7 +156,7 @@ export const allNewBlogPosts = {
     readTime: '14 min read',
     tags: ['Wedding', 'Seattle Weddings', 'Transportation Planning', 'Luxury Limos'],
     relatedLinks: [
-      { text: 'Book Wedding Transportation', url: '/book-now' },
+      { text: 'Book Wedding Transportation', url: 'https://customer.moovs.app/a1-charters-1/new/info' },
       { text: 'Wedding Service Page', url: '/service/wedding-transportation' },
       { text: 'View Our Fleet', url: '/fleet' }
     ],
@@ -358,7 +358,7 @@ export const allNewBlogPosts = {
     readTime: '11 min read',
     tags: ['Seahawks', 'Mariners', 'Sports', 'Game Day', 'Seattle Events'],
     relatedLinks: [
-      { text: 'Book Game Day Service', url: '/book-now' },
+      { text: 'Book Game Day Service', url: 'https://customer.moovs.app/a1-charters-1/new/info' },
       { text: 'Hourly Charter Service', url: '/service/hourly-charters' },
       { text: 'Seattle Sports Venues', url: '/locations/king-county/seattle' }
     ],
@@ -550,7 +550,7 @@ export const allNewBlogPosts = {
     readTime: '10 min read',
     tags: ['Woodinville', 'Wine Tours', 'Day Trips', 'Eastside'],
     relatedLinks: [
-      { text: 'Book Wine Tour', url: '/book-now' },
+      { text: 'Book Wine Tour', url: 'https://customer.moovs.app/a1-charters-1/new/info' },
       { text: 'Hourly Charter Service', url: '/service/hourly-charters' },
       { text: 'Woodinville Service Area', url: '/locations/king-county/woodinville' }
     ],
@@ -768,7 +768,7 @@ export const allNewBlogPosts = {
     readTime: '9 min read',
     tags: ['Corporate', 'Executive', 'Business Travel', 'Black Car'],
     relatedLinks: [
-      { text: 'Book Executive Service', url: '/book-now' },
+      { text: 'Book Executive Service', url: 'https://customer.moovs.app/a1-charters-1/new/info' },
       { text: 'Executive Transportation', url: '/service/executive-transportation' },
       { text: 'Hourly Charters', url: '/service/hourly-charters' }
     ],

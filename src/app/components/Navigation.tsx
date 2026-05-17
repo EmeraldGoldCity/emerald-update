@@ -57,15 +57,17 @@ export function Navigation() {
             ))}
             
             {/* Book Now Button - Desktop */}
-            <Link 
-              to="/book-now" 
+            <a
+              href="https://customer.moovs.app/a1-charters-1/new/info"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-6 py-2 rounded-lg font-semibold whitespace-nowrap ml-2"
               style={{
                 transition: 'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1), transform 150ms cubic-bezier(0.4, 0, 0.2, 1)'
               }}
             >
               BOOK NOW
-            </Link>
+            </a>
           </div>
 
           {/* Contact Email - Desktop Only */}
@@ -110,9 +112,9 @@ export function Navigation() {
               </Link>
             ))}
             <div className="px-4 py-2 space-y-2 border-t border-emerald-700 mt-2 pt-4">
-              <Link to="/book-now" className="block w-full text-center bg-[#d4af37] hover:bg-[#b8941f] text-black px-6 py-2 rounded-lg font-semibold transition-all">
+              <a href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-[#d4af37] hover:bg-[#b8941f] text-black px-6 py-2 rounded-lg font-semibold transition-all">
                 BOOK NOW
-              </Link>
+              </a>
               <a href="mailto:client@emeraldcitylimos.com" className="flex items-center space-x-2 text-sm hover:text-[#d4af37]">
                 <Mail className="w-4 h-4" />
                 <span>client@emeraldcitylimos.com</span>

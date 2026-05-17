@@ -442,7 +442,7 @@ export function SeattlePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                to="/book-now"
+                href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer"
                 className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-semibold text-lg inline-block transition-all"
               >
                 BOOK YOUR SEATTLE RIDE
@@ -659,7 +659,7 @@ export function SeattlePage() {
                       <h3 className="text-lg font-bold text-gray-900 mb-1">{route.title}</h3>
                       <p className="text-gray-600 text-sm mb-2">{route.distance}</p>
                       <p className="text-emerald-700 font-semibold text-sm">
-                        {route.price} · <Link to="/book-now" className="underline">Book Now</Link>
+                        {route.price} · <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="underline">Book Now</Link>
                       </p>
                     </div>
                   </div>
@@ -680,7 +680,7 @@ export function SeattlePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                to="/book-now"
+                href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer"
                 className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-10 py-4 rounded-lg font-bold text-lg transition-all"
               >
                 BOOK NOW

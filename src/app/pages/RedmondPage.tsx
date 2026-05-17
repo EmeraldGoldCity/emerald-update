@@ -28,7 +28,7 @@ export function RedmondPage() {
             <h1 className="text-5xl md:text-6xl font-extrabold mb-6">Redmond Limo Service<br /><span className="text-[#d4af37]">Tech Corridor Transportation</span></h1>
             <p className="text-xl text-gray-200 mb-8">Executive limo service for Microsoft, tech campuses, and Redmond neighborhoods.</p>
             <div className="flex gap-4 justify-center">
-              <Link to="/book-now" className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold">BOOK NOW</Link>
+              <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold">BOOK NOW</Link>
               <a href="tel:+12065959675" className="border-2 border-white px-8 py-4 rounded-lg font-bold">Call Us</a>
             </div>
           </div>
@@ -53,7 +53,7 @@ export function RedmondPage() {
           <div className="max-w-3xl mx-auto px-4">
             <h2 className="text-3xl font-bold mb-4">Executive Redmond Transportation</h2>
             <p className="text-lg mb-8">Sea-Tac ↔ Microsoft Campus from $110 | Daily corporate accounts available</p>
-            <Link to="/book-now" className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-10 py-4 rounded-lg font-bold inline-block">BOOK YOUR RIDE</Link>
+            <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-10 py-4 rounded-lg font-bold inline-block">BOOK YOUR RIDE</Link>
           </div>
         </section>
       </div>

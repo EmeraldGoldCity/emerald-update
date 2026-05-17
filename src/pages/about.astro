@@ -158,7 +158,7 @@ const credentials: Credential[] = [
     headline="Built on a Standard"
     headlineAccent="Seattle Deserved"
     supporting="Emerald City Limos was founded on a single conviction: that the Pacific Northwest's most demanding travellers deserved a chauffeur service that treated reliability, discretion, and transparency as non-negotiable minimums — not premium add-ons."
-    ctaPrimary={{ label: 'Reserve Your Ride', href: '/book-now', id: 'cta-about-book' }}
+    ctaPrimary={{ label: 'Reserve Your Ride', href: 'https://customer.moovs.app/a1-charters-1/new/info', id: 'cta-about-book' }}
     ctaSecondary={{ label: PHONE_DISPLAY, href: PHONE_TEL, id: 'cta-about-call', phone: PHONE_DISPLAY }}
     image={{
       src:       aboutHero,
@@ -813,7 +813,9 @@ const credentials: Credential[] = [
               aria-label="Booking options"
             >
               
-              <a  href="/book-now"
+              <a  href="https://customer.moovs.app/a1-charters-1/new/info"
+                target="_blank"
+                rel="noopener noreferrer"
                 data-cta="footer_book_now"
                 aria-label="Reserve your ride — Emerald City Limos"
                 class="ecl-btn-primary ecl-focusable inline-flex items-center justify-center gap-2 min-h-[52px] px-8 font-sans text-[11px] font-semibold tracking-[0.2em] uppercase bg-brand-forest text-white border border-brand-forest rounded-none transition-colors duration-200 hover:bg-brand-forest/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2"

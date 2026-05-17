@@ -162,7 +162,6 @@ function App() {
                 <Route path="/blog" element={<BlogPage />} />
                 <Route path="/blog/:slug" element={<BlogPostPage />} />
                 <Route path="/affiliates" element={<AffiliatesPage />} />
-                <Route path="/book-now" element={<BookNowPage />} />
               </Routes>
             </Suspense>
           </main>

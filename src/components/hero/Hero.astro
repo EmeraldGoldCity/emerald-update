@@ -173,6 +173,8 @@ const telHref   = telDigits ? `tel:+1${telDigits}` : ctaSecondary.href;
             href={ctaPrimary.href}
             id={ctaPrimary.id ?? 'cta-hero-primary'}
             data-cta="hero_book_now"
+            target={ctaPrimary.href.startsWith('http') ? '_blank' : undefined}
+            rel={ctaPrimary.href.startsWith('http') ? 'noopener noreferrer' : undefined}
             aria-label={`${ctaPrimary.label} — Emerald City Limos`}
             class="ecl-btn-primary ecl-focusable inline-flex items-center justify-center gap-2 w-full sm:w-auto min-h-[52px] px-8 font-sans text-[11px] font-semibold tracking-[0.2em] uppercase bg-brand-gold-soft text-brand-forest border border-brand-gold-soft rounded-none"
           >

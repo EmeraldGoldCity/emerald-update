@@ -166,7 +166,7 @@ export function FleetPage() {
                 </div>
                 <div className="bg-gray-50 border-t-2 border-gray-200 py-5 text-center">
                   <Link
-                    to="/book-now"
+                    href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer"
                     className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-3 rounded-lg text-sm uppercase tracking-widest font-bold transition-all hover:shadow-lg"
                   >
                     Reserve Now
@@ -193,7 +193,7 @@ export function FleetPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
             {/* Infant Seat */}
-            <Link to="/book-now" className="group">
+            <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="group">
               <div className="bg-gradient-to-br from-emerald-50 to-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
                 <div className="flex items-center justify-center h-64 mb-6 overflow-hidden">
                   <img
@@ -221,7 +221,7 @@ export function FleetPage() {
             </Link>
 
             {/* Toddler/Convertible Seat */}
-            <Link to="/book-now" className="group">
+            <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="group">
               <div className="bg-gradient-to-br from-yellow-50 to-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
                 <div className="flex items-center justify-center h-64 mb-6 overflow-hidden">
                   <img
@@ -249,7 +249,7 @@ export function FleetPage() {
             </Link>
 
             {/* Booster Seat */}
-            <Link to="/book-now" className="group">
+            <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="group">
               <div className="bg-gradient-to-br from-emerald-50 to-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
                 <div className="flex items-center justify-center h-64 mb-6 overflow-hidden">
                   <img
@@ -344,7 +344,7 @@ export function FleetPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              to="/book-now"
+              href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer"
               className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-semibold transition-all"
             >
               BOOK NOW

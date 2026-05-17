@@ -314,7 +314,7 @@ export const LocalBusinessSchema = {
       '@type': 'ReserveAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: 'https://emeraldcitylimos.com/book-now',
+        urlTemplate: 'https://customer.moovs.app/a1-charters-1/new/info',
         actionPlatform: [
           'http://schema.org/DesktopWebPlatform',
           'http://schema.org/MobileWebPlatform'

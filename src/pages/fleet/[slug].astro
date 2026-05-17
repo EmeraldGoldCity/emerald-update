@@ -59,7 +59,7 @@ const heroImage = vehicle.imageSrc
     headline={vehicle.name}
     headlineAccent={vehicle.capacityLabel}
     supporting={vehicle.description ?? `${vehicle.category} for chauffeured service across the Seattle metro — ${vehicle.capacityLabel}. Detailed between every ride and licensed to operate in Washington State.`}
-    ctaPrimary={{ label: 'Reserve this Vehicle', href: '/book-now', id: `cta-${vehicle.id}-book` }}
+    ctaPrimary={{ label: 'Reserve this Vehicle', href: 'https://customer.moovs.app/a1-charters-1/new/info', id: `cta-${vehicle.id}-book` }}
     image={heroImage}
     size="page"
     id={`${vehicle.id}-hero`}
@@ -115,7 +115,9 @@ const heroImage = vehicle.imageSrc
         aria-label="Book or call"
       >
         <a
-          href="/book-now"
+          href="https://customer.moovs.app/a1-charters-1/new/info"
+          target="_blank"
+          rel="noopener noreferrer"
           class="inline-flex min-h-[52px] items-center justify-center gap-2 border border-brand-gold-soft bg-brand-gold-soft px-8 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-forest outline-none transition-[background-color,border-color,box-shadow] duration-200 hover:bg-brand-gold hover:shadow-[0_12px_28px_-12px_rgba(163,126,44,0.6)] focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-forest-deep motion-reduce:transition-none"
         >
           Reserve a Ride

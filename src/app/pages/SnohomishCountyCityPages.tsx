@@ -31,7 +31,7 @@ export function EverettPage() {
             <h1 className="text-5xl md:text-6xl font-extrabold mb-6">Everett Limo Service<br /><span className="text-[#d4af37]">Boeing & Paine Field Transportation</span></h1>
             <p className="text-xl text-gray-200 mb-8 max-w-3xl mx-auto">Premium limousine service for Everett's waterfront, Boeing facilities, Paine Field airport & all neighborhoods.</p>
             <div className="flex gap-4 justify-center flex-wrap">
-              <Link to="/book-now" className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold">BOOK EVERETT LIMO</Link>
+              <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold">BOOK EVERETT LIMO</Link>
               <a href="tel:+12065959675" className="border-2 border-white px-8 py-4 rounded-lg font-bold">(206) 595-9675</a>
             </div>
           </div>
@@ -54,13 +54,13 @@ export function EverettPage() {
               <div className="bg-emerald-50 p-8 rounded-xl">
                 <h3 className="text-2xl font-bold mb-4">Sea-Tac ↔ Everett</h3>
                 <p className="text-lg mb-6">38 miles | 40-75 minutes | From $145</p>
-                <Link to="/book-now" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Airport Transfer</Link>
+                <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Airport Transfer</Link>
               </div>
               
               <div className="bg-blue-50 p-8 rounded-xl">
                 <h3 className="text-2xl font-bold mb-4">Paine Field (PAE) ↔ Anywhere</h3>
                 <p className="text-lg mb-6">Everett's commercial airport | From $75</p>
-                <Link to="/book-now" className="bg-blue-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Paine Field Limo</Link>
+                <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-blue-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Paine Field Limo</Link>
               </div>
             </div>
           </div>
@@ -93,7 +93,7 @@ export function LynnwoodPage() {
           <div className="text-center px-4">
             <h1 className="text-5xl font-extrabold mb-4">Lynnwood Limo Service<br /><span className="text-[#d4af37]">Convention Center Hub</span></h1>
             <p className="text-xl mb-8">City Center, Alderwood Mall, Meadowdale & all Lynnwood neighborhoods</p>
-            <Link to="/book-now" className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-10 py-4 rounded-lg font-bold inline-block">BOOK LYNNWOOD LIMO</Link>
+            <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-10 py-4 rounded-lg font-bold inline-block">BOOK LYNNWOOD LIMO</Link>
           </div>
         </section>
 
@@ -111,7 +111,7 @@ export function LynnwoodPage() {
             <div className="mt-12 bg-emerald-50 p-8 rounded-xl text-center">
               <h3 className="text-2xl font-bold mb-4">Sea-Tac ↔ Lynnwood: From $115</h3>
               <p className="text-lg mb-6">26 miles | 30-55 minutes | Light rail adjacent</p>
-              <Link to="/book-now" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-semibold inline-block">Book Airport Ride</Link>
+              <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-semibold inline-block">Book Airport Ride</Link>
             </div>
           </div>
         </section>
@@ -139,7 +139,7 @@ export function EdmondsPage() {
           <div className="relative z-20 text-center text-white max-w-4xl mx-auto px-4">
             <h1 className="text-5xl font-extrabold mb-4">Edmonds Limo Service<br /><span className="text-[#d4af37]">Waterfront Elegance</span></h1>
             <p className="text-xl mb-8">Downtown waterfront, ferry terminal, Bowl, Westgate & all Edmonds neighborhoods</p>
-            <Link to="/book-now" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK NOW</Link>
+            <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK NOW</Link>
           </div>
         </section>
 
@@ -173,7 +173,7 @@ export function BothellPage() {
           <div className="text-center px-4">
             <h1 className="text-5xl font-extrabold mb-4">Bothell Limo Service</h1>
             <p className="text-xl mb-8">Downtown Bothell, Canyon Park, UW Bothell, North Creek & all areas</p>
-            <Link to="/book-now" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK NOW</Link>
+            <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK NOW</Link>
           </div>
         </section>
 
@@ -186,7 +186,7 @@ export function BothellPage() {
             </div>
             <div className="mt-12 text-center bg-blue-50 p-8 rounded-xl">
               <h3 className="text-2xl font-bold mb-4">Bothell ↔ Sea-Tac: From $105</h3>
-              <Link to="/book-now" className="bg-blue-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Airport Transfer</Link>
+              <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-blue-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Airport Transfer</Link>
             </div>
           </div>
         </section>
@@ -210,7 +210,7 @@ export function MarysvillePage() {
           <div className="text-center px-4">
             <h1 className="text-5xl font-extrabold mb-4">Marysville Limo Service<br /><span className="text-[#d4af37]">Tulalip Casino Hub</span></h1>
             <p className="text-xl mb-8">Downtown, Tulalip Resort Casino, Smokey Point, Quil Ceda Village & all Marysville areas</p>
-            <Link to="/book-now" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK CASINO LIMO</Link>
+            <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK CASINO LIMO</Link>
           </div>
         </section>
 
@@ -221,7 +221,7 @@ export function MarysvillePage() {
             <div className="bg-purple-50 p-8 rounded-xl max-w-2xl mx-auto">
               <h3 className="text-2xl font-bold mb-4">Seattle ↔ Tulalip Casino</h3>
               <p className="text-lg mb-4">35 miles | 35-60 minutes | From $135</p>
-              <Link to="/book-now" className="bg-purple-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Casino Ride</Link>
+              <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-purple-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Casino Ride</Link>
             </div>
           </div>
         </section>
@@ -245,7 +245,7 @@ export function MukilteoPage() {
           <div className="text-center px-4">
             <h1 className="text-5xl font-extrabold mb-4">Mukilteo Limo Service<br /><span className="text-[#d4af37]">Ferry & Airport Hub</span></h1>
             <p className="text-xl mb-8">Old Town, Ferry Terminal, Harbour Pointe, Paine Field & all Mukilteo areas</p>
-            <Link to="/book-now" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK NOW</Link>
+            <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK NOW</Link>
           </div>
         </section>
 
@@ -255,12 +255,12 @@ export function MukilteoPage() {
               <div className="bg-blue-50 p-8 rounded-xl">
                 <h3 className="text-2xl font-bold mb-4">Mukilteo Ferry Connections</h3>
                 <p className="text-lg mb-4">Drop-off and pickup coordinated with Whidbey Island ferry schedule</p>
-                <Link to="/book-now" className="bg-blue-700 text-white px-6 py-3 rounded-lg font-bold inline-block">Book Ferry Transfer</Link>
+                <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-blue-700 text-white px-6 py-3 rounded-lg font-bold inline-block">Book Ferry Transfer</Link>
               </div>
               <div className="bg-emerald-50 p-8 rounded-xl">
                 <h3 className="text-2xl font-bold mb-4">Paine Field Airport Limo</h3>
                 <p className="text-lg mb-4">Commercial terminal service for Alaska Airlines flights</p>
-                <Link to="/book-now" className="bg-emerald-700 text-white px-6 py-3 rounded-lg font-bold inline-block">Book Airport Limo</Link>
+                <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-emerald-700 text-white px-6 py-3 rounded-lg font-bold inline-block">Book Airport Limo</Link>
               </div>
             </div>
           </div>
@@ -285,7 +285,7 @@ export function LakeStevensPage() {
           <div className="text-center px-4">
             <h1 className="text-5xl font-extrabold mb-4">Lake Stevens Limo Service</h1>
             <p className="text-xl mb-8">Downtown, Frontier Village, Hartford, Chapel Hill & all lakefront neighborhoods</p>
-            <Link to="/book-now" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK NOW</Link>
+            <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK NOW</Link>
           </div>
         </section>
 
@@ -293,7 +293,7 @@ export function LakeStevensPage() {
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-6">Lake Stevens ↔ Sea-Tac Airport</h2>
             <p className="text-xl mb-6">45 miles | 50-80 minutes | From $155</p>
-            <Link to="/book-now" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Airport Transfer</Link>
+            <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Airport Transfer</Link>
           </div>
         </section>
       </div>
@@ -316,7 +316,7 @@ export function SnohomishCityPage() {
           <div className="text-center px-4">
             <h1 className="text-5xl font-extrabold mb-4">Snohomish Limo Service<br /><span className="text-[#d4af37]">Wedding Capital Transportation</span></h1>
             <p className="text-xl mb-8">Historic Downtown, Hidden Meadows, Swans Trail Farms, Thomas Family Farm & all wedding venues</p>
-            <Link to="/book-now" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK WEDDING LIMO</Link>
+            <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK WEDDING LIMO</Link>
           </div>
         </section>
 
@@ -334,7 +334,7 @@ export function SnohomishCityPage() {
             <div className="text-center bg-emerald-50 p-8 rounded-xl">
               <h3 className="text-2xl font-bold mb-4">Wedding Limo Packages</h3>
               <p className="text-lg mb-6">Stretch limousines, luxury SUVs, party buses available</p>
-              <Link to="/book-now" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Wedding Transportation</Link>
+              <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Wedding Transportation</Link>
             </div>
           </div>
         </section>
@@ -354,9 +354,9 @@ export function MountlakeTerracePage() {
       </Helmet>
       <div className="min-h-screen">
         <section className="relative h-[600px] flex items-center justify-center bg-gradient-to-r from-emerald-900 to-blue-800 text-white">
-          <div className="text-center px-4"><h1 className="text-5xl font-extrabold mb-4">Mountlake Terrace Limo Service</h1><p className="text-xl mb-8">Town Center, Ballinger, Light Rail Station & all neighborhoods</p><Link to="/book-now" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK NOW</Link></div>
+          <div className="text-center px-4"><h1 className="text-5xl font-extrabold mb-4">Mountlake Terrace Limo Service</h1><p className="text-xl mb-8">Town Center, Ballinger, Light Rail Station & all neighborhoods</p><Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK NOW</Link></div>
         </section>
-        <section className="py-16 bg-white"><div className="max-w-4xl mx-auto px-4 text-center"><h2 className="text-3xl font-bold mb-4">Mountlake Terrace ↔ Sea-Tac: From $105</h2><Link to="/book-now" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Airport Transfer</Link></div></section>
+        <section className="py-16 bg-white"><div className="max-w-4xl mx-auto px-4 text-center"><h2 className="text-3xl font-bold mb-4">Mountlake Terrace ↔ Sea-Tac: From $105</h2><Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Airport Transfer</Link></div></section>
       </div>
     </>
   );
@@ -372,9 +372,9 @@ export function MillCreekPage() {
       </Helmet>
       <div className="min-h-screen">
         <section className="relative h-[600px] flex items-center justify-center bg-gradient-to-r from-green-900 to-emerald-700 text-white">
-          <div className="text-center px-4"><h1 className="text-5xl font-extrabold mb-4">Mill Creek Limo Service</h1><p className="text-xl mb-8">Town Center, North Creek, Thomas Lake, Country Club & all Mill Creek neighborhoods</p><Link to="/book-now" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK NOW</Link></div>
+          <div className="text-center px-4"><h1 className="text-5xl font-extrabold mb-4">Mill Creek Limo Service</h1><p className="text-xl mb-8">Town Center, North Creek, Thomas Lake, Country Club & all Mill Creek neighborhoods</p><Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK NOW</Link></div>
         </section>
-        <section className="py-16 bg-white"><div className="max-w-4xl mx-auto px-4 text-center"><h2 className="text-3xl font-bold mb-4">Mill Creek ↔ Sea-Tac: From $110</h2><Link to="/book-now" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Airport Transfer</Link></div></section>
+        <section className="py-16 bg-white"><div className="max-w-4xl mx-auto px-4 text-center"><h2 className="text-3xl font-bold mb-4">Mill Creek ↔ Sea-Tac: From $110</h2><Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Airport Transfer</Link></div></section>
       </div>
     </>
   );
@@ -390,9 +390,9 @@ export function ArlingtonPage() {
       </Helmet>
       <div className="min-h-screen">
         <section className="relative h-[600px] flex items-center justify-center bg-gradient-to-r from-red-900 to-emerald-800 text-white">
-          <div className="text-center px-4"><h1 className="text-5xl font-extrabold mb-4">Arlington Limo Service<br /><span className="text-[#d4af37]">Casino & Airport Hub</span></h1><p className="text-xl mb-8">Downtown, Angel of the Winds Casino, Smokey Point, Arlington Airport</p><Link to="/book-now" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK NOW</Link></div>
+          <div className="text-center px-4"><h1 className="text-5xl font-extrabold mb-4">Arlington Limo Service<br /><span className="text-[#d4af37]">Casino & Airport Hub</span></h1><p className="text-xl mb-8">Downtown, Angel of the Winds Casino, Smokey Point, Arlington Airport</p><Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK NOW</Link></div>
         </section>
-        <section className="py-16 bg-white"><div className="max-w-4xl mx-auto px-4 text-center"><h2 className="text-3xl font-bold mb-4">Arlington ↔ Sea-Tac: From $165</h2><Link to="/book-now" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Airport Transfer</Link></div></section>
+        <section className="py-16 bg-white"><div className="max-w-4xl mx-auto px-4 text-center"><h2 className="text-3xl font-bold mb-4">Arlington ↔ Sea-Tac: From $165</h2><Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Airport Transfer</Link></div></section>
       </div>
     </>
   );
@@ -408,9 +408,9 @@ export function MonroePage() {
       </Helmet>
       <div className="min-h-screen">
         <section className="relative h-[600px] flex items-center justify-center bg-gradient-to-r from-emerald-900 to-green-800 text-white">
-          <div className="text-center px-4"><h1 className="text-5xl font-extrabold mb-4">Monroe Limo Service</h1><p className="text-xl mb-8">Downtown, Lake Tye, Evergreen State Fairgrounds, Highway 2 gateway to the mountains</p><Link to="/book-now" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK NOW</Link></div>
+          <div className="text-center px-4"><h1 className="text-5xl font-extrabold mb-4">Monroe Limo Service</h1><p className="text-xl mb-8">Downtown, Lake Tye, Evergreen State Fairgrounds, Highway 2 gateway to the mountains</p><Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK NOW</Link></div>
         </section>
-        <section className="py-16 bg-white"><div className="max-w-4xl mx-auto px-4 text-center"><h2 className="text-3xl font-bold mb-4">Monroe ↔ Sea-Tac: From $170</h2><Link to="/book-now" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Airport Transfer</Link></div></section>
+        <section className="py-16 bg-white"><div className="max-w-4xl mx-auto px-4 text-center"><h2 className="text-3xl font-bold mb-4">Monroe ↔ Sea-Tac: From $170</h2><Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Airport Transfer</Link></div></section>
       </div>
     </>
   );
@@ -426,9 +426,9 @@ export function StanwoodPage() {
       </Helmet>
       <div className="min-h-screen">
         <section className="relative h-[600px] flex items-center justify-center bg-gradient-to-r from-blue-900 to-emerald-800 text-white">
-          <div className="text-center px-4"><h1 className="text-5xl font-extrabold mb-4">Stanwood & Camano Island Limo Service</h1><p className="text-xl mb-8">Downtown Stanwood, Warm Beach, Camano Island, Kayak Point & surrounding areas</p><Link to="/book-now" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK NOW</Link></div>
+          <div className="text-center px-4"><h1 className="text-5xl font-extrabold mb-4">Stanwood & Camano Island Limo Service</h1><p className="text-xl mb-8">Downtown Stanwood, Warm Beach, Camano Island, Kayak Point & surrounding areas</p><Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK NOW</Link></div>
         </section>
-        <section className="py-16 bg-white"><div className="max-w-4xl mx-auto px-4 text-center"><h2 className="text-3xl font-bold mb-4">Stanwood ↔ Sea-Tac: From $185</h2><Link to="/book-now" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Airport Transfer</Link></div></section>
+        <section className="py-16 bg-white"><div className="max-w-4xl mx-auto px-4 text-center"><h2 className="text-3xl font-bold mb-4">Stanwood ↔ Sea-Tac: From $185</h2><Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Airport Transfer</Link></div></section>
       </div>
     </>
   );
@@ -444,9 +444,9 @@ export function GraniteFallsPage() {
       </Helmet>
       <div className="min-h-screen">
         <section className="relative h-[600px] flex items-center justify-center bg-gradient-to-r from-gray-900 to-emerald-900 text-white">
-          <div className="text-center px-4"><h1 className="text-5xl font-extrabold mb-4">Granite Falls Limo Service</h1><p className="text-xl mb-8">Downtown, Mountain Loop Highway gateway, Verlot, Robe Valley & Cascade foothills</p><Link to="/book-now" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK NOW</Link></div>
+          <div className="text-center px-4"><h1 className="text-5xl font-extrabold mb-4">Granite Falls Limo Service</h1><p className="text-xl mb-8">Downtown, Mountain Loop Highway gateway, Verlot, Robe Valley & Cascade foothills</p><Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK NOW</Link></div>
         </section>
-        <section className="py-16 bg-white"><div className="max-w-4xl mx-auto px-4 text-center"><h2 className="text-3xl font-bold mb-4">Granite Falls ↔ Sea-Tac: From $180</h2><Link to="/book-now" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Airport Transfer</Link></div></section>
+        <section className="py-16 bg-white"><div className="max-w-4xl mx-auto px-4 text-center"><h2 className="text-3xl font-bold mb-4">Granite Falls ↔ Sea-Tac: From $180</h2><Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Airport Transfer</Link></div></section>
       </div>
     </>
   );
@@ -462,9 +462,9 @@ export function SultanPage() {
       </Helmet>
       <div className="min-h-screen">
         <section className="relative h-[600px] flex items-center justify-center bg-gradient-to-r from-indigo-900 to-emerald-800 text-white">
-          <div className="text-center px-4"><h1 className="text-5xl font-extrabold mb-4">Sultan & Sky Valley Limo Service</h1><p className="text-xl mb-8">Downtown Sultan, Startup, Gold Bar, Index, Stevens Pass corridor & Sky Valley communities</p><Link to="/book-now" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK NOW</Link></div>
+          <div className="text-center px-4"><h1 className="text-5xl font-extrabold mb-4">Sultan & Sky Valley Limo Service</h1><p className="text-xl mb-8">Downtown Sultan, Startup, Gold Bar, Index, Stevens Pass corridor & Sky Valley communities</p><Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-[#d4af37] text-black px-10 py-4 rounded-lg font-bold">BOOK NOW</Link></div>
         </section>
-        <section className="py-16 bg-white"><div className="max-w-4xl mx-auto px-4 text-center"><h2 className="text-3xl font-bold mb-4">Sultan ↔ Sea-Tac: From $195</h2><Link to="/book-now" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Airport Transfer</Link></div></section>
+        <section className="py-16 bg-white"><div className="max-w-4xl mx-auto px-4 text-center"><h2 className="text-3xl font-bold mb-4">Sultan ↔ Sea-Tac: From $195</h2><Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold inline-block">Book Airport Transfer</Link></div></section>
       </div>
     </>
   );

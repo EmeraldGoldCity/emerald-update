@@ -13,7 +13,7 @@ export const finalBlogPosts = {
     readTime: '10 min read',
     tags: ['Bainbridge Island', 'Ferry', 'Island Weddings', 'Kitsap County'],
     relatedLinks: [
-      { text: 'Book Island Transportation', url: '/book-now' },
+      { text: 'Book Island Transportation', url: 'https://customer.moovs.app/a1-charters-1/new/info' },
       { text: 'Kitsap County Service', url: '/locations/kitsap-county' },
       { text: 'Bainbridge Island Page', url: '/locations/kitsap-county/bainbridge-island' }
     ],
@@ -291,7 +291,7 @@ export const finalBlogPosts = {
     readTime: '8 min read',
     tags: ['New Year\'s Eve', 'Holiday Parties', 'Safety', 'Celebrations'],
     relatedLinks: [
-      { text: 'Book Holiday Transportation', url: '/book-now' },
+      { text: 'Book Holiday Transportation', url: 'https://customer.moovs.app/a1-charters-1/new/info' },
       { text: 'Special Occasions Service', url: '/service/special-occasions' },
       { text: 'Hourly Charters', url: '/service/hourly-charters' }
     ],
@@ -499,7 +499,7 @@ export const finalBlogPosts = {
     readTime: '11 min read',
     tags: ['Mount Rainier', 'Day Trips', 'Scenic Tours', 'Leavenworth'],
     relatedLinks: [
-      { text: 'Book Day Trip Service', url: '/book-now' },
+      { text: 'Book Day Trip Service', url: 'https://customer.moovs.app/a1-charters-1/new/info' },
       { text: 'Hourly Charters', url: '/service/hourly-charters' },
       { text: 'Special Occasions', url: '/service/special-occasions' }
     ],

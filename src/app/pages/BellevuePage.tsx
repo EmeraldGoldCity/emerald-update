@@ -147,7 +147,7 @@ export function BellevuePage() {
               Professional limousine service for Bellevue's corporate community, luxury shoppers, and airport travelers. From downtown high-rises to every Eastside neighborhood.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/book-now" className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-semibold text-lg transition-all">
+              <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-semibold text-lg transition-all">
                 BOOK BELLEVUE LIMO
               </Link>
               <a href="tel:+12065959675" className="border-2 border-white text-white hover:bg-white hover:text-emerald-900 px-8 py-4 rounded-lg font-semibold text-lg transition-all">
@@ -214,7 +214,7 @@ export function BellevuePage() {
                       <h3 className="text-lg font-bold text-gray-900 mb-1">{route.title}</h3>
                       <p className="text-gray-600 text-sm mb-2">{route.distance}</p>
                       <p className="text-emerald-700 font-semibold text-sm">
-                        {route.price} · <Link to="/book-now" className="underline">Book Now</Link>
+                        {route.price} · <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="underline">Book Now</Link>
                       </p>
                     </div>
                   </div>
@@ -230,7 +230,7 @@ export function BellevuePage() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Book Your Bellevue Limo Today</h2>
             <p className="text-xl text-emerald-100 mb-8">Flat-rate pricing. Professional chauffeurs. Luxury fleet.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/book-now" className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-10 py-4 rounded-lg font-bold text-lg transition-all">BOOK NOW</Link>
+              <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-10 py-4 rounded-lg font-bold text-lg transition-all">BOOK NOW</Link>
               <a href="tel:+12065959675" className="bg-white hover:bg-gray-100 text-emerald-700 px-10 py-4 rounded-lg font-bold text-lg transition-all">Call (206) 595-9675</a>
             </div>
           </div>

@@ -35,7 +35,7 @@ export const blogContent: BlogPostContent = {
     readTime: '8 min read',
     tags: ['Sea-Tac Airport', 'Airport Transfer', 'Travel Tips', 'Seattle'],
     relatedLinks: [
-      { text: 'Book Your Airport Transfer', url: '/book-now' },
+      { text: 'Book Your Airport Transfer', url: 'https://customer.moovs.app/a1-charters-1/new/info' },
       { text: 'View Our Airport Transfer Service', url: '/airport-transfers' },
       { text: 'See Our Fleet', url: '/fleet' }
     ],
@@ -106,7 +106,7 @@ export const blogContent: BlogPostContent = {
             Experience the A1 Charters difference. Book your Sea-Tac transfer today and discover why thousands of Seattle travelers trust us for their airport transportation needs.
           </p>
           <a
-            href="/book-now"
+            href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer"
             className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all"
           >
             Book Airport Transfer Now
@@ -124,7 +124,7 @@ export const blogContent: BlogPostContent = {
     readTime: '10 min read',
     tags: ['Wedding', 'Special Occasions', 'Seattle Weddings', 'Luxury Transport'],
     relatedLinks: [
-      { text: 'Book Wedding Transportation', url: '/book-now' },
+      { text: 'Book Wedding Transportation', url: 'https://customer.moovs.app/a1-charters-1/new/info' },
       { text: 'Wedding Transport Service', url: '/service/wedding-transportation' },
       { text: 'View Our Fleet', url: '/fleet' }
     ],
@@ -235,7 +235,7 @@ export const blogContent: BlogPostContent = {
             Let A1 Charters handle your wedding transportation so you can focus on celebrating. Contact us today for a personalized quote and availability for your special day.
           </p>
           <a
-            href="/book-now"
+            href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer"
             className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all"
           >
             Request Wedding Quote
@@ -253,7 +253,7 @@ export const blogContent: BlogPostContent = {
     readTime: '7 min read',
     tags: ['Corporate', 'Business Travel', 'Executive', 'Productivity'],
     relatedLinks: [
-      { text: 'Book Executive Transportation', url: '/book-now' },
+      { text: 'Book Executive Transportation', url: 'https://customer.moovs.app/a1-charters-1/new/info' },
       { text: 'Executive Transport Service', url: '/service/executive-transportation' },
       { text: 'Seattle Service Areas', url: '/locations' }
     ],
@@ -349,7 +349,7 @@ export const blogContent: BlogPostContent = {
             Experience the productivity and professionalism of A1 Charters executive transportation. Contact us to set up your corporate account or book your next business trip.
           </p>
           <a
-            href="/book-now"
+            href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer"
             className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all"
           >
             Book Executive Service
@@ -367,7 +367,7 @@ export const blogContent: BlogPostContent = {
     readTime: '6 min read',
     tags: ['Sports Events', 'Seahawks', 'Mariners', 'Seattle Sports'],
     relatedLinks: [
-      { text: 'Book Game Day Transportation', url: '/book-now' },
+      { text: 'Book Game Day Transportation', url: 'https://customer.moovs.app/a1-charters-1/new/info' },
       { text: 'Game Day Service', url: '/service/game-day-transport' },
       { text: 'View Our Party Bus', url: '/fleet' }
     ],
@@ -473,7 +473,7 @@ export const blogContent: BlogPostContent = {
             Make your next Seattle sports event unforgettable with A1 Charters. Book your game day transportation now and focus on cheering for your team!
           </p>
           <a
-            href="/book-now"
+            href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer"
             className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all"
           >
             Book Game Day Limo
@@ -491,7 +491,7 @@ export const blogContent: BlogPostContent = {
     readTime: '5 min read',
     tags: ['Prom', 'Teen Events', 'Safety', 'Special Occasions'],
     relatedLinks: [
-      { text: 'Book Prom Transportation', url: '/book-now' },
+      { text: 'Book Prom Transportation', url: 'https://customer.moovs.app/a1-charters-1/new/info' },
       { text: 'Special Occasions Service', url: '/service/special-occasions' },
       { text: 'View Party Bus & Vehicles', url: '/fleet' }
     ],
@@ -594,7 +594,7 @@ export const blogContent: BlogPostContent = {
             Give your teen the prom experience they deserve while ensuring their safety. Book A1 Charters prom transportation today—spaces fill quickly during prom season!
           </p>
           <a
-            href="/book-now"
+            href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer"
             className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all"
           >
             Reserve Prom Transportation
@@ -613,7 +613,7 @@ export const blogContent: BlogPostContent = {
     tags: ['Luxury', 'Fleet', 'Amenities', 'Premium Service'],
     relatedLinks: [
       { text: 'View Complete Fleet', url: '/fleet' },
-      { text: 'Book Your Ride', url: '/book-now' },
+      { text: 'Book Your Ride', url: 'https://customer.moovs.app/a1-charters-1/new/info' },
       { text: 'Service Areas', url: '/locations' }
     ],
     content: (
@@ -815,7 +815,7 @@ export const blogContent: BlogPostContent = {
             Discover why discerning Seattle travelers choose A1 Charters for luxury, reliability, and exceptional service. Book your premium transportation today.
           </p>
           <a
-            href="/book-now"
+            href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer"
             className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold transition-all"
           >
             Book Your Luxury Ride

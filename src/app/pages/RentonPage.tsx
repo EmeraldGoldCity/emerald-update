@@ -21,7 +21,7 @@ export function RentonPage() {
             <h1 className="text-5xl md:text-6xl font-extrabold mb-6">Renton Limo Service<br /><span className="text-[#d4af37]">Near Sea-Tac Airport</span></h1>
             <p className="text-xl text-gray-200 mb-8">Premium transportation for Renton, Boeing, The Landing & all neighborhoods. Just 8 miles from Sea-Tac.</p>
             <div className="flex gap-4 justify-center flex-wrap">
-              <Link to="/book-now" className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold">BOOK RENTON LIMO</Link>
+              <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-bold">BOOK RENTON LIMO</Link>
               <a href="tel:+12065959675" className="border-2 border-white px-8 py-4 rounded-lg font-bold">(206) 595-9675</a>
             </div>
           </div>
@@ -60,7 +60,7 @@ export function RentonPage() {
             <div className="bg-emerald-50 p-8 rounded-xl text-center">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Renton ↔ Sea-Tac Airport</h3>
               <p className="text-lg text-gray-700 mb-6">Just 8 miles | 12-20 minutes | From $75</p>
-              <Link to="/book-now" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold inline-block hover:bg-emerald-800">Book Airport Transfer</Link>
+              <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-bold inline-block hover:bg-emerald-800">Book Airport Transfer</Link>
             </div>
           </div>
         </section>

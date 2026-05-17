@@ -72,7 +72,7 @@ export function AirportTransfersPage() {
             Stress-free transportation to and from all major airports
           </p>
           <Link
-            to="/book-now"
+            href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer"
             className="bg-white hover:bg-gray-100 text-emerald-900 px-8 py-4 rounded-lg font-semibold transition-all inline-block shadow-xl"
           >
             BOOK NOW
@@ -281,7 +281,7 @@ export function AirportTransfersPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
             <Link
-              to="/book-now"
+              href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center justify-center bg-emerald-700 hover:bg-emerald-800 text-white px-8 py-4 rounded-lg font-semibold transition-all"
             >
               BOOK NOW

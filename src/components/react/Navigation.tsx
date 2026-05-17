@@ -367,7 +367,9 @@ export function Navigation({ variant = 'overlay' }: NavigationProps) {
               </a>
               
               <a
-                href="/book-now"
+                href="https://customer.moovs.app/a1-charters-1/new/info"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`inline-flex items-center rounded-none bg-brand-gold px-5 py-2.5 text-sm font-semibold tracking-wide text-brand-forest shadow-[0_2px_0_rgba(0,0,0,0.08)] transition-[background-color,box-shadow] duration-200 hover:bg-brand-gold-soft hover:shadow-[0_6px_20px_-6px_rgba(163,126,44,0.6)] motion-reduce:transition-none ${RING}`}
               >
                 Book Now
@@ -848,14 +850,18 @@ function MobileDrawer({
 
         <div className="space-y-2.5 border-t border-brand-gold/15 bg-brand-forest-deep px-5 py-4">
           <a
-            href="/book-now"
+            href="https://customer.moovs.app/a1-charters-1/new/info"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={onClose}
             className="flex min-h-[52px] w-full items-center justify-center rounded-none bg-brand-gold px-5 font-semibold tracking-wide text-brand-forest outline-none transition-colors hover:bg-brand-gold-soft focus-visible:ring-2 focus-visible:ring-brand-champagne"
           >
             Book Now
           </a>
           <a
-            href="/book-now?intent=quote"
+            href="https://customer.moovs.app/a1-charters-1/new/info"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={onClose}
             className={`flex min-h-[48px] w-full items-center justify-center rounded-none border border-brand-champagne/30 px-5 font-semibold text-brand-champagne transition-colors hover:border-brand-gold hover:text-brand-gold-soft ${RING_TIGHT}`}
           >

@@ -16,7 +16,7 @@ export function KentPage() {
           <div className="relative z-20 text-white text-center max-w-4xl mx-auto px-4">
             <h1 className="text-5xl font-extrabold mb-4">Kent Limo Service<br /><span className="text-[#d4af37]">South King County Transportation</span></h1>
             <p className="text-xl mb-8">Downtown Kent, East Hill, West Hill, Kent Station & beyond</p>
-            <Link to="/book-now" className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-10 py-4 rounded-lg font-bold inline-block">BOOK KENT LIMO</Link>
+            <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-10 py-4 rounded-lg font-bold inline-block">BOOK KENT LIMO</Link>
           </div>
         </section>
 
@@ -32,7 +32,7 @@ export function KentPage() {
             </div>
             <div className="mt-12 text-center bg-emerald-50 p-8 rounded-xl">
               <h3 className="text-2xl font-bold mb-4">Kent ↔ Sea-Tac Airport: From $85</h3>
-              <Link to="/book-now" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-semibold inline-block">Book Airport Ride</Link>
+              <Link href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="bg-emerald-700 text-white px-8 py-3 rounded-lg font-semibold inline-block">Book Airport Ride</Link>
             </div>
           </div>
         </section>

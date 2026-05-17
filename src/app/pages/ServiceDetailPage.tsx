@@ -364,7 +364,7 @@ export function ServiceDetailPage() {
           {service.pricing && (
             slug === 'hourly-charters' ? (
               <Link 
-                to="/book-now"
+                href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer"
                 className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-6 py-3 rounded-lg font-bold text-xl transition-all"
               >
                 {service.pricing}
@@ -606,7 +606,7 @@ export function ServiceDetailPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              to="/book-now"
+              href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer"
               className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-semibold transition-all inline-flex items-center justify-center"
             >
               BOOK NOW <ArrowRight className="ml-2 w-5 h-5" />

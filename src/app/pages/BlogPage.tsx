@@ -68,7 +68,7 @@ export function BlogPage() {
           {/* CTA */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="/book-now"
+              href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer"
               className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-10 py-4 rounded-lg text-base font-bold transition-all inline-flex items-center justify-center shadow-lg hover:shadow-xl"
             >
               Book a Ride Now

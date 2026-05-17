@@ -174,7 +174,7 @@ You don't need to be a Fortune 500 company. **Qualifying businesses:**
 
 ## Ready to Book Your Seattle Airport Limo?
 
-[Book in 60 Seconds](/book-now) or call **(206) 595-9675** for immediate assistance.
+[Book in 60 Seconds]( https://customer.moovs.app/a1-charters-1/new/info) or call **(206) 595-9675** for immediate assistance.
 
 **Current Promotion:** Book round-trip airport service and save 15%! Use code: **AIRPORT15**
 
@@ -613,7 +613,7 @@ Chances are, the limo is actually cheaper - AND you get professional service.
 
 ## Ready to Make the Switch?
 
-[Book your next airport trip](/book-now) with our **price-match guarantee**: We'll match any lower legitimate quote.
+[Book your next airport trip]( https://customer.moovs.app/a1-charters-1/new/info) with our **price-match guarantee**: We'll match any lower legitimate quote.
 
 Or call **(206) 595-9675** to speak with a transportation specialist.
 
@@ -999,7 +999,7 @@ The math is easy.
 
 ## Booking Your Woodinville Wine Tour
 
-[Reserve Your Wine Tour](/book-now?service=wine-tour) or call **(206) 595-9675**.
+[Reserve Your Wine Tour](https://customer.moovs.app/a1-charters-1/new/info) or call **(206) 595-9675**.
 
 **Special:** Use code **WINE2024** for complimentary ice chest and wine storage.
 `,

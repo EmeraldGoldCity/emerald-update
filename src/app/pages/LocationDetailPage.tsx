@@ -166,7 +166,7 @@ export function LocationDetailPage() {
                   <strong>Hourly Service:</strong> Starting at $95/hour (sedan) | $125/hour (SUV)
                 </p>
                 <Link
-                  to="/book-now"
+                  href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer"
                   className="inline-block bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-3 rounded-lg font-semibold transition-all"
                 >
                   Get Instant Quote
@@ -259,7 +259,7 @@ export function LocationDetailPage() {
                     </div>
 
                     <Link
-                      to="/book-now"
+                      href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer"
                       className="mt-6 block w-full text-center bg-[#d4af37] hover:bg-[#b8941f] text-black px-6 py-3 rounded-lg font-semibold transition-all"
                     >
                       Book Online Now
@@ -303,7 +303,7 @@ export function LocationDetailPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                to="/book-now"
+                href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer"
                 className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-8 py-4 rounded-lg font-semibold transition-all"
               >
                 BOOK NOW

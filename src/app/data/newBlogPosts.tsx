@@ -14,7 +14,7 @@ export const newBlogPosts = {
     readTime: '12 min read',
     tags: ['Sea-Tac Airport', 'Downtown Seattle', 'Transportation', 'Travel Guide'],
     relatedLinks: [
-      { text: 'Book Airport Transfer', url: '/book-now' },
+      { text: 'Book Airport Transfer', url: 'https://customer.moovs.app/a1-charters-1/new/info' },
       { text: 'Airport Transfer Service', url: '/airport-transfers' },
       { text: 'Seattle Location Page', url: '/locations/king-county/seattle' }
     ],
@@ -207,7 +207,7 @@ export const newBlogPosts = {
     readTime: '14 min read',
     tags: ['Wedding', 'Seattle Weddings', 'Transportation Planning', 'Luxury Limos'],
     relatedLinks: [
-      { text: 'Book Wedding Transportation', url: '/book-now' },
+      { text: 'Book Wedding Transportation', url: 'https://customer.moovs.app/a1-charters-1/new/info' },
       { text: 'Wedding Service Page', url: '/service/wedding-transportation' },
       { text: 'View Our Fleet', url: '/fleet' }
     ],

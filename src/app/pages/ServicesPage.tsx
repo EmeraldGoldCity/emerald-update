@@ -237,7 +237,7 @@ export function ServicesPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              to="/book-now"
+              href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer"
               className="bg-emerald-700 hover:bg-emerald-800 text-white px-8 py-4 rounded-lg font-semibold transition-all"
             >
               BOOK NOW

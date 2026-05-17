@@ -13,7 +13,7 @@ export const remainingBlogPosts = {
     readTime: '10 min read',
     tags: ['Cruise Port', 'Alaska Cruise', 'Pier 91', 'Pier 66', 'Seattle Waterfront'],
     relatedLinks: [
-      { text: 'Book Cruise Transfer', url: '/book-now' },
+      { text: 'Book Cruise Transfer', url: 'https://customer.moovs.app/a1-charters-1/new/info' },
       { text: 'Cruise Transportation Service', url: '/service/cruise-transportation' },
       { text: 'Seattle Service Area', url: '/locations/king-county/seattle' }
     ],
@@ -265,7 +265,7 @@ export const remainingBlogPosts = {
     readTime: '9 min read',
     tags: ['Prom', 'Homecoming', 'Teen Transportation', 'Safety', 'High School'],
     relatedLinks: [
-      { text: 'Book Prom Transportation', url: '/book-now' },
+      { text: 'Book Prom Transportation', url: 'https://customer.moovs.app/a1-charters-1/new/info' },
       { text: 'Special Occasions Service', url: '/service/special-occasions' },
       { text: 'Seattle Service Area', url: '/locations/king-county/seattle' }
     ],
