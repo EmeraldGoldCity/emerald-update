@@ -1,0 +1,158 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import { sanityClient, urlFor, BLOG_LIST_QUERY } from '@/lib/sanity';
+import type { BlogPost } from '@/lib/sanity';
+
+const posts: BlogPost[] = await sanityClient.fetch(BLOG_LIST_QUERY);
+
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<MainLayout
+  title="Blog | Emerald City Limos — Seattle Luxury Transportation"
+  description="Travel tips, chauffeur insights, and luxury transportation guides for Seattle, Bellevue, and the greater Pacific Northwest."
+  keywords="seattle limo blog, chauffeur tips, luxury transportation seattle, black car service blog"
+  canonical="https://emeraldcitylimos.com/blog"
+>
+
+  <!-- ── Hero ────────────────────────────────────────────────────────── -->
+  <section class="bg-brand-forest py-16 sm:py-20 px-6 sm:px-8">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-center gap-4 mb-6">
+        <div class="h-px w-10 bg-brand-gold shrink-0" aria-hidden="true"></div>
+        <p class="font-sans text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] uppercase text-brand-gold">
+          Insights & Guides
+        </p>
+      </div>
+      <h1
+        class="font-display font-light text-white leading-[1.08] tracking-[-0.025em] max-w-2xl"
+        style="font-size: clamp(2rem, 4vw, 3.25rem);"
+      >
+        The Emerald City Limos
+        <em class="italic text-brand-gold"> Journal</em>
+      </h1>
+      <p class="mt-4 font-sans font-light text-white/50 text-sm leading-relaxed max-w-lg">
+        Travel tips, airport guides, and chauffeur insights for Seattle's most demanding travellers.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Post grid ────────────────────────────────────────────────────── -->
+  <section class="bg-white py-16 sm:py-20 px-6 sm:px-8" aria-label="Blog posts">
+    <div class="max-w-6xl mx-auto">
+
+      {posts.length === 0 ? (
+        <p class="font-sans text-neutral-400 text-center py-20">No posts published yet.</p>
+      ) : (
+        <ul
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          role="list"
+        >
+          {posts.map((post) => (
+            <li role="listitem">
+              <article class="group flex flex-col h-full bg-white ring-1 ring-brand-forest/10 hover:ring-brand-gold/40 transition-shadow duration-300 hover:shadow-lg">
+
+                <!-- Image -->
+                <a
+                  href={`/blog/${post.slug.current}`}
+                  class="block overflow-hidden aspect-[16/9] bg-brand-champagne"
+                  aria-label={`Read: ${post.title}`}
+                  tabindex="-1"
+                >
+                  {post.mainImage?.asset ? (
+                    <img
+                      src={urlFor(post.mainImage).width(640).height(360).auto('format').url()}
+                      alt={post.mainImage.alt ?? post.title}
+                      width="640"
+                      height="360"
+                      loading="lazy"
+                      decoding="async"
+                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                  ) : (
+                    <div class="w-full h-full flex items-center justify-center">
+                      <span class="font-display font-light text-brand-forest/20 text-4xl" aria-hidden="true">ECL</span>
+                    </div>
+                  )}
+                </a>
+
+                <!-- Content -->
+                <div class="flex flex-col flex-1 p-6">
+
+                  <!-- Categories -->
+                  {post.categories && post.categories.length > 0 && (
+                    <div class="flex flex-wrap gap-2 mb-3">
+                      {post.categories.slice(0, 2).map((cat) => (
+                        <span class="font-sans text-[9px] font-semibold tracking-[0.18em] uppercase text-brand-gold">
+                          {cat.title}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  <!-- Title -->
+                  <h2 class="font-display font-light text-brand-forest leading-[1.2] mb-3" style="font-size: 1.125rem;">
+                    <a
+                      href={`/blog/${post.slug.current}`}
+                      class="hover:text-brand-gold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"
+                    >
+                      {post.title}
+                    </a>
+                  </h2>
+
+                  <!-- Excerpt -->
+                  {post.excerpt && (
+                    <p class="font-sans font-light text-neutral-500 text-sm leading-[1.75] mb-4 flex-1 line-clamp-3">
+                      {post.excerpt}
+                    </p>
+                  )}
+
+                  <!-- Meta -->
+                  <div class="flex items-center justify-between mt-auto pt-4 border-t border-brand-forest/[.08]">
+                    <time
+                      datetime={post.publishedAt}
+                      class="font-sans text-[10px] font-medium tracking-[0.1em] text-neutral-400 uppercase"
+                    >
+                      {formatDate(post.publishedAt)}
+                    </time>
+                    {post.readingTime && (
+                      <span class="font-sans text-[10px] text-neutral-400">
+                        {post.readingTime} min read
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+              </article>
+            </li>
+          ))}
+        </ul>
+      )}
+
+    </div>
+  </section>
+
+</MainLayout>
+
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    '@id': 'https://emeraldcitylimos.com/blog',
+    url: 'https://emeraldcitylimos.com/blog',
+    name: 'Emerald City Limos Journal',
+    description: 'Travel tips, chauffeur insights, and luxury transportation guides for Seattle and the Pacific Northwest.',
+    publisher: {
+      '@type': 'Organization',
+      name: 'Emerald City Limos',
+      url: 'https://emeraldcitylimos.com',
+    },
+  })}
+/>

@@ -71,9 +71,6 @@ const BuckleyPage = lazy(() => import('@/app/pages/PierceCountyCityPages').then(
 const MiltonPage = lazy(() => import('@/app/pages/PierceCountyCityPages').then(m => ({ default: m.MiltonPage })));
 const RustonPage = lazy(() => import('@/app/pages/PierceCountyCityPages').then(m => ({ default: m.RustonPage })));
 const ServiceDetailPage = lazy(() => import('@/app/pages/ServiceDetailPage').then(m => ({ default: m.ServiceDetailPage })));
-const BlogsFaqPage = lazy(() => import('@/app/pages/BlogsFaqPage').then(m => ({ default: m.BlogsFaqPage })));
-const BlogPage = lazy(() => import('@/app/pages/BlogPage').then(m => ({ default: m.BlogPage })));
-const BlogPostPage = lazy(() => import('@/app/pages/BlogPostPage').then(m => ({ default: m.BlogPostPage })));
 const AffiliatesPage = lazy(() => import('@/app/pages/AffiliatesPage').then(m => ({ default: m.AffiliatesPage })));
 const BookNowPage = lazy(() => import('@/app/pages/BookNowPage').then(m => ({ default: m.BookNowPage })));
 
@@ -158,9 +155,6 @@ function App() {
                 <Route path="/locations/pierce-county/milton" element={<MiltonPage />} />
                 <Route path="/locations/pierce-county/ruston" element={<RustonPage />} />
                 <Route path="/service/:slug" element={<ServiceDetailPage />} />
-                <Route path="/blogs-faq" element={<BlogsFaqPage />} />
-                <Route path="/blog" element={<BlogPage />} />
-                <Route path="/blog/:slug" element={<BlogPostPage />} />
                 <Route path="/affiliates" element={<AffiliatesPage />} />
               </Routes>
             </Suspense>

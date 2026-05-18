@@ -1,18 +1,195 @@
-
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
-import { BlogPostPage } from '@/app/pages/BlogPostPage';
+import { sanityClient, urlFor, BLOG_POST_QUERY, BLOG_SLUGS_QUERY } from '@/lib/sanity';
+import type { BlogPost } from '@/lib/sanity';
+import { toHTML } from '@portabletext/to-html';
 
 export async function getStaticPaths() {
-  const { blogContent } = await import('@/app/pages/BlogPostPage');
-  return Object.keys(blogContent).map((slug) => ({ params: { slug } }));
+  const slugs: Array<{ slug: string }> = await sanityClient.fetch(BLOG_SLUGS_QUERY);
+  return slugs.map(({ slug }) => ({ params: { slug } }));
 }
 
 const { slug } = Astro.params;
+const post: BlogPost | null = await sanityClient.fetch(BLOG_POST_QUERY, { slug });
+
+if (!post) {
+  return Astro.redirect('/blog', 301);
+}
+
+const bodyHTML = post.body ? toHTML(post.body as Parameters<typeof toHTML>[0]) : '';
+
+const pageTitle = post.seo?.metaTitle ?? post.title;
+const pageDesc  = post.seo?.metaDescription ?? post.excerpt;
+
+const ogImage = post.mainImage?.asset
+  ? urlFor(post.mainImage).width(1200).height(630).auto('format').url()
+  : undefined;
+
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
 ---
+
 <MainLayout
-  title="Blog | Emerald City Limos"
-  description="Seattle limo service tips, guides and news from Emerald City Limos."
+  title={pageTitle}
+  description={pageDesc}
+  ogImage={ogImage}
+  canonical={`https://emeraldcitylimos.com/blog/${slug}`}
 >
-  <BlogPostPage slug={slug} client:load />
+
+  <!-- ── Hero / Featured image ────────────────────────────────────────── -->
+  {post.mainImage?.asset && (
+    <div class="relative bg-brand-forest overflow-hidden" style="height: clamp(260px, 40vw, 480px);">
+      <img
+        src={urlFor(post.mainImage).width(1440).height(480).auto('format').url()}
+        alt={post.mainImage.alt ?? post.title}
+        width="1440"
+        height="480"
+        loading="eager"
+        decoding="async"
+        class="w-full h-full object-cover opacity-60"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-brand-forest via-brand-forest/40 to-transparent"></div>
+    </div>
+  )}
+
+  <!-- ── Article ──────────────────────────────────────────────────────── -->
+  <article class="bg-white px-6 sm:px-8 py-12 sm:py-16" itemscope itemtype="https://schema.org/BlogPosting">
+
+    <div class="max-w-3xl mx-auto">
+
+      <!-- Breadcrumb -->
+      <nav aria-label="Breadcrumb" class="mb-8">
+        <ol class="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-[0.16em] uppercase text-neutral-400 list-none p-0 m-0">
+          <li><a href="/" class="hover:text-brand-gold transition-colors">Home</a></li>
+          <li aria-hidden="true" class="text-neutral-300">/</li>
+          <li><a href="/blog" class="hover:text-brand-gold transition-colors">Blog</a></li>
+          <li aria-hidden="true" class="text-neutral-300">/</li>
+          <li class="text-brand-gold truncate max-w-[180px]" aria-current="page">{post.title}</li>
+        </ol>
+      </nav>
+
+      <!-- Categories -->
+      {post.categories && post.categories.length > 0 && (
+        <div class="flex flex-wrap gap-3 mb-4">
+          {post.categories.map((cat) => (
+            <span class="font-sans text-[9px] font-semibold tracking-[0.2em] uppercase text-brand-gold">
+              {cat.title}
+            </span>
+          ))}
+        </div>
+      )}
+
+      <!-- Title -->
+      <h1
+        class="font-display font-light text-brand-forest leading-[1.08] tracking-[-0.025em] mb-6"
+        style="font-size: clamp(1.75rem, 4vw, 3rem);"
+        itemprop="headline"
+      >
+        {post.title}
+      </h1>
+
+      <!-- Meta row -->
+      <div class="flex flex-wrap items-center gap-4 mb-8 pb-8 border-b border-brand-forest/[.08]">
+        {post.author && (
+          <span class="font-sans text-sm text-neutral-600" itemprop="author" itemscope itemtype="https://schema.org/Person">
+            <span itemprop="name">{post.author.name}</span>
+          </span>
+        )}
+        {post.publishedAt && (
+          <>
+            <span class="text-neutral-300" aria-hidden="true">·</span>
+            <time
+              datetime={post.publishedAt}
+              class="font-sans text-sm text-neutral-500"
+              itemprop="datePublished"
+            >
+              {formatDate(post.publishedAt)}
+            </time>
+          </>
+        )}
+        {post.readingTime && (
+          <>
+            <span class="text-neutral-300" aria-hidden="true">·</span>
+            <span class="font-sans text-sm text-neutral-500">{post.readingTime} min read</span>
+          </>
+        )}
+      </div>
+
+      <!-- Body -->
+      <div
+        class="prose prose-neutral prose-headings:font-display prose-headings:font-light prose-headings:text-brand-forest prose-a:text-brand-gold prose-a:no-underline hover:prose-a:underline prose-img:rounded-none prose-strong:text-brand-forest max-w-none"
+        itemprop="articleBody"
+        set:html={bodyHTML}
+      />
+
+      <!-- Back link -->
+      <div class="mt-16 pt-8 border-t border-brand-forest/[.08]">
+        <a
+          href="/blog"
+          class="inline-flex items-center gap-2 font-sans text-[11px] font-semibold tracking-[0.2em] uppercase text-brand-gold hover:text-brand-forest transition-colors duration-200"
+        >
+          <span aria-hidden="true">←</span> Back to Blog
+        </a>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ── CTA ──────────────────────────────────────────────────────────── -->
+  <section class="bg-brand-champagne py-14 sm:py-20 px-6 sm:px-8">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="font-sans text-[10px] font-semibold tracking-[0.22em] uppercase text-brand-gold mb-4">
+        Ready to Ride?
+      </p>
+      <h2
+        class="font-display font-light text-brand-forest leading-[1.1] tracking-[-0.02em] mb-6"
+        style="font-size: clamp(1.5rem, 3vw, 2.25rem);"
+      >
+        Book your Seattle chauffeur today
+      </h2>
+      <a
+        href="https://customer.moovs.app/a1-charters-1/new/info"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 min-h-[52px] px-10 font-sans text-[11px] font-semibold tracking-[0.2em] uppercase bg-brand-forest text-white border border-brand-forest transition-colors duration-200 hover:bg-brand-forest/90"
+      >
+        Reserve Your Ride →
+      </a>
+    </div>
+  </section>
+
 </MainLayout>
+
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt,
+    url: `https://emeraldcitylimos.com/blog/${slug}`,
+    datePublished: post.publishedAt,
+    author: post.author ? { '@type': 'Person', name: post.author.name } : undefined,
+    publisher: {
+      '@type': 'Organization',
+      name: 'Emerald City Limos',
+      url: 'https://emeraldcitylimos.com',
+    },
+    ...(ogImage ? { image: ogImage } : {}),
+  })}
+/>
+
+<style is:global>
+  .prose h2 { font-size: clamp(1.25rem, 2.5vw, 1.625rem); margin-top: 2.5rem; margin-bottom: 0.75rem; }
+  .prose h3 { font-size: clamp(1.1rem, 2vw, 1.375rem); margin-top: 2rem; margin-bottom: 0.5rem; }
+  .prose p  { line-height: 1.85; margin-bottom: 1.25rem; color: #404040; }
+  .prose ul, .prose ol { padding-left: 1.5rem; margin-bottom: 1.25rem; }
+  .prose li { margin-bottom: 0.4rem; line-height: 1.75; color: #404040; }
+  .prose blockquote { border-left: 2px solid #c39a45; padding-left: 1.25rem; font-style: italic; color: #595959; margin: 1.5rem 0; }
+  .prose img { width: 100%; height: auto; margin: 2rem 0; }
+</style>

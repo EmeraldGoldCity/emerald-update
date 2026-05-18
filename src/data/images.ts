@@ -55,13 +55,20 @@ import cullinanExterior from '@/assets/images/fleet/rolls-royce/rolls-royce.png'
 /* ── BMW X1 ─────────────────────────────────────────────────── */
 import bmwX1 from '@/assets/images/fleet/bmw/bmw-x1.png';
 
-/* ── Locations ──────────────────────────────────────────────── */
+/* ── Locations king ──────────────────────────────────────────────── */
 import seattle from '@/assets/locations/king/seattle-landmark.jpg';
 import bellevue from '@/assets/locations/king/Bellevue-landmark.jpg';
 import redmond from '@/assets/locations/king/Redmond-landmark.webp';
 import renton from '@/assets/locations/king/renton-landmark.jpg';
 import tacoma from '@/assets/locations/pierce/tacoma.jpg';
 import auburn from '@/assets/locations/king/auburn-landmark.jpg';
+
+/* ── Locations pierce ──────────────────────────────────────────────── */
+
+
+/* ── Locations snohomish ──────────────────────────────────────────────── */
+
+
 
 /* ── Services ───────────────────────────────────────────────── */
 import airportTransfer from '@/assets/images/services/airport/airport-transfer.png';
