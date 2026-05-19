@@ -334,8 +334,12 @@ const PHONE_HREF    = 'tel:+12065959675';
 </style>
 
 <script is:inline>
-  (() => {
+  document.addEventListener('astro:page-load', function () {
     document.querySelectorAll('[data-vehicle-gallery]').forEach((gallery) => {
+      // Guard: skip if this DOM element was already initialized this navigation
+      if (gallery.dataset.galleryInit) return;
+      gallery.dataset.galleryInit = '1';
+
       const track  = gallery.querySelector('[data-gallery-track]');
       const slides = Array.from(gallery.querySelectorAll('[data-gallery-slide]'));
       const prevBtn = gallery.querySelector('[data-gallery-prev]');
@@ -398,5 +402,5 @@ const PHONE_HREF    = 'tel:+12065959675';
 
       setActive(0);
     });
-  })();
+  });
 </script>
