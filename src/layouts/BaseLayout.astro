@@ -28,18 +28,23 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, siteUrl).href;
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script
-      is:inline
-      defer
-      src="https://www.googletagmanager.com/gtag/js?id=G-2D3FQTSFK1"></script>
+    <!-- Google Analytics — queued immediately, script loaded after browser idle -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
+      function gtag() { dataLayer.push(arguments); }
       gtag("js", new Date());
       gtag("config", "G-2D3FQTSFK1");
+      function _loadGtag() {
+        var s = document.createElement("script");
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=G-2D3FQTSFK1";
+        document.head.appendChild(s);
+      }
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(_loadGtag, { timeout: 4000 });
+      } else {
+        setTimeout(_loadGtag, 2000);
+      }
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -106,51 +111,16 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, siteUrl).href;
       /* Critical CSS - Mobile-First Performance Optimized */
     </style>
 
-    <!-- Preconnect to important origins -->
+    <!-- Preconnect to important origins (max 4 to avoid resource contention) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://images.unsplash.com" />
     <link rel="preconnect" href="https://static.moovs.app" />
-    <link rel="preconnect" href="https://api-production.moovs.app" />
     <link rel="preconnect" href="https://customer.moovs.app" />
-    <link rel="dns-prefetch" href="https://customer.moovs.app" />
-    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+    <link rel="dns-prefetch" href="https://api-production.moovs.app" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
-    <!-- Preload Critical Resources -->
-    <link
-      rel="preload"
-      as="image"
-      href="/images/emerald-hero.webp"
-      type="image/webp"
-      fetchpriority="high"
-      media="(min-width: 768px)"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="/images/hero-mobile.webp"
-      type="image/webp"
-      fetchpriority="high"
-      media="(max-width: 767px)"
-    />
-
-    <!-- Preload critical Unsplash images (until replaced with local) -->
-    <link
-      rel="preload"
-      as="image"
-      href="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=640&h=360&fit=crop&q=70&fm=webp"
-      type="image/webp"
-      fetchpriority="high"
-      media="(max-width: 768px)"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=1920&h=1080&fit=crop&q=75&fm=webp"
-      type="image/webp"
-      fetchpriority="high"
-      media="(min-width: 769px)"
-    />
+    <!-- Per-page head injections (preloads, etc.) -->
+    <slot name="head" />
 
     <!-- View Transitions for instant navigation -->
     <ClientRouter />

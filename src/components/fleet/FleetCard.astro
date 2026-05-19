@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import type { Vehicle } from '@/data/fleet';
 
 interface Props {
@@ -26,15 +27,29 @@ const { vehicle } = Astro.props;
   {/* ── Image ── */}
   <div class="relative aspect-[4/3] w-full overflow-hidden bg-brand-forest">
     {vehicle.imageSrc ? (
-      <img
-        src={typeof vehicle.imageSrc === 'string' ? vehicle.imageSrc : vehicle.imageSrc.src}
-        alt={vehicle.imageAlt}
-        loading="lazy"
-        decoding="async"
-        width="800"
-        height="600"
-        class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-      />
+      typeof vehicle.imageSrc === 'string' ? (
+        <img
+          src={vehicle.imageSrc}
+          alt={vehicle.imageAlt}
+          loading="lazy"
+          decoding="async"
+          width="640"
+          height="480"
+          class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+        />
+      ) : (
+        <Image
+          src={vehicle.imageSrc}
+          alt={vehicle.imageAlt}
+          loading="lazy"
+          decoding="async"
+          format="webp"
+          quality={80}
+          width={640}
+          height={480}
+          class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+        />
+      )
     ) : (
       <div class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
         <span

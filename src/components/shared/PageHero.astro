@@ -126,6 +126,7 @@ const anim = (cls: string) => (noAnim ? '' : cls);
         height={image.height ?? image.src.height}
         loading="eager"
         decoding="async"
+        fetchpriority="high"
         format="webp"
         quality={85}
         class="absolute inset-0 h-full w-full object-cover object-center"

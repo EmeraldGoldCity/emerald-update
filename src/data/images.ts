@@ -35,15 +35,26 @@ import mercedesInterior2 from '@/assets/images/fleet/mercedes/s-class-hero.png';
 /* ── Lincoln Town Car Stretch / Limo ────────────────────────── */
 import limoMain from '@/assets/images/fleet/limo/limo.png';
 import limoInterior from '@/assets/images/fleet/limo/interior.png';
-import limoPartyInterior from '@/assets/images/fleet/limo/party1.webp';
+
+/* ── Party Bus ──────────────────────────────────── */
+import partyBusHero from '@/assets/images/fleet/partybus/party-bus-exterior.png';
+import partyBusInterior from '@/assets/images/fleet/partybus/partybus-interior.png';
+import partyBusRear from '@/assets/images/fleet/partybus/partybus-rear.png';
+
+
 
 /* ── Freightliner Minibus ───────────────────────────────────── */
 import freightlinerMain from '@/assets/images/fleet/freight-liner/freightliner-exterior.png';
 import freightlinerExterior from '@/assets/images/fleet/freight-liner/freightliner.webp';
 import freightlinerInterior from '@/assets/images/fleet/freight-liner/freightliner-interior.png';
 
-/* ── Motor Coach ────────────────────────────────────────────── */
-import motorCoachMain from '@/assets/images/fleet/coach/motorcoach.webp';
+/* ── Coach ────────────────────────────────────────────── */
+import motorCoachMain from '@/assets/images/fleet/coach/coachbus-hero.png';
+import coachInterior from '@/assets/images/fleet/coach/coachbus-interior.png';
+import coachRear from '@/assets/images/fleet/coach/coachbus-rear.png';
+
+
+
 
 /* ── Rolls-Royce Ghost ──────────────────────────────────────── */
 import cullinanMain from '@/assets/images/fleet/rolls-royce/cullinan-exterior.png';
@@ -62,12 +73,6 @@ import redmond from '@/assets/locations/king/Redmond-landmark.webp';
 import renton from '@/assets/locations/king/renton-landmark.jpg';
 import tacoma from '@/assets/locations/pierce/tacoma.jpg';
 import auburn from '@/assets/locations/king/auburn-landmark.jpg';
-
-/* ── Locations pierce ──────────────────────────────────────────────── */
-
-
-/* ── Locations snohomish ──────────────────────────────────────────────── */
-
 
 
 /* ── Services ───────────────────────────────────────────────── */
@@ -101,10 +106,10 @@ export const images = {
       gallery: [mercedesMain, mercedesInterior, mercedesInterior2],
     },
 
-    townCar: {
-      main: limoMain,
-      gallery: [limoMain, limoInterior, limoPartyInterior],
-    },
+    // townCar: {
+    //   main: limoMain,
+    //   gallery: [limoMain, limoInterior, limoPartyInterior],
+    // },
 
     cadillacXt6: {
       main: cadillacXt6,
@@ -117,13 +122,13 @@ export const images = {
     },
 
     partyBus: {
-      main: limoPartyInterior,
-      gallery: [limoPartyInterior],
+      main: partyBusHero,
+      gallery: [partyBusHero, partyBusInterior, partyBusRear],
     },
 
     motorCoach: {
       main: motorCoachMain,
-      gallery: [motorCoachMain],
+      gallery: [motorCoachMain, coachInterior, coachRear],
     },
 
     cullinan: {

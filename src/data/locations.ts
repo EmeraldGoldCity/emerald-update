@@ -35,6 +35,18 @@ import imgKent from '@/assets/locations/king/kent.jpg';
 import imgLakewood from '@/assets/locations/king/lakewood.jpg';
 import imgPuyallup from '@/assets/locations/king/puyallup.jpg';
 import imgMarysville from '@/assets/locations/snohomish/marysville.jpg';
+import imgSnohomishCity from '@/assets/locations/snohomish/downtown-snohomish.webp';
+import imgMonroe from '@/assets/locations/snohomish/monroe.jpeg';
+import imgMukilteo from '@/assets/locations/snohomish/mukilteo-wa.webp';
+import imgMountlakeTerrace from '@/assets/locations/snohomish/mountlake-terrace.webp';
+import imgMillCreek from '@/assets/locations/snohomish/mill-creek.webp';
+import imgGigHarbor from '@/assets/locations/pierce/gig-harbor.jpg';
+import imgBonneyLake from '@/assets/locations/pierce/bonney-lake.jpg';
+import imgSumner from '@/assets/locations/pierce/sumner-wa.jpg';
+import imgFife from '@/assets/locations/pierce/fife-wa.jpg';
+import imgUniversityPlace from '@/assets/locations/pierce/university-place.jpg';
+import imgDupont from '@/assets/locations/pierce/dupont-wa.jpg';
+import imgSteilacoom from '@/assets/locations/pierce/steilacoom-wa.webp';
 import imgSeatac from '@/assets/images/airports/seatac-airport.webp';
 import imgBoeingField from '@/assets/images/airports/boeing-field.jpg';
 
@@ -154,9 +166,22 @@ const HERO_IMAGES: Record<string, ImageMetadata> = {
   kent:             imgKent,
   lakewood:         imgLakewood,
   puyallup:         imgPuyallup,
-  marysville:       imgMarysville,
-  'seatac-airport': imgSeatac,
-  'boeing-field':   imgBoeingField,
+  marysville:          imgMarysville,
+  snohomish:           imgSnohomishCity,
+  monroe:              imgMonroe,
+  mukilteo:            imgMukilteo,
+  'mountlake-terrace': imgMountlakeTerrace,
+  'mill-creek':        imgMillCreek,
+  'bothell-north':     imgBothell,
+  'gig-harbor':        imgGigHarbor,
+  'bonney-lake':       imgBonneyLake,
+  sumner:              imgSumner,
+  fife:                imgFife,
+  'university-place':  imgUniversityPlace,
+  dupont:              imgDupont,
+  steilacoom:          imgSteilacoom,
+  'seatac-airport':    imgSeatac,
+  'boeing-field':      imgBoeingField,
 };
 
 export const locations: Location[] = [

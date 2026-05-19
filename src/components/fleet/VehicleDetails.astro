@@ -10,6 +10,7 @@
  * Zero React island. The carousel uses native scroll-snap + a small inline
  * script (IntersectionObserver for dot sync, arrow keys, Home/End).
  */
+import { Image } from 'astro:assets';
 import type { Vehicle } from '@/data/fleet';
 
 interface Props {
@@ -77,16 +78,31 @@ const PHONE_HREF    = 'tel:+12065959675';
                     class="relative w-full shrink-0 snap-center bg-brand-forest"
                   >
                     <div class="relative aspect-[4/3] w-full">
-                      <img
-                        src={typeof slide.src === 'string' ? slide.src : slide.src.src}
-                        alt={slide.alt}
-                        loading={index === 0 ? 'eager' : 'lazy'}
-                        fetchpriority={index === 0 ? 'high' : 'auto'}
-                        decoding={index === 0 ? 'sync' : 'async'}
-                        width="1200"
-                        height="900"
-                        class="absolute inset-0 h-full w-full object-cover object-center"
-                      />
+                      {typeof slide.src === 'string' ? (
+                        <img
+                          src={slide.src}
+                          alt={slide.alt}
+                          loading={index === 0 ? 'eager' : 'lazy'}
+                          fetchpriority={index === 0 ? 'high' : 'auto'}
+                          decoding={index === 0 ? 'sync' : 'async'}
+                          width="800"
+                          height="600"
+                          class="absolute inset-0 h-full w-full object-cover object-center"
+                        />
+                      ) : (
+                        <Image
+                          src={slide.src}
+                          alt={slide.alt}
+                          loading={index === 0 ? 'eager' : 'lazy'}
+                          fetchpriority={index === 0 ? 'high' : 'auto'}
+                          decoding={index === 0 ? 'sync' : 'async'}
+                          format="webp"
+                          quality={82}
+                          width={800}
+                          height={600}
+                          class="absolute inset-0 h-full w-full object-cover object-center"
+                        />
+                      )}
 
                       <!-- View label -->
                       <span class="absolute bottom-3 left-3 inline-flex items-center bg-brand-forest-deep/85 px-2.5 py-1 font-sans text-[0.67rem] font-semibold uppercase tracking-[0.16em] text-brand-gold-soft backdrop-blur-sm">

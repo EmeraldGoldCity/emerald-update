@@ -15,19 +15,23 @@ const props = Astro.props;
 ---
 
 <BaseLayout {...props}>
+  <Fragment slot="head">
+    <slot name="head" />
+  </Fragment>
+
   <!-- Skip to Main Content Link -->
   <a href="#main-content" class="skip-link">
     Skip to main content
   </a>
-  
+
   <!-- Header with Navigation -->
-  <Navigation client:load />
-  
+  <Navigation client:idle />
+
   <!-- Main Content -->
   <main id="main-content" role="main">
     <slot />
   </main>
-  
+
   <!-- Footer -->
   <Footer />
 </BaseLayout>

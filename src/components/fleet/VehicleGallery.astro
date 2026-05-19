@@ -20,6 +20,7 @@
  *   - Arrow buttons have explicit aria-labels.
  *   - First slide eager-loaded as LCP candidate; rest lazy.
  */
+import { Image } from 'astro:assets';
 import type { Vehicle } from '@/data/fleet';
 
 interface Props {
@@ -92,16 +93,31 @@ const galleryId = `gallery-${vehicle.id}`;
             class="relative w-full shrink-0 snap-center overflow-hidden bg-brand-forest"
           >
             <div class="relative aspect-[16/10] w-full sm:aspect-[16/9]">
-              <img
-                src={typeof slide.src === 'string' ? slide.src : slide.src.src}
-                alt={slide.alt}
-                loading={index === 0 ? 'eager' : 'lazy'}
-                fetchpriority={index === 0 ? 'high' : 'auto'}
-                decoding={index === 0 ? 'sync' : 'async'}
-                width="1600"
-                height="900"
-                class="absolute inset-0 h-full w-full object-cover object-center"
-              />
+              {typeof slide.src === 'string' ? (
+                <img
+                  src={slide.src}
+                  alt={slide.alt}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  fetchpriority={index === 0 ? 'high' : 'auto'}
+                  decoding={index === 0 ? 'sync' : 'async'}
+                  width="1280"
+                  height="720"
+                  class="absolute inset-0 h-full w-full object-cover object-center"
+                />
+              ) : (
+                <Image
+                  src={slide.src}
+                  alt={slide.alt}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  fetchpriority={index === 0 ? 'high' : 'auto'}
+                  decoding={index === 0 ? 'sync' : 'async'}
+                  format="webp"
+                  quality={82}
+                  width={1280}
+                  height={720}
+                  class="absolute inset-0 h-full w-full object-cover object-center"
+                />
+              )}
               <!-- Bottom-edge view label badge -->
               <span class="absolute bottom-3 left-3 inline-flex items-center gap-1.5 bg-brand-forest-deep/85 px-2.5 py-1 font-sans text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-brand-gold-soft backdrop-blur-sm">
                 {slide.view}

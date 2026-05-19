@@ -472,8 +472,18 @@ export const fleet: Vehicle[] = [
     gallery: [
       {
         src: images.fleet.partyBus.gallery[0],
+        alt: 'Party bus Exterior — Exterior bus view',
+        view: 'Exterior · View',
+      },
+      {
+        src: images.fleet.partyBus.gallery[1],
         alt: 'Party bus interior — lounge seating with LED lighting',
-        view: 'Interior · Cabin',
+        view: 'Interior · View',
+      },
+      {
+        src: images.fleet.partyBus.gallery[2],
+        alt: 'Party bus Rear — Rear view',
+        view: 'Rear · View',
       },
     ],
     specs: {
@@ -515,6 +525,16 @@ export const fleet: Vehicle[] = [
         src: images.fleet.motorCoach.gallery[0],
         alt: 'Executive motor coach — exterior side view',
         view: 'Exterior · Side',
+      },
+      {
+        src: images.fleet.motorCoach.gallery[1],
+        alt: 'Executive motor coach — interior view',
+        view: 'Interior · View',
+      },
+      {
+        src: images.fleet.motorCoach.gallery[2],
+        alt: 'Executive motor coach — Rear view',
+        view: 'Rear · View',
       },
     ],
     specs: {

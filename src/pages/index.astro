@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import MainLayout from '@/layouts/MainLayout.astro';
 import PageHero from '@/components/shared/PageHero.astro';
 import TrustStrip from '@/components/shared/TrustStrip.astro';
@@ -7,6 +7,10 @@ import FleetSection from '@/components/fleet/FleetSection.astro';
 import heroImage from "@/assets/images/hero/emerald-city-hero.png";
 import mobileHero from "@/assets/images/hero/emerald-city-hero.webp";
 import aboutImage from "@/assets/images/about/about.png"
+
+// Precompute hero URLs for <link rel="preload"> in <head>
+const processedHero = await getImage({ src: heroImage, format: 'webp', quality: 85, width: 1672, height: 941 });
+const processedMobile = await getImage({ src: mobileHero, format: 'webp', quality: 82, width: 768, height: 432 });
 
 const PHONE_DISPLAY = '(206) 595-9675';
 const PHONE_TEL     = 'tel:+12065959675';
@@ -110,6 +114,11 @@ const areas = [
   description="Seattle's premium luxury chauffeur service since 2010. Flat-rate SeaTac airport transfers, executive black-car service, weddings and special events. Licensed, insured, available 24/7."
   keywords="seattle limo service, seatac airport limo, luxury car service seattle, black car service seattle, seattle airport transportation, corporate limo seattle, wedding limo seattle"
 >
+  <Fragment slot="head">
+    <link rel="preload" as="image" href={processedHero.src} type="image/webp" fetchpriority="high" media="(min-width: 768px)" />
+    <link rel="preload" as="image" href={processedMobile.src} type="image/webp" fetchpriority="high" media="(max-width: 767px)" />
+  </Fragment>
+
   <!-- ════════════════════════════════════════════════════════════════════
        HERO
        ════════════════════════════════════════════════════════════════════ -->

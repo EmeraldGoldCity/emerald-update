@@ -306,14 +306,18 @@ export function Navigation({ variant = 'overlay' }: NavigationProps) {
               className={`group flex items-center gap-3 rounded-md ${RING}`}
               aria-label="Emerald City Limos — return to homepage"
             >
-              <img
-                src="/icons/emerald.svg"
-                alt="emerald city limos logo"
-                height={60}
-                className="h-12 w-auto object-contain"
-                fetchpriority="high"
-                decoding="async"
-              />
+              <picture>
+                <source srcSet="/icons/logo.webp" type="image/webp" />
+                <img
+                  src="/icons/logo.png"
+                  alt="emerald city limos logo"
+                  width={57}
+                  height={48}
+                  className="h-12 w-auto object-contain"
+                  decoding="async"
+                  fetchpriority="low"
+                />
+              </picture>
               <span className="flex flex-col leading-none" aria-hidden="true">
                 <span className="font-display text-base font-semibold tracking-wide text-brand-gold">Emerald</span>
                 <span className="font-display text-[0.7rem] tracking-[0.18em] text-brand-champagne/75">City Limos</span>
