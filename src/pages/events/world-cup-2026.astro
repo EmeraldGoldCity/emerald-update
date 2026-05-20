@@ -1,0 +1,875 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import TrustStrip from '@/components/shared/TrustStrip.astro';
+import lumenFieldImg from '@/assets/images/world-cup/lumen-field.jpg';
+import { getVehicle } from '@/data/fleet';
+
+import type { Vehicle } from '@/data/fleet';
+
+const wcFleet = ['escalade-esv', 'sprinter', 'motor-coach']
+  .map(getVehicle)
+  .filter((v): v is Vehicle => v != null);
+
+const SITE_URL = 'https://emeraldcitylimos.com';
+const canonical = `${SITE_URL}/events/world-cup-2026`;
+
+/* ── Seattle match schedule ──────────────────────────────────────────────── */
+// FIFA confirmed Seattle (Lumen Field) for 6 Group Stage + 1 Round of 32 match.
+// Exact kickoff times TBD by FIFA. Dates are approximate — update when finalized.
+const seattleMatches = [
+  { slot: '01', phase: 'Group Stage', approxDate: 'June 14, 2026',  note: 'Exact time TBC' },
+  { slot: '02', phase: 'Group Stage', approxDate: 'June 17, 2026',  note: 'Exact time TBC' },
+  { slot: '03', phase: 'Group Stage', approxDate: 'June 21, 2026',  note: 'Exact time TBC' },
+  { slot: '04', phase: 'Group Stage', approxDate: 'June 24, 2026',  note: 'Exact time TBC' },
+  { slot: '05', phase: 'Group Stage', approxDate: 'June 27, 2026',  note: 'Exact time TBC' },
+  { slot: '06', phase: 'Group Stage', approxDate: 'July 1, 2026',   note: 'Exact time TBC' },
+  { slot: '07', phase: 'Round of 32', approxDate: 'July 5, 2026',   note: 'Exact time TBC' },
+];
+
+/* ── Benefits ────────────────────────────────────────────────────────────── */
+const benefits = [
+  {
+    title: 'Stadium Door Drop-Off',
+    description: 'We place you at the nearest designated vehicle access point for Lumen Field — no 20-minute walk from a distant parking lot.',
+    iconPath: 'M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12',
+  },
+  {
+    title: 'Flat-Rate, No Surge',
+    description: 'Rideshares spike 4–6× on event nights. Your fare is locked at booking — final whistle or extra time, the price never changes.',
+    iconPath: 'M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+  },
+  {
+    title: 'Groups of Any Size',
+    description: 'SUVs for families, Sprinter vans for friend groups, and full coaches for corporate suites — one booking handles everyone.',
+    iconPath: 'M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z',
+  },
+  {
+    title: 'Post-Match Curbside Return',
+    description: 'We monitor match status and are positioned when you exit. No queuing for a rideshare while 70,000 fans crowd the same app.',
+    iconPath: 'M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z',
+  },
+  {
+    title: 'Sea-Tac to Stadium Packages',
+    description: 'Flying in for the matches? We combine airport pickup, hotel check-in, and match-day transport into a single itinerary.',
+    iconPath: 'M6 12L3.269 3.125A59.769 59.769 0 0121.485 12 59.768 59.768 0 013.27 20.875L5.999 12zm0 0h7.5',
+  },
+  {
+    title: 'Multilingual Drivers',
+    description: 'Many of our chauffeurs speak Spanish, Portuguese, and French — ready for the international visitors the World Cup brings to Seattle.',
+    iconPath: 'M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 01-3.827-5.802',
+  },
+];
+
+/* ── FAQs ─────────────────────────────────────────────────────────────────── */
+const faqs = [
+  {
+    question: 'How far is Lumen Field from Sea-Tac Airport?',
+    answer: 'Lumen Field is approximately 14 miles from Seattle-Tacoma International Airport — typically a 25–40 minute drive under normal conditions. On match days, roads near the stadium fill up hours before kickoff. A private car eliminates parking costs and guarantees a direct route from your arrival gate to the stadium.',
+  },
+  {
+    question: 'Can you transport a large group to World Cup matches?',
+    answer: 'Yes. Our fleet includes SUVs (up to 7 passengers), Mercedes Sprinter vans (up to 14 passengers), and full charter coaches (up to 55 passengers). For large groups we can arrange multi-stop pickup routes across Seattle, Bellevue, Kirkland, Tacoma, and Everett.',
+  },
+  {
+    question: 'How early should I book World Cup transportation?',
+    answer: 'We recommend booking at least 6–8 weeks before your match date. The 2026 World Cup will bring hundreds of thousands of international visitors to Seattle. Premium vehicles book first — locking in early gives you the most choice and protects against last-minute price pressure.',
+  },
+  {
+    question: 'Do you offer wait-and-return service for the full match?',
+    answer: 'Yes. Our chauffeurs drop you at the stadium, wait in the designated service area, and return you to your hotel or residence after the final whistle — or extra time, if it comes to that. The fare is flat-rate; there is no extra charge for waiting.',
+  },
+  {
+    question: 'Which areas do you serve for World Cup transportation?',
+    answer: 'We cover all of King, Pierce, and Snohomish counties — including Seattle, Bellevue, Kirkland, Redmond, Tacoma, and Everett. We also handle runs from Portland and Vancouver, WA for visitors based south or north of the city.',
+  },
+  {
+    question: 'Can I book transportation for multiple match days at once?',
+    answer: 'Absolutely. Many guests attending multiple matches book a single itinerary that covers every match day. Contact us for multi-day scheduling — we hold all reservations in a single account so you have one point of contact for the entire tournament.',
+  },
+];
+
+/* ── Structured data ─────────────────────────────────────────────────────── */
+const eventSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SportsEvent',
+  '@id': `${canonical}#event`,
+  name: 'FIFA World Cup 2026 — Seattle Matches at Lumen Field',
+  description: 'FIFA World Cup 2026 group stage and knockout round matches hosted at Lumen Field, Seattle, Washington. 7 confirmed matches June–July 2026.',
+  startDate: '2026-06-11',
+  endDate: '2026-07-19',
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  location: {
+    '@type': 'SportsActivityLocation',
+    name: 'Lumen Field',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '800 Occidental Ave S',
+      addressLocality: 'Seattle',
+      addressRegion: 'WA',
+      postalCode: '98134',
+      addressCountry: 'US',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 47.5952,
+      longitude: -122.3316,
+    },
+  },
+  organizer: {
+    '@type': 'SportsOrganization',
+    name: 'FIFA',
+    url: 'https://www.fifa.com',
+  },
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${canonical}#service`,
+  name: 'World Cup 2026 Transportation — Seattle',
+  description: 'Luxury chauffeur and group transportation services for FIFA World Cup 2026 matches at Lumen Field, Seattle. Flat-rate pricing, SUVs, Sprinter vans, and charter coaches.',
+  url: canonical,
+  serviceType: 'Event Transportation',
+  areaServed: {
+    '@type': 'City',
+    name: 'Seattle',
+    sameAs: 'https://en.wikipedia.org/wiki/Seattle',
+  },
+  provider: {
+    '@type': 'LimousineBusiness',
+    name: 'Emerald City Limos',
+    '@id': SITE_URL,
+    url: SITE_URL,
+    telephone: '+1-206-595-9675',
+  },
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    url: 'https://customer.moovs.app/a1-charters-1/new/info',
+    priceCurrency: 'USD',
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${canonical}#faq`,
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.question,
+    acceptedAnswer: { '@type': 'Answer', text: f.answer },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home',   item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Events', item: `${SITE_URL}/events` },
+    { '@type': 'ListItem', position: 3, name: 'World Cup 2026 Transportation Seattle', item: canonical },
+  ],
+};
+---
+
+<MainLayout
+  title="World Cup 2026 Transportation Seattle | Lumen Field | Emerald City Limos"
+  description="Luxury chauffeur service for FIFA World Cup 2026 matches at Lumen Field, Seattle. Flat-rate pricing, no surge, SUVs to 55-passenger coaches. Book early — availability is limited."
+  keywords="world cup 2026 transportation seattle, FIFA 2026 limo seattle, lumen field transportation, world cup 2026 car service washington, seattle world cup shuttle, FIFA 2026 chauffeur seattle"
+  canonical={canonical}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(eventSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <!-- ── Hero ──────────────────────────────────────────────────────────── -->
+  <PageHero
+    eyebrow="FIFA World Cup 2026 · Lumen Field, Seattle"
+    headline="The World Cup Comes"
+    headlineAccent="to Washington"
+    supporting="Seattle is hosting 7 World Cup matches at Lumen Field. Let us handle the part that should be effortless — arriving in comfort, on time, for every match day."
+    ctaPrimary={{ label: 'Reserve Match-Day Transport', href: 'https://customer.moovs.app/a1-charters-1/new/info', id: 'cta-wc-hero-primary' }}
+    image={{ src: lumenFieldImg, alt: 'Lumen Field, Seattle — FIFA World Cup 2026 host venue' }}
+    size="page"
+    id="world-cup-hero"
+    breadcrumbs={[
+      { label: 'Home',   href: '/' },
+      { label: 'Events', href: '/events' },
+      { label: 'World Cup 2026' },
+    ]}
+  />
+
+  <!-- ── Trust strip ───────────────────────────────────────────────────── -->
+  <TrustStrip />
+
+  <!-- ── Countdown ─────────────────────────────────────────────────────── -->
+  <section
+    class="relative overflow-hidden bg-brand-forest-deep py-16 sm:py-20 lg:py-24"
+    aria-labelledby="wc-countdown-heading"
+  >
+    <!-- Radial gold glow -->
+    <div
+      class="pointer-events-none absolute inset-0"
+      style="background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(163,126,44,0.12) 0%, transparent 70%);"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="pointer-events-none absolute inset-x-0 top-0 h-px"
+      style="background: linear-gradient(to right, transparent, rgba(195,154,69,0.4), transparent);"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="pointer-events-none absolute inset-x-0 bottom-0 h-px"
+      style="background: linear-gradient(to right, transparent, rgba(195,154,69,0.25), transparent);"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative mx-auto max-w-5xl px-6 text-center sm:px-8 lg:px-12">
+
+      <!-- Eyebrow -->
+      <div class="mb-6 flex items-center justify-center gap-3">
+        <span class="h-px w-10 bg-brand-gold-soft/50" aria-hidden="true"></span>
+        <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold-soft">
+          Tournament Kickoff
+        </p>
+        <span class="h-px w-10 bg-brand-gold-soft/50" aria-hidden="true"></span>
+      </div>
+
+      <h2
+        id="wc-countdown-heading"
+        class="mb-3 font-display font-light leading-[1.08] text-white"
+        style="font-size: clamp(1.85rem, 3.6vw, 2.6rem); letter-spacing: -0.01em;"
+      >
+        June 11, 2026 —
+        <em class="italic text-brand-gold-soft">The World Watches Seattle</em>
+      </h2>
+      <p class="mx-auto mb-12 max-w-lg font-sans text-[0.92rem] font-light leading-relaxed text-white/60">
+        FIFA World Cup 2026 opens June 11. Seattle's matches at Lumen Field run through early July.
+      </p>
+
+      <!-- Countdown row -->
+      <div
+        id="wc-countdown"
+        class="flex items-center justify-center"
+        role="timer"
+        aria-label="Countdown to FIFA World Cup 2026"
+        aria-live="off"
+      >
+        <div class="flex flex-col items-center gap-1.5">
+          <span id="wc-days" class="font-display tabular-nums leading-none text-brand-gold-soft" style="font-size: clamp(2.8rem, 8vw, 5rem); font-weight: 300; letter-spacing: -0.03em;" aria-hidden="true">--</span>
+          <span class="font-sans text-[9px] font-semibold uppercase tracking-[0.2em] text-white/45 sm:text-[10px]">Days</span>
+        </div>
+        <span class="mx-3 font-display font-light leading-none text-brand-gold/40 sm:mx-5" style="font-size: clamp(2rem, 5vw, 3.5rem);" aria-hidden="true">:</span>
+        <div class="flex flex-col items-center gap-1.5">
+          <span id="wc-hours" class="font-display tabular-nums leading-none text-brand-gold-soft" style="font-size: clamp(2.8rem, 8vw, 5rem); font-weight: 300; letter-spacing: -0.03em;" aria-hidden="true">--</span>
+          <span class="font-sans text-[9px] font-semibold uppercase tracking-[0.2em] text-white/45 sm:text-[10px]">Hours</span>
+        </div>
+        <span class="mx-3 font-display font-light leading-none text-brand-gold/40 sm:mx-5" style="font-size: clamp(2rem, 5vw, 3.5rem);" aria-hidden="true">:</span>
+        <div class="flex flex-col items-center gap-1.5">
+          <span id="wc-mins" class="font-display tabular-nums leading-none text-brand-gold-soft" style="font-size: clamp(2.8rem, 8vw, 5rem); font-weight: 300; letter-spacing: -0.03em;" aria-hidden="true">--</span>
+          <span class="font-sans text-[9px] font-semibold uppercase tracking-[0.2em] text-white/45 sm:text-[10px]">Mins</span>
+        </div>
+        <span class="mx-3 font-display font-light leading-none text-brand-gold/40 sm:mx-5" style="font-size: clamp(2rem, 5vw, 3.5rem);" aria-hidden="true">:</span>
+        <div class="flex flex-col items-center gap-1.5">
+          <span id="wc-secs" class="font-display tabular-nums leading-none text-brand-gold-soft" style="font-size: clamp(2.8rem, 8vw, 5rem); font-weight: 300; letter-spacing: -0.03em;" aria-hidden="true">--</span>
+          <span class="font-sans text-[9px] font-semibold uppercase tracking-[0.2em] text-white/45 sm:text-[10px]">Secs</span>
+        </div>
+      </div>
+
+      <!-- Match-day banner (hidden until timer expires) -->
+      <div
+        id="wc-match-day"
+        class="mt-10 hidden"
+        role="status"
+        aria-live="polite"
+      >
+        <p class="font-display text-2xl font-light italic text-brand-gold-soft sm:text-3xl">
+          The World Cup has begun. Book your match-day ride now.
+        </p>
+      </div>
+
+      <!-- noscript fallback -->
+      <noscript>
+        <p class="mt-8 font-sans text-sm text-white/50">
+          Enable JavaScript to see the live countdown.
+        </p>
+      </noscript>
+
+      <!-- CTA under timer -->
+      <div class="mt-10">
+        <a
+          href="https://customer.moovs.app/a1-charters-1/new/info"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-cta="wc_countdown_book"
+          class="inline-flex min-h-[52px] items-center justify-center gap-2 border border-brand-gold-soft bg-brand-gold-soft px-10 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-forest outline-none transition-[background-color,box-shadow] duration-200 hover:bg-brand-gold hover:shadow-[0_12px_28px_-12px_rgba(163,126,44,0.55)] focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-forest-deep"
+        >
+          Reserve Match-Day Transport
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Why book with us ───────────────────────────────────────────────── -->
+  <section
+    class="relative overflow-hidden bg-brand-champagne py-16 sm:py-20 lg:py-24"
+    aria-labelledby="wc-benefits-heading"
+  >
+    <div
+      class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-gold/25 to-transparent"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+      <div class="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-16 xl:gap-20">
+
+        <!-- Copy -->
+        <div class="flex flex-col">
+          <div class="mb-4 flex items-center gap-3">
+            <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
+            <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+              Why Emerald City Limos
+            </p>
+          </div>
+          <h2
+            id="wc-benefits-heading"
+            class="mb-6 font-display font-light leading-[1.08] text-brand-forest"
+            style="font-size: clamp(1.85rem, 3.4vw, 2.5rem); letter-spacing: -0.01em;"
+          >
+            Match day without
+            <em class="italic text-brand-gold">the chaos.</em>
+          </h2>
+          <p class="font-sans text-[0.98rem] font-light leading-[1.8] text-brand-forest/80 sm:text-[1.02rem]">
+            Lumen Field sits in SoDo, one of Seattle's most congested corridors on event nights.
+            Parking disappears hours before kickoff, ride shares surge, and the walk from the
+            light rail can be unpredictable. We've handled game-day transport in Seattle for
+            over a decade — the World Cup is simply the biggest game we've prepared for.
+          </p>
+          <p class="mt-5 border-l-2 border-brand-gold/30 pl-4 font-sans text-[0.92rem] font-light italic leading-[1.75] text-brand-forest/65">
+            Book early. Premium vehicles and preferred time slots fill weeks before major events.
+            The 2026 World Cup will be the largest sporting event ever hosted in the Pacific Northwest.
+          </p>
+        </div>
+
+        <!-- Benefits grid -->
+        <ul
+          class="m-0 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2"
+          aria-label="World Cup transportation benefits"
+        >
+          {benefits.map((benefit) => (
+            <li class="group relative flex flex-col gap-3 border border-brand-forest/8 bg-white p-5 transition-colors duration-300 hover:border-brand-gold/45">
+              <span class="inline-flex h-10 w-10 items-center justify-center bg-brand-gold/10 text-brand-gold transition-colors duration-300 group-hover:bg-brand-gold group-hover:text-white">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  width="18"
+                  height="18"
+                  aria-hidden="true"
+                >
+                  <path d={benefit.iconPath} />
+                </svg>
+              </span>
+              <h3 class="font-display text-base font-medium leading-snug text-brand-forest">
+                {benefit.title}
+              </h3>
+              <p class="font-sans text-[0.82rem] leading-relaxed text-brand-forest/70">
+                {benefit.description}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Seattle match schedule ─────────────────────────────────────────── -->
+  <section
+    class="relative overflow-hidden bg-brand-forest py-16 sm:py-20 lg:py-24"
+    aria-labelledby="wc-schedule-heading"
+  >
+    <div
+      class="pointer-events-none absolute inset-0"
+      style="background: radial-gradient(ellipse 80% 50% at 100% 50%, rgba(163,126,44,0.08) 0%, transparent 60%);"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="pointer-events-none absolute inset-x-0 top-0 h-px"
+      style="background: linear-gradient(to right, transparent, rgba(195,154,69,0.3), transparent);"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="pointer-events-none absolute inset-x-0 bottom-0 h-px"
+      style="background: linear-gradient(to right, transparent, rgba(195,154,69,0.2), transparent);"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative mx-auto max-w-5xl px-6 sm:px-8 lg:px-12">
+
+      <!-- Header -->
+      <div class="mb-10 text-center sm:mb-14">
+        <div class="mb-3 flex items-center justify-center gap-3">
+          <span class="h-px w-8 bg-brand-gold-soft/60" aria-hidden="true"></span>
+          <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold-soft">
+            Lumen Field · Seattle, WA
+          </p>
+          <span class="h-px w-8 bg-brand-gold-soft/60" aria-hidden="true"></span>
+        </div>
+        <h2
+          id="wc-schedule-heading"
+          class="font-display font-light leading-[1.1] text-white"
+          style="font-size: clamp(1.75rem, 3.4vw, 2.4rem); letter-spacing: -0.01em;"
+        >
+          Seattle's 7 World Cup Matches,
+          <em class="italic text-brand-gold-soft">one venue.</em>
+        </h2>
+        <p class="mx-auto mt-4 max-w-lg font-sans text-[0.88rem] font-light leading-relaxed text-white/55">
+          Dates are approximate. FIFA will confirm exact kickoff times closer to the tournament.
+          We'll be ready regardless of schedule — book your transport now and update the time later.
+        </p>
+      </div>
+
+      <!-- Match cards -->
+      <ol
+        class="m-0 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2"
+        role="list"
+        aria-label="Seattle World Cup match schedule"
+      >
+        {seattleMatches.map((match) => (
+          <li class:list={[
+            'group relative flex items-center gap-5 border bg-white/[0.04] px-5 py-4 transition-colors duration-300 hover:bg-white/[0.07] sm:px-6 sm:py-5',
+            match.phase === 'Round of 32'
+              ? 'border-brand-gold/35 col-span-full sm:col-span-1'
+              : 'border-white/10',
+          ]}>
+            <!-- Match number -->
+            <span
+              class:list={[
+                'inline-flex h-10 w-10 shrink-0 items-center justify-center border font-sans text-[0.72rem] font-semibold tabular-nums',
+                match.phase === 'Round of 32'
+                  ? 'border-brand-gold/50 text-brand-gold-soft'
+                  : 'border-white/15 text-white/50',
+              ]}
+              aria-hidden="true"
+            >
+              {match.slot}
+            </span>
+
+            <!-- Details -->
+            <div class="flex flex-1 flex-col gap-0.5">
+              <span
+                class:list={[
+                  'font-sans text-[9px] font-semibold uppercase tracking-[0.18em]',
+                  match.phase === 'Round of 32' ? 'text-brand-gold-soft' : 'text-white/40',
+                ]}
+              >
+                {match.phase}
+              </span>
+              <span class="font-display text-[1.05rem] font-medium leading-snug text-white">
+                {match.approxDate}
+              </span>
+              <span class="font-sans text-[0.78rem] font-light text-white/40">
+                {match.note}
+              </span>
+            </div>
+
+            <!-- Teams announced label -->
+            <span
+              class:list={[
+                'hidden shrink-0 self-center font-sans text-[9px] font-semibold uppercase tracking-[0.14em] sm:block',
+                match.phase === 'Round of 32' ? 'text-brand-gold-soft/70' : 'text-white/25',
+              ]}
+            >
+              Teams TBD
+            </span>
+          </li>
+        ))}
+      </ol>
+
+      <!-- Source note -->
+      <p class="mt-6 text-center font-sans text-[0.75rem] font-light text-white/35">
+        Schedule based on FIFA 2026 host city announcement. Confirm at
+        <a
+          href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-brand-gold-soft/70 underline underline-offset-2 hover:text-brand-gold-soft"
+        >
+          fifa.com
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ── How it works ──────────────────────────────────────────────────── -->
+  <section
+    class="relative bg-brand-champagne py-16 sm:py-20 lg:py-24"
+    aria-labelledby="wc-how-heading"
+  >
+    <div
+      class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-gold/25 to-transparent"
+      aria-hidden="true"
+    ></div>
+
+    <div class="mx-auto max-w-5xl px-6 sm:px-8 lg:px-12">
+
+      <div class="mb-10 text-center sm:mb-14">
+        <div class="mb-3 flex items-center justify-center gap-3">
+          <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
+          <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+            How It Works
+          </p>
+          <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
+        </div>
+        <h2
+          id="wc-how-heading"
+          class="font-display font-light leading-[1.1] text-brand-forest"
+          style="font-size: clamp(1.75rem, 3.4vw, 2.4rem); letter-spacing: -0.01em;"
+        >
+          Three steps to
+          <em class="italic text-brand-gold">match-day ease.</em>
+        </h2>
+      </div>
+
+      <ol
+        class="m-0 grid list-none grid-cols-1 gap-px p-0 border border-brand-forest/8 bg-brand-forest/8 sm:grid-cols-3"
+        aria-label="Booking process"
+      >
+        {[
+          {
+            step: '01',
+            title: 'Reserve Online',
+            body: 'Choose your vehicle, select your pickup location and match date, and lock in your flat rate — takes under two minutes at any time of day.',
+          },
+          {
+            step: '02',
+            title: 'We Confirm & Track',
+            body: 'You receive a booking confirmation immediately. On match day, your chauffeur tracks your schedule and handles any last-minute adjustments.',
+          },
+          {
+            step: '03',
+            title: 'Door to Door',
+            body: 'We pick you up at your hotel, Airbnb, or residence; deliver you to the stadium; and return you when the match ends — on time, every time.',
+          },
+        ].map(({ step, title, body }) => (
+          <li class="flex flex-col gap-4 bg-white p-6 sm:p-8">
+            <span
+              class="font-display text-[3rem] font-light leading-none text-brand-gold/25"
+              aria-hidden="true"
+            >
+              {step}
+            </span>
+            <h3 class="font-display text-[1.15rem] font-medium leading-snug text-brand-forest">
+              {title}
+            </h3>
+            <p class="font-sans text-[0.85rem] leading-relaxed text-brand-forest/70">
+              {body}
+            </p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ── Fleet ───────────────────────────────────────────────────────────── -->
+  <section
+    class="bg-brand-forest py-16 text-brand-champagne sm:py-20 lg:py-24"
+    aria-labelledby="wc-fleet-heading"
+  >
+    <div class="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+
+      <div class="mb-10 flex flex-col gap-4 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <div class="mb-3 flex items-center gap-3">
+            <span class="h-px w-8 bg-brand-gold-soft" aria-hidden="true"></span>
+            <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold-soft">
+              Recommended Fleet
+            </p>
+          </div>
+          <h2
+            id="wc-fleet-heading"
+            class="font-display font-light leading-[1.1] text-white"
+            style="font-size: clamp(1.75rem, 3.4vw, 2.4rem); letter-spacing: -0.01em;"
+          >
+            The right vehicle for
+            <em class="italic text-brand-gold-soft">every group size.</em>
+          </h2>
+        </div>
+        <a
+          href="/fleet"
+          class="inline-flex w-fit items-center gap-1.5 border-b border-brand-gold-soft/50 pb-1 font-sans text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-brand-gold-soft outline-none transition-colors hover:border-brand-gold-soft hover:text-white focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-forest"
+        >
+          View full fleet
+          <svg viewBox="0 0 20 20" fill="currentColor" class="h-3 w-3" aria-hidden="true">
+            <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd"/>
+          </svg>
+        </a>
+      </div>
+
+      <ul
+        role="list"
+        class="m-0 grid list-none grid-cols-1 gap-5 p-0 md:grid-cols-2 lg:grid-cols-3"
+      >
+        {wcFleet.map((vehicle) => (
+          <li class="m-0 p-0">
+            <a
+              href={vehicle.href}
+              class="group relative flex h-full flex-col overflow-hidden border-l-2 border-brand-gold/60 bg-white/[0.04] outline-none ring-1 ring-white/8 transition-[border-color,background-color,box-shadow] duration-300 hover:border-brand-gold-soft hover:bg-white/[0.07] hover:shadow-[0_24px_48px_-32px_rgba(0,0,0,0.6)] focus-visible:border-brand-gold-soft focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-forest"
+              aria-label={`View ${vehicle.name} on the fleet page`}
+            >
+              <div class="relative aspect-[4/3] w-full overflow-hidden bg-brand-forest-deep">
+                {vehicle.imageSrc ? (
+                  <img
+                    src={typeof vehicle.imageSrc === 'string' ? vehicle.imageSrc : vehicle.imageSrc!.src}
+                    alt={vehicle.imageAlt}
+                    loading="lazy"
+                    decoding="async"
+                    width="800"
+                    height="600"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                  />
+                ) : (
+                  <div class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+                    <span
+                      class="absolute inset-0"
+                      style="background: radial-gradient(ellipse 60% 55% at center, var(--color-brand-gold-soft) 0%, transparent 70%); opacity: 0.16;"
+                    ></span>
+                    <span class="font-display text-2xl italic text-brand-gold-soft/70">
+                      {vehicle.category}
+                    </span>
+                  </div>
+                )}
+                <span class="absolute left-3 top-3 inline-flex items-center gap-1.5 bg-brand-forest/85 px-2 py-1 font-sans text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-brand-gold-soft backdrop-blur-sm">
+                  {vehicle.category}
+                </span>
+              </div>
+
+              <div class="flex flex-1 flex-col gap-3 p-5">
+                <h3 class="font-display text-lg font-medium leading-tight text-white">
+                  {vehicle.name}
+                </h3>
+                <p class="font-sans text-[0.78rem] font-medium tabular-nums text-brand-gold-soft">
+                  {vehicle.capacityLabel}
+                </p>
+                <ul role="list" class="m-0 list-none space-y-1 p-0">
+                  {vehicle.features.slice(0, 3).map((feature) => (
+                    <li class="flex items-start gap-2 font-sans text-[0.78rem] leading-snug text-white/70">
+                      <span class="mt-1.5 inline-block h-1 w-1 shrink-0 rounded-full bg-brand-gold-soft" aria-hidden="true"></span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <span class="mt-auto inline-flex items-center gap-1.5 font-sans text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-brand-gold-soft transition-colors group-hover:text-white">
+                  View vehicle
+                  <svg viewBox="0 0 20 20" fill="currentColor" class="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd"/>
+                  </svg>
+                </span>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── FAQ ────────────────────────────────────────────────────────────── -->
+  <section
+    class="bg-brand-champagne py-16 sm:py-20 lg:py-24"
+    aria-labelledby="wc-faq-heading"
+  >
+    <div
+      class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-gold/15 to-transparent"
+      aria-hidden="true"
+    ></div>
+    <div class="mx-auto max-w-4xl px-6 sm:px-8 lg:px-12">
+
+      <div class="mb-10 text-center sm:mb-14">
+        <div class="mb-3 flex items-center justify-center gap-3">
+          <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
+          <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+            Common Questions
+          </p>
+          <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
+        </div>
+        <h2
+          id="wc-faq-heading"
+          class="font-display font-light leading-[1.1] text-brand-forest"
+          style="font-size: clamp(1.75rem, 3.4vw, 2.4rem); letter-spacing: -0.01em;"
+        >
+          World Cup transport,
+          <em class="italic text-brand-gold">answered.</em>
+        </h2>
+      </div>
+
+      <ul role="list" class="m-0 list-none space-y-3 p-0">
+        {faqs.map((faq, index) => (
+          <li class="m-0 p-0">
+            <details
+              class="group relative border border-brand-forest/8 bg-white transition-[border-color,box-shadow] duration-300 open:border-brand-gold/40 open:shadow-[0_18px_36px_-28px_rgba(10,35,24,0.25)] hover:border-brand-gold/30"
+              name="wc-faq"
+            >
+              <summary class="flex cursor-pointer items-start gap-4 px-5 py-4 outline-none transition-colors focus-visible:bg-brand-gold/[0.04] sm:px-6 sm:py-5 [&::-webkit-details-marker]:hidden [&::marker]:hidden">
+                <span
+                  class="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center font-sans text-[0.7rem] font-semibold tabular-nums text-brand-gold"
+                  aria-hidden="true"
+                >
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <span class="flex-1 font-display text-[1.05rem] font-medium leading-snug text-brand-forest sm:text-[1.12rem]">
+                  {faq.question}
+                </span>
+                <span
+                  class="mt-1 inline-flex h-6 w-6 shrink-0 items-center justify-center text-brand-gold transition-transform duration-300 group-open:rotate-45"
+                  aria-hidden="true"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                    <path d="M12 4.5v15m7.5-7.5h-15" />
+                  </svg>
+                </span>
+              </summary>
+              <div class="px-5 pb-5 pl-[3.5rem] sm:px-6 sm:pb-6 sm:pl-[3.75rem]">
+                <p class="font-sans text-[0.92rem] font-light leading-[1.75] text-brand-forest/75">
+                  {faq.answer}
+                </p>
+              </div>
+            </details>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Closing CTA ────────────────────────────────────────────────────── -->
+  <section
+    class="relative overflow-hidden bg-brand-forest-deep py-16 text-brand-champagne sm:py-20 lg:py-24"
+    aria-labelledby="wc-cta-heading"
+  >
+    <div
+      class="pointer-events-none absolute inset-0"
+      style="background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(163,126,44,0.16) 0%, transparent 70%);"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="pointer-events-none absolute inset-x-0 top-0 h-px"
+      style="background: linear-gradient(to right, transparent, rgba(195,154,69,0.45), transparent);"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="pointer-events-none absolute inset-x-0 bottom-0 h-px"
+      style="background: linear-gradient(to right, transparent, rgba(195,154,69,0.3), transparent);"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative mx-auto max-w-4xl px-6 text-center sm:px-8 lg:px-12">
+      <div class="mb-3 flex items-center justify-center gap-3">
+        <span class="h-px w-8 bg-brand-gold-soft" aria-hidden="true"></span>
+        <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold-soft">
+          Book Before It Fills
+        </p>
+        <span class="h-px w-8 bg-brand-gold-soft" aria-hidden="true"></span>
+      </div>
+
+      <h2
+        id="wc-cta-heading"
+        class="mb-4 font-display font-light leading-[1.1] text-white"
+        style="font-size: clamp(1.85rem, 3.8vw, 2.6rem); letter-spacing: -0.01em;"
+      >
+        Reserve your World Cup ride
+        <em class="italic text-brand-gold-soft">today.</em>
+      </h2>
+
+      <p class="mx-auto mb-8 max-w-xl font-sans text-[0.98rem] font-light leading-relaxed text-white/75">
+        The 2026 World Cup is the largest sporting event ever hosted in the Pacific Northwest.
+        Vehicles book out weeks in advance — secure your match-day transport now.
+        Dispatch is staffed 24/7. A human answers every call.
+      </p>
+
+      <div
+        class="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4"
+        role="group"
+        aria-label="Book World Cup transportation"
+      >
+        <a
+          href="https://customer.moovs.app/a1-charters-1/new/info"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-cta="wc_cta_book"
+          class="inline-flex min-h-[52px] items-center justify-center gap-2 border border-brand-gold-soft bg-brand-gold-soft px-8 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-forest outline-none transition-[background-color,border-color,box-shadow] duration-200 hover:bg-brand-gold hover:shadow-[0_12px_28px_-12px_rgba(163,126,44,0.6)] focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-forest-deep"
+        >
+          Reserve a Ride
+          <span aria-hidden="true">→</span>
+        </a>
+        <a
+          href="tel:+12065959675"
+          data-cta="wc_cta_call"
+          class="inline-flex min-h-[52px] items-center justify-center gap-2 border border-white/30 bg-transparent px-8 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-white outline-none transition-colors duration-200 hover:border-white/70 focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-forest-deep"
+          aria-label="Call Emerald City Limos at (206) 595-9675, available 24 hours"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true">
+            <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+          </svg>
+          <span class="tabular-nums">(206) 595-9675</span>
+        </a>
+      </div>
+
+      <p class="mt-6 font-sans text-[0.72rem] uppercase tracking-[0.18em] text-white/40">
+        Licensed · Insured · 24/7 Dispatch · Seattle Since 2010
+      </p>
+    </div>
+  </section>
+</MainLayout>
+
+<!-- ── Countdown timer script ─────────────────────────────────────────────── -->
+<script is:inline>
+  (function () {
+    // FIFA World Cup 2026 opens June 11, 2026 — midnight Pacific Time
+    var TARGET = new Date('2026-06-11T00:00:00-07:00').getTime();
+
+    var elDays  = document.getElementById('wc-days');
+    var elHours = document.getElementById('wc-hours');
+    var elMins  = document.getElementById('wc-mins');
+    var elSecs  = document.getElementById('wc-secs');
+    var elBanner = document.getElementById('wc-match-day');
+
+    if (!elDays || !elHours || !elMins || !elSecs) return;
+
+    function pad(n) { return n < 10 ? '0' + n : String(n); }
+
+    function tick() {
+      var diff = TARGET - Date.now();
+
+      if (diff <= 0) {
+        elDays.textContent  = '0';
+        elHours.textContent = '00';
+        elMins.textContent  = '00';
+        elSecs.textContent  = '00';
+        if (elBanner) elBanner.classList.remove('hidden');
+        return;
+      }
+
+      var days  = Math.floor(diff / 86400000);
+      var hours = Math.floor((diff % 86400000) / 3600000);
+      var mins  = Math.floor((diff % 3600000)  / 60000);
+      var secs  = Math.floor((diff % 60000)    / 1000);
+
+      elDays.textContent  = String(days);
+      elHours.textContent = pad(hours);
+      elMins.textContent  = pad(mins);
+      elSecs.textContent  = pad(secs);
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>

@@ -1,0 +1,93 @@
+---
+/**
+ * ServiceLocations
+ * ----------------
+ * "Available in these areas" section on every service detail page.
+ * Creates reciprocal service→location links to complement the existing
+ * location→service links, building a full two-way internal link graph.
+ */
+import type { Service } from '@/data/services';
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+
+const areas = [
+  { name: 'Seattle',      slug: 'seattle' },
+  { name: 'Bellevue',     slug: 'bellevue' },
+  { name: 'Tacoma',       slug: 'tacoma' },
+  { name: 'Redmond',      slug: 'redmond' },
+  { name: 'Kirkland',     slug: 'kirkland' },
+  { name: 'Everett',      slug: 'everett' },
+  { name: 'Renton',       slug: 'renton' },
+  { name: 'Federal Way',  slug: 'federal-way' },
+  { name: 'Bothell',      slug: 'bothell' },
+  { name: 'Lynnwood',     slug: 'lynnwood' },
+  { name: 'Edmonds',      slug: 'edmonds' },
+  { name: 'Sammamish',    slug: 'sammamish' },
+];
+---
+
+<section
+  class="bg-white py-14 sm:py-16 lg:py-20"
+  aria-labelledby={`service-locations-${service.slug}`}
+>
+  <div class="mx-auto max-w-5xl px-6 sm:px-8 lg:px-12">
+
+    <div class="mb-8 text-center">
+      <p class="mb-3 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+        Where We Operate
+      </p>
+      <h2
+        id={`service-locations-${service.slug}`}
+        class="font-display font-light leading-[1.1] text-brand-forest"
+        style="font-size: clamp(1.5rem, 3vw, 2.25rem);"
+      >
+        {service.name} across the
+        <span class="italic text-brand-gold">greater Seattle metro</span>
+      </h2>
+      <p class="mx-auto mt-4 max-w-md font-sans text-sm leading-relaxed text-brand-forest/65">
+        Serving King, Pierce, and Snohomish counties — flat-rate pricing, no
+        surge fees regardless of your pickup city.
+      </p>
+    </div>
+
+    <ul class="m-0 flex list-none flex-wrap justify-center gap-2.5 p-0">
+      {areas.map((area) => (
+        <li>
+          <a
+            href={`/locations/${area.slug}`}
+            class="group inline-flex items-center gap-1.5 rounded-full border border-brand-forest/12 bg-brand-ivory px-4 py-2 font-sans text-sm font-medium text-brand-forest transition-all duration-200 hover:border-brand-gold/55 hover:bg-brand-gold/[0.05] hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              width="12"
+              height="12"
+              class="shrink-0 text-brand-gold/60 transition-colors group-hover:text-brand-gold"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+            </svg>
+            {area.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <p class="mt-6 text-center font-sans text-xs text-brand-forest/50">
+      Don't see your city?
+      <a
+        href="/locations"
+        class="font-semibold text-brand-gold underline-offset-2 hover:underline"
+      >View all 30+ service areas →</a>
+    </p>
+
+  </div>
+</section>

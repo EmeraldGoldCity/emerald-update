@@ -1,0 +1,112 @@
+---
+/**
+ * LocationNearbyAreas
+ * -------------------
+ * "Also serving nearby areas" section. Computes the 6 closest service
+ * locations by Haversine distance from the current location's coordinates,
+ * then renders them as linked pills — driving internal links between location
+ * pages and signalling service-area breadth to search engines.
+ */
+import type { Location } from '@/data/locations';
+import { locations } from '@/data/locations';
+
+interface Props {
+  location: Location;
+}
+
+const { location } = Astro.props;
+
+function haversineMiles(
+  lat1: number, lon1: number,
+  lat2: number, lon2: number,
+): number {
+  const R = 3958.8; // Earth radius in miles
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLon = ((lon2 - lon1) * Math.PI) / 180;
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLon / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+const nearby = locations
+  .filter((loc) => loc.slug !== location.slug)
+  .map((loc) => ({
+    ...loc,
+    distanceMiles: haversineMiles(
+      location.coordinates.lat,
+      location.coordinates.lng,
+      loc.coordinates.lat,
+      loc.coordinates.lng,
+    ),
+  }))
+  .sort((a, b) => a.distanceMiles - b.distanceMiles)
+  .slice(0, 6);
+---
+
+<section
+  class="bg-brand-ivory py-14 sm:py-16 lg:py-20"
+  aria-labelledby={`nearby-${location.slug}`}
+>
+  <div class="mx-auto max-w-5xl px-6 sm:px-8 lg:px-12">
+
+    <div class="mb-8 text-center sm:mb-10">
+      <p class="mb-3 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+        Service Area
+      </p>
+      <h2
+        id={`nearby-${location.slug}`}
+        class="font-display font-light leading-[1.1] text-brand-forest"
+        style="font-size: clamp(1.5rem, 3vw, 2.25rem);"
+      >
+        Also serving areas near
+        <span class="italic text-brand-gold">{location.name}</span>
+      </h2>
+      <p class="mx-auto mt-4 max-w-lg font-sans text-sm leading-relaxed text-brand-forest/65">
+        Our chauffeurs cover the greater {location.county} region and beyond —
+        no ride is too far or too close.
+      </p>
+    </div>
+
+    <ul class="m-0 flex list-none flex-wrap justify-center gap-3 p-0">
+      {nearby.map((loc) => (
+        <li>
+          <a
+            href={`/locations/${loc.slug}`}
+            class="group inline-flex items-center gap-2 rounded-full border border-brand-forest/15 bg-white px-4 py-2.5 font-sans text-sm font-medium text-brand-forest shadow-[0_1px_3px_rgba(0,0,0,0.06)] transition-all duration-200 hover:border-brand-gold/60 hover:bg-brand-gold/[0.04] hover:text-brand-gold hover:shadow-[0_2px_8px_-2px_rgba(163,126,44,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ivory"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              width="14"
+              height="14"
+              class="shrink-0 text-brand-gold/70 transition-colors group-hover:text-brand-gold"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+              />
+            </svg>
+            {loc.name}
+            <span class="text-brand-forest/40 transition-colors group-hover:text-brand-gold/50">
+              · {Math.round(loc.distanceMiles)} mi
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+  </div>
+</section>

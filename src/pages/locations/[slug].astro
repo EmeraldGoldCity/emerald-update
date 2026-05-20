@@ -30,6 +30,7 @@ import LocationWhyChoose from '@/components/locations/LocationWhyChoose.astro';
 import LocationRoutes from '@/components/locations/LocationRoutes.astro';
 // import LocationReviews from '@/components/locations/LocationReviews.astro';
 import LocationFAQ from '@/components/locations/LocationFAQ.astro';
+import LocationNearbyAreas from '@/components/locations/LocationNearbyAreas.astro';
 import LocationCTA from '@/components/locations/LocationCTA.astro';
 import LocationSchema from '@/components/locations/LocationSchema.astro';
 import { locations, type Location } from '@/data/locations';
@@ -76,7 +77,8 @@ const ogImage = location.meta.ogImage ?? location.heroImage.src;
   <LocationWhyChoose location={location} />
   <LocationRoutes    location={location} />
   <!-- <LocationReviews   location={location} /> -->
-  <LocationFAQ       location={location} />
-  <LocationCTA       location={location} />
+  <LocationFAQ          location={location} />
+  <LocationNearbyAreas  location={location} />
+  <LocationCTA          location={location} />
   <LocationSchema    location={location} />
 </LocationLayout>

@@ -6,6 +6,7 @@ import ServiceIntro from '@/components/services/ServiceIntro.astro';
 import ServiceFleetMatch from '@/components/services/ServiceFleetMatch.astro';
 import ServiceFAQ from '@/components/services/ServiceFAQ.astro';
 import ServiceCTA from '@/components/services/ServiceCTA.astro';
+import ServiceLocations from '@/components/services/ServiceLocations.astro';
 import ServiceSchema from '@/components/services/ServiceSchema.astro';
 import { getService } from '@/data/services';
 
@@ -34,6 +35,7 @@ if (!service) throw new Error('Service "infant-car-seats" not found in src/data/
   <ServiceIntro service={service} />
   <ServiceFleetMatch service={service} />
   <ServiceFAQ service={service} />
+  <ServiceLocations service={service} />
   <ServiceCTA service={service} />
 
   <ServiceSchema service={service} />

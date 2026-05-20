@@ -46,6 +46,22 @@ const metaDescription =
 const heroImage = vehicle.imageSrc
   ? { src: vehicle.imageSrc as ImageMetadata, alt: vehicle.imageAlt }
   : undefined;
+
+/* Derive service page links from bestFor keywords */
+const SERVICE_MAP = [
+  { test: /airport/i,              label: 'Airport Transfers',        href: '/airport-transfers' },
+  { test: /executive|corporate|vip/i, label: 'Executive Transportation', href: '/service/executive-transportation' },
+  { test: /wedding/i,              label: 'Wedding Transportation',    href: '/service/wedding-transportation' },
+  { test: /bachelor|bacheloret|birthday|occasion|night out/i, label: 'Special Occasions', href: '/service/special-occasions' },
+  { test: /game|sport|team/i,      label: 'Game Day Transport',        href: '/service/game-day-transport' },
+  { test: /tour|wine|hourly/i,     label: 'Hourly Charters',          href: '/service/hourly-charters' },
+  { test: /cruise/i,               label: 'Cruise Transportation',     href: '/service/cruise-transportation' },
+  { test: /group|conference|shuttle/i, label: 'Group Transportation',  href: '/service/personal-chauffeur' },
+];
+
+const combinedBestFor = vehicle.bestFor.join(' ');
+const serviceLinks = SERVICE_MAP.filter((s) => s.test.test(combinedBestFor))
+  .slice(0, 4);
 ---
 
 <MainLayout
@@ -75,7 +91,30 @@ const heroImage = vehicle.imageSrc
   <!-- ── 4. Standards & care ─────────────────────────────────── -->
   <VehicleStandards vehicle={vehicle} />
 
-  <!-- ── 5. Closing CTA ───────────────────────────────────────── -->
+  <!-- ── 5. Related services ─────────────────────────────────── -->
+  {serviceLinks.length > 0 && (
+    <section class="bg-brand-ivory py-12 sm:py-14" aria-label={`Services for the ${vehicle.name}`}>
+      <div class="mx-auto max-w-4xl px-6 sm:px-8 lg:px-12">
+        <p class="mb-5 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+          Ideal for
+        </p>
+        <ul class="m-0 flex list-none flex-wrap justify-center gap-2.5 p-0">
+          {serviceLinks.map((svc) => (
+            <li>
+              <a
+                href={svc.href}
+                class="inline-flex items-center gap-1.5 rounded-full border border-brand-forest/12 bg-white px-4 py-2 font-sans text-sm font-medium text-brand-forest transition-all duration-200 hover:border-brand-gold/55 hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ivory"
+              >
+                {svc.label} →
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <!-- ── 6. Closing CTA ───────────────────────────────────────── -->
   <section
     class="relative overflow-hidden bg-brand-forest-deep py-16 text-brand-champagne sm:py-20 lg:py-24"
     aria-labelledby={`cta-close-${vehicle.id}`}
