@@ -1,0 +1,94 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+---
+
+<MainLayout
+  title="Page Not Found | Emerald City Limos"
+  description="The page you're looking for doesn't exist. Return to Emerald City Limos — Seattle's premier luxury chauffeur service."
+  canonical="https://emeraldcitylimos.com/404"
+>
+  <section class="relative bg-brand-champagne min-h-[70vh] flex items-center py-20 px-6 sm:px-8 overflow-hidden">
+
+    <!-- Decorative vertical spines -->
+    <div class="pointer-events-none absolute inset-y-0 left-1/4 w-px bg-brand-forest/[.04] hidden lg:block" aria-hidden="true"></div>
+    <div class="pointer-events-none absolute inset-y-0 right-1/4 w-px bg-brand-forest/[.04] hidden lg:block" aria-hidden="true"></div>
+
+    <div class="relative z-10 mx-auto max-w-3xl text-center">
+
+      <!-- Large 404 numeral -->
+      <span
+        class="select-none font-display font-light text-brand-forest/[.06] leading-none block"
+        style="font-size: clamp(8rem, 22vw, 16rem); letter-spacing: -0.04em;"
+        aria-hidden="true"
+      >404</span>
+
+      <div class="-mt-8 sm:-mt-14 relative z-10">
+        <!-- Eyebrow -->
+        <div class="flex items-center justify-center gap-4 mb-6">
+          <div class="h-px w-8 bg-brand-gold shrink-0" aria-hidden="true"></div>
+          <p class="font-sans text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] uppercase text-brand-gold">
+            Page Not Found
+          </p>
+          <div class="h-px w-8 bg-brand-gold shrink-0" aria-hidden="true"></div>
+        </div>
+
+        <h1
+          class="font-display font-light text-brand-forest leading-[1.06] tracking-[-0.025em] mb-5"
+          style="font-size: clamp(2rem, 4.5vw, 3.25rem);"
+        >
+          This road leads
+          <em class="italic text-brand-gold">nowhere.</em>
+        </h1>
+
+        <p class="font-sans font-light text-neutral-600 leading-relaxed max-w-md mx-auto mb-10"
+          style="font-size: clamp(0.9375rem, 1.4vw, 1.0625rem);">
+          The page you're looking for has moved or doesn't exist. Let us get you back on the right route.
+        </p>
+
+        <!-- Action buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3" role="group" aria-label="Recovery options">
+          <a
+            href="/"
+            class="inline-flex items-center justify-center gap-2 min-h-[52px] px-10 font-sans text-[11px] font-semibold tracking-[0.2em] uppercase bg-brand-forest text-white border border-brand-forest transition-colors duration-200 hover:bg-brand-forest/90"
+          >
+            Back to Home
+            <span aria-hidden="true">→</span>
+          </a>
+          <a
+            href="/contact"
+            class="inline-flex items-center justify-center gap-2 min-h-[52px] px-10 font-sans text-[11px] font-semibold tracking-[0.2em] uppercase bg-transparent text-brand-forest border border-brand-forest/25 transition-colors duration-200 hover:border-brand-gold hover:text-brand-gold"
+          >
+            Contact Dispatch
+          </a>
+        </div>
+
+        <!-- Quick links -->
+        <div class="mt-14">
+          <p class="font-sans text-[9px] font-semibold tracking-[0.2em] uppercase text-neutral-400 mb-5">
+            Popular pages
+          </p>
+          <ul role="list" class="flex flex-wrap justify-center gap-3 list-none m-0 p-0">
+            {[
+              { href: '/airport-transfers', label: 'Airport Transfers' },
+              { href: '/fleet', label: 'Fleet' },
+              { href: '/services', label: 'Services' },
+              { href: '/locations', label: 'Locations' },
+              { href: '/events', label: 'Events' },
+              { href: '/blog', label: 'Blog' },
+            ].map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="inline-flex items-center px-4 py-2 font-sans text-[11px] font-medium tracking-[0.08em] text-brand-forest/60 border border-brand-forest/10 transition-colors duration-200 hover:border-brand-gold/60 hover:text-brand-forest"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</MainLayout>

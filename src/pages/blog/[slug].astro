@@ -60,83 +60,183 @@ function formatDate(iso: string) {
   <!-- ── Article ──────────────────────────────────────────────────────── -->
   <article class="bg-white px-6 sm:px-8 py-12 sm:py-16" itemscope itemtype="https://schema.org/BlogPosting">
 
-    <div class="max-w-3xl mx-auto">
+    <!-- Wide wrapper: article + sticky share sidebar -->
+    <div class="mx-auto max-w-5xl">
+      <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_56px] lg:gap-12 xl:gap-16">
 
-      <!-- Breadcrumb -->
-      <nav aria-label="Breadcrumb" class="mb-8">
-        <ol class="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-[0.16em] uppercase text-neutral-400 list-none p-0 m-0">
-          <li><a href="/" class="hover:text-brand-gold transition-colors">Home</a></li>
-          <li aria-hidden="true" class="text-neutral-300">/</li>
-          <li><a href="/blog" class="hover:text-brand-gold transition-colors">Blog</a></li>
-          <li aria-hidden="true" class="text-neutral-300">/</li>
-          <li class="text-brand-gold truncate max-w-[180px]" aria-current="page">{post.title}</li>
-        </ol>
-      </nav>
+        <!-- ── Main content column ─────────────────────────────────── -->
+        <div>
 
-      <!-- Categories -->
-      {post.categories && post.categories.length > 0 && (
-        <div class="flex flex-wrap gap-3 mb-4">
-          {post.categories.map((cat) => (
-            <span class="font-sans text-[9px] font-semibold tracking-[0.2em] uppercase text-brand-gold">
-              {cat.title}
-            </span>
-          ))}
-        </div>
-      )}
+          <!-- Breadcrumb -->
+          <nav aria-label="Breadcrumb" class="mb-8">
+            <ol class="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-[0.16em] uppercase text-neutral-400 list-none p-0 m-0">
+              <li><a href="/" class="hover:text-brand-gold transition-colors">Home</a></li>
+              <li aria-hidden="true" class="text-neutral-300">/</li>
+              <li><a href="/blog" class="hover:text-brand-gold transition-colors">Blog</a></li>
+              <li aria-hidden="true" class="text-neutral-300">/</li>
+              <li class="text-brand-gold truncate max-w-[180px]" aria-current="page">{post.title}</li>
+            </ol>
+          </nav>
 
-      <!-- Title -->
-      <h1
-        class="font-display font-light text-brand-forest leading-[1.08] tracking-[-0.025em] mb-6"
-        style="font-size: clamp(1.75rem, 4vw, 3rem);"
-        itemprop="headline"
-      >
-        {post.title}
-      </h1>
+          <!-- Categories -->
+          {post.categories && post.categories.length > 0 && (
+            <div class="flex flex-wrap gap-3 mb-4">
+              {post.categories.map((cat) => (
+                <span class="font-sans text-[9px] font-semibold tracking-[0.2em] uppercase text-brand-gold">
+                  {cat.title}
+                </span>
+              ))}
+            </div>
+          )}
 
-      <!-- Meta row -->
-      <div class="flex flex-wrap items-center gap-4 mb-8 pb-8 border-b border-brand-forest/[.08]">
-        {post.author && (
-          <span class="font-sans text-sm text-neutral-600" itemprop="author" itemscope itemtype="https://schema.org/Person">
-            <span itemprop="name">{post.author.name}</span>
-          </span>
-        )}
-        {post.publishedAt && (
-          <>
-            <span class="text-neutral-300" aria-hidden="true">·</span>
-            <time
-              datetime={post.publishedAt}
-              class="font-sans text-sm text-neutral-500"
-              itemprop="datePublished"
+          <!-- Title -->
+          <h1
+            class="font-display font-light text-brand-forest leading-[1.08] tracking-[-0.025em] mb-6"
+            style="font-size: clamp(1.75rem, 4vw, 3rem);"
+            itemprop="headline"
+          >
+            {post.title}
+          </h1>
+
+          <!-- Meta row -->
+          <div class="flex flex-wrap items-center gap-4 mb-8 pb-8 border-b border-brand-forest/[.08]">
+            {post.author && (
+              <span class="font-sans text-sm text-neutral-600" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                <span itemprop="name">{post.author.name}</span>
+              </span>
+            )}
+            {post.publishedAt && (
+              <>
+                <span class="text-neutral-300" aria-hidden="true">·</span>
+                <time
+                  datetime={post.publishedAt}
+                  class="font-sans text-sm text-neutral-500"
+                  itemprop="datePublished"
+                >
+                  {formatDate(post.publishedAt)}
+                </time>
+              </>
+            )}
+            {post.readingTime && (
+              <>
+                <span class="text-neutral-300" aria-hidden="true">·</span>
+                <span class="font-sans text-sm text-neutral-500">{post.readingTime} min read</span>
+              </>
+            )}
+          </div>
+
+          <!-- Body -->
+          <div
+            class="prose prose-neutral prose-headings:font-display prose-headings:font-light prose-headings:text-brand-forest prose-a:text-brand-gold prose-a:no-underline hover:prose-a:underline prose-img:rounded-none prose-strong:text-brand-forest max-w-none"
+            itemprop="articleBody"
+            set:html={bodyHTML}
+          />
+
+          <!-- Mobile share — visible only below lg -->
+          <div class="lg:hidden mt-12 pt-8 border-t border-brand-forest/[.08]">
+            <p class="font-sans text-[10px] font-semibold tracking-[0.2em] uppercase text-neutral-400 mb-4">
+              Share this article
+            </p>
+            <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Share this article">
+              <a href={`https://twitter.com/intent/tweet?url=https://emeraldcitylimos.com/blog/${slug}&text=${encodeURIComponent(post.title)}`} target="_blank" rel="noopener noreferrer" aria-label="Share on X (Twitter)" class="share-btn inline-flex items-center gap-2 min-h-[40px] px-4 font-sans text-[10px] font-semibold tracking-[0.16em] uppercase text-brand-forest border border-brand-forest/15 bg-white transition-colors duration-200 hover:border-brand-gold hover:text-brand-gold">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="13" height="13" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.259 5.63 5.905-5.63Zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
+                X
+              </a>
+              <a href={`https://www.facebook.com/sharer/sharer.php?u=https://emeraldcitylimos.com/blog/${slug}`} target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" class="share-btn inline-flex items-center gap-2 min-h-[40px] px-4 font-sans text-[10px] font-semibold tracking-[0.16em] uppercase text-brand-forest border border-brand-forest/15 bg-white transition-colors duration-200 hover:border-brand-gold hover:text-brand-gold">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="13" height="13" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
+                Facebook
+              </a>
+              <a href={`https://www.linkedin.com/shareArticle?mini=true&url=https://emeraldcitylimos.com/blog/${slug}&title=${encodeURIComponent(post.title)}`} target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" class="share-btn inline-flex items-center gap-2 min-h-[40px] px-4 font-sans text-[10px] font-semibold tracking-[0.16em] uppercase text-brand-forest border border-brand-forest/15 bg-white transition-colors duration-200 hover:border-brand-gold hover:text-brand-gold">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="13" height="13" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+                LinkedIn
+              </a>
+              <button type="button" id="copy-link-btn-mobile" data-url={`https://emeraldcitylimos.com/blog/${slug}`} aria-label="Copy link to clipboard" class="share-btn inline-flex items-center gap-2 min-h-[40px] px-4 font-sans text-[10px] font-semibold tracking-[0.16em] uppercase text-brand-forest border border-brand-forest/15 bg-white transition-colors duration-200 hover:border-brand-gold hover:text-brand-gold cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="13" height="13" aria-hidden="true"><path d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" /></svg>
+                <span class="copy-label">Copy link</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Back link -->
+          <div class="mt-10 pt-8 border-t border-brand-forest/[.08]">
+            <a
+              href="/blog"
+              class="inline-flex items-center gap-2 font-sans text-[11px] font-semibold tracking-[0.2em] uppercase text-brand-gold hover:text-brand-forest transition-colors duration-200"
             >
-              {formatDate(post.publishedAt)}
-            </time>
-          </>
-        )}
-        {post.readingTime && (
-          <>
-            <span class="text-neutral-300" aria-hidden="true">·</span>
-            <span class="font-sans text-sm text-neutral-500">{post.readingTime} min read</span>
-          </>
-        )}
+              <span aria-hidden="true">←</span> Back to Blog
+            </a>
+          </div>
+
+        </div>
+
+        <!-- ── Sticky share sidebar — desktop only (lg+) ──────────── -->
+        <aside class="hidden lg:block" aria-label="Share this article">
+          <div class="sticky top-8 flex flex-col items-center gap-3">
+
+            <p class="font-sans text-[8px] font-semibold tracking-[0.22em] uppercase text-neutral-400 [writing-mode:vertical-rl] rotate-180 mb-1">
+              Share
+            </p>
+
+            <!-- X / Twitter -->
+            <a
+              href={`https://twitter.com/intent/tweet?url=https://emeraldcitylimos.com/blog/${slug}&text=${encodeURIComponent(post.title)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Share on X (Twitter)"
+              class="share-icon-btn inline-flex h-10 w-10 items-center justify-center border border-brand-forest/12 bg-white text-brand-forest/60 transition-colors duration-200 hover:border-brand-gold hover:text-brand-gold"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.259 5.63 5.905-5.63Zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+
+            <!-- Facebook -->
+            <a
+              href={`https://www.facebook.com/sharer/sharer.php?u=https://emeraldcitylimos.com/blog/${slug}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Share on Facebook"
+              class="share-icon-btn inline-flex h-10 w-10 items-center justify-center border border-brand-forest/12 bg-white text-brand-forest/60 transition-colors duration-200 hover:border-brand-gold hover:text-brand-gold"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg>
+            </a>
+
+            <!-- LinkedIn -->
+            <a
+              href={`https://www.linkedin.com/shareArticle?mini=true&url=https://emeraldcitylimos.com/blog/${slug}&title=${encodeURIComponent(post.title)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Share on LinkedIn"
+              class="share-icon-btn inline-flex h-10 w-10 items-center justify-center border border-brand-forest/12 bg-white text-brand-forest/60 transition-colors duration-200 hover:border-brand-gold hover:text-brand-gold"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </a>
+
+            <!-- Copy link -->
+            <button
+              type="button"
+              id="copy-link-btn"
+              data-url={`https://emeraldcitylimos.com/blog/${slug}`}
+              aria-label="Copy link to clipboard"
+              class="share-icon-btn inline-flex h-10 w-10 items-center justify-center border border-brand-forest/12 bg-white text-brand-forest/60 transition-colors duration-200 hover:border-brand-gold hover:text-brand-gold cursor-pointer"
+            >
+              <svg id="copy-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true">
+                <path d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+              </svg>
+              <!-- Checkmark shown on copy success -->
+              <svg id="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true" style="display:none;">
+                <path d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+            </button>
+
+          </div>
+        </aside>
+
       </div>
-
-      <!-- Body -->
-      <div
-        class="prose prose-neutral prose-headings:font-display prose-headings:font-light prose-headings:text-brand-forest prose-a:text-brand-gold prose-a:no-underline hover:prose-a:underline prose-img:rounded-none prose-strong:text-brand-forest max-w-none"
-        itemprop="articleBody"
-        set:html={bodyHTML}
-      />
-
-      <!-- Back link -->
-      <div class="mt-16 pt-8 border-t border-brand-forest/[.08]">
-        <a
-          href="/blog"
-          class="inline-flex items-center gap-2 font-sans text-[11px] font-semibold tracking-[0.2em] uppercase text-brand-gold hover:text-brand-forest transition-colors duration-200"
-        >
-          <span aria-hidden="true">←</span> Back to Blog
-        </a>
-      </div>
-
     </div>
   </article>
 
@@ -183,6 +283,64 @@ function formatDate(iso: string) {
     ...(ogImage ? { image: ogImage } : {}),
   })}
 />
+
+<script is:inline>
+  (function () {
+    function copyUrl(url, onSuccess) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(onSuccess).catch(function () {
+          fallbackCopy(url, onSuccess);
+        });
+      } else {
+        fallbackCopy(url, onSuccess);
+      }
+    }
+
+    function fallbackCopy(url, onSuccess) {
+      var ta = document.createElement('textarea');
+      ta.value = url;
+      ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none;';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      onSuccess();
+    }
+
+    // Desktop button — shows checkmark icon on success
+    var desktopBtn = document.getElementById('copy-link-btn');
+    if (desktopBtn) {
+      desktopBtn.addEventListener('click', function () {
+        var url = desktopBtn.getAttribute('data-url') || window.location.href;
+        copyUrl(url, function () {
+          var copyIcon  = document.getElementById('copy-icon');
+          var checkIcon = document.getElementById('check-icon');
+          if (copyIcon)  copyIcon.style.display  = 'none';
+          if (checkIcon) checkIcon.style.display = 'block';
+          setTimeout(function () {
+            if (copyIcon)  copyIcon.style.display  = '';
+            if (checkIcon) checkIcon.style.display = 'none';
+          }, 2000);
+        });
+      });
+    }
+
+    // Mobile button — updates label text on success
+    var mobileBtn = document.getElementById('copy-link-btn-mobile');
+    if (mobileBtn) {
+      mobileBtn.addEventListener('click', function () {
+        var url = mobileBtn.getAttribute('data-url') || window.location.href;
+        copyUrl(url, function () {
+          var label = mobileBtn.querySelector('.copy-label');
+          if (label) {
+            label.textContent = 'Copied!';
+            setTimeout(function () { label.textContent = 'Copy link'; }, 2000);
+          }
+        });
+      });
+    }
+  })();
+</script>
 
 <style is:global>
   .prose h2 { font-size: clamp(1.25rem, 2.5vw, 1.625rem); margin-top: 2.5rem; margin-bottom: 0.75rem; }

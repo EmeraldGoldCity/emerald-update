@@ -201,6 +201,22 @@ export function Footer() {
             <ul role="list" className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
               <li>
                 <a
+                  href="/privacy-policy"
+                  className="ecl-focusable font-sans text-xs font-light text-white/50 transition-colors duration-300 hover:text-brand-gold"
+                >
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/terms"
+                  className="ecl-focusable font-sans text-xs font-light text-white/50 transition-colors duration-300 hover:text-brand-gold"
+                >
+                  Terms of Service
+                </a>
+              </li>
+              <li>
+                <a
                   href="/sitemap.xml"
                   className="ecl-focusable font-sans text-xs font-light text-white/50 transition-colors duration-300 hover:text-brand-gold"
                 >

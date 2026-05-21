@@ -1,0 +1,126 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+
+const LAST_UPDATED = 'May 21, 2025';
+const SITE_URL = 'https://emeraldcitylimos.com';
+const EMAIL = 'client@emeraldcitylimos.com';
+const PHONE = '(206) 595-9675';
+---
+
+<MainLayout
+  title="Privacy Policy | Emerald City Limos"
+  description="Emerald City Limos privacy policy — how we collect, use, and protect your personal information when you use our Seattle luxury transportation services."
+  canonical={`${SITE_URL}/privacy-policy`}
+>
+  <section class="bg-brand-forest py-16 sm:py-20 px-6 sm:px-8 ">
+    <div class="max-w-3xl mx-auto">
+      <div class="flex items-center gap-4 mb-5">
+        <div class="h-px w-10 bg-brand-gold shrink-0" aria-hidden="true"></div>
+        <p class="font-sans text-[10px] font-semibold tracking-[0.22em] uppercase text-brand-gold">Legal</p>
+      </div>
+      <h1
+        class="font-display font-light text-white leading-[1.08] tracking-[-0.025em]"
+        style="font-size: clamp(2rem, 4vw, 3rem);"
+      >
+        Privacy <em class="italic text-brand-gold">Policy</em>
+      </h1>
+      <p class="mt-4 font-sans text-sm font-light text-white/50">Last updated: {LAST_UPDATED}</p>
+    </div>
+  </section>
+
+  <article class="bg-white px-6 sm:px-8 py-14 sm:py-20">
+    <div class="max-w-3xl mx-auto prose prose-neutral prose-headings:font-display prose-headings:font-light prose-headings:text-brand-forest prose-a:text-brand-gold prose-a:no-underline hover:prose-a:underline prose-strong:text-brand-forest max-w-none">
+
+      <p>
+        Emerald City Limos ("we", "us", or "our") operates the website at <a href={SITE_URL}>{SITE_URL}</a> and provides luxury transportation services in the Greater Seattle area. This Privacy Policy explains what personal information we collect, how we use it, and your rights regarding that information.
+      </p>
+
+      <h2>1. Information We Collect</h2>
+      <h3>Information you provide directly</h3>
+      <ul>
+        <li><strong>Booking information:</strong> name, email address, phone number, pickup and drop-off addresses, travel dates and times, and any special instructions you provide when making a reservation through our booking platform (powered by Moovs).</li>
+        <li><strong>Contact form submissions:</strong> name, email address, phone number, and the content of your message when you contact us via our website contact form.</li>
+        <li><strong>Communications:</strong> records of phone calls, emails, and messages exchanged with our dispatch team.</li>
+      </ul>
+
+      <h3>Information collected automatically</h3>
+      <ul>
+        <li><strong>Usage data:</strong> pages visited, time spent on pages, referring URLs, browser type, device type, and IP address, collected via Google Analytics (GA4).</li>
+        <li><strong>Cookies and similar technologies:</strong> we use cookies and local storage to enable website functionality, remember preferences, and analyze traffic patterns. See Section 5 for details.</li>
+      </ul>
+
+      <h2>2. How We Use Your Information</h2>
+      <p>We use the information we collect to:</p>
+      <ul>
+        <li>Process and confirm your transportation reservations</li>
+        <li>Communicate with you about your bookings, including confirmations, reminders, and updates</li>
+        <li>Provide 24/7 dispatch and customer support</li>
+        <li>Send transactional emails related to your bookings</li>
+        <li>Improve our website, services, and operations</li>
+        <li>Comply with legal obligations, including Washington State transportation carrier regulations</li>
+        <li>Detect and prevent fraudulent or unauthorized activity</li>
+      </ul>
+      <p>We do <strong>not</strong> sell, rent, or trade your personal information to third parties for marketing purposes.</p>
+
+      <h2>3. Sharing Your Information</h2>
+      <p>We may share your information with:</p>
+      <ul>
+        <li><strong>Moovs (booking platform):</strong> your reservation data is processed by Moovs, our transportation management software provider. Their privacy policy governs data processed on their platform.</li>
+        <li><strong>Google Analytics:</strong> anonymized usage data is shared with Google to analyze site performance. You can opt out at <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">tools.google.com/dlpage/gaoptout</a>.</li>
+        <li><strong>Service providers:</strong> we may share data with trusted vendors (e.g., email delivery services) who process data on our behalf under confidentiality obligations.</li>
+        <li><strong>Legal requirements:</strong> we may disclose your information when required by law, court order, or governmental authority.</li>
+      </ul>
+
+      <h2>4. Data Retention</h2>
+      <p>We retain booking and contact records for up to <strong>3 years</strong> to comply with Washington State carrier recordkeeping requirements and to resolve disputes. Analytics data is retained per Google's standard retention policies (26 months by default). You may request deletion of your personal data at any time (see Section 7).</p>
+
+      <h2>5. Cookies</h2>
+      <p>Our website uses the following types of cookies:</p>
+      <ul>
+        <li><strong>Essential cookies:</strong> required for the website and booking widget to function correctly.</li>
+        <li><strong>Analytics cookies:</strong> Google Analytics cookies (GA4) help us understand how visitors use our site. These cookies do not identify you personally.</li>
+      </ul>
+      <p>You can disable cookies in your browser settings. Note that disabling essential cookies may prevent the booking widget from loading correctly.</p>
+
+      <h2>6. Data Security</h2>
+      <p>We implement reasonable technical and organizational measures to protect your personal information, including HTTPS encryption, restricted staff access, and secure third-party processors. However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.</p>
+
+      <h2>7. Your Rights</h2>
+      <p>Depending on your location, you may have the following rights regarding your personal data:</p>
+      <ul>
+        <li><strong>Access:</strong> request a copy of the personal data we hold about you</li>
+        <li><strong>Correction:</strong> request correction of inaccurate or incomplete data</li>
+        <li><strong>Deletion:</strong> request deletion of your personal data, subject to our legal retention obligations</li>
+        <li><strong>Opt-out:</strong> opt out of analytics tracking at any time</li>
+      </ul>
+      <p>California residents may have additional rights under the California Consumer Privacy Act (CCPA), including the right to know, delete, and opt out of the "sale" of personal information (we do not sell personal information).</p>
+      <p>To exercise any of these rights, contact us at <a href={`mailto:${EMAIL}`}>{EMAIL}</a> or call <a href="tel:+12065959675">{PHONE}</a>.</p>
+
+      <h2>8. Children's Privacy</h2>
+      <p>Our services are not directed to children under the age of 13. We do not knowingly collect personal information from children. If you believe we have inadvertently collected information from a child, please contact us immediately.</p>
+
+      <h2>9. Third-Party Links</h2>
+      <p>Our website may contain links to third-party websites (e.g., Moovs booking portal, social media profiles). We are not responsible for the privacy practices of those websites and encourage you to review their privacy policies.</p>
+
+      <h2>10. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time. The "Last updated" date at the top of this page indicates when the policy was last revised. Continued use of our services after a revision constitutes acceptance of the updated policy.</p>
+
+      <h2>11. Contact Us</h2>
+      <p>If you have questions about this Privacy Policy or how we handle your data, please contact us:</p>
+      <ul>
+        <li><strong>Email:</strong> <a href={`mailto:${EMAIL}`}>{EMAIL}</a></li>
+        <li><strong>Phone:</strong> <a href="tel:+12065959675">{PHONE}</a></li>
+        <li><strong>Address:</strong> Seattle, WA 98101, United States</li>
+      </ul>
+
+    </div>
+  </article>
+</MainLayout>
+
+<style is:global>
+  .prose h2 { font-size: clamp(1.25rem, 2.5vw, 1.625rem); margin-top: 2.5rem; margin-bottom: 0.75rem; }
+  .prose h3 { font-size: clamp(1.05rem, 2vw, 1.25rem); margin-top: 1.75rem; margin-bottom: 0.5rem; }
+  .prose p  { line-height: 1.85; margin-bottom: 1.25rem; color: #404040; }
+  .prose ul, .prose ol { padding-left: 1.5rem; margin-bottom: 1.25rem; }
+  .prose li { margin-bottom: 0.4rem; line-height: 1.75; color: #404040; }
+</style>

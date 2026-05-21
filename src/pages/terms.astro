@@ -1,0 +1,122 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+
+const LAST_UPDATED = 'May 21, 2025';
+const SITE_URL = 'https://emeraldcitylimos.com';
+const EMAIL = 'client@emeraldcitylimos.com';
+const PHONE = '(206) 595-9675';
+---
+
+<MainLayout
+  title="Terms of Service | Emerald City Limos"
+  description="Emerald City Limos terms of service — booking policies, cancellation terms, liability, and conditions governing use of our Seattle luxury transportation services."
+  canonical={`${SITE_URL}/terms`}
+>
+  <section class="bg-brand-forest py-16 sm:py-20 px-6 sm:px-8">
+    <div class="max-w-3xl mx-auto">
+      <div class="flex items-center gap-4 mb-5">
+        <div class="h-px w-10 bg-brand-gold shrink-0" aria-hidden="true"></div>
+        <p class="font-sans text-[10px] font-semibold tracking-[0.22em] uppercase text-brand-gold">Legal</p>
+      </div>
+      <h1
+        class="font-display font-light text-white leading-[1.08] tracking-[-0.025em]"
+        style="font-size: clamp(2rem, 4vw, 3rem);"
+      >
+        Terms of <em class="italic text-brand-gold">Service</em>
+      </h1>
+      <p class="mt-4 font-sans text-sm font-light text-white/50">Last updated: {LAST_UPDATED}</p>
+    </div>
+  </section>
+
+  <article class="bg-white px-6 sm:px-8 py-14 sm:py-20">
+    <div class="max-w-3xl mx-auto prose prose-neutral prose-headings:font-display prose-headings:font-light prose-headings:text-brand-forest prose-a:text-brand-gold prose-a:no-underline hover:prose-a:underline prose-strong:text-brand-forest max-w-none">
+
+      <p>
+        These Terms of Service ("Terms") govern your use of the Emerald City Limos website at <a href={SITE_URL}>{SITE_URL}</a> and the transportation services we provide. By accessing our website or booking our services, you agree to be bound by these Terms. Please read them carefully.
+      </p>
+
+      <h2>1. Services</h2>
+      <p>
+        Emerald City Limos provides professional, licensed, and insured luxury ground transportation services in the Greater Seattle metropolitan area, including King, Snohomish, and Pierce counties. Services include airport transfers, executive transportation, wedding transportation, event transportation, and hourly charter service.
+      </p>
+      <p>
+        We operate as a licensed Washington State for-hire carrier. All chauffeurs hold a valid Washington State For-Hire Endorsement and pass a thorough background check prior to employment.
+      </p>
+
+      <h2>2. Reservations & Booking</h2>
+      <ul>
+        <li>Reservations may be made online through our booking portal (powered by Moovs), by phone at <a href="tel:+12065959675">{PHONE}</a>, or by email at <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</li>
+        <li>A reservation is confirmed only upon receipt of a written confirmation from Emerald City Limos.</li>
+        <li>Accurate pickup time, pickup address, and drop-off address are the client's responsibility. Emerald City Limos is not liable for delays or missed rides resulting from incorrect information provided at booking.</li>
+        <li>For airport pickups, we monitor flight arrivals and adjust pickup time accordingly at no charge. Clients must notify us of flight number at time of booking to enable this service.</li>
+      </ul>
+
+      <h2>3. Rates & Payment</h2>
+      <ul>
+        <li><strong>Flat-rate pricing:</strong> most reservations are quoted at a flat rate. The rate quoted at booking is the final charge unless the trip is materially changed after confirmation (e.g., additional stops, significant route changes, wait time exceeding included grace period).</li>
+        <li><strong>Hourly charters:</strong> billed in hourly increments with a minimum period as specified at booking. The minimum period is charged regardless of actual trip duration.</li>
+        <li><strong>Wait time:</strong> for airport pickups, a complimentary grace period is included. Additional wait time beyond the grace period may be billed at the applicable hourly rate.</li>
+        <li><strong>Additional charges:</strong> tolls, parking fees, and applicable Washington State taxes are included in quoted rates unless otherwise stated. Gratuity is not included and is at the client's discretion.</li>
+        <li><strong>Payment:</strong> payment is processed through our booking platform. We accept all major credit cards. Corporate invoicing is available upon prior arrangement.</li>
+      </ul>
+
+      <h2>4. Cancellation Policy</h2>
+      <ul>
+        <li><strong>Standard cancellations:</strong> cancellations made at least <strong>4 hours</strong> prior to the scheduled pickup time receive a full refund.</li>
+        <li><strong>Late cancellations:</strong> cancellations made less than 4 hours before the scheduled pickup time may be charged up to 100% of the booked fare.</li>
+        <li><strong>No-shows:</strong> if a client cannot be located within a reasonable time after the scheduled pickup (typically 30 minutes for standard trips, 60 minutes for airport arrivals), the booking will be treated as a no-show and the full fare may be charged.</li>
+        <li><strong>Special events:</strong> reservations for New Year's Eve, major sporting events, and FIFA World Cup matches may be subject to stricter cancellation policies as disclosed at time of booking.</li>
+        <li>Emerald City Limos reserves the right to cancel a booking due to vehicle breakdown, severe weather, or circumstances beyond our control. In such cases, a full refund will be issued.</li>
+      </ul>
+
+      <h2>5. Passenger Conduct</h2>
+      <ul>
+        <li>Passengers are expected to treat our chauffeurs and vehicles with respect. Emerald City Limos reserves the right to terminate a trip and charge the full fare if passenger conduct is abusive, threatening, or endangers the chauffeur or vehicle.</li>
+        <li>Smoking is strictly prohibited in all vehicles.</li>
+        <li>Damage to vehicles caused by passengers (including spillage requiring professional cleaning) will be charged to the client at cost, with a minimum cleaning fee of $250.</li>
+        <li>The legal drinking age in Washington State is 21. Providing alcohol to minors in our vehicles is prohibited.</li>
+        <li>Passengers are responsible for their personal belongings. Emerald City Limos is not liable for items left in vehicles, though we will make reasonable efforts to return lost items.</li>
+      </ul>
+
+      <h2>6. Limitation of Liability</h2>
+      <p>
+        Emerald City Limos carries commercial liability insurance as required by Washington State. Our liability for any claim arising from the provision of transportation services is limited to the amount paid for the applicable booking.
+      </p>
+      <p>
+        We are not liable for delays caused by traffic, weather, road closures, flight delays, or other circumstances outside our reasonable control. We are not liable for missed flights, connections, or consequential damages arising from transportation delays.
+      </p>
+
+      <h2>7. Website Use</h2>
+      <p>
+        You may use our website for lawful purposes only. You agree not to use automated tools to scrape, crawl, or harvest data from our website without written permission. The content on this website — including text, images, and design — is the property of Emerald City Limos and may not be reproduced without written consent.
+      </p>
+
+      <h2>8. Governing Law</h2>
+      <p>
+        These Terms are governed by the laws of the State of Washington, United States. Any disputes arising from these Terms or our services shall be resolved in the courts of King County, Washington.
+      </p>
+
+      <h2>9. Changes to These Terms</h2>
+      <p>
+        We may update these Terms from time to time. The "Last updated" date at the top of this page indicates when the Terms were last revised. Continued use of our services after a revision constitutes acceptance of the updated Terms.
+      </p>
+
+      <h2>10. Contact</h2>
+      <p>Questions about these Terms? Contact us:</p>
+      <ul>
+        <li><strong>Email:</strong> <a href={`mailto:${EMAIL}`}>{EMAIL}</a></li>
+        <li><strong>Phone:</strong> <a href="tel:+12065959675">{PHONE}</a></li>
+        <li><strong>Address:</strong> Seattle, WA 98101, United States</li>
+      </ul>
+
+    </div>
+  </article>
+</MainLayout>
+
+<style is:global>
+  .prose h2 { font-size: clamp(1.25rem, 2.5vw, 1.625rem); margin-top: 2.5rem; margin-bottom: 0.75rem; }
+  .prose h3 { font-size: clamp(1.05rem, 2vw, 1.25rem); margin-top: 1.75rem; margin-bottom: 0.5rem; }
+  .prose p  { line-height: 1.85; margin-bottom: 1.25rem; color: #404040; }
+  .prose ul, .prose ol { padding-left: 1.5rem; margin-bottom: 1.25rem; }
+  .prose li { margin-bottom: 0.4rem; line-height: 1.75; color: #404040; }
+</style>
