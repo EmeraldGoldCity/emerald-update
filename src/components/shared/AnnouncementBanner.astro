@@ -1,0 +1,117 @@
+---
+/**
+ * AnnouncementBanner — slim ~40px promotional bar above fixed navigation
+ * -----------------------------------------------------------------------
+ * FIFA World Cup 2026 event announcement with dismiss-to-localStorage.
+ *
+ * Behaviour:
+ *   - Hidden automatically after 2026-07-19 (JS date check)
+ *   - Hidden if `wc-banner-dismissed=1` is set in localStorage
+ *   - Dismiss button writes the flag and collapses the bar
+ *
+ * Placed in MainLayout.astro between the skip link and <Navigation>.
+ */
+---
+
+<div
+  id="wc-announcement-banner"
+  role="banner"
+  aria-label="FIFA World Cup 2026 announcement"
+  class="relative z-50 border-b border-brand-gold/30 bg-brand-forest-deep"
+>
+  <div class="mx-auto flex max-w-7xl items-center justify-between gap-x-3 px-4 py-2 sm:px-6 lg:px-8">
+
+    <!-- Left: icon + text -->
+    <div class="flex min-w-0 flex-1 items-center gap-x-2.5">
+      <!-- Soccer ball inline SVG -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        width="16"
+        height="16"
+        class="flex-shrink-0 text-brand-gold-soft"
+        aria-hidden="true"
+      >
+        <!-- Circle -->
+        <circle cx="12" cy="12" r="9" />
+        <!-- Classic soccer ball pentagon/hex hint paths -->
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 3v2.5m0 13V21M3 12h2.5m13 0H21M5.636 5.636l1.768 1.768m9.192 9.192 1.768 1.768M5.636 18.364l1.768-1.768m9.192-9.192 1.768-1.768"
+        />
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z"
+        />
+      </svg>
+
+      <p class="truncate font-sans text-[11px] font-medium tracking-wide text-white/90 sm:text-xs">
+        <span class="font-semibold text-brand-gold-soft">FIFA World Cup 2026</span>
+        <span class="mx-1 text-white/40" aria-hidden="true">·</span>
+        <span>Seattle · June – July 2026</span>
+      </p>
+    </div>
+
+    <!-- Right: CTA + dismiss -->
+    <div class="flex flex-shrink-0 items-center gap-x-3">
+      <a
+        href="/events/world-cup-2026"
+        class="whitespace-nowrap font-sans text-[11px] font-semibold tracking-wide text-brand-gold-soft transition-colors duration-150 hover:text-white sm:text-xs"
+      >
+        Reserve Your Ride&nbsp;&rarr;
+      </a>
+
+      <button
+        id="wc-banner-dismiss"
+        type="button"
+        aria-label="Dismiss announcement"
+        class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded text-white/50 transition-colors duration-150 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-gold"
+      >
+        <!-- × close icon -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          width="14"
+          height="14"
+          aria-hidden="true"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var STORAGE_KEY = 'wc-banner-dismissed';
+    var EXPIRY_DATE = new Date('2026-07-20').getTime();
+    var banner = document.getElementById('wc-announcement-banner');
+
+    if (!banner) return;
+
+    // Hide if tournament is over or user previously dismissed
+    if (Date.now() >= EXPIRY_DATE || localStorage.getItem(STORAGE_KEY) === '1') {
+      banner.style.display = 'none';
+      return;
+    }
+
+    // Wire up dismiss button
+    var btn = document.getElementById('wc-banner-dismiss');
+    if (btn) {
+      btn.addEventListener('click', function () {
+        localStorage.setItem(STORAGE_KEY, '1');
+        banner.style.display = 'none';
+      });
+    }
+  })();
+</script>

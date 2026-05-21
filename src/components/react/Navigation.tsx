@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Baby,
   Briefcase,
+  Calendar,
   ChevronDown,
   Clock,
   Heart,
@@ -64,10 +65,16 @@ const SERVICES = [
     desc: 'On-demand chauffeur, by the hour.',
   },
   {
-    name: 'Special Events',
+    name: 'Special Occasions',
     href: '/service/special-occasions',
     icon: Sparkles,
     desc: 'Galas, anniversaries, milestone moments.',
+  },
+  {
+    name: 'Events',
+    href: '/events',
+    icon: Calendar,
+    desc: 'Browse upcoming events — World Cup 2026, concerts & more.',
   },
   {
     name: 'Cruise Transportation',
@@ -168,14 +175,14 @@ type NavItem =
 const NAV: NavItem[] = [
   // { type: 'link', name: 'Home', href: '/' },
   { type: 'mega', name: 'Services', key: 'services' },
-  { type: 'link', name: 'Fleet', href: '/fleet' },
   { type: 'mega', name: 'Locations', key: 'locations' },
+  { type: 'link', name: 'Fleet', href: '/fleet' },
   { type: 'link', name: 'About', href: '/about' },
   { type: 'link', name: 'Blog', href: '/blog' },
   { type: 'link', name: 'Contact', href: '/contact' },
 ];
 
-const SERVICES_PATH_PREFIXES = ['/services', '/service/', '/airport-transfers'];
+const SERVICES_PATH_PREFIXES = ['/services', '/service/', '/airport-transfers', '/events'];
 const LOCATIONS_PATH_PREFIXES = ['/locations', '/airport/'];
 
 /* Shared focus-ring class (extracted because it's used everywhere) */

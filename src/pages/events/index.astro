@@ -1,3 +1,266 @@
 ---
-return Astro.redirect('/events/world-cup-2026', 301);
+import { getImage } from 'astro:assets';
+import MainLayout from '@/layouts/MainLayout.astro';
+import eventsHeroSrc from '@/assets/images/events/events.jpg';
+
+const eventsHero = await getImage({ src: eventsHeroSrc, format: 'webp', quality: 85, width: 1920, height: 1080 });
+
+const SITE_URL = 'https://emeraldcitylimos.com';
+const canonical = `${SITE_URL}/events`;
+
+const events = [
+  {
+    name: 'FIFA World Cup 2026',
+    tag: 'June – July 2026',
+    tagHighlight: true,
+    description: '7 matches at Lumen Field. Seattle hosts the world — book early.',
+    href: '/events/world-cup-2026',
+  },
+  {
+    name: 'Seahawks Game Day',
+    tag: 'NFL Season',
+    description: 'Lumen Field home games — drop-off, wait, and return service.',
+    href: '/events/seahawks-game-day',
+  },
+  {
+    name: 'Sounders FC',
+    tag: 'MLS Season',
+    description: 'Matchday transport for Rave Green supporters of every group size.',
+    href: '/events/sounders-fc',
+  },
+  {
+    name: 'Mariners Game Day',
+    tag: 'MLB Season',
+    description: 'First pitch to final out — flat-rate rides to T-Mobile Park.',
+    href: '/events/mariners-game-day',
+  },
+  {
+    name: 'Concerts & Live Events',
+    tag: 'Year-Round',
+    description: 'Climate Pledge Arena, Lumen Field concerts, The Paramount, and more.',
+    href: '/events/concerts-seattle',
+  },
+  {
+    name: "New Year's Eve",
+    tag: 'Dec 31',
+    description: 'The biggest surge night of the year. Lock in your rate now.',
+    href: '/events/nye-seattle',
+  },
+];
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home',   item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Events', item: canonical },
+  ],
+};
 ---
+
+<MainLayout
+  title="Seattle Events Transportation | Lumen Field, T-Mobile Park & More | Emerald City Limos"
+  description="Luxury chauffeur service for Seattle's biggest events — FIFA World Cup 2026, Seahawks, Sounders, Mariners, concerts, and New Year's Eve. Flat-rate pricing, no surge."
+  canonical={canonical}
+>
+  <Fragment slot="head">
+    <link rel="preload" as="image" href={eventsHero.src} type="image/webp" fetchpriority="high" />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <!-- ── Hero ─────────────────────────────────────────────────────────────── -->
+  <section
+    class="relative flex min-h-screen items-end overflow-hidden bg-brand-forest-deep"
+    style={`background-image: url('${eventsHero.src}'); background-size: cover; background-position: center;`}
+    aria-labelledby="events-hero-heading"
+  >
+    <!-- Gradient overlay — ensures text legibility over any background image -->
+    <div
+      class="pointer-events-none absolute inset-0"
+      style="background: linear-gradient(to top, rgba(5,20,13,0.82) 0%, rgba(5,20,13,0.35) 50%, rgba(5,20,13,0.15) 100%);"
+      aria-hidden="true"
+    ></div>
+    <!-- Bottom gold line -->
+    <div
+      class="pointer-events-none absolute inset-x-0 bottom-0 h-px"
+      style="background: linear-gradient(to right, transparent, rgba(195,154,69,0.3), transparent);"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative mx-auto w-full max-w-7xl px-6 pb-16 sm:px-8 sm:pb-20 lg:px-12">
+      <!-- Eyebrow -->
+      <div class="mb-5 flex items-center gap-3">
+        <span class="h-px w-8 bg-brand-gold-soft/50" aria-hidden="true"></span>
+        <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold-soft">
+          Seattle Events Transportation
+        </p>
+      </div>
+
+      <!-- H1 -->
+      <h1
+        id="events-hero-heading"
+        class="mb-5 max-w-2xl font-display font-light leading-[1.08] text-white"
+        style="font-size: clamp(2.4rem, 5.5vw, 4rem); letter-spacing: -0.02em;"
+      >
+        Seattle's Biggest Events,<br>
+        <em class="italic text-brand-gold-soft">One Reliable Ride.</em>
+      </h1>
+
+      <!-- Supporting copy -->
+      <p class="max-w-xl font-sans text-[0.98rem] font-light leading-relaxed text-white/70 sm:text-[1.05rem]">
+        From World Cup matches to Seahawks Sundays, concert nights to New Year's Eve — flat-rate pricing, groups of any size, 24/7 dispatch.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Events grid ───────────────────────────────────────────────────────── -->
+  <section
+    class="bg-brand-champagne py-16 sm:py-20 lg:py-24"
+    aria-labelledby="events-grid-heading"
+  >
+    <div
+      class="pointer-events-none inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-gold/25 to-transparent"
+      aria-hidden="true"
+    ></div>
+
+    <div class="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+      <!-- Section header -->
+      <div class="mb-10 text-center sm:mb-14">
+        <div class="mb-3 flex items-center justify-center gap-3">
+          <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
+          <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+            All Events
+          </p>
+          <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
+        </div>
+        <h2
+          id="events-grid-heading"
+          class="font-display font-light leading-[1.1] text-brand-forest"
+          style="font-size: clamp(1.75rem, 3.4vw, 2.4rem); letter-spacing: -0.01em;"
+        >
+          Upcoming &amp; Seasonal Events
+        </h2>
+      </div>
+
+      <!-- Cards grid -->
+      <ul
+        role="list"
+        class="m-0 grid list-none grid-cols-1 gap-5 p-0 sm:grid-cols-2 lg:grid-cols-3"
+      >
+        {events.map((event) => (
+          <li class="m-0 p-0">
+            <a
+              href={event.href}
+              class="group flex h-full flex-col border-l-2 border-brand-gold/50 bg-brand-forest outline-none transition-[border-color,box-shadow] duration-300 hover:border-brand-gold-soft hover:shadow-[0_20px_40px_-24px_rgba(10,35,24,0.45)] focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-champagne"
+            >
+              <div class="flex flex-1 flex-col gap-3 p-6">
+                <!-- Tag -->
+                <span
+                  class:list={[
+                    'inline-block w-fit font-sans text-[9px] font-semibold uppercase tracking-[0.2em]',
+                    event.tagHighlight ? 'text-brand-gold-soft' : 'text-white/45',
+                  ]}
+                >
+                  {event.tag}
+                </span>
+
+                <!-- Event name -->
+                <h3 class="font-display text-[1.15rem] font-medium leading-snug text-white">
+                  {event.name}
+                </h3>
+
+                <!-- Description -->
+                <p class="font-sans text-[0.84rem] font-light leading-relaxed text-white/65">
+                  {event.description}
+                </p>
+
+                <!-- Link label -->
+                <span class="mt-auto inline-flex items-center gap-1.5 pt-2 font-sans text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-brand-gold-soft transition-colors duration-300 group-hover:text-white">
+                  Book Transport
+                  <svg viewBox="0 0 20 20" fill="currentColor" class="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd"/>
+                  </svg>
+                </span>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── CTA strip ─────────────────────────────────────────────────────────── -->
+  <section
+    class="relative overflow-hidden bg-brand-forest-deep py-16 sm:py-20"
+    aria-labelledby="events-cta-heading"
+  >
+    <!-- Radial gold glow -->
+    <div
+      class="pointer-events-none absolute inset-0"
+      style="background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(163,126,44,0.16) 0%, transparent 70%);"
+      aria-hidden="true"
+    ></div>
+    <!-- Top gold line -->
+    <div
+      class="pointer-events-none absolute inset-x-0 top-0 h-px"
+      style="background: linear-gradient(to right, transparent, rgba(195,154,69,0.45), transparent);"
+      aria-hidden="true"
+    ></div>
+    <!-- Bottom gold line -->
+    <div
+      class="pointer-events-none absolute inset-x-0 bottom-0 h-px"
+      style="background: linear-gradient(to right, transparent, rgba(195,154,69,0.3), transparent);"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative mx-auto max-w-4xl px-6 text-center sm:px-8 lg:px-12">
+      <div class="mb-3 flex items-center justify-center gap-3">
+        <span class="h-px w-8 bg-brand-gold-soft" aria-hidden="true"></span>
+        <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold-soft">
+          Any Venue, Any Date
+        </p>
+        <span class="h-px w-8 bg-brand-gold-soft" aria-hidden="true"></span>
+      </div>
+
+      <h2
+        id="events-cta-heading"
+        class="mb-4 font-display font-light leading-[1.1] text-white"
+        style="font-size: clamp(1.85rem, 3.8vw, 2.6rem); letter-spacing: -0.01em;"
+      >
+        Not seeing your event?
+      </h2>
+
+      <p class="mx-auto mb-8 max-w-xl font-sans text-[0.98rem] font-light leading-relaxed text-white/75">
+        We cover any event at any Seattle venue. Call or book online and we'll quote your date.
+      </p>
+
+      <div
+        class="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4"
+        role="group"
+        aria-label="Book events transportation"
+      >
+        <a
+          href="https://customer.moovs.app/a1-charters-1/new/info"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-cta="events_cta_book"
+          class="inline-flex min-h-[52px] items-center justify-center gap-2 border border-brand-gold-soft bg-brand-gold-soft px-8 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-forest outline-none transition-[background-color,border-color,box-shadow] duration-200 hover:bg-brand-gold hover:shadow-[0_12px_28px_-12px_rgba(163,126,44,0.6)] focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-forest-deep"
+        >
+          Book Online
+          <span aria-hidden="true">→</span>
+        </a>
+        <a
+          href="tel:+12065959675"
+          data-cta="events_cta_call"
+          class="inline-flex min-h-[52px] items-center justify-center gap-2 border border-white/30 bg-transparent px-8 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-white outline-none transition-colors duration-200 hover:border-white/70 focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-forest-deep"
+          aria-label="Call Emerald City Limos at (206) 595-9675, available 24 hours"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true">
+            <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+          </svg>
+          <span class="tabular-nums">(206) 595-9675</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</MainLayout>

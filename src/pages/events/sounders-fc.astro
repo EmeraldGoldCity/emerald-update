@@ -1,0 +1,730 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import TrustStrip from '@/components/shared/TrustStrip.astro';
+import { getVehicle } from '@/data/fleet';
+import lumenField2Img from '@/assets/images/world-cup/lumen-field-2.jpg';
+
+import type { Vehicle } from '@/data/fleet';
+
+const soundersFleet = ['escalade-esv', 'navigator-l', 'sprinter']
+  .map(getVehicle)
+  .filter((v): v is Vehicle => v != null);
+
+const SITE_URL = 'https://emeraldcitylimos.com';
+const canonical = `${SITE_URL}/events/sounders-fc`;
+
+/* ── Season info ─────────────────────────────────────────────────────────── */
+const seasonMatches = [
+  { slot: '01', label: 'MLS Regular Season', note: 'Schedule released in January — book early' },
+  { slot: '02', label: 'MLS Regular Season', note: 'Schedule released in January — book early' },
+  { slot: '03', label: 'MLS Regular Season', note: 'Schedule released in January — book early' },
+  { slot: '04', label: 'MLS Regular Season', note: 'Schedule released in January — book early' },
+  { slot: '05', label: 'MLS Regular Season', note: 'Schedule released in January — book early' },
+  { slot: '06', label: 'MLS Regular Season', note: 'Schedule released in January — book early' },
+  { slot: '07', label: 'MLS Regular Season', note: 'Schedule released in January — book early' },
+  { slot: '08', label: 'MLS Regular Season', note: 'Schedule released in January — book early' },
+  { slot: '09', label: 'MLS Regular Season', note: 'Schedule released in January — book early' },
+  { slot: '10', label: 'MLS Regular Season', note: 'Schedule released in January — book early' },
+  { slot: '11', label: 'MLS Regular Season', note: 'Schedule released in January — book early' },
+  { slot: '12', label: 'MLS Regular Season', note: 'Schedule released in January — book early' },
+  { slot: '13', label: 'MLS Regular Season', note: 'Schedule released in January — book early' },
+  { slot: '14', label: 'MLS Regular Season', note: 'Schedule released in January — book early' },
+  { slot: '15', label: 'MLS Regular Season', note: 'Schedule released in January — book early' },
+  { slot: '16', label: 'MLS Regular Season', note: 'Schedule released in January — book early' },
+  { slot: '17', label: 'MLS Regular Season', note: 'Schedule released in January — book early' },
+  { slot: '+', label:  'MLS Cup Playoffs',   note: 'Home playoff berth not guaranteed — reserve early' },
+];
+
+/* ── Benefits ────────────────────────────────────────────────────────────── */
+const benefits = [
+  {
+    title: 'Stadium Door Access',
+    description: "Lumen Field's designated drop-off lane gets you to the gate without hunting for street parking or standing in a rideshare queue blocks away.",
+    iconPath: 'M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12',
+  },
+  {
+    title: 'No Surge After the Final Whistle',
+    description: 'Your fare is flat-rate and locked at booking — regardless of extra time, penalty kicks, or a post-match ceremony that runs long.',
+    iconPath: 'M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
+  },
+  {
+    title: 'Group Bookings',
+    description: 'From couples heading to the south end to full supporter groups — SUVs, Sprinter vans, and coaches handle any party size in a single booking.',
+    iconPath: 'M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z',
+  },
+  {
+    title: 'Pre-Match Pickup Anywhere',
+    description: 'Hotel, home, or the last stop on your bar crawl — we pick you up wherever the pre-match party starts, across Seattle and the Eastside.',
+    iconPath: 'M15 10.5a3 3 0 11-6 0 3 3 0 016 0z M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z',
+  },
+  {
+    title: 'MLS Season-Long Packages',
+    description: 'Attending multiple matches this season? Ask about multi-match packages — simplify booking and lock in priority availability for every home fixture.',
+    iconPath: 'M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5',
+  },
+  {
+    title: 'International Match Coverage',
+    description: "We cover every match at Lumen Field — CONCACAF Champions Cup, US Open Cup, and Sounders international friendlies — not just regular MLS season fixtures.",
+    iconPath: 'M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 01-3.827-5.802',
+  },
+];
+
+/* ── FAQs ─────────────────────────────────────────────────────────────────── */
+const faqs = [
+  {
+    question: "What's the best drop-off point for Lumen Field Sounders matches?",
+    answer: "We use Lumen Field's designated commercial vehicle drop-off lane on the south side of the stadium. It puts you steps from the main gate, skips the pedestrian crossings from remote parking, and keeps your chauffeur clear of the post-match pedestrian surge so pick-up is just as smooth.",
+  },
+  {
+    question: 'Can you pick us up from a pre-match bar in Capitol Hill or Pioneer Square?',
+    answer: "Absolutely — multi-stop and bar-crawl pickups are a staple of our matchday packages. Tell us your starting location when you book and we'll build the itinerary around it. We serve Capitol Hill, Pioneer Square, Belltown, South Lake Union, and any neighborhood across Seattle or the Eastside.",
+  },
+  {
+    question: 'Do you cover Sounders Open Cup and CONCACAF matches?',
+    answer: "Yes. We cover all Sounders home fixtures at Lumen Field — MLS regular season, US Open Cup, CONCACAF Champions Cup, and international friendlies. Book any match the same way you would a regular-season game.",
+  },
+  {
+    question: 'How early should I book for a Sounders playoff home game?',
+    answer: "For playoff matches we recommend booking as soon as the bracket is confirmed — ideally within 24–48 hours of the fixture announcement. Playoff matchdays in Seattle see very high demand across all transportation options. Premium vehicles fill first. Early booking guarantees your preferred vehicle and pickup time.",
+  },
+  {
+    question: 'Can you handle a group from multiple pickup locations?',
+    answer: "Yes. Multi-stop pickup routes are common for supporter groups coordinating from different neighborhoods. Add each stop when booking or contact us to map the most efficient route. Sprinter vans are ideal for multi-stop groups — they keep everyone together and make one clean drop at the stadium.",
+  },
+  {
+    question: 'Is there parking near Lumen Field on match days?',
+    answer: "Parking near Lumen Field on match days is limited, expensive, and requires arriving well before kickoff. Most lots charge a significant premium and are often shared with Mariners or other events. A private car service eliminates the parking cost and the stress entirely — we drop you at the gate and pick you up curbside after the final whistle.",
+  },
+];
+
+/* ── Structured data ─────────────────────────────────────────────────────── */
+const eventSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SportsEvent',
+  '@id': `${canonical}#event`,
+  name: 'Seattle Sounders FC Home Matches at Lumen Field',
+  description: 'Seattle Sounders FC MLS home matches at Lumen Field, Seattle, Washington. Up to 17 regular season home matches plus potential playoff home games per season.',
+  eventStatus: 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  location: {
+    '@type': 'SportsActivityLocation',
+    name: 'Lumen Field',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '800 Occidental Ave S',
+      addressLocality: 'Seattle',
+      addressRegion: 'WA',
+      postalCode: '98134',
+      addressCountry: 'US',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 47.5952,
+      longitude: -122.3316,
+    },
+  },
+  organizer: {
+    '@type': 'SportsOrganization',
+    name: 'Seattle Sounders FC',
+    url: 'https://www.soundersfc.com',
+  },
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${canonical}#service`,
+  name: 'Seattle Sounders FC Matchday Transportation',
+  description: 'Luxury chauffeur and group transportation services for Seattle Sounders FC matches at Lumen Field. Flat-rate pricing, MLS season packages, SUVs and Sprinter vans, curbside post-match return.',
+  url: canonical,
+  serviceType: 'Event Transportation',
+  areaServed: {
+    '@type': 'City',
+    name: 'Seattle',
+    sameAs: 'https://en.wikipedia.org/wiki/Seattle',
+  },
+  provider: {
+    '@type': 'LimousineBusiness',
+    name: 'Emerald City Limos',
+    '@id': SITE_URL,
+    url: SITE_URL,
+    telephone: '+1-206-595-9675',
+  },
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    url: 'https://customer.moovs.app/a1-charters-1/new/info',
+    priceCurrency: 'USD',
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${canonical}#faq`,
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.question,
+    acceptedAnswer: { '@type': 'Answer', text: f.answer },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home',   item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Events', item: `${SITE_URL}/events` },
+    { '@type': 'ListItem', position: 3, name: 'Sounders FC Matchday Transportation Seattle', item: canonical },
+  ],
+};
+---
+
+<MainLayout
+  title="Seattle Sounders FC Matchday Transportation | Lumen Field | Emerald City Limos"
+  description="Luxury chauffeur service for Seattle Sounders FC matches at Lumen Field. Flat-rate pricing, no surge, multi-stop pickups, MLS season packages. Book your matchday transport."
+  keywords="sounders fc transportation, sounders limo seattle, lumen field matchday transport, seattle sounders car service, mls matchday chauffeur seattle, sounders fc shuttle"
+  canonical={canonical}
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(eventSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  </Fragment>
+
+  <!-- ── Hero ──────────────────────────────────────────────────────────── -->
+  <PageHero
+    eyebrow="Seattle Sounders FC · Lumen Field"
+    headline="Matchday Transport"
+    headlineAccent="for Rave Green."
+    supporting="Whether you're bringing the family or rolling deep with the Emerald City Supporters, we handle the drive so you can focus on the match."
+    ctaPrimary={{ label: 'Book Matchday Transport', href: 'https://customer.moovs.app/a1-charters-1/new/info', id: 'cta-sounders-hero-primary' }}
+    image={{ src: lumenField2Img, alt: 'Lumen Field in Seattle — home of Seattle Sounders FC' }}
+    size="page"
+    id="sounders-hero"
+    breadcrumbs={[
+      { label: 'Home',   href: '/' },
+      { label: 'Events', href: '/events' },
+      { label: 'Sounders FC' },
+    ]}
+  />
+
+  <!-- ── Trust strip ───────────────────────────────────────────────────── -->
+  <TrustStrip />
+
+  <!-- ── Season schedule block ─────────────────────────────────────────── -->
+  <section
+    class="relative overflow-hidden bg-brand-forest py-16 sm:py-20 lg:py-24"
+    aria-labelledby="sounders-schedule-heading"
+  >
+    <div
+      class="pointer-events-none absolute inset-0"
+      style="background: radial-gradient(ellipse 80% 50% at 100% 50%, rgba(163,126,44,0.08) 0%, transparent 60%);"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="pointer-events-none absolute inset-x-0 top-0 h-px"
+      style="background: linear-gradient(to right, transparent, rgba(195,154,69,0.3), transparent);"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="pointer-events-none absolute inset-x-0 bottom-0 h-px"
+      style="background: linear-gradient(to right, transparent, rgba(195,154,69,0.2), transparent);"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative mx-auto max-w-5xl px-6 sm:px-8 lg:px-12">
+
+      <!-- Header -->
+      <div class="mb-10 text-center sm:mb-14">
+        <div class="mb-3 flex items-center justify-center gap-3">
+          <span class="h-px w-8 bg-brand-gold-soft/60" aria-hidden="true"></span>
+          <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold-soft">
+            Lumen Field · Seattle, WA
+          </p>
+          <span class="h-px w-8 bg-brand-gold-soft/60" aria-hidden="true"></span>
+        </div>
+        <h2
+          id="sounders-schedule-heading"
+          class="font-display font-light leading-[1.1] text-white"
+          style="font-size: clamp(1.75rem, 3.4vw, 2.4rem); letter-spacing: -0.01em;"
+        >
+          2025 MLS Season —
+          <em class="italic text-brand-gold-soft">17 home matches.</em>
+        </h2>
+        <p class="mx-auto mt-4 max-w-lg font-sans text-[0.88rem] font-light leading-relaxed text-white/55">
+          Sounders play up to 17 regular season home matches plus potential playoff home games at Lumen Field.
+          MLS releases the full schedule in January. Book early — popular matchdays go fast.
+        </p>
+      </div>
+
+      <!-- Match cards -->
+      <ol
+        class="m-0 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2"
+        role="list"
+        aria-label="2025 Sounders home match slots"
+      >
+        {seasonMatches.map((match) => (
+          <li class:list={[
+            'group relative flex items-center gap-5 border bg-white/[0.04] px-5 py-4 transition-colors duration-300 hover:bg-white/[0.07] sm:px-6 sm:py-5',
+            match.label === 'MLS Cup Playoffs'
+              ? 'border-brand-gold/35 col-span-full sm:col-span-1'
+              : 'border-white/10',
+          ]}>
+            <!-- Match number -->
+            <span
+              class:list={[
+                'inline-flex h-10 w-10 shrink-0 items-center justify-center border font-sans text-[0.72rem] font-semibold tabular-nums',
+                match.label === 'MLS Cup Playoffs'
+                  ? 'border-brand-gold/50 text-brand-gold-soft'
+                  : 'border-white/15 text-white/50',
+              ]}
+              aria-hidden="true"
+            >
+              {match.slot}
+            </span>
+
+            <!-- Details -->
+            <div class="flex flex-1 flex-col gap-0.5">
+              <span
+                class:list={[
+                  'font-sans text-[9px] font-semibold uppercase tracking-[0.18em]',
+                  match.label === 'MLS Cup Playoffs' ? 'text-brand-gold-soft' : 'text-white/40',
+                ]}
+              >
+                {match.label}
+              </span>
+              <span class="font-display text-[1.05rem] font-medium leading-snug text-white">
+                Opponent TBD
+              </span>
+              <span class="font-sans text-[0.78rem] font-light text-white/40">
+                {match.note}
+              </span>
+            </div>
+
+            <!-- Status label -->
+            <span
+              class:list={[
+                'hidden shrink-0 self-center font-sans text-[9px] font-semibold uppercase tracking-[0.14em] sm:block',
+                match.label === 'MLS Cup Playoffs' ? 'text-brand-gold-soft/70' : 'text-white/25',
+              ]}
+            >
+              Date TBD
+            </span>
+          </li>
+        ))}
+      </ol>
+
+      <!-- Source note -->
+      <p class="mt-6 text-center font-sans text-[0.75rem] font-light text-white/35">
+        MLS schedule released in January. Confirm at
+        <a
+          href="https://www.soundersfc.com/schedule"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-brand-gold-soft/70 underline underline-offset-2 hover:text-brand-gold-soft"
+        >
+          soundersfc.com
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Why book with us ───────────────────────────────────────────────── -->
+  <section
+    class="relative overflow-hidden bg-brand-champagne py-16 sm:py-20 lg:py-24"
+    aria-labelledby="sounders-benefits-heading"
+  >
+    <div
+      class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-gold/25 to-transparent"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+      <div class="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-16 xl:gap-20">
+
+        <!-- Copy -->
+        <div class="flex flex-col">
+          <div class="mb-4 flex items-center gap-3">
+            <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
+            <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+              Why Emerald City Limos
+            </p>
+          </div>
+          <h2
+            id="sounders-benefits-heading"
+            class="mb-6 font-display font-light leading-[1.08] text-brand-forest"
+            style="font-size: clamp(1.85rem, 3.4vw, 2.5rem); letter-spacing: -0.01em;"
+          >
+            Matchday without
+            <em class="italic text-brand-gold">the stress.</em>
+          </h2>
+          <p class="font-sans text-[0.98rem] font-light leading-[1.8] text-brand-forest/80 sm:text-[1.02rem]">
+            Lumen Field sits in SoDo — and matchday traffic, closed roads, and post-match crowds
+            don't get easier just because it's a soccer night. Whether you're a season-ticket
+            holder or catching your first Sounders match, we take the drive completely off your
+            plate. Multi-stop pickups, flat-rate fares, and a chauffeur who knows the SoDo grid
+            by heart.
+          </p>
+          <p class="mt-5 border-l-2 border-brand-gold/30 pl-4 font-sans text-[0.92rem] font-light italic leading-[1.75] text-brand-forest/65">
+            Season-ticket holders and frequent match-goers can inquire about multi-match packages
+            for priority availability and simplified booking across the full season.
+          </p>
+        </div>
+
+        <!-- Benefits grid -->
+        <ul
+          class="m-0 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2"
+          aria-label="Sounders matchday transportation benefits"
+        >
+          {benefits.map((benefit) => (
+            <li class="group relative flex flex-col gap-3 border border-brand-forest/8 bg-white p-5 transition-colors duration-300 hover:border-brand-gold/45">
+              <span class="inline-flex h-10 w-10 items-center justify-center bg-brand-gold/10 text-brand-gold transition-colors duration-300 group-hover:bg-brand-gold group-hover:text-white">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  width="18"
+                  height="18"
+                  aria-hidden="true"
+                >
+                  <path d={benefit.iconPath} />
+                </svg>
+              </span>
+              <h3 class="font-display text-base font-medium leading-snug text-brand-forest">
+                {benefit.title}
+              </h3>
+              <p class="font-sans text-[0.82rem] leading-relaxed text-brand-forest/70">
+                {benefit.description}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── How it works ──────────────────────────────────────────────────── -->
+  <section
+    class="relative bg-brand-champagne py-16 sm:py-20 lg:py-24"
+    aria-labelledby="sounders-how-heading"
+  >
+    <div
+      class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-gold/25 to-transparent"
+      aria-hidden="true"
+    ></div>
+
+    <div class="mx-auto max-w-5xl px-6 sm:px-8 lg:px-12">
+
+      <div class="mb-10 text-center sm:mb-14">
+        <div class="mb-3 flex items-center justify-center gap-3">
+          <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
+          <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+            How It Works
+          </p>
+          <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
+        </div>
+        <h2
+          id="sounders-how-heading"
+          class="font-display font-light leading-[1.1] text-brand-forest"
+          style="font-size: clamp(1.75rem, 3.4vw, 2.4rem); letter-spacing: -0.01em;"
+        >
+          Three steps to
+          <em class="italic text-brand-gold">matchday ease.</em>
+        </h2>
+      </div>
+
+      <ol
+        class="m-0 grid list-none grid-cols-1 gap-px p-0 border border-brand-forest/8 bg-brand-forest/8 sm:grid-cols-3"
+        aria-label="Booking process"
+      >
+        {[
+          {
+            step: '01',
+            title: 'Reserve Online',
+            body: 'Choose your vehicle, enter your pickup details and match date, and lock in your flat rate — takes under two minutes from any device.',
+          },
+          {
+            step: '02',
+            title: 'We Confirm & Track',
+            body: 'Instant booking confirmation sent to you. On matchday, your chauffeur monitors kickoff time and SoDo conditions to time the pickup perfectly.',
+          },
+          {
+            step: '03',
+            title: 'Door to Stadium & Back',
+            body: 'We pick you up wherever the pre-match starts, deliver you to the stadium gate, and return you curbside after the final whistle — no surge, no stress.',
+          },
+        ].map(({ step, title, body }) => (
+          <li class="flex flex-col gap-4 bg-white p-6 sm:p-8">
+            <span
+              class="font-display text-[3rem] font-light leading-none text-brand-gold/25"
+              aria-hidden="true"
+            >
+              {step}
+            </span>
+            <h3 class="font-display text-[1.15rem] font-medium leading-snug text-brand-forest">
+              {title}
+            </h3>
+            <p class="font-sans text-[0.85rem] leading-relaxed text-brand-forest/70">
+              {body}
+            </p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ── Fleet ───────────────────────────────────────────────────────────── -->
+  <section
+    class="bg-brand-forest py-16 text-brand-champagne sm:py-20 lg:py-24"
+    aria-labelledby="sounders-fleet-heading"
+  >
+    <div class="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+
+      <div class="mb-10 flex flex-col gap-4 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <div class="mb-3 flex items-center gap-3">
+            <span class="h-px w-8 bg-brand-gold-soft" aria-hidden="true"></span>
+            <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold-soft">
+              Recommended Fleet
+            </p>
+          </div>
+          <h2
+            id="sounders-fleet-heading"
+            class="font-display font-light leading-[1.1] text-white"
+            style="font-size: clamp(1.75rem, 3.4vw, 2.4rem); letter-spacing: -0.01em;"
+          >
+            The right vehicle for
+            <em class="italic text-brand-gold-soft">every group size.</em>
+          </h2>
+        </div>
+        <a
+          href="/fleet"
+          class="inline-flex w-fit items-center gap-1.5 border-b border-brand-gold-soft/50 pb-1 font-sans text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-brand-gold-soft outline-none transition-colors hover:border-brand-gold-soft hover:text-white focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-forest"
+        >
+          View full fleet
+          <svg viewBox="0 0 20 20" fill="currentColor" class="h-3 w-3" aria-hidden="true">
+            <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd"/>
+          </svg>
+        </a>
+      </div>
+
+      <ul
+        role="list"
+        class="m-0 grid list-none grid-cols-1 gap-5 p-0 md:grid-cols-2 lg:grid-cols-3"
+      >
+        {soundersFleet.map((vehicle) => (
+          <li class="m-0 p-0">
+            <a
+              href={vehicle.href}
+              class="group relative flex h-full flex-col overflow-hidden border-l-2 border-brand-gold/60 bg-white/[0.04] outline-none ring-1 ring-white/8 transition-[border-color,background-color,box-shadow] duration-300 hover:border-brand-gold-soft hover:bg-white/[0.07] hover:shadow-[0_24px_48px_-32px_rgba(0,0,0,0.6)] focus-visible:border-brand-gold-soft focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-forest"
+              aria-label={`View ${vehicle.name} on the fleet page`}
+            >
+              <div class="relative aspect-[4/3] w-full overflow-hidden bg-brand-forest-deep">
+                {vehicle.imageSrc ? (
+                  <img
+                    src={typeof vehicle.imageSrc === 'string' ? vehicle.imageSrc : vehicle.imageSrc!.src}
+                    alt={vehicle.imageAlt}
+                    loading="lazy"
+                    decoding="async"
+                    width="800"
+                    height="600"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                  />
+                ) : (
+                  <div class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+                    <span
+                      class="absolute inset-0"
+                      style="background: radial-gradient(ellipse 60% 55% at center, var(--color-brand-gold-soft) 0%, transparent 70%); opacity: 0.16;"
+                    ></span>
+                    <span class="font-display text-2xl italic text-brand-gold-soft/70">
+                      {vehicle.category}
+                    </span>
+                  </div>
+                )}
+                <span class="absolute left-3 top-3 inline-flex items-center gap-1.5 bg-brand-forest/85 px-2 py-1 font-sans text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-brand-gold-soft backdrop-blur-sm">
+                  {vehicle.category}
+                </span>
+              </div>
+
+              <div class="flex flex-1 flex-col gap-3 p-5">
+                <h3 class="font-display text-lg font-medium leading-tight text-white">
+                  {vehicle.name}
+                </h3>
+                <p class="font-sans text-[0.78rem] font-medium tabular-nums text-brand-gold-soft">
+                  {vehicle.capacityLabel}
+                </p>
+                <ul role="list" class="m-0 list-none space-y-1 p-0">
+                  {vehicle.features.slice(0, 3).map((feature) => (
+                    <li class="flex items-start gap-2 font-sans text-[0.78rem] leading-snug text-white/70">
+                      <span class="mt-1.5 inline-block h-1 w-1 shrink-0 rounded-full bg-brand-gold-soft" aria-hidden="true"></span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <span class="mt-auto inline-flex items-center gap-1.5 font-sans text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-brand-gold-soft transition-colors group-hover:text-white">
+                  View vehicle
+                  <svg viewBox="0 0 20 20" fill="currentColor" class="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd"/>
+                  </svg>
+                </span>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── FAQ ────────────────────────────────────────────────────────────── -->
+  <section
+    class="bg-brand-champagne py-16 sm:py-20 lg:py-24"
+    aria-labelledby="sounders-faq-heading"
+  >
+    <div
+      class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-gold/15 to-transparent"
+      aria-hidden="true"
+    ></div>
+    <div class="mx-auto max-w-4xl px-6 sm:px-8 lg:px-12">
+
+      <div class="mb-10 text-center sm:mb-14">
+        <div class="mb-3 flex items-center justify-center gap-3">
+          <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
+          <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+            Common Questions
+          </p>
+          <span class="h-px w-8 bg-brand-gold" aria-hidden="true"></span>
+        </div>
+        <h2
+          id="sounders-faq-heading"
+          class="font-display font-light leading-[1.1] text-brand-forest"
+          style="font-size: clamp(1.75rem, 3.4vw, 2.4rem); letter-spacing: -0.01em;"
+        >
+          Matchday transport,
+          <em class="italic text-brand-gold">answered.</em>
+        </h2>
+      </div>
+
+      <ul role="list" class="m-0 list-none space-y-3 p-0">
+        {faqs.map((faq, index) => (
+          <li class="m-0 p-0">
+            <details
+              class="group relative border border-brand-forest/8 bg-white transition-[border-color,box-shadow] duration-300 open:border-brand-gold/40 open:shadow-[0_18px_36px_-28px_rgba(10,35,24,0.25)] hover:border-brand-gold/30"
+              name="sounders-faq"
+            >
+              <summary class="flex cursor-pointer items-start gap-4 px-5 py-4 outline-none transition-colors focus-visible:bg-brand-gold/[0.04] sm:px-6 sm:py-5 [&::-webkit-details-marker]:hidden [&::marker]:hidden">
+                <span
+                  class="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center font-sans text-[0.7rem] font-semibold tabular-nums text-brand-gold"
+                  aria-hidden="true"
+                >
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <span class="flex-1 font-display text-[1.05rem] font-medium leading-snug text-brand-forest sm:text-[1.12rem]">
+                  {faq.question}
+                </span>
+                <span
+                  class="mt-1 inline-flex h-6 w-6 shrink-0 items-center justify-center text-brand-gold transition-transform duration-300 group-open:rotate-45"
+                  aria-hidden="true"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                    <path d="M12 4.5v15m7.5-7.5h-15" />
+                  </svg>
+                </span>
+              </summary>
+              <div class="px-5 pb-5 pl-[3.5rem] sm:px-6 sm:pb-6 sm:pl-[3.75rem]">
+                <p class="font-sans text-[0.92rem] font-light leading-[1.75] text-brand-forest/75">
+                  {faq.answer}
+                </p>
+              </div>
+            </details>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Closing CTA ────────────────────────────────────────────────────── -->
+  <section
+    class="relative overflow-hidden bg-brand-forest-deep py-16 text-brand-champagne sm:py-20 lg:py-24"
+    aria-labelledby="sounders-cta-heading"
+  >
+    <div
+      class="pointer-events-none absolute inset-0"
+      style="background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(163,126,44,0.16) 0%, transparent 70%);"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="pointer-events-none absolute inset-x-0 top-0 h-px"
+      style="background: linear-gradient(to right, transparent, rgba(195,154,69,0.45), transparent);"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="pointer-events-none absolute inset-x-0 bottom-0 h-px"
+      style="background: linear-gradient(to right, transparent, rgba(195,154,69,0.3), transparent);"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative mx-auto max-w-4xl px-6 text-center sm:px-8 lg:px-12">
+      <div class="mb-3 flex items-center justify-center gap-3">
+        <span class="h-px w-8 bg-brand-gold-soft" aria-hidden="true"></span>
+        <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold-soft">
+          Book Before It Fills
+        </p>
+        <span class="h-px w-8 bg-brand-gold-soft" aria-hidden="true"></span>
+      </div>
+
+      <h2
+        id="sounders-cta-heading"
+        class="mb-4 font-display font-light leading-[1.1] text-white"
+        style="font-size: clamp(1.85rem, 3.8vw, 2.6rem); letter-spacing: -0.01em;"
+      >
+        Reserve your matchday ride
+        <em class="italic text-brand-gold-soft">today.</em>
+      </h2>
+
+      <p class="mx-auto mb-8 max-w-xl font-sans text-[0.98rem] font-light leading-relaxed text-white/75">
+        Popular Sounders fixtures — especially playoff and rivalry nights — book out early.
+        Lock in your flat-rate transport now and enjoy the match without thinking about
+        the drive home. Dispatch is staffed 24/7. A human answers every call.
+      </p>
+
+      <div
+        class="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4"
+        role="group"
+        aria-label="Book Sounders FC matchday transportation"
+      >
+        <a
+          href="https://customer.moovs.app/a1-charters-1/new/info"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-cta="sounders_cta_book"
+          class="inline-flex min-h-[52px] items-center justify-center gap-2 border border-brand-gold-soft bg-brand-gold-soft px-8 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-forest outline-none transition-[background-color,border-color,box-shadow] duration-200 hover:bg-brand-gold hover:shadow-[0_12px_28px_-12px_rgba(163,126,44,0.6)] focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-forest-deep"
+        >
+          Book Matchday Transport
+          <span aria-hidden="true">→</span>
+        </a>
+        <a
+          href="tel:+12065959675"
+          data-cta="sounders_cta_call"
+          class="inline-flex min-h-[52px] items-center justify-center gap-2 border border-white/30 bg-transparent px-8 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-white outline-none transition-colors duration-200 hover:border-white/70 focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-forest-deep"
+          aria-label="Call Emerald City Limos at (206) 595-9675, available 24 hours"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true">
+            <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+          </svg>
+          <span class="tabular-nums">(206) 595-9675</span>
+        </a>
+      </div>
+
+      <p class="mt-6 font-sans text-[0.72rem] uppercase tracking-[0.18em] text-white/40">
+        Licensed · Insured · 24/7 Dispatch · Seattle Since 2010
+      </p>
+    </div>
+  </section>
+</MainLayout>
