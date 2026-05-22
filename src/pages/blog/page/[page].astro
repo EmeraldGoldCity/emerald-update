@@ -12,24 +12,48 @@ import FeaturedPost from '@/components/blog/FeaturedPost.astro';
 import PostCard from '@/components/blog/PostCard.astro';
 import Pagination from '@/components/blog/Pagination.astro';
 
-const featuredPost = await sanityClient.fetch<NormalizedBlogPost | null>(FEATURED_POST_QUERY);
-const featuredId: string | null = featuredPost?._id ?? null;
+export async function getStaticPaths() {
+  const featuredPost = await sanityClient.fetch<NormalizedBlogPost | null>(FEATURED_POST_QUERY);
+  const featuredId: string | null = featuredPost?._id ?? null;
 
-const totalCount = await sanityClient.fetch<number>(POSTS_COUNT_QUERY, { featuredId });
-const totalPages = Math.max(1, Math.ceil(totalCount / PAGE_SIZE));
+  const totalCount = await sanityClient.fetch<number>(POSTS_COUNT_QUERY, { featuredId });
+  const totalPages = Math.max(1, Math.ceil(totalCount / PAGE_SIZE));
+
+  // Generate pages 2+ only; page 1 is /blog (index.astro).
+  return Array.from({ length: Math.max(0, totalPages - 1) }, (_, i) => ({
+    params: { page: String(i + 2) },
+    props: { featuredPost, featuredId, totalPages } as {
+      featuredPost: NormalizedBlogPost | null;
+      featuredId: string | null;
+      totalPages: number;
+    },
+  }));
+}
+
+interface Props {
+  featuredPost: NormalizedBlogPost | null;
+  featuredId: string | null;
+  totalPages: number;
+}
+
+const { page } = Astro.params;
+const { featuredPost, featuredId, totalPages } = Astro.props;
+const pageNum = parseInt(page!, 10);
+
+const start = (pageNum - 1) * PAGE_SIZE;
+const end = pageNum * PAGE_SIZE;
 
 const posts = await sanityClient.fetch<NormalizedBlogPost[]>(PAGINATED_POSTS_QUERY, {
   featuredId,
-  start: 0,
-  end: PAGE_SIZE,
+  start,
+  end,
 });
 ---
 
 <MainLayout
-  title="Blog | Emerald City Limos — Seattle Luxury Transportation"
+  title={`Blog — Page ${pageNum} | Emerald City Limos`}
   description="Travel tips, chauffeur insights, and luxury transportation guides for Seattle, Bellevue, and the greater Pacific Northwest."
-  keywords="seattle limo blog, chauffeur tips, luxury transportation seattle, black car service blog"
-  canonical="https://emeraldcitylimos.com/blog"
+  canonical={`https://emeraldcitylimos.com/blog/page/${pageNum}`}
 >
 
   <!-- ── Hero ────────────────────────────────────────────────────────── -->
@@ -54,7 +78,7 @@ const posts = await sanityClient.fetch<NormalizedBlogPost[]>(PAGINATED_POSTS_QUE
     </div>
   </section>
 
-  <!-- ── Featured Post ─────────────────────────────────────────────── -->
+  <!-- ── Featured Post (shown on every page for discoverability) ───── -->
   {featuredPost && (
     <section class="bg-white pt-12 pb-0 px-6 sm:px-8" aria-label="Featured article">
       <div class="max-w-6xl mx-auto">
@@ -69,13 +93,11 @@ const posts = await sanityClient.fetch<NormalizedBlogPost[]>(PAGINATED_POSTS_QUE
     </section>
   )}
 
-  <!-- ── Post grid ────────────────────────────────────────────────────── -->
-  <section class="bg-white py-16 sm:py-20 px-6 sm:px-8" aria-label="Blog posts">
+  <!-- ── Post grid ─────────────────────────────────────────────────── -->
+  <section class="bg-white py-16 sm:py-20 px-6 sm:px-8" aria-label={`Blog posts — page ${pageNum}`}>
     <div class="max-w-6xl mx-auto">
 
-      {posts.length === 0 && !featuredPost ? (
-        <p class="font-sans text-neutral-400 text-center py-20">No posts published yet.</p>
-      ) : posts.length > 0 ? (
+      {posts.length > 0 ? (
         <>
           <ul
             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
@@ -87,28 +109,13 @@ const posts = await sanityClient.fetch<NormalizedBlogPost[]>(PAGINATED_POSTS_QUE
               </li>
             ))}
           </ul>
-          <Pagination currentPage={1} totalPages={totalPages} />
+          <Pagination currentPage={pageNum} totalPages={totalPages} />
         </>
-      ) : null}
+      ) : (
+        <p class="font-sans text-neutral-400 text-center py-20">No posts on this page.</p>
+      )}
 
     </div>
   </section>
 
 </MainLayout>
-
-<script
-  type="application/ld+json"
-  set:html={JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'Blog',
-    '@id': 'https://emeraldcitylimos.com/blog',
-    url: 'https://emeraldcitylimos.com/blog',
-    name: 'Emerald City Limos Journal',
-    description: 'Travel tips, chauffeur insights, and luxury transportation guides for Seattle and the Pacific Northwest.',
-    publisher: {
-      '@type': 'Organization',
-      name: 'Emerald City Limos',
-      url: 'https://emeraldcitylimos.com',
-    },
-  })}
-/>

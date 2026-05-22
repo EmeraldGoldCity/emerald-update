@@ -1,0 +1,61 @@
+---
+interface Props {
+  currentPage: number;
+  totalPages: number;
+}
+
+const { currentPage, totalPages } = Astro.props;
+
+function pageUrl(n: number): string {
+  if (n === 1) return '/blog';
+  return `/blog/page/${n}`;
+}
+
+const isFirst = currentPage === 1;
+const isLast = currentPage === totalPages;
+---
+
+{totalPages > 1 && (
+  <nav
+    aria-label="Blog pagination"
+    class="flex items-center justify-center gap-6 mt-14 pt-8 border-t border-brand-forest/[.08]"
+  >
+    {isFirst ? (
+      <span
+        class="inline-flex items-center gap-2 font-sans text-[10px] font-semibold tracking-[0.18em] uppercase text-neutral-300 cursor-not-allowed select-none"
+        aria-disabled="true"
+      >
+        <span aria-hidden="true">←</span> Previous
+      </span>
+    ) : (
+      <a
+        href={pageUrl(currentPage - 1)}
+        rel="prev"
+        class="inline-flex items-center gap-2 font-sans text-[10px] font-semibold tracking-[0.18em] uppercase text-brand-forest hover:text-brand-gold transition-colors duration-200"
+      >
+        <span aria-hidden="true">←</span> Previous
+      </a>
+    )}
+
+    <span class="font-sans text-[10px] font-medium tracking-[0.12em] uppercase text-neutral-400">
+      Page {currentPage} of {totalPages}
+    </span>
+
+    {isLast ? (
+      <span
+        class="inline-flex items-center gap-2 font-sans text-[10px] font-semibold tracking-[0.18em] uppercase text-neutral-300 cursor-not-allowed select-none"
+        aria-disabled="true"
+      >
+        Next <span aria-hidden="true">→</span>
+      </span>
+    ) : (
+      <a
+        href={pageUrl(currentPage + 1)}
+        rel="next"
+        class="inline-flex items-center gap-2 font-sans text-[10px] font-semibold tracking-[0.18em] uppercase text-brand-forest hover:text-brand-gold transition-colors duration-200"
+      >
+        Next <span aria-hidden="true">→</span>
+      </a>
+    )}
+  </nav>
+)}

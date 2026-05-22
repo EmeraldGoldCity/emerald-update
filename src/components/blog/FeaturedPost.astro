@@ -1,0 +1,130 @@
+---
+import type { NormalizedBlogPost } from '@/lib/sanity';
+
+interface Props {
+  post: NormalizedBlogPost;
+}
+
+const { post } = Astro.props;
+
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+
+const initial = post.author?.name?.charAt(0).toUpperCase() ?? 'A';
+---
+
+<article class="group relative overflow-hidden bg-brand-forest" style="min-height: 480px;">
+
+  <!-- Background image with subtle hover scale (CSS-only via group) -->
+  {post.mainImage ? (
+    <img
+      src={post.mainImage.url}
+      alt={post.mainImage.alt ?? post.title}
+      width="1200"
+      height="600"
+      loading="eager"
+      decoding="async"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+    />
+  ) : (
+    <div class="absolute inset-0 bg-brand-forest-deep"></div>
+  )}
+
+  <!-- Gradient overlay: heavy at bottom for text legibility -->
+  <div
+    class="absolute inset-0 pointer-events-none"
+    style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.10) 100%);"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Overlay content pinned to the bottom -->
+  <div class="relative z-10 flex flex-col justify-end min-h-[480px] px-8 pb-10 pt-20 sm:px-12 sm:pb-12">
+
+    <!-- Category badges -->
+    {post.categories && post.categories.length > 0 && (
+      <div class="flex flex-wrap gap-3 mb-4">
+        {post.categories.slice(0, 2).map((cat) => (
+          <span class="font-sans text-[9px] font-semibold tracking-[0.22em] uppercase text-brand-gold">
+            {cat.title}
+          </span>
+        ))}
+      </div>
+    )}
+
+    <!-- Title -->
+    <h2
+      class="font-display font-light text-white leading-[1.08] tracking-[-0.025em] mb-3 max-w-3xl"
+      style="font-size: clamp(1.5rem, 3vw, 2.5rem);"
+    >
+      <a
+        href={`/blog/${post.slug.current}`}
+        class="hover:text-brand-gold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2"
+      >
+        {post.title}
+      </a>
+    </h2>
+
+    <!-- Excerpt (2 lines max) -->
+    {post.excerpt && (
+      <p class="font-sans font-light text-white/65 text-sm leading-[1.75] mb-6 max-w-2xl line-clamp-2">
+        {post.excerpt}
+      </p>
+    )}
+
+    <!-- Author + meta + CTA -->
+    <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
+
+      <!-- Author avatar + name -->
+      {post.author && (
+        <div class="flex items-center gap-2">
+          {post.author.avatarUrl ? (
+            <img
+              src={post.author.avatarUrl}
+              alt={post.author.name}
+              width="28"
+              height="28"
+              loading="lazy"
+              decoding="async"
+              class="w-7 h-7 rounded-full object-cover ring-1 ring-white/30"
+            />
+          ) : (
+            <span
+              class="inline-flex w-7 h-7 items-center justify-center rounded-full bg-brand-gold/20 font-sans text-[10px] font-semibold text-brand-gold"
+              aria-hidden="true"
+            >
+              {initial}
+            </span>
+          )}
+          <span class="font-sans text-[11px] font-medium text-white/70">{post.author.name}</span>
+        </div>
+      )}
+
+      <!-- Date -->
+      {post.publishedAt && (
+        <time datetime={post.publishedAt} class="font-sans text-[11px] text-white/50">
+          {formatDate(post.publishedAt)}
+        </time>
+      )}
+
+      <!-- Reading time -->
+      {post.readingTime && (
+        <span class="font-sans text-[11px] text-white/50">{post.readingTime} min read</span>
+      )}
+
+      <!-- CTA -->
+      <a
+        href={`/blog/${post.slug.current}`}
+        class="sm:ml-auto font-sans text-[11px] font-semibold tracking-[0.2em] uppercase text-brand-gold hover:text-white transition-colors duration-200"
+        aria-label={`Read article: ${post.title}`}
+      >
+        Read Article →
+      </a>
+
+    </div>
+  </div>
+</article>

@@ -1,0 +1,45 @@
+---
+import type { NormalizedBlogPost } from '@/lib/sanity';
+import PostCard from '@/components/blog/PostCard.astro';
+
+interface Props {
+  posts: NormalizedBlogPost[];
+}
+
+const { posts } = Astro.props;
+---
+
+{posts.length > 0 && (
+  <section
+    class="bg-brand-champagne py-16 sm:py-20 px-6 sm:px-8"
+    aria-labelledby="related-articles-heading"
+  >
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Section eyebrow + heading — matches site-wide heading style -->
+      <div class="flex items-center gap-4 mb-6">
+        <div class="h-px w-10 bg-brand-gold shrink-0" aria-hidden="true"></div>
+        <p class="font-sans text-[10px] font-semibold tracking-[0.22em] uppercase text-brand-gold">
+          Continue Reading
+        </p>
+      </div>
+
+      <h2
+        id="related-articles-heading"
+        class="font-display font-light text-brand-forest leading-[1.1] tracking-[-0.02em] mb-10"
+        style="font-size: clamp(1.5rem, 3vw, 2.25rem);"
+      >
+        Related Articles
+      </h2>
+
+      <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" role="list">
+        {posts.map((post) => (
+          <li role="listitem">
+            <PostCard post={post} />
+          </li>
+        ))}
+      </ul>
+
+    </div>
+  </section>
+)}

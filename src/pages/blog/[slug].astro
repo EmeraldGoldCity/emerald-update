@@ -1,8 +1,10 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
-import { sanityClient, urlFor, BLOG_POST_QUERY, BLOG_SLUGS_QUERY } from '@/lib/sanity';
-import type { BlogPost } from '@/lib/sanity';
+import { sanityClient, BLOG_POST_QUERY, BLOG_SLUGS_QUERY, RELATED_POSTS_QUERY } from '@/lib/sanity';
+import type { BlogPost, NormalizedBlogPost } from '@/lib/sanity';
 import { toHTML } from '@portabletext/to-html';
+import RelatedArticles from '@/components/blog/RelatedArticles.astro';
+import { resolveInternalLink } from '@/lib/resolveInternalLink';
 
 export async function getStaticPaths() {
   const slugs: Array<{ slug: string }> = await sanityClient.fetch(BLOG_SLUGS_QUERY);
@@ -16,14 +18,90 @@ if (!post) {
   return Astro.redirect('/blog', 301);
 }
 
-const bodyHTML = post.body ? toHTML(post.body as Parameters<typeof toHTML>[0]) : '';
+function esc(s: string): string {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function safeUrl(u: unknown): string {
+  if (typeof u !== 'string') return '#';
+  return /^https?:\/\//.test(u) || u.startsWith('/') ? u : '#';
+}
+
+const bodyHTML = post.body
+  ? toHTML(post.body as Parameters<typeof toHTML>[0], {
+      components: {
+        types: {
+          image: ({ value }) => {
+            const url = safeUrl(value.url);
+            if (url === '#') return '';
+            const alt = esc((value.alt as string | undefined) ?? '');
+            const caption = value.caption as string | undefined;
+            return `<figure class="pt-body-image">
+              <img src="${url}" alt="${alt}" loading="lazy" decoding="async" class="pt-img" />
+              ${caption ? `<figcaption class="pt-caption">${esc(caption)}</figcaption>` : ''}
+            </figure>`;
+          },
+          externalImage: ({ value }) => {
+            const url = safeUrl(value.url);
+            if (url === '#') return '';
+            const alt = esc((value.alt as string | undefined) ?? '');
+            const caption = value.caption as string | undefined;
+            const attribution = value.attribution as string | undefined;
+            const source = value.source as string | undefined;
+            const creditParts: string[] = [];
+            if (attribution) creditParts.push(`by ${esc(attribution)}`);
+            if (source) creditParts.push(`on ${esc(source)}`);
+            const credit = creditParts.length ? `Photo ${creditParts.join(' ')}` : '';
+            return `<figure class="pt-body-image">
+              <img src="${url}" alt="${alt}" loading="lazy" decoding="async" class="pt-img" />
+              ${caption ? `<figcaption class="pt-caption">${esc(caption)}</figcaption>` : ''}
+              ${credit ? `<p class="pt-attribution">${credit}</p>` : ''}
+            </figure>`;
+          },
+          internalLinkBlock: ({ value }) => {
+            const href = resolveInternalLink(
+              (value.linkType as string | undefined) ?? '',
+              value.slug as string | undefined,
+            );
+            const heading = esc((value.heading as string | undefined) ?? '');
+            const description = value.description as string | undefined;
+            const label = esc((value.label as string | undefined) || 'Learn more');
+            return `<div class="pt-link-block">
+              <span class="pt-link-block__heading">${heading}</span>
+              ${description ? `<span class="pt-link-block__desc">${esc(description)}</span>` : ''}
+              <a href="${esc(href)}" class="pt-link-block__cta">${label} <span aria-hidden="true">→</span></a>
+            </div>`;
+          },
+        },
+        marks: {
+          link: ({ children, value }) => {
+            const href = safeUrl(value.href);
+            return `<a href="${href}" target="_blank" rel="noopener noreferrer">${children}</a>`;
+          },
+          internalLink: ({ children, value }) => {
+            const href = resolveInternalLink(
+              (value.type as string | undefined) ?? '',
+              value.slug as string | undefined,
+            );
+            return `<a href="${esc(href)}">${children}</a>`;
+          },
+        },
+      },
+    })
+  : '';
 
 const pageTitle = post.seo?.metaTitle ?? post.title;
 const pageDesc  = post.seo?.metaDescription ?? post.excerpt;
 
-const ogImage = post.mainImage?.asset
-  ? urlFor(post.mainImage).width(1200).height(630).auto('format').url()
-  : undefined;
+const ogImage = post.mainImage?.url ?? undefined;
+
+const categoryRefs: string[] = post.categoryRefs ?? [];
+const relatedPosts = categoryRefs.length > 0
+  ? await sanityClient.fetch<NormalizedBlogPost[]>(RELATED_POSTS_QUERY, {
+      currentId: post._id,
+      categoryRefs,
+    })
+  : [];
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString('en-US', {
@@ -41,44 +119,53 @@ function formatDate(iso: string) {
   canonical={`https://emeraldcitylimos.com/blog/${slug}`}
 >
 
-  <!-- ── Hero / Featured image ────────────────────────────────────────── -->
-  {post.mainImage?.asset && (
-    <div class="relative bg-brand-forest overflow-hidden" style="height: clamp(260px, 40vw, 480px);">
+  <!-- ── Hero ─────────────────────────────────────────────────────────── -->
+  <section
+    class="relative overflow-hidden bg-brand-forest-deep"
+    style="min-height: clamp(400px, 62vh, 700px);"
+    aria-label="Article hero"
+  >
+    <!-- Background image -->
+    {post.mainImage?.url && (
       <img
-        src={urlFor(post.mainImage).width(1440).height(480).auto('format').url()}
+        src={post.mainImage.url}
         alt={post.mainImage.alt ?? post.title}
         width="1440"
-        height="480"
+        height="810"
         loading="eager"
         decoding="async"
-        class="w-full h-full object-cover opacity-60"
+        fetchpriority="high"
+        class="absolute inset-0 w-full h-full object-cover object-center"
       />
-      <div class="absolute inset-0 bg-gradient-to-t from-brand-forest via-brand-forest/40 to-transparent"></div>
-    </div>
-  )}
+    )}
 
-  <!-- ── Article ──────────────────────────────────────────────────────── -->
-  <article class="bg-white px-6 sm:px-8 py-12 sm:py-16" itemscope itemtype="https://schema.org/BlogPosting">
+    <!-- Gradient overlay — heavier at the bottom for legibility -->
+    <div
+      class="absolute inset-0"
+      style="background: linear-gradient(to bottom, rgba(6,23,15,0.45) 0%, rgba(6,23,15,0.82) 40%, rgba(6,23,15,0.98) 75%, rgba(6,23,15,1) 100%);"
+      aria-hidden="true"
+    ></div>
 
-    <!-- Wide wrapper: article + sticky share sidebar -->
-    <div class="mx-auto max-w-5xl">
-      <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_56px] lg:gap-12 xl:gap-16">
+    <!-- Inner layout: breadcrumb top, title/meta bottom -->
+    <div class="absolute inset-0 flex flex-col justify-between">
 
-        <!-- ── Main content column ─────────────────────────────────── -->
-        <div>
+      <!-- Breadcrumb -->
+      <div class="px-6 sm:px-8 pt-24">
+        <nav aria-label="Breadcrumb" class="mx-auto max-w-5xl">
+          <ol class="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-[0.16em] uppercase text-white/50 list-none p-0 m-0">
+            <li><a href="/" class="hover:text-brand-gold transition-colors">Home</a></li>
+            <li aria-hidden="true" class="text-white/30">/</li>
+            <li><a href="/blog" class="hover:text-brand-gold transition-colors">Blog</a></li>
+            <li aria-hidden="true" class="text-white/30">/</li>
+            <li class="text-brand-gold/80 truncate max-w-[240px]" aria-current="page">{post.title}</li>
+          </ol>
+        </nav>
+      </div>
 
-          <!-- Breadcrumb -->
-          <nav aria-label="Breadcrumb" class="mb-8">
-            <ol class="flex items-center gap-2 font-sans text-[10px] font-semibold tracking-[0.16em] uppercase text-neutral-400 list-none p-0 m-0">
-              <li><a href="/" class="hover:text-brand-gold transition-colors">Home</a></li>
-              <li aria-hidden="true" class="text-neutral-300">/</li>
-              <li><a href="/blog" class="hover:text-brand-gold transition-colors">Blog</a></li>
-              <li aria-hidden="true" class="text-neutral-300">/</li>
-              <li class="text-brand-gold truncate max-w-[180px]" aria-current="page">{post.title}</li>
-            </ol>
-          </nav>
+      <!-- Categories, title, meta -->
+      <div class="px-6 sm:px-8 pb-8 sm:pb-4">
+        <div class="mx-auto max-w-5xl">
 
-          <!-- Categories -->
           {post.categories && post.categories.length > 0 && (
             <div class="flex flex-wrap gap-3 mb-4">
               {post.categories.map((cat) => (
@@ -89,41 +176,48 @@ function formatDate(iso: string) {
             </div>
           )}
 
-          <!-- Title -->
           <h1
-            class="font-display font-light text-brand-forest leading-[1.08] tracking-[-0.025em] mb-6"
-            style="font-size: clamp(1.75rem, 4vw, 3rem);"
-            itemprop="headline"
+            class="font-display font-light text-white leading-[1.08] tracking-[-0.025em] mb-5"
+            style="font-size: clamp(1.75rem, 4vw, 3.25rem);"
           >
             {post.title}
           </h1>
 
-          <!-- Meta row -->
-          <div class="flex flex-wrap items-center gap-4 mb-8 pb-8 border-b border-brand-forest/[.08]">
+          <div class="flex flex-wrap items-center gap-4">
             {post.author && (
-              <span class="font-sans text-sm text-neutral-600" itemprop="author" itemscope itemtype="https://schema.org/Person">
-                <span itemprop="name">{post.author.name}</span>
-              </span>
+              <span class="font-sans text-sm text-white/70">{post.author.name}</span>
             )}
             {post.publishedAt && (
               <>
-                <span class="text-neutral-300" aria-hidden="true">·</span>
-                <time
-                  datetime={post.publishedAt}
-                  class="font-sans text-sm text-neutral-500"
-                  itemprop="datePublished"
-                >
+                <span class="text-white/30" aria-hidden="true">·</span>
+                <time datetime={post.publishedAt} class="font-sans text-sm text-white/70">
                   {formatDate(post.publishedAt)}
                 </time>
               </>
             )}
             {post.readingTime && (
               <>
-                <span class="text-neutral-300" aria-hidden="true">·</span>
-                <span class="font-sans text-sm text-neutral-500">{post.readingTime} min read</span>
+                <span class="text-white/30" aria-hidden="true">·</span>
+                <span class="font-sans text-sm text-white/70">{post.readingTime} min read</span>
               </>
             )}
           </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Article ──────────────────────────────────────────────────────── -->
+  <article class="bg-white px-6 sm:px-8 py-12 sm:py-16" itemscope itemtype="https://schema.org/BlogPosting">
+
+    <!-- Wide wrapper: article + sticky share sidebar -->
+    <div class="mx-auto max-w-5xl">
+      <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_56px] lg:gap-12 xl:gap-16">
+
+        <!-- ── Main content column ─────────────────────────────────── -->
+        <div>
 
           <!-- Body -->
           <div
@@ -240,6 +334,9 @@ function formatDate(iso: string) {
     </div>
   </article>
 
+  <!-- ── Related Articles ──────────────────────────────────────────── -->
+  <RelatedArticles posts={relatedPosts} />
+
   <!-- ── CTA ──────────────────────────────────────────────────────────── -->
   <section class="bg-brand-champagne py-14 sm:py-20 px-6 sm:px-8">
     <div class="max-w-3xl mx-auto text-center">
@@ -350,4 +447,17 @@ function formatDate(iso: string) {
   .prose li { margin-bottom: 0.4rem; line-height: 1.75; color: #404040; }
   .prose blockquote { border-left: 2px solid #c39a45; padding-left: 1.25rem; font-style: italic; color: #595959; margin: 1.5rem 0; }
   .prose img { width: 100%; height: auto; margin: 2rem 0; }
+
+  /* ── Portable text custom block styles ─────────────────────────── */
+  .prose figure.pt-body-image { margin: 2rem auto; max-width: 42rem; }
+  .prose .pt-img { width: 100%; max-height: 480px; object-fit: cover; display: block; margin: 0; }
+  .prose .pt-caption { font-size: 0.8125rem; color: #737373; font-style: italic; text-align: center; margin-top: 0.5rem; line-height: 1.5; }
+  .prose .pt-attribution { font-size: 0.75rem; color: #a3a3a3; text-align: center; margin-top: 0.25rem; margin-bottom: 0; }
+
+  /* internalLinkBlock callout card */
+  .prose .pt-link-block { margin: 2rem 0; padding: 1.25rem 1.5rem; border: 1px solid rgba(10,35,24,0.12); border-left: 3px solid #a37e2c; background-color: #FAF8F4; }
+  .prose .pt-link-block__heading { display: block; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.125rem; font-weight: 300; color: #0A2318; margin-bottom: 0.375rem; line-height: 1.3; }
+  .prose .pt-link-block__desc { display: block; font-size: 0.9375rem; color: #595959; line-height: 1.75; margin-bottom: 0.875rem; }
+  .prose .pt-link-block__cta { font-family: var(--font-sans); font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #a37e2c; text-decoration: none; }
+  .prose .pt-link-block__cta:hover { text-decoration: underline; }
 </style>

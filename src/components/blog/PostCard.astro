@@ -1,0 +1,92 @@
+---
+import type { NormalizedBlogPost } from '@/lib/sanity';
+
+interface Props {
+  post: NormalizedBlogPost;
+}
+
+const { post } = Astro.props;
+
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<article class="group flex flex-col h-full bg-white ring-1 ring-brand-forest/10 hover:ring-brand-gold/40 transition-shadow duration-300 hover:shadow-lg">
+
+  <!-- Image -->
+  <a
+    href={`/blog/${post.slug.current}`}
+    class="block overflow-hidden aspect-[16/9] bg-brand-champagne"
+    aria-label={`Read: ${post.title}`}
+    tabindex="-1"
+  >
+    {post.mainImage ? (
+      <img
+        src={post.mainImage.url}
+        alt={post.mainImage.alt ?? post.title}
+        width="640"
+        height="360"
+        loading="lazy"
+        decoding="async"
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+      />
+    ) : (
+      <div class="w-full h-full flex items-center justify-center">
+        <span class="font-display font-light text-brand-forest/20 text-4xl" aria-hidden="true">ECL</span>
+      </div>
+    )}
+  </a>
+
+  <!-- Content -->
+  <div class="flex flex-col flex-1 p-6">
+
+    <!-- Categories -->
+    {post.categories && post.categories.length > 0 && (
+      <div class="flex flex-wrap gap-2 mb-3">
+        {post.categories.slice(0, 2).map((cat) => (
+          <span class="font-sans text-[9px] font-semibold tracking-[0.18em] uppercase text-brand-gold">
+            {cat.title}
+          </span>
+        ))}
+      </div>
+    )}
+
+    <!-- Title -->
+    <h2 class="font-display font-light text-brand-forest leading-[1.2] mb-3" style="font-size: 1.125rem;">
+      <a
+        href={`/blog/${post.slug.current}`}
+        class="hover:text-brand-gold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"
+      >
+        {post.title}
+      </a>
+    </h2>
+
+    <!-- Excerpt -->
+    {post.excerpt && (
+      <p class="font-sans font-light text-neutral-500 text-sm leading-[1.75] mb-4 flex-1 line-clamp-3">
+        {post.excerpt}
+      </p>
+    )}
+
+    <!-- Meta -->
+    <div class="flex items-center justify-between mt-auto pt-4 border-t border-brand-forest/[.08]">
+      <time
+        datetime={post.publishedAt}
+        class="font-sans text-[10px] font-medium tracking-[0.1em] text-neutral-400 uppercase"
+      >
+        {formatDate(post.publishedAt)}
+      </time>
+      {post.readingTime && (
+        <span class="font-sans text-[10px] text-neutral-400">
+          {post.readingTime} min read
+        </span>
+      )}
+    </div>
+
+  </div>
+</article>
