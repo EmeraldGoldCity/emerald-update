@@ -15,6 +15,7 @@ import {
   Star,
   Trophy,
   X,
+  Bell
 } from 'lucide-react';
 
 /* =========================================================
@@ -42,31 +43,31 @@ type Mega = MegaKey | null;
 const SERVICES = [
   {
     name: 'Airport Transfers',
-    href: '/service/airport-transfer',
+    href: '/services/airport-transfer',
     icon: Plane,
     desc: 'SEA-TAC, BFI, PAE — flight tracked, on time.',
   },
   {
     name: 'Corporate Travel',
-    href: '/service/executive-transportation',
+    href: '/services/executive-transportation',
     icon: Briefcase,
     desc: 'Executive ground transport with discretion.',
   },
   {
     name: 'Weddings',
-    href: '/service/wedding-transportation',
+    href: '/services/wedding-transportation',
     icon: Heart,
     desc: 'White-glove service for the day that matters.',
   },
   {
     name: 'Hourly Chauffeur',
-    href: '/service/hourly-charters',
+    href: '/services/hourly-charters',
     icon: Clock,
     desc: 'On-demand chauffeur, by the hour.',
   },
   {
     name: 'Special Occasions',
-    href: '/service/special-occasions',
+    href: '/services/special-occasions',
     icon: Sparkles,
     desc: 'Galas, anniversaries, milestone moments.',
   },
@@ -78,28 +79,34 @@ const SERVICES = [
   },
   {
     name: 'Cruise Transportation',
-    href: '/service/cruise-transportation',
+    href: '/services/cruise-transportation',
     icon: Ship,
     desc: 'Pier 91 & 66 transfers timed to your sailing.',
   },
   {
     name: 'Game Day Transport',
-    href: '/service/game-day-transport',
+    href: '/services/game-day-transport',
     icon: Trophy,
     desc: 'Lumen, T-Mobile Park, Climate Pledge & Husky.',
   },
   {
     name: 'Personal Chauffeur',
-    href: '/service/personal-chauffeur',
+    href: '/services/personal-chauffeur',
     icon: Star,
     desc: 'Same driver on retainer — family & business.',
   },
   {
     name: 'Infant & Booster Seats',
-    href: '/service/infant-car-seats',
+    href: '/services/infant-car-seats',
     icon: Baby,
     desc: 'Complimentary seats, pre-installed before pickup.',
   },
+  {
+    name: 'Hotel Concierge',
+    href: '/services/hotel-concierge',
+    icon: Bell,
+    desc: 'VIP guest transportation coordinated with hotel staff.',
+  }
 ] as const;
 
 // Mirror of src/data/locations.ts — keep in sync when adding new cities.

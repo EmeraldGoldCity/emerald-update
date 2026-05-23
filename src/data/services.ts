@@ -24,6 +24,7 @@ import cruiseHero from "@/assets/images/services/cruise/cruise.jpg";
 import boosterHero from "@/assets/images/services/booster-seat/booster-seats.png";
 import eventsHero from "@/assets/images/services/special-events/events.png";
 import gameDayHero from "@/assets/images/services/gameday/game-day.png";
+import hotelConciergeHero from "@/assets/images/services/concierge/reception.jpg";
 
 
 
@@ -127,6 +128,11 @@ const ICON = {
     'M3.75 19.5h16.5m-16.5 0a1.5 1.5 0 0 1-1.5-1.5V6a1.5 1.5 0 0 1 1.5-1.5h16.5A1.5 1.5 0 0 1 21.75 6v12a1.5 1.5 0 0 1-1.5 1.5m-16.5 0h16.5M7.5 8.25v8.25m9-8.25v8.25m-4.5-8.25v8.25',
   champagne:
     'M9 3.75v3a3 3 0 1 0 6 0v-3M9 3.75h6M12 9.75v9m-3 0h6M5.25 6.75 4.5 3h15l-.75 3.75',
+  phone:
+    'M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z',
+
+  car:
+    'M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12',
 };
 
 /* ── Services ────────────────────────────────────────────── */
@@ -190,7 +196,7 @@ export const services: Service[] = [
       {
         question: 'How does flight tracking work?',
         answer:
-          'When you book, dispatch attaches your flight number to the ride. Our system pulls live ADS-B data and reflows the chauffeur’s staging time as the arrival shifts, so the car is in the cell lot before you land.',
+          'When you book, dispatch attaches your flight number to the ride. Our system pulls live ADS-B data and reflows the chauffeur\'s staging time as the arrival shifts, so the car is in the cell lot before you land.',
       },
       {
         question: 'What happens if my flight is delayed?',
@@ -245,7 +251,7 @@ export const services: Service[] = [
       alt: 'Executive chauffeur opening luxury black sedan door for business traveler',
     },
     lead:
-      'Time is the asset; the ride should protect it. Our executive chauffeurs are screened, business-attired, and trained on every loading-zone, FBO ramp, and hotel circle from South Lake Union to the Eastside tech corridor. Every executive vehicle carries in-cabin Wi-Fi, charging at each seat, and a chauffeur briefed on the day’s itinerary before you step in. We hold a Washington Utilities and Transportation Commission permit and $1.5M in commercial liability — the baseline corporate travel managers expect.',
+      'Time is the asset; the ride should protect it. Our executive chauffeurs are screened, business-attired, and trained on every loading-zone, FBO ramp, and hotel circle from South Lake Union to the Eastside tech corridor. Every executive vehicle carries in-cabin Wi-Fi, charging at each seat, and a chauffeur briefed on the day\'s itinerary before you step in. We hold a Washington Utilities and Transportation Commission permit and $1.5M in commercial liability — the baseline corporate travel managers expect.',
     leadExtended:
       'Recurring riders move to a named account: consolidated monthly billing, a dispatcher-direct line, and the same chauffeur reassigned to standing rides on request. New accounts can be opened in under a business day; no setup fee, no monthly minimum.',
     benefits: [
@@ -365,7 +371,7 @@ export const services: Service[] = [
       {
         question: 'What is the minimum booking length?',
         answer:
-          'Three hours. The minimum reflects the chauffeur’s time block — once you are inside the window, you can use the hours flexibly across as many stops as you like.',
+          'Three hours. The minimum reflects the chauffeur\'s time block — once you are inside the window, you can use the hours flexibly across as many stops as you like.',
       },
       {
         question: 'Is wait time charged separately?',
@@ -419,15 +425,15 @@ export const services: Service[] = [
     headline: 'Wedding',
     headlineAccent: 'Transportation',
     heroSupporting:
-      'White-glove chauffeur service for the day that has to be on time — pre-rehearsed routes, a backup vehicle on standby, and a chauffeur briefed on the photographer’s timeline.',
+      'White-glove chauffeur service for the day that has to be on time — pre-rehearsed routes, a backup vehicle on standby, and a chauffeur briefed on the photographer\'s timeline.',
     heroImage: {
       src: weddingHero,
       alt: 'Bride stepping into a decorated luxury wedding limousine outside a venue',
     },
     lead:
-      'A wedding day runs on a timeline that does not flex. We plan the route the week before, drive it once for traffic verification, and assign a backup vehicle on call within fifteen minutes of the lead car. The chauffeur arrives with white-glove service, a fitted suit, and the photographer’s shot list in hand. Decorations are coordinated with the planner; champagne service is available on request and complimentary for the couple’s first ride together.',
+      'A wedding day runs on a timeline that does not flex. We plan the route the week before, drive it once for traffic verification, and assign a backup vehicle on call within fifteen minutes of the lead car. The chauffeur arrives with white-glove service, a fitted suit, and the photographer\'s shot list in hand. Decorations are coordinated with the planner; champagne service is available on request and complimentary for the couple\'s first ride together. For couples who want the ultimate arrival moment, we offer our Rolls-Royce Cullinan as the preferred Ultra Lux option — handcrafted cabin, whisper-quiet ride, and a presence that photographs unlike anything else in the fleet.',
     leadExtended:
-      'For wedding parties of twelve or more, we dispatch a Mercedes Sprinter alongside the lead vehicle. Multi-venue weddings (ceremony, photos, reception) are coordinated as a single itinerary so the chauffeur holds the day from getting-ready through final exit.',
+      'For wedding parties of twelve or more, we dispatch a Mercedes Sprinter alongside the lead vehicle. Multi-venue weddings (ceremony, photos, reception) are coordinated as a single itinerary so the chauffeur holds the day from getting-ready through final exit. The Rolls-Royce Cullinan is reserved exclusively as the couple\'s vehicle when selected — the party travels in the Escalade ESV or Sprinter.',
     benefits: [
       {
         title: 'Pre-Rehearsed Route',
@@ -441,16 +447,16 @@ export const services: Service[] = [
       },
       {
         title: 'Champagne Service',
-        description: 'Complimentary for the couple’s first ride together; available for the party on request.',
+        description: 'Complimentary for the couple\'s first ride together; available for the party on request.',
         iconPath: ICON.champagne,
       },
       {
         title: 'Photographer-Aware Chauffeur',
-        description: 'Chauffeur arrives with the shot list and the planner’s timeline already in hand.',
+        description: 'Chauffeur arrives with the shot list and the planner\'s timeline already in hand.',
         iconPath: ICON.sparkles,
       },
     ],
-    recommendedFleetIds: ['town-car-stretch', 'escalade-esv', 'sprinter'],
+    recommendedFleetIds: ['rolls-royce-cullinan', 'escalade-esv', 'sprinter'],
     faqs: [
       {
         question: 'Can the vehicle be decorated?',
@@ -515,7 +521,7 @@ export const services: Service[] = [
       alt: 'Cruise ship docked at Seattle Pier 91 with luxury black SUV in the foreground',
     },
     lead:
-      'Cruise transfers run on a schedule the line publishes weeks in advance — and on the day, that schedule shifts. Our chauffeurs are staged in the designated black-car queue at Pier 91 (Smith Cove) and Pier 66 (Bell Street) according to your boarding window. Luggage handling is included; the chauffeur stages bags curbside so you walk straight into check-in. Disembarkation pickups follow the line’s release pattern — typically by-deck, twenty minutes per group — and we time the staging accordingly.',
+      'Cruise transfers run on a schedule the line publishes weeks in advance — and on the day, that schedule shifts. Our chauffeurs are staged in the designated black-car queue at Pier 91 (Smith Cove) and Pier 66 (Bell Street) according to your boarding window. Luggage handling is included; the chauffeur stages bags curbside so you walk straight into check-in. Disembarkation pickups follow the line\'s release pattern — typically by-deck, twenty minutes per group — and we time the staging accordingly.',
     leadExtended:
       'Most of our cruise riders pair a SEA-TAC pickup with the pier transfer as a single booking, often with a hotel night in between. Combined-leg bookings carry a single confirmation and a single invoice.',
     benefits: [
@@ -565,7 +571,7 @@ export const services: Service[] = [
       {
         question: 'What about post-cruise return pickups?',
         answer:
-          'Disembarkation pickups stage according to the line’s release schedule — typically by-deck, twenty minutes per group. Share your deck and the release time and we stage the chauffeur to meet you in the porter zone.',
+          'Disembarkation pickups stage according to the line\'s release schedule — typically by-deck, twenty minutes per group. Share your deck and the release time and we stage the chauffeur to meet you in the porter zone.',
       },
     ],
     meta: {
@@ -640,7 +646,7 @@ export const services: Service[] = [
       {
         question: 'How does post-game pickup work?',
         answer:
-          'Closing roads make in-front pickups impossible at most venues, so we stage at a fixed point within a five-minute walk. You receive a text with the exact pickup location and the chauffeur’s phone number ten minutes before doors open.',
+          'Closing roads make in-front pickups impossible at most venues, so we stage at a fixed point within a five-minute walk. You receive a text with the exact pickup location and the chauffeur\'s phone number ten minutes before doors open.',
       },
       {
         question: 'Can you accommodate tailgating?',
@@ -720,7 +726,7 @@ export const services: Service[] = [
         iconPath: ICON.sparkles,
       },
     ],
-    recommendedFleetIds: ['town-car-stretch', 'escalade-esv', 'sprinter'],
+    recommendedFleetIds: ['rolls-royce-cullinan', 'escalade-esv', 'sprinter'],
     faqs: [
       {
         question: 'Do you handle prom transportation?',
@@ -740,12 +746,12 @@ export const services: Service[] = [
       {
         question: 'Is alcohol allowed in the vehicle?',
         answer:
-          'For adult parties, sealed alcohol can be carried for unsealing at the destination; in-cabin consumption is at the chauffeur’s discretion and subject to applicable state law. For youth events the vehicle is alcohol-free.',
+          'For adult parties, sealed alcohol can be carried for unsealing at the destination; in-cabin consumption is at the chauffeur\'s discretion and subject to applicable state law. For youth events the vehicle is alcohol-free.',
       },
       {
         question: 'Do you offer last-minute bookings?',
         answer:
-          'Yes, subject to fleet availability. Peak weekends (prom season, holiday parties, New Year’s Eve) we recommend booking at least four weeks ahead.',
+          'Yes, subject to fleet availability. Peak weekends (prom season, holiday parties, New Year\'s Eve) we recommend booking at least four weeks ahead.',
       },
     ],
     meta: {
@@ -830,7 +836,7 @@ export const services: Service[] = [
       {
         question: 'Do I have to use the same vehicle each time?',
         answer:
-          'No. Most accounts default to a primary vehicle class (sedan or SUV) but can swap up or down for the day’s use case — a single sedan for the morning commute, a Sprinter for the family trip, an Escalade for evening events.',
+          'No. Most accounts default to a primary vehicle class (sedan or SUV) but can swap up or down for the day\'s use case — a single sedan for the morning commute, a Sprinter for the family trip, an Escalade for evening events.',
       },
       {
         question: 'How is short-notice handled?',
@@ -869,15 +875,15 @@ export const services: Service[] = [
     headline: 'Infant & Booster',
     headlineAccent: 'Car Seats',
     heroSupporting:
-      'Complimentary infant, convertible, and booster seats — professionally installed by your chauffeur ahead of pickup, with installation matched to your child’s age and weight.',
+      'Complimentary infant, convertible, and booster seats — professionally installed by your chauffeur ahead of pickup, with installation matched to your child\'s age and weight.',
     heroImage: {
       src: boosterHero,
       alt: 'Properly installed infant car seat in the rear of a luxury black SUV',
     },
     lead:
-      'Children ride in age-and-weight-appropriate seats — rear-facing infant carriers, convertible forward-facing seats, or high-back boosters — installed by your chauffeur before pickup. Installation follows the NHTSA inspection protocol: latch or seatbelt tensioned to the manufacturer specification, seat angle verified for the child’s weight range, and harness routing checked. There is no additional fee for the seat or for the install.',
+      'Children ride in age-and-weight-appropriate seats — rear-facing infant carriers, convertible forward-facing seats, or high-back boosters — installed by your chauffeur before pickup. Installation follows the NHTSA inspection protocol: latch or seatbelt tensioned to the manufacturer specification, seat angle verified for the child\'s weight range, and harness routing checked. There is no additional fee for the seat or for the install.',
     leadExtended:
-      'Multiple children are routine — we stage up to three child seats in the Escalade ESV and up to five in the Mercedes Sprinter without taking adult capacity below the booked headcount. Request the seat type and your child’s age/weight at booking; dispatch confirms before the day.',
+      'Multiple children are routine — we stage up to three child seats in the Escalade ESV and up to five in the Mercedes Sprinter without taking adult capacity below the booked headcount. Request the seat type and your child\'s age/weight at booking; dispatch confirms before the day.',
     benefits: [
       {
         title: 'Pre-Installed',
@@ -886,7 +892,7 @@ export const services: Service[] = [
       },
       {
         title: 'Age-Matched',
-        description: 'Rear-facing, forward-facing, or booster — selected for the child’s weight range.',
+        description: 'Rear-facing, forward-facing, or booster — selected for the child\'s weight range.',
         iconPath: ICON.baby,
       },
       {
@@ -905,7 +911,7 @@ export const services: Service[] = [
       {
         question: 'How do I request a car seat at booking?',
         answer:
-          'Add a note to the booking with the child’s age and approximate weight; dispatch confirms the seat type (infant, convertible, or booster) and stages it for the chauffeur ahead of the pickup window.',
+          'Add a note to the booking with the child\'s age and approximate weight; dispatch confirms the seat type (infant, convertible, or booster) and stages it for the chauffeur ahead of the pickup window.',
       },
       {
         question: 'What seat types are available?',
@@ -940,6 +946,107 @@ export const services: Service[] = [
       ],
     },
   },
+
+
+  {
+  slug: 'hotel-concierge',
+  name: 'Hotel Concierge',
+  cardHeadline: 'Hotel Concierge',
+  cardDescription:
+    'On-demand chauffeur dispatch trusted by Seattle\'s premier hotels — flight-tracked arrivals, 24/7 concierge desk support, and a fleet that meets every property\'s standard.',
+  cardBullets: [
+    'Flight-tracked airport pickups',
+    'Dedicated concierge desk line',
+    'Sedans, SUVs & Sprinters available',
+    '24/7 on-demand dispatch',
+  ],
+  cardIconPath: ICON.building,
+  href: '/service/hotel-concierge',
+  eyebrow: 'Hotel Concierge',
+  headline: 'Hotel Concierge',
+  headlineAccent: 'Guest Transportation',
+  heroSupporting:
+    'On-demand chauffeur dispatch trusted by Seattle\'s premier hotels — flight-tracked arrivals, a fleet ranging from executive sedans to full-size Sprinters, and a single point of contact for your concierge desk.',
+  heroImage: {
+    src: hotelConciergeHero,
+    alt: 'Chauffeur opening the door of a luxury SUV outside a Seattle hotel entrance',
+  },
+  lead:
+    'Hotel guests form their impression of a property before they reach the front desk. We work directly with concierge teams to make the first and last touchpoints seamless — real-time flight tracking means the chauffeur is curbside when the guest lands, not when the flight was scheduled. Every vehicle is presented clean, climate-controlled, and stocked to the property\'s standard. Our dispatch team is reachable around the clock by phone or text, and a named account manager is assigned to properties with recurring volume.',
+  leadExtended:
+    'We hold working relationships with front-of-house teams at several Seattle and Eastside properties, which means our chauffeurs already understand the unloading protocols, preferred entry points, and VIP handling expectations before the first booking. For properties that need multi-vehicle coordination — conference arrivals, group dinners, corporate site visits — we dispatch Sprinters and Escalades under a single itinerary managed by one dispatcher.',
+  benefits: [
+    {
+      title: 'Flight-Tracked Pickups',
+      description:
+        'Chauffeurs monitor live arrival data and adjust curbside timing automatically — no guest phone calls required.',
+      iconPath: ICON.plane,
+    },
+    {
+      title: 'Concierge Desk Direct Line',
+      description:
+        'A dedicated dispatch contact for your front desk — one call or text confirms, adjusts, or cancels any booking in real time.',
+      iconPath: ICON.phone,
+    },
+    {
+      title: 'Fleet for Every Guest Profile',
+      description:
+        'Executive sedans for solo travelers, Escalades for VIP parties, and Sprinters for group transfers — all under one account.',
+      iconPath: ICON.car,
+    },
+    {
+      title: '24/7 On-Demand Dispatch',
+      description:
+        'Late checkout, early flight, last-minute dinner reservation — dispatch is staffed around the clock with no after-hours surcharge.',
+      iconPath: ICON.clock,
+    },
+  ],
+  recommendedFleetIds: ['rolls-royce-cullinan', 'escalade-esv', 'sprinter'],
+  faqs: [
+    {
+      question: 'How does the hotel concierge booking process work?',
+      answer:
+        'Concierge staff can book via phone, text, or a dedicated account portal. Provide the guest name, pickup location, destination, and flight number if applicable — dispatch handles the rest, including real-time flight monitoring and chauffeur updates.',
+    },
+    {
+      question: 'Do you track flights for airport pickups?',
+      answer:
+        'Yes. Every airport pickup is linked to the flight number. Our dispatch monitors live arrival data and adjusts the chauffeur\'s curbside time automatically, so guests are never waiting and chauffeurs aren\'t idling for delayed flights.',
+    },
+    {
+      question: 'Can the hotel set up a house account for recurring bookings?',
+      answer:
+        'Yes. Properties with regular volume are assigned a named account manager and can consolidate billing on a monthly invoice. Chauffeurs on account bookings are briefed on your property\'s preferred protocols before their first trip.',
+    },
+    {
+      question: 'What vehicles are available for hotel guest transfers?',
+      answer:
+        'We offer executive sedans for solo and business travelers, Cadillac Escalade ESVs for small VIP groups, and Mercedes Sprinters for larger party or group transfers. All vehicles are presented to the same clean, climate-controlled standard regardless of tier.',
+    },
+    {
+      question: 'How quickly can you dispatch for a same-day or last-minute booking?',
+      answer:
+        'For most Seattle and Eastside locations, we can confirm and dispatch within 60 to 90 minutes for standard bookings. We recommend 24 hours\' notice for group or multi-vehicle requests, but our dispatch team will always confirm availability before turning a request away.',
+    },
+    {
+      question: 'Do you handle group arrivals such as conference guests or corporate site visits?',
+      answer:
+        'Yes. We coordinate multi-vehicle arrivals under a single itinerary — Sprinters and Escalades dispatched in sequence with one point of contact managing the full group. Provide the manifest and arrival window and we handle staging, sequencing, and on-site coordination.',
+    },
+  ],
+  meta: {
+    title: 'Hotel Concierge Limousine Service Seattle | Emerald City Limos',
+    description:
+      'Trusted by Seattle\'s top hotels for guest transportation. Flight-tracked arrivals, 24/7 concierge desk dispatch, and a luxury fleet matched to every property\'s standard.',
+    keywords: [
+      'hotel concierge transportation seattle',
+      'seattle hotel limousine service',
+      'hotel guest chauffeur seattle',
+      'concierge car service seattle',
+      'luxury hotel transfer seattle',
+    ],
+  },
+},
 ];
 
 /** Look up a service by slug. Returns `undefined` if not found. */
