@@ -1006,7 +1006,7 @@ export const services: Service[] = [
     {
       question: 'How does the hotel concierge booking process work?',
       answer:
-        'Concierge staff can book via phone, text, or a dedicated account portal. Provide the guest name, pickup location, destination, and flight number if applicable — dispatch handles the rest, including real-time flight monitoring and chauffeur updates.',
+        'hotels have back end access to our booking system- easily add a passenger details and creates a reservation immediately',
     },
     {
       question: 'Do you track flights for airport pickups?',
