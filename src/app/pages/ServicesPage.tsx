@@ -16,35 +16,35 @@ export function ServicesPage() {
       title: 'Hourly Charters',
       description: 'Flexible hourly services perfect for business meetings, shopping trips, wine tours, or sightseeing around the Seattle area.',
       features: ['Minimum 3-hour booking', 'Professional chauffeur', 'Premium vehicles', 'Customizable itinerary'],
-      link: '/service/hourly-charters'
+      link: '/services/hourly-charters'
     },
     {
       icon: <Heart className="w-12 h-12" />,
       title: 'Wedding',
       description: 'Make your special day perfect with our elegant wedding limousines. We provide transportation for the wedding party, guests, and the happy couple.',
       features: ['Decorated vehicles', 'Red carpet service', 'Champagne service', 'Flexible packages'],
-      link: '/service/wedding-transportation'
+      link: '/services/wedding-transportation'
     },
     {
       icon: <Trophy className="w-12 h-12" />,
       title: 'Game Day',
       description: 'Arrive in style at Lumen Field, T-Mobile Park, Climate Pledge Arena, or Husky Stadium. Enjoy the game without worrying about traffic or parking.',
       features: ['Seahawks games', 'Mariners games', 'Sounders matches', 'Kraken hockey'],
-      link: '/service/game-day-transport'
+      link: '/services/game-day-transport'
     },
     {
       icon: <Star className="w-12 h-12" />,
       title: 'Special Occasions',
       description: 'Celebrate birthdays, anniversaries, proms, quinceañeras, and any special event with our luxury limousine service.',
       features: ['Birthday celebrations', 'Anniversaries', 'Prom nights', 'Corporate events'],
-      link: '/service/special-occasions'
+      link: '/services/special-occasions'
     },
     {
       icon: <Users className="w-12 h-12" />,
       title: 'Executive',
       description: 'Premium chauffeur service for executives and VIPs. Professional, discreet, and punctual transportation for business leaders.',
       features: ['Corporate accounts', 'Executive sedans', 'Airport pickups', 'Business meetings'],
-      link: '/service/executive-transportation'
+      link: '/services/executive-transportation'
     },
   ];
 
@@ -53,7 +53,7 @@ export function ServicesPage() {
     title: 'Cruise',
     description: 'Seamless transportation to and from Seattle cruise terminals at Pier 91 and Bell Street Pier. Start your voyage stress-free.',
     features: ['All cruise terminals', 'Luggage handling', 'Pre-cruise transfers', 'Post-cruise pickups'],
-    link: '/service/cruise-transportation'
+    link: '/services/cruise-transportation'
   };
 
   const infantSeatService = {
@@ -61,7 +61,7 @@ export function ServicesPage() {
     title: 'Infant Car Seats/Booster Seats',
     description: 'Travel safely with your little ones. Our vehicles come equipped with professionally installed infant car seats and booster seats appropriate for all ages.',
     features: ['Pre-installed upon request', 'Multiple age groups', 'Safety certified', 'Complimentary service'],
-    link: '/service/infant-car-seats'
+    link: '/services/infant-car-seats'
   };
 
   const personalChauffeurService = {
@@ -69,7 +69,7 @@ export function ServicesPage() {
     title: 'Personal Chauffeur',
     description: 'Dedicated chauffeur service tailored for clients seeking personalized transportation for their families and business needs. Your own professional driver, on your schedule.',
     features: ['Dedicated driver', 'Flexible scheduling', 'Family & business use', 'Priority service'],
-    link: '/service/personal-chauffeur'
+    link: '/services/personal-chauffeur'
   };
 
   return (

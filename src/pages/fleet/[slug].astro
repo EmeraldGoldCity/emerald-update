@@ -50,13 +50,13 @@ const heroImage = vehicle.imageSrc
 /* Derive service page links from bestFor keywords */
 const SERVICE_MAP = [
   { test: /airport/i,              label: 'Airport Transfers',        href: '/airport-transfers' },
-  { test: /executive|corporate|vip/i, label: 'Executive Transportation', href: '/service/executive-transportation' },
-  { test: /wedding/i,              label: 'Wedding Transportation',    href: '/service/wedding-transportation' },
-  { test: /bachelor|bacheloret|birthday|occasion|night out/i, label: 'Special Occasions', href: '/service/special-occasions' },
-  { test: /game|sport|team/i,      label: 'Game Day Transport',        href: '/service/game-day-transport' },
-  { test: /tour|wine|hourly/i,     label: 'Hourly Charters',          href: '/service/hourly-charters' },
-  { test: /cruise/i,               label: 'Cruise Transportation',     href: '/service/cruise-transportation' },
-  { test: /group|conference|shuttle/i, label: 'Group Transportation',  href: '/service/personal-chauffeur' },
+  { test: /executive|corporate|vip/i, label: 'Executive Transportation', href: '/services/executive-transportation' },
+  { test: /wedding/i,              label: 'Wedding Transportation',    href: '/services/wedding-transportation' },
+  { test: /bachelor|bacheloret|birthday|occasion|night out/i, label: 'Special Occasions', href: '/services/special-occasions' },
+  { test: /game|sport|team/i,      label: 'Game Day Transport',        href: '/services/game-day-transport' },
+  { test: /tour|wine|hourly/i,     label: 'Hourly Charters',          href: '/services/hourly-charters' },
+  { test: /cruise/i,               label: 'Cruise Transportation',     href: '/services/cruise-transportation' },
+  { test: /group|conference|shuttle/i, label: 'Group Transportation',  href: '/services/personal-chauffeur' },
 ];
 
 const combinedBestFor = vehicle.bestFor.join(' ');

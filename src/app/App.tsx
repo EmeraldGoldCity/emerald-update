@@ -154,7 +154,7 @@ function App() {
                 <Route path="/locations/pierce-county/buckley" element={<BuckleyPage />} />
                 <Route path="/locations/pierce-county/milton" element={<MiltonPage />} />
                 <Route path="/locations/pierce-county/ruston" element={<RustonPage />} />
-                <Route path="/service/:slug" element={<ServiceDetailPage />} />
+                <Route path="/services/:slug" element={<ServiceDetailPage />} />
                 <Route path="/affiliates" element={<AffiliatesPage />} />
               </Routes>
             </Suspense>

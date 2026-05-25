@@ -27,13 +27,13 @@ const QUICK_LINKS = [
 
 const SERVICE_LINKS = [
   { href: '/airport-transfers', label: 'Airport Transfers' },
-  { href: '/service/executive-transportation', label: 'Executive Transport' },
-  { href: '/service/wedding-transportation', label: 'Weddings' },
-  { href: '/service/hourly-charters', label: 'Hourly Charters' },
-  { href: '/service/cruise-transportation', label: 'Cruise Transfers' },
-  { href: '/service/game-day-transport', label: 'Game Day' },
-  { href: '/service/special-occasions', label: 'Special Occasions' },
-  { href: '/service/infant-car-seats', label: 'Infant & Booster Seats' },
+  { href: '/services/executive-transportation', label: 'Executive Transport' },
+  { href: '/services/wedding-transportation', label: 'Weddings' },
+  { href: '/services/hourly-charters', label: 'Hourly Charters' },
+  { href: '/services/cruise-transportation', label: 'Cruise Transfers' },
+  { href: '/services/game-day-transport', label: 'Game Day' },
+  { href: '/services/special-occasions', label: 'Special Occasions' },
+  { href: '/services/infant-car-seats', label: 'Infant & Booster Seats' },
 ];
 
 const SOCIALS = [
