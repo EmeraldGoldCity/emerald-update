@@ -420,17 +420,32 @@ export const locations: Location[] = [
       {
         question: 'Do you serve all of Kirkland, including Totem Lake and Juanita?',
         answer:
-          'Yes Downtown, Houghton, Juanita, Totem Lake, and Finn Hill. Same flat-rate pricing across all Kirkland ZIPs (98033, 98034).',
+          'Yes. Emerald City Limos provides private chauffeur and black car service throughout all Kirkland neighborhoods, including Downtown Kirkland, Houghton, Juanita, Totem Lake, Rose Hill, and Finn Hill. We regularly provide airport transfers, corporate transportation, wedding transportation, and hourly chauffeur service across Kirkland ZIP codes 98033 and 98034.',
       },
       {
-        question: 'How much is a Kirkland to SEA-TAC airport transfer?',
+        question: 'How much is a private airport transfer from Kirkland to SEA-TAC?',
         answer:
-          'Sedan service from Kirkland to SEA-TAC starts at $105 flat-rate; luxury SUVs from $130. All-inclusive pricing with flight tracking and meet-and-greet.',
+          'Private airport transportation from Kirkland to Seattle-Tacoma International Airport (SEA) typically starts around $105 for executive sedans, while luxury SUVs generally begin around $130 depending on passenger count, pickup location, and luggage requirements. All airport transfers include professional chauffeur service, flight tracking, luggage assistance, and flat-rate pricing with no surge fees.',
       },
       {
-        question: 'Do you do wedding transportation for the Woodmark Hotel?',
+        question: 'Do you provide transportation to SEA-TAC, Boeing Field, and Paine Field?',
         answer:
-          'Frequently. The Woodmark is one of our most-served wedding venues. We coordinate with the property’s event team and stage vehicles in the designated lot.',
+          'Yes. Emerald City Limos provides luxury airport transportation between Kirkland and SEA-TAC Airport (SEA), Boeing Field (BFI), and Paine Field (PAE). Our chauffeurs monitor flights in real time and adjust pickup schedules for delays or early arrivals to help ensure reliable airport transportation throughout the Seattle metro area.',
+      },
+      {
+        question: 'Do you provide wedding transportation in Kirkland?',
+        answer:
+          'Absolutely. We provide luxury wedding transportation for ceremonies, receptions, rehearsal dinners, and guest transportation throughout Kirkland and the greater Seattle area. Emerald City Limos frequently services waterfront venues, private estates, hotels, and wedding venues including the Woodmark Hotel on Lake Washington.',
+      },
+      {
+        question: 'Can I book hourly chauffeur service in Kirkland?',
+        answer:
+          'Yes. Our hourly chauffeur service is popular for business meetings, concerts, sporting events, shopping trips, date nights, and flexible transportation throughout Kirkland, Bellevue, Seattle, and nearby cities. Your chauffeur remains available throughout the reservation, allowing multiple stops and schedule flexibility.',
+      },
+      {
+        question: 'Do you provide child car seats for airport transportation?',
+        answer:
+          'Yes. Complimentary infant seats, toddler seats, and booster seats are available upon request for airport transfers and private chauffeur reservations. Child safety seats are installed before pickup to help families travel safely and comfortably throughout Kirkland and the greater Puget Sound region.',
       },
     ],
     meta: {
@@ -475,19 +490,29 @@ export const locations: Location[] = [
     ],
     faqs: [
       {
-        question: 'How quickly can I get from Renton to SEA-TAC?',
+        question: 'How quickly can I get from Renton to SEA-TAC Airport?',
         answer:
-          'Renton is one of the fastest SEA-TAC pickup zones typically 12–20 minutes door-to-door. Sedan service starts at $75 flat-rate.',
+          'Renton is one of the closest major cities to Seattle-Tacoma International Airport, with most airport transfers typically taking between 15 and 25 minutes depending on traffic, pickup location, and time of day. Emerald City Limos provides reliable flat-rate airport transportation with professional chauffeurs, real-time flight tracking, and scheduled pickups designed to help travelers arrive on time.',
       },
       {
-        question: 'Do you serve the Boeing Renton Factory?',
+        question: 'Do you provide airport transportation from Renton to SEA-TAC?',
         answer:
-          'Yes - we routinely chauffeur Boeing executives, customers, and visiting delegations between the 737 plant and SEA-TAC, downtown Seattle, and Bellevue.',
+          'Yes. Emerald City Limos provides private airport transportation between Renton and SEA-TAC Airport (SEA) for business travelers, families, cruise passengers, and hotel guests. Our airport chauffeur service includes flight monitoring, luggage assistance, luxury sedans and SUVs, and 24/7 availability with advance reservations.',
       },
       {
-        question: 'Can you set up corporate accounts for Renton-based businesses?',
+        question: 'Do you serve the Boeing Renton Factory and surrounding business areas?',
         answer:
-          'Yes - corporate onboarding takes 48 hours and includes consolidated billing, dispatcher-direct lines, and named chauffeur preferences.',
+          'Absolutely. We regularly provide executive transportation for Boeing employees, visiting executives, corporate travelers, and business guests traveling between the Boeing Renton Factory, Downtown Seattle, Bellevue, SEA-TAC Airport, and nearby hotels. Our corporate chauffeur service prioritizes professionalism, discretion, punctuality, and comfortable executive transportation.',
+      },
+      {
+        question: 'Can businesses in Renton set up corporate chauffeur accounts?',
+        answer:
+          'Yes. Emerald City Limos offers corporate transportation accounts for Renton-based businesses and executive teams. Corporate accounts may include streamlined reservations, consolidated billing, priority scheduling, airport transportation management, and recurring chauffeur services for employees, clients, and VIP guests throughout the Seattle metro area.',
+      },
+      {
+        question: 'Do you offer hourly chauffeur service in Renton?',
+        answer:
+          'Yes. Our hourly chauffeur service in Renton is ideal for corporate meetings, client transportation, shopping trips, concerts, sporting events, date nights, and flexible transportation throughout Seattle, Bellevue, Tacoma, and surrounding cities. Hourly reservations allow your chauffeur to remain available throughout your itinerary for maximum convenience and flexibility.',
       },
     ],
     meta: {
@@ -535,17 +560,27 @@ export const locations: Location[] = [
       {
         question: 'Do you serve all of Tacoma, including Ruston and University Place?',
         answer:
-          'Yes - Downtown, Stadium District, Old Town, Ruston, North End, and out to University Place at flat-rate pricing.',
+          'Yes. Emerald City Limos provides luxury chauffeur and black car service throughout Tacoma, including Downtown Tacoma, Stadium District, Old Town, North End, Ruston, University Place, and surrounding Pierce County communities. We regularly provide airport transfers, corporate transportation, wedding transportation, and hourly chauffeur service across the Tacoma area.',
       },
       {
-        question: 'How much is a Tacoma to SEA-TAC airport transfer?',
+        question: 'How much is a private airport transfer from Tacoma to SEA-TAC?',
         answer:
-          'Sedan service from Tacoma to SEA-TAC starts at $115 flat-rate; luxury SUVs from $145. All-inclusive with flight tracking and tolls.',
+          'Private airport transportation from Tacoma to Seattle-Tacoma International Airport (SEA) typically starts around $115 for executive sedans, while luxury SUVs generally begin around $145 depending on passenger count, luggage requirements, pickup location, and travel time. Airport transfers include flat-rate pricing, professional chauffeur service, flight tracking, and luggage assistance.',
       },
       {
-        question: 'Do you offer transportation for Tacoma Dome events?',
+        question: 'Do you provide airport transportation between Tacoma and SEA-TAC Airport?',
         answer:
-          'Yes - we routinely shuttle groups to and from concerts and conventions at the Tacoma Dome, with Mercedes Sprinter vans for groups of 8–14.',
+          'Yes. Emerald City Limos provides reliable airport transportation between Tacoma and SEA-TAC Airport (SEA) for business travelers, families, cruise passengers, and hotel guests. Our chauffeurs monitor flights in real time and adjust pickup schedules for delays or early arrivals to help ensure smooth and dependable airport transfers.',
+      },
+      {
+        question: 'Do you offer transportation for Tacoma Dome concerts and events?',
+        answer:
+          'Absolutely. We regularly provide chauffeur transportation for concerts, conventions, sporting events, and private events at the Tacoma Dome. Clients commonly reserve luxury SUVs and executive Mercedes Sprinter vans for group transportation, allowing everyone to arrive together comfortably without parking or traffic concerns.',
+      },
+      {
+        question: 'Do you offer group transportation and Sprinter van service in Tacoma?',
+        answer:
+          'Yes. Emerald City Limos offers executive Sprinter van transportation and luxury SUVs for larger groups traveling throughout Tacoma and the greater Seattle region. Our group transportation services are popular for corporate events, weddings, airport transfers, cruise transportation, concerts, family travel, and special occasions requiring comfortable and professionally managed transportation.',
       },
     ],
     meta: {
@@ -591,19 +626,29 @@ export const locations: Location[] = [
     ],
     faqs: [
       {
-        question: 'Do you serve the Boeing Everett Factory?',
+        question: 'Do you serve the Boeing Everett Factory and Future of Flight?',
         answer:
-          'Yes - daily. Our chauffeurs have visitor protocols memorized and stage at the correct gates for executive arrivals and Future of Flight tours.',
+          'Yes. Emerald City Limos regularly provides executive chauffeur and black car service to the Boeing Everett Factory, Future of Flight Aviation Center, and surrounding business facilities. Our chauffeurs are familiar with Boeing visitor procedures, executive pickup areas, hotel access points, and corporate transportation schedules throughout Everett and Snohomish County.',
       },
       {
-        question: 'How much is an Everett to SEA-TAC airport transfer?',
+        question: 'How much is a private airport transfer from Everett to SEA-TAC?',
         answer:
-          'Sedan service from Everett to SEA-TAC starts at $145 flat-rate; luxury SUVs from $175. We route around I-5 backups when traffic warrants.',
+          'Private airport transportation from Everett to Seattle-Tacoma International Airport (SEA) typically starts around $145 for executive sedans, while luxury SUVs generally begin around $175 depending on passenger count, luggage requirements, pickup location, and traffic conditions. Airport transfers include professional chauffeur service, flight tracking, luggage assistance, and flat-rate pricing with no surge fees.',
       },
       {
-        question: 'Do you serve Paine Field commercial passengers?',
+        question: 'Do you provide transportation between Everett and Paine Field Airport?',
         answer:
-          'Absolutely, Paine Field is one of our highest-volume pickup airports. Sedan service from Everett to PAE starts at $75.',
+          'Absolutely. Paine Field (PAE) is one of our most frequently serviced airports in Snohomish County. Emerald City Limos provides reliable private airport transportation for commercial passengers, business travelers, and families traveling to and from Paine Field. Our chauffeurs monitor flights in real time and coordinate pickups to help ensure smooth airport transfers.',
+      },
+      {
+        question: 'Do you provide corporate transportation in Everett?',
+        answer:
+          'Yes. Emerald City Limos provides executive transportation services for Everett businesses, Boeing-related travel, visiting executives, conferences, and corporate meetings throughout the Seattle metro area. Our corporate chauffeur service emphasizes punctuality, discretion, professional presentation, and comfortable transportation for business travelers and VIP guests.',
+      },
+      {
+        question: 'Do you offer luxury SUVs and Sprinter vans for group transportation in Everett?',
+        answer:
+          'Yes. Our Everett fleet includes executive sedans, luxury SUVs, and Mercedes Sprinter vans for larger groups. Group transportation services are commonly used for corporate travel, airport transfers, cruise transportation, weddings, sporting events, and special occasions requiring spacious and professionally managed transportation throughout Washington.',
       },
     ],
     meta: {
@@ -653,12 +698,27 @@ export const locations: Location[] = [
       {
         question: 'Do you provide wedding transportation in Snohomish?',
         answer:
-          'Yes - Snohomish is one of our most requested wedding markets. We provide bridal limousines, guest shuttle service, and executive black car transportation to local venues.',
+          'Yes. Snohomish is one of our most requested wedding transportation markets in the Pacific Northwest. Emerald City Limos provides luxury wedding chauffeur service for ceremonies, receptions, rehearsal dinners, and guest transportation throughout Snohomish and surrounding areas. Our fleet includes executive sedans, luxury SUVs, and Mercedes Sprinter vans for bridal parties, family members, and wedding guests traveling between hotels, venues, and airports.',
       },
       {
-        question: 'Can I book airport service from rural Snohomish properties?',
+        question: 'Do you provide transportation to Snohomish wedding venues and private estates?',
         answer:
-          'Absolutely. We regularly provide pickups from private residences, estates, and event venues throughout the Snohomish area.',
+          'Absolutely. We regularly provide chauffeur transportation to barns, vineyards, private estates, waterfront venues, and outdoor wedding venues throughout Snohomish County. Our chauffeurs coordinate with wedding planners, venue staff, photographers, and event coordinators to help ensure smooth arrivals, departures, and guest transportation throughout the event day.',
+      },
+      {
+        question: 'Can I book airport transportation from rural Snohomish properties?',
+        answer:
+          'Yes. Emerald City Limos frequently provides airport transportation from private residences, estates, farms, and event venues throughout rural Snohomish areas. We offer reliable transfers to SEA-TAC Airport (SEA), Paine Field (PAE), and Boeing Field (BFI) with professional chauffeurs, flight tracking, luggage assistance, and scheduled pickups.',
+      },
+      {
+        question: 'Do you offer group transportation and guest shuttles in Snohomish?',
+        answer:
+          'Yes. Our group transportation services are popular for weddings, family gatherings, winery visits, corporate retreats, and private events throughout Snohomish County. Clients commonly reserve Mercedes Sprinter vans and luxury SUVs for guest shuttle service, allowing groups to travel together comfortably and safely between venues, hotels, and airports.',
+      },
+      {
+        question: 'How far in advance should I reserve wedding transportation in Snohomish?',
+        answer:
+          'We recommend reserving wedding transportation as early as possible, especially during peak wedding season in spring and summer. Advance reservations help ensure availability for preferred vehicles, guest shuttle coordination, airport pickups, and customized transportation schedules for your wedding day or special event.',
       },
     ],
     meta: {
@@ -702,14 +762,29 @@ export const locations: Location[] = [
     ],
     faqs: [
       {
-        question: 'Do you provide transportation for Evergreen State Fair events?',
+        question: 'Do you provide transportation for Evergreen State Fair events in Monroe?',
         answer:
-          'Yes - we offer private chauffeur service to and from Evergreen State Fairgrounds for concerts, exhibitions, and seasonal events.',
+          'Yes. Emerald City Limos provides private chauffeur and black car service to and from the Evergreen State Fairgrounds in Monroe for concerts, seasonal festivals, exhibitions, fairs, and private events. Clients commonly reserve luxury SUVs and Sprinter vans for comfortable group transportation without the stress of parking or event traffic.',
       },
       {
-        question: 'How much is Monroe to SEA-TAC?',
+        question: 'How much is a private airport transfer from Monroe to SEA-TAC?',
         answer:
-          'Luxury sedan transfers from Monroe to SEA-TAC start at $170 flat-rate.',
+          'Private airport transportation from Monroe to Seattle-Tacoma International Airport (SEA) typically starts around $170 for executive sedans, with luxury SUVs available for larger groups, families, and travelers with additional luggage. Airport transfers include flat-rate pricing, professional chauffeur service, flight tracking, and luggage assistance.',
+      },
+      {
+        question: 'Do you provide airport transportation from Monroe to SEA-TAC and Paine Field?',
+        answer:
+          'Absolutely. Emerald City Limos provides reliable airport transportation between Monroe, SEA-TAC Airport (SEA), and Paine Field (PAE). Our chauffeurs monitor flights in real time and coordinate pickups for early arrivals or delays to help ensure dependable transportation throughout Snohomish County and the greater Seattle region.',
+      },
+      {
+        question: 'Do you offer chauffeur service for weddings and special events in Monroe?',
+        answer:
+          'Yes. We provide luxury wedding and special event transportation throughout Monroe for ceremonies, receptions, winery events, private parties, and milestone celebrations. Our fleet includes executive sedans, luxury SUVs, and Mercedes Sprinter vans for bridal parties, families, and guest transportation.',
+      },
+      {
+        question: 'Can you pick up from rural properties and private venues near Monroe?',
+        answer:
+          'Yes. Emerald City Limos regularly provides transportation from private residences, farms, estates, wineries, and rural event venues throughout the Monroe area. Our chauffeurs are experienced with longer-distance pickups and customized transportation schedules for airport transfers, weddings, corporate travel, and private events.',
       },
     ],
     meta: {
@@ -755,12 +830,27 @@ export const locations: Location[] = [
       {
         question: 'Do you offer long-distance airport transfers from Arlington?',
         answer:
-          'Yes - Arlington clients frequently book private airport transportation to both Paine Field and SEA-TAC, including early morning departures.',
+          'Yes. Emerald City Limos regularly provides long-distance private airport transportation from Arlington to both Seattle-Tacoma International Airport (SEA) and Paine Field Airport (PAE). Many clients reserve early morning and late-night airport transfers for business travel, family vacations, and international flights. Our airport chauffeur service includes flight tracking, scheduled pickups, luggage assistance, and flat-rate pricing.',
       },
       {
-        question: 'Can I book chauffeur service from Arlington to Seattle?',
+        question: 'Do you provide airport transportation from Arlington to SEA-TAC and Paine Field?',
         answer:
-          'Absolutely. We provide direct point-to-point luxury transportation from Arlington to Seattle, Bellevue, and other regional destinations.',
+          'Absolutely. We provide reliable luxury airport transportation between Arlington, SEA-TAC Airport, and Paine Field for individuals, families, corporate travelers, and groups. Our chauffeurs monitor flights in real time and adjust pickup schedules when necessary to help ensure smooth and dependable airport transfers throughout Snohomish County and the greater Seattle region.',
+      },
+      {
+        question: 'Can I book chauffeur service from Arlington to Seattle or Bellevue?',
+        answer:
+          'Yes. Emerald City Limos provides direct point-to-point luxury transportation between Arlington, Seattle, Bellevue, Tacoma, and surrounding Washington cities. Clients commonly reserve chauffeur service for corporate meetings, sporting events, concerts, medical appointments, weddings, and private travel throughout the Puget Sound region.',
+      },
+      {
+        question: 'Do you offer luxury SUVs and Sprinter vans for group transportation in Arlington?',
+        answer:
+          'Yes. Our Arlington fleet includes executive sedans, luxury SUVs, and Mercedes Sprinter vans for larger groups traveling to airports, weddings, corporate events, cruises, and special occasions. Group transportation allows families, business teams, and event guests to travel together comfortably with professionally managed chauffeur service.',
+      },
+      {
+        question: 'Can you provide pickups from rural properties and private residences in Arlington?',
+        answer:
+          'Yes. Emerald City Limos regularly provides chauffeur pickups from private residences, estates, farms, and rural properties throughout Arlington and surrounding Snohomish County communities. We accommodate customized pickup schedules for airport transfers, special events, corporate travel, and long-distance transportation reservations.',
       },
     ],
     meta: {
@@ -806,12 +896,27 @@ export const locations: Location[] = [
       {
         question: 'Do you provide ferry terminal pickups in Mukilteo?',
         answer:
-          'Yes - we coordinate chauffeur pickups and drop-offs around Mukilteo-Clinton ferry activity to reduce wait times and missed sailings.',
+          'Yes. Emerald City Limos provides private chauffeur pickups and drop-offs at the Mukilteo-Clinton ferry terminal for residents, commuters, business travelers, and visitors traveling between Whidbey Island and the mainland. Our chauffeurs coordinate transportation schedules around ferry traffic and sailing times to help reduce delays and missed departures.',
       },
       {
-        question: 'How much is Mukilteo to Paine Field?',
+        question: 'How much is a private transfer from Mukilteo to Paine Field?',
         answer:
-          'Luxury sedan transfers from Mukilteo to Paine Field start at $85 flat-rate.',
+          'Private airport transportation from Mukilteo to Paine Field Airport (PAE) typically starts around $85 for executive sedans, with luxury SUVs available for larger groups and travelers with additional luggage. Airport transfers include professional chauffeur service, flat-rate pricing, luggage assistance, and scheduled pickup coordination.',
+      },
+      {
+        question: 'Do you provide airport transportation from Mukilteo to SEA-TAC and Paine Field?',
+        answer:
+          'Absolutely. Emerald City Limos provides reliable airport transportation between Mukilteo, SEA-TAC Airport (SEA), and Paine Field (PAE). Our chauffeurs monitor flights in real time and adjust pickup schedules when necessary to help ensure dependable airport transfers for business travelers, families, and cruise passengers.',
+      },
+      {
+        question: 'Do you offer chauffeur service for Boeing and business travelers near Mukilteo?',
+        answer:
+          'Yes. We regularly provide executive transportation for Boeing-related travel, corporate meetings, hotel transportation, and business travelers throughout Mukilteo, Everett, and the greater Seattle area. Our corporate chauffeur service emphasizes punctuality, discretion, professionalism, and comfortable luxury transportation.',
+      },
+      {
+        question: 'Can I reserve hourly chauffeur service in Mukilteo?',
+        answer:
+          'Yes. Our hourly chauffeur service is ideal for business meetings, winery visits, concerts, sporting events, shopping trips, and flexible transportation throughout Mukilteo, Seattle, Bellevue, and surrounding Washington cities. Your chauffeur remains available throughout your reservation for convenient multi-stop transportation.',
       },
     ],
     meta: {
@@ -856,12 +961,27 @@ export const locations: Location[] = [
       {
         question: 'Do you offer early morning airport service from Mountlake Terrace?',
         answer:
-          'Yes - airport pickups and drop-offs are available 24/7, including early departures and red-eye arrivals.',
+          'Yes. Emerald City Limos provides 24/7 private airport chauffeur service from Mountlake Terrace, including early morning departures, late-night arrivals, and red-eye flights. Our chauffeurs monitor flight schedules in real time and ensure timely pickups for SEA-TAC Airport (SEA), Paine Field (PAE), and Boeing Field (BFI), with professional luggage assistance and reliable flat-rate service.',
       },
       {
-        question: 'How much is Mountlake Terrace to SEA-TAC?',
+        question: 'How much is a private airport transfer from Mountlake Terrace to SEA-TAC?',
         answer:
-          'Flat-rate luxury sedan service to SEA-TAC starts at $145.',
+          'Private airport transportation from Mountlake Terrace to Seattle-Tacoma International Airport (SEA) typically starts around $145 for executive sedans. Luxury SUVs are available for families, groups, and travelers with additional luggage. All airport transfers include flat-rate pricing, flight tracking, and professional chauffeur service with no surge fees.',
+      },
+      {
+        question: 'Do you provide airport transportation from Mountlake Terrace to SEA-TAC and Paine Field?',
+        answer:
+          'Absolutely. We provide reliable luxury airport transportation between Mountlake Terrace, SEA-TAC Airport (SEA), and Paine Field (PAE). Our chauffeurs track flights in real time and adjust pickup timing to accommodate delays or early arrivals, ensuring smooth and stress-free airport transfers across Snohomish County and the Seattle metro area.',
+      },
+      {
+        question: 'Do you offer chauffeur service for Seattle and Bellevue from Mountlake Terrace?',
+        answer:
+          'Yes. Emerald City Limos provides direct point-to-point chauffeur service from Mountlake Terrace to Seattle, Bellevue, and surrounding cities. Clients use our service for corporate travel, meetings, concerts, sporting events, medical appointments, weddings, and private transportation throughout the Puget Sound region.',
+      },
+      {
+        question: 'Can I book hourly chauffeur service in Mountlake Terrace?',
+        answer:
+          'Yes. Our hourly chauffeur service allows flexible, on-demand transportation for business meetings, errands, events, shopping trips, and multi-stop itineraries. Your chauffeur remains available for the duration of the booking, providing seamless luxury transportation across Mountlake Terrace, Seattle, and nearby cities.',
       },
     ],
     meta: {
@@ -906,12 +1026,27 @@ export const locations: Location[] = [
       {
         question: 'Can I book Shoreline to Seattle event transportation?',
         answer:
-          'Yes - we provide hourly and point-to-point chauffeur service for concerts, dinners, meetings, and private occasions.',
+          'Yes. Emerald City Limos provides private chauffeur and hourly black car service between Shoreline and Seattle for concerts, sporting events, business meetings, fine dining, weddings, and private occasions. Clients can choose point-to-point transfers or hourly service depending on flexibility needs, traffic conditions, and multiple-stop itineraries.',
       },
       {
-        question: 'Do you offer flat rates to SEA-TAC?',
+        question: 'Do you offer flat-rate airport transfers from Shoreline to SEA-TAC?',
         answer:
-          'Yes - Shoreline to SEA-TAC sedan transfers start at $140 flat-rate.',
+          'Yes. Private airport transportation from Shoreline to Seattle-Tacoma International Airport (SEA) is available at flat-rate pricing starting around $140 for executive sedans. Luxury SUVs are available for families and groups. All airport transfers include professional chauffeur service, flight tracking, luggage assistance, and no surge pricing.',
+      },
+      {
+        question: 'Do you provide airport transportation from Shoreline to SEA-TAC and Boeing Field?',
+        answer:
+          'Absolutely. Emerald City Limos provides reliable airport transportation between Shoreline, SEA-TAC Airport (SEA), and Boeing Field (BFI). Our chauffeurs monitor flight schedules in real time and adjust pickup times for delays or early arrivals, ensuring dependable and stress-free airport transfers throughout the Seattle metro area.',
+      },
+      {
+        question: 'Do you offer chauffeur service from Shoreline to Bellevue and surrounding cities?',
+        answer:
+          'Yes. We provide direct luxury transportation from Shoreline to Bellevue, Seattle, Kirkland, and surrounding Washington cities. Our chauffeur service is commonly used for corporate travel, client meetings, medical appointments, special events, and private transportation across the Puget Sound region.',
+      },
+      {
+        question: 'Can I book hourly chauffeur service in Shoreline?',
+        answer:
+          'Yes. Our hourly chauffeur service in Shoreline is ideal for business travelers, event guests, shopping trips, and flexible itineraries requiring multiple stops. Your chauffeur remains on standby throughout the reservation, offering seamless and convenient luxury transportation.',
       },
     ],
     meta: {
@@ -954,14 +1089,29 @@ export const locations: Location[] = [
     ],
     faqs: [
       {
-        question: 'Do you offer Woodinville wine tour limo service?',
+        question: 'Do you offer Woodinville wine tour chauffeur service?',
         answer:
-          'Yes - we provide hourly wine tour chauffeur service for couples, groups, and corporate outings throughout Woodinville wine country.',
+          'Yes. Emerald City Limos provides private hourly chauffeur service for Woodinville wine tours, including couples’ experiences, group outings, and corporate events. Clients visit popular wineries, tasting rooms, and vineyard estates throughout Woodinville Wine Country with a dedicated chauffeur who remains available for the entire reservation, allowing a relaxed and flexible itinerary.',
       },
       {
-        question: 'Can I book a stretch limo for Woodinville events?',
+        question: 'Can I book a stretch limo or luxury SUV for Woodinville wine tours?',
         answer:
-          'Absolutely. Stretch limousines and SUVs are available for weddings, birthdays, and winery celebrations.',
+          'Absolutely. We offer luxury SUVs, executive sedans, and stretch limousine-style transportation options (subject to availability) for Woodinville wine tours, weddings, birthdays, and private celebrations. Our fleet is designed to provide a comfortable, premium experience for groups enjoying wine tastings and special occasions.',
+      },
+      {
+        question: 'Do you provide transportation from Woodinville to Seattle or Bellevue?',
+        answer:
+          'Yes. Emerald City Limos provides direct point-to-point chauffeur service from Woodinville to Seattle, Bellevue, Kirkland, and surrounding cities. This service is commonly used for corporate travel, dining reservations, concerts, and private events throughout the greater Seattle area.',
+      },
+      {
+        question: 'Can I book airport transportation from Woodinville to SEA-TAC or Paine Field?',
+        answer:
+          'Yes. We provide reliable airport transfers between Woodinville, SEA-TAC Airport (SEA), and Paine Field (PAE). Our service includes flight tracking, luggage assistance, flat-rate pricing, and professional chauffeur service for both business and leisure travelers.',
+      },
+      {
+        question: 'Do you offer group transportation for wine tours in Woodinville?',
+        answer:
+          'Yes. For larger groups, we provide Mercedes Sprinter vans and luxury SUVs ideal for wine tours, corporate outings, and private celebrations. Group transportation allows everyone to travel together comfortably between wineries while enjoying a coordinated, safe, and professionally managed experience.',
       },
     ],
     meta: {
@@ -1000,11 +1150,31 @@ export const locations: Location[] = [
       { to: 'Paine Field', driveTime: '15–22 min', distanceMiles: 10, startingPriceUSD: 90 },
       { to: 'SEA-TAC Airport', driveTime: '45–60 min', distanceMiles: 36, startingPriceUSD: 150 },
     ],
-    faqs: [
+   faqs: [
       {
         question: 'Do you provide airport transfers from Mill Creek?',
         answer:
-          'Yes - we provide 24/7 flat-rate airport transportation to both Paine Field and SEA-TAC.',
+          'Yes. Emerald City Limos provides 24/7 private airport chauffeur service from Mill Creek to Paine Field (PAE), Seattle-Tacoma International Airport (SEA), and Boeing Field (BFI). Our service includes flat-rate pricing, professional chauffeurs, real-time flight tracking, luggage assistance, and reliable pickups for early morning, daytime, and late-night flights.',
+      },
+      {
+        question: 'How much is a private airport transfer from Mill Creek to SEA-TAC?',
+        answer:
+          'Private airport transportation from Mill Creek to Seattle-Tacoma International Airport (SEA) typically starts around competitive flat-rate pricing depending on vehicle type, with executive sedans and luxury SUVs available. All transfers include professional chauffeur service, flight monitoring, luggage assistance, and no surge pricing.',
+      },
+      {
+        question: 'Do you provide airport transportation from Mill Creek to Paine Field and SEA-TAC?',
+        answer:
+          'Absolutely. We provide reliable airport transportation between Mill Creek, Paine Field (PAE), and SEA-TAC Airport (SEA). Our chauffeurs monitor flight schedules in real time and adjust pickup times for delays or early arrivals to ensure smooth, stress-free airport transfers throughout Snohomish County.',
+      },
+      {
+        question: 'Do you offer chauffeur service from Mill Creek to Seattle and Bellevue?',
+        answer:
+          'Yes. Emerald City Limos provides direct luxury chauffeur service from Mill Creek to Seattle, Bellevue, Kirkland, and surrounding cities. This service is commonly used for corporate travel, business meetings, medical appointments, events, and private transportation across the Puget Sound region.',
+      },
+      {
+        question: 'Can I book hourly chauffeur service in Mill Creek?',
+        answer:
+          'Yes. Our hourly chauffeur service in Mill Creek allows flexible transportation for errands, business meetings, shopping trips, dining, and events. Your chauffeur remains available for the duration of your booking, making it ideal for multi-stop itineraries and on-demand travel.',
       },
     ],
     meta: {
@@ -1051,16 +1221,28 @@ export const locations: Location[] = [
     faqs: [
       {
         question: 'Do you serve all of Lynnwood?',
-        answer: 'Yes - Alderwood, Lynnwood City Center, the Highway 99 corridor, and out to Mountlake Terrace.',
-      },
-      {
-        question: 'How much is a Lynnwood to SEA-TAC transfer?',
-        answer: 'Sedan service starts at $125 flat-rate; luxury SUVs from $155. All-inclusive with flight tracking.',
-      },
-      {
-        question: 'Do you provide chauffeurs for Lynnwood Convention Center events?',
         answer:
-          'Yes - we routinely deploy Mercedes Sprinters and Cadillac Escalades for conferences and corporate events at the Lynnwood Convention Center.',
+          'Yes. Emerald City Limos provides private chauffeur and black car service throughout Lynnwood, including Alderwood, Lynnwood City Center, the Highway 99 corridor, and surrounding areas extending toward Mountlake Terrace and Edmonds. We regularly provide airport transfers, corporate transportation, wedding service, hourly chauffeur bookings, and event transportation across the Lynnwood area.',
+      },
+      {
+        question: 'How much is a private airport transfer from Lynnwood to SEA-TAC?',
+        answer:
+          'Private airport transportation from Lynnwood to Seattle-Tacoma International Airport (SEA) typically starts around $125 for executive sedans and around $155 for luxury SUVs depending on passenger count, luggage requirements, and pickup location. All airport transfers include flat-rate pricing, flight tracking, professional chauffeur service, and luggage assistance with no surge fees.',
+      },
+      {
+        question: 'Do you provide transportation to Lynnwood Convention Center events?',
+        answer:
+          'Yes. Emerald City Limos regularly provides chauffeur and group transportation services for conferences, corporate events, exhibitions, and private functions at the Lynnwood Convention Center. Our fleet includes luxury SUVs, executive sedans, and Mercedes Sprinter vans suitable for individuals, VIP guests, and larger groups attending events.',
+      },
+      {
+        question: 'Do you provide airport transportation from Lynnwood to SEA-TAC and Paine Field?',
+        answer:
+          'Absolutely. We provide reliable airport transportation between Lynnwood, SEA-TAC Airport (SEA), and Paine Field (PAE). Our chauffeurs monitor flight schedules in real time and adjust pickup timing for delays or early arrivals to ensure smooth, stress-free airport transfers across the Seattle metro and Snohomish County.',
+      },
+      {
+        question: 'Can I book hourly chauffeur service in Lynnwood?',
+        answer:
+          'Yes. Our hourly chauffeur service in Lynnwood is ideal for business meetings, shopping trips, dining, events, and flexible multi-stop itineraries. Your chauffeur remains on standby for the duration of your booking, providing seamless and comfortable luxury transportation across the region.',
       },
     ],
     meta: {
@@ -1106,11 +1288,27 @@ export const locations: Location[] = [
       {
         question: 'Can you time a pickup with my Edmonds-Kingston ferry?',
         answer:
-          'Yes - we monitor WSDOT ferry sailings and adjust pickup times to actual departures, not posted ones. Tell us your booked sailing and we’ll do the rest.',
+          'Yes. Emerald City Limos closely monitors WSDOT Edmonds-Kingston ferry schedules and real-time sailing updates to coordinate pickups with actual departure times rather than posted timetables. Whether you are traveling from Edmonds to Kingston or returning to the mainland, our chauffeurs adjust pickup timing dynamically to help reduce waiting time, missed sailings, and travel disruptions.',
       },
       {
-        question: 'How much is an Edmonds to SEA-TAC transfer?',
-        answer: 'Sedan service from Edmonds to SEA-TAC starts at $135 flat-rate; luxury SUVs from $165.',
+        question: 'How much is a private airport transfer from Edmonds to SEA-TAC?',
+        answer:
+          'Private airport transportation from Edmonds to Seattle-Tacoma International Airport (SEA) typically starts around $135 for executive sedans and around $165 for luxury SUVs depending on passenger count, luggage requirements, and pickup location. All transfers include flat-rate pricing, professional chauffeur service, flight tracking, and luggage assistance with no surge pricing.',
+      },
+      {
+        question: 'Do you provide airport transportation from Edmonds to SEA-TAC, Paine Field, and Boeing Field?',
+        answer:
+          'Absolutely. Emerald City Limos provides reliable airport transportation between Edmonds, SEA-TAC Airport (SEA), Paine Field (PAE), and Boeing Field (BFI). Our chauffeurs track flights in real time and adjust pickup schedules for delays or early arrivals to ensure smooth, stress-free airport transfers across the Puget Sound region.',
+      },
+      {
+        question: 'Do you offer chauffeur service from Edmonds to Seattle, Bellevue, and nearby cities?',
+        answer:
+          'Yes. We provide direct point-to-point luxury chauffeur service from Edmonds to Seattle, Bellevue, Kirkland, and surrounding Washington cities. This service is commonly used for corporate travel, ferry connections, dining reservations, concerts, medical appointments, and private transportation throughout the region.',
+      },
+      {
+        question: 'Can I book hourly chauffeur service in Edmonds?',
+        answer:
+          'Yes. Our hourly chauffeur service in Edmonds is ideal for flexible travel needs such as business meetings, shopping trips, events, ferry connections, and multi-stop itineraries. Your chauffeur remains on standby for the duration of the booking, providing seamless and convenient luxury transportation.',
       },
     ],
     meta: {
@@ -1149,13 +1347,29 @@ export const locations: Location[] = [
     ],
     faqs: [
       {
-        question: 'Do you serve the Canyon Park biotech corridor?',
+        question: 'Do you serve the Canyon Park biotech corridor in Bothell?',
         answer:
-          'Yes — daily. We run dedicated corporate accounts for several Canyon Park companies and onboard new accounts in 48 hours.',
+          'Yes. We provide daily executive chauffeur service throughout Bothell, including the Canyon Park biotech and business corridor. Emerald City Limos supports corporate transportation for biotech, healthcare, and tech companies with reliable airport transfers, client pickups, and inter-office travel across Seattle, Bellevue, and the Eastside. Corporate accounts are available and can typically be set up within 48 hours with priority scheduling and consolidated billing.',
       },
       {
-        question: 'How much is a Bothell to SEA-TAC transfer?',
-        answer: 'Sedan service from Bothell to SEA-TAC starts at $125 flat-rate; luxury SUVs from $155.',
+        question: 'How much is a private airport transfer from Bothell to SEA-TAC Airport?',
+        answer:
+          'Private airport transfers from Bothell to Seattle-Tacoma International Airport (SEA-TAC) start around $125 for executive sedans and approximately $155 for luxury SUVs, depending on vehicle type and travel requirements. Every ride includes flat-rate pricing, real-time flight tracking, and professional executive chauffeur service. This ensures reliable, on-time airport transportation with no surge pricing or hidden fees.',
+      },
+      {
+        question: 'Do you provide airport transportation from Bothell to SEA-TAC, Paine Field, and Boeing Field?',
+        answer:
+          'Yes. We offer full-service airport transfer options between Bothell and SEA-TAC, Paine Field (PAE), and Boeing Field (BFI). Our chauffeurs monitor flight activity in real time to adjust pickup timing for delays or early arrivals, ensuring a seamless travel experience. This service is widely used by corporate travelers, families, and frequent flyers who value punctual and discreet luxury chauffeur service.',
+      },
+      {
+        question: 'Do you offer corporate transportation accounts for Bothell businesses?',
+        answer:
+          'Yes. Emerald City Limos provides dedicated corporate transportation accounts for Bothell-based companies, including biotech, healthcare, and professional services firms. These accounts are designed for consistent executive chauffeur service, covering airport transfers, client meetings, and daily business travel. Clients benefit from priority dispatch, centralized billing, and dependable service standards tailored for corporate travel needs.',
+      },
+      {
+        question: 'Can I book hourly executive chauffeur service in Bothell?',
+        answer:
+          'Yes. Our hourly executive chauffeur service in Bothell is ideal for meetings, corporate travel, events, and multi-stop itineraries across the Seattle metro area. With hourly booking, your chauffeur remains on standby, giving you flexibility without needing multiple reservations. It’s a preferred option for executives who require reliable, discreet, and adaptable luxury transportation throughout the day.',
       },
     ],
     meta: {
@@ -1200,14 +1414,29 @@ export const locations: Location[] = [
     ],
     faqs: [
       {
-        question: 'Do you offer Woodinville wine tours?',
+        question: 'Do you offer Woodinville wine tours with a private chauffeur?',
         answer:
-          'Yes - private wine tours are one of our most-booked Woodinville services. Choose 4-, 6-, or 8-hour blocks in a Cadillac Escalade ESV (up to 6) or Mercedes Sprinter (up to 14).',
+          'Yes. Woodinville wine tours are one of our most requested luxury chauffeur services, offering private, hourly transportation through Washington’s premier wine country. Guests typically book 4-, 6-, or 8-hour experiences in a Cadillac Escalade ESV for up to 6 passengers or a Mercedes Sprinter for groups up to 14. The service includes a dedicated executive chauffeur, flexible routing between wineries, and a seamless luxury experience designed for comfort and convenience.',
       },
       {
-        question: 'Can you handle a Woodinville bachelorette party?',
+        question: 'Can you provide transportation for a Woodinville bachelorette party?',
         answer:
-          'Absolutely. Stretch limousines or Mercedes Sprinters with bar setups, ambient lighting, and a chauffeur who knows the route.',
+          'Absolutely. We specialize in luxury bachelorette party transportation in Woodinville, combining safety, style, and a premium group experience. Options include Mercedes Sprinters and stretch limousine-style vehicles (subject to availability), featuring ambient lighting, comfortable seating, and a professional chauffeur familiar with winery routes and popular stops. It’s a popular choice for groups wanting a coordinated and stress-free celebration.',
+      },
+      {
+        question: 'Do you provide hourly chauffeur service for Woodinville wine country?',
+        answer:
+          'Yes. Our hourly executive chauffeur service is ideal for exploring Woodinville wine country at your own pace. Your chauffeur remains on standby throughout the booking, allowing you to visit multiple wineries, tasting rooms, and restaurants without worrying about timing or transportation logistics. It’s a preferred option for both leisure guests and corporate wine tours.',
+      },
+      {
+        question: 'Can I book group transportation for Woodinville winery tours?',
+        answer:
+          'Yes. We offer luxury group transportation using executive SUVs and Mercedes Sprinter vans, ideal for corporate outings, celebrations, and private wine tours in Woodinville. Groups benefit from coordinated travel between wineries, professional chauffeur service, and a comfortable, premium travel experience designed for larger parties.',
+      },
+      {
+        question: 'Do you provide pickup and drop-off from Seattle or Bellevue to Woodinville wineries?',
+        answer:
+          'Yes. Emerald City Limos provides direct luxury transportation from Seattle, Bellevue, and surrounding cities to Woodinville wine country. This includes point-to-point service or hourly bookings depending on your itinerary, ensuring a smooth and reliable transfer experience for wine tours and special occasions.',
       },
     ],
     meta: {
@@ -1299,24 +1528,24 @@ export const locations: Location[] = [
 
   faqs: [
     {
-      question: 'Do you offer airport transportation from Bothell North to SEA-TAC?',
+      question: 'Do you offer airport transportation from Bothell North to SEA-TAC Airport?',
       answer:
-        'Yes. Emerald City Limos provides pre-scheduled flat-rate airport transfers from Bothell North to SEA-TAC 24/7 with professional chauffeurs, flight tracking, and luggage assistance.',
+        'Yes. Emerald City Limos provides 24/7 private airport transfer service from Bothell North to Seattle-Tacoma International Airport (SEA-TAC). Every ride is pre-scheduled and handled by a professional executive chauffeur, with real-time flight tracking, luggage assistance, and flat-rate pricing. It’s a reliable option for both early departures and late-night arrivals.',
     },
     {
       question: 'Do you provide corporate transportation in Canyon Park and North Creek?',
       answer:
-        'Yes. We regularly serve Canyon Park, North Creek, and surrounding business districts with executive sedan and SUV transportation for meetings, office transfers, and client travel.',
+        'Yes. We regularly serve Canyon Park, North Creek, and surrounding Bothell business districts with executive chauffeur service for meetings, office transfers, and client transportation. Corporate clients rely on our luxury chauffeur service for punctuality, discretion, and seamless travel between Seattle, Bellevue, and Eastside offices.',
     },
     {
-      question: 'Can I book hourly chauffeur service in Bothell North?',
+      question: 'Can I book hourly executive chauffeur service in Bothell North?',
       answer:
-        'Yes. Hourly chauffeur service is available for private events, business travel, dinners, and flexible transportation throughout Bothell, Bellevue, Seattle, and the Eastside.',
+        'Absolutely. Our hourly executive chauffeur service in Bothell North is ideal for business travel, dinners, events, and multi-stop itineraries. Your chauffeur remains on standby for the duration of your booking, giving you flexible, on-demand luxury transportation across Bothell, Bellevue, Seattle, and the greater Eastside.',
     },
     {
-      question: 'What vehicles are available in Bothell North?',
+      question: 'What vehicles are available for chauffeur service in Bothell North?',
       answer:
-        'Our Bothell North clients commonly book Cadillac Escalade ESV SUVs, executive sedans, Sprinter vans, and stretch limousines depending on passenger count and service type.',
+        'Our Bothell North fleet includes Cadillac Escalade ESV SUVs, executive sedans, Mercedes Sprinter vans, and stretch limousine options depending on availability and passenger requirements. Each vehicle is maintained to premium standards and selected based on group size, luggage needs, and the level of luxury required for your trip.',
     },
   ],
 
@@ -1362,15 +1591,32 @@ export const locations: Location[] = [
     ],
     faqs: [
       {
-        question: 'Do you serve Muckleshoot Casino late at night?',
+        question: 'Do you provide late-night transportation to and from Muckleshoot Casino?',
         answer:
-          'Yes, 24/7 dispatch covers Muckleshoot every night of the week. Sedan or stretch limousine pickups available with 30 minutes notice.',
+          'Yes. Emerald City Limos provides 24/7 executive chauffeur service to and from Muckleshoot Casino, including late-night and early-morning pickups throughout Auburn and surrounding areas. Whether you are heading to the casino for an evening out or returning home after an event, our chauffeurs ensure safe, reliable, and discreet transportation with professional sedan and luxury SUV options available.',
       },
       {
-        question: 'How much is an Auburn to SEA-TAC transfer?',
-        answer: 'Sedan service from Auburn to SEA-TAC starts at $95 flat-rate; luxury SUVs from $115.',
+        question: 'How much is a private airport transfer from Auburn to SEA-TAC Airport?',
+        answer:
+          'Private airport transportation from Auburn to Seattle-Tacoma International Airport (SEA-TAC) typically starts around $95 for executive sedans and approximately $115 for luxury SUVs depending on passenger count and luggage requirements. All airport transfers include flat-rate pricing, professional chauffeur service, flight tracking, and luggage assistance with no surge pricing.',
+      },
+      {
+        question: 'Do you provide airport transportation from Auburn to SEA-TAC, Boeing Field, and Paine Field?',
+        answer:
+          'Yes. We provide reliable airport transfer service between Auburn and SEA-TAC Airport (SEA), Boeing Field (BFI), and Paine Field (PAE). Our chauffeurs monitor flight schedules in real time and adjust pickup timing for delays or early arrivals to ensure smooth and dependable airport transportation across the South King County region.',
+      },
+      {
+        question: 'Do you offer corporate chauffeur service in Auburn?',
+        answer:
+          'Yes. Emerald City Limos provides executive chauffeur and corporate transportation services for Auburn-based businesses and professionals. Services include airport transfers, client meetings, office transportation, and hourly bookings designed for reliable and discreet business travel throughout the Seattle metro area.',
+      },
+      {
+        question: 'Can I book hourly chauffeur service in Auburn?',
+        answer:
+          'Yes. Our hourly chauffeur service in Auburn is ideal for events, dinners, casino trips, corporate travel, and flexible multi-stop itineraries. Your chauffeur remains on standby for the duration of your booking, providing seamless luxury transportation with maximum convenience and flexibility.',
       },
     ],
+
     meta: {
       title: 'Auburn Chauffeur Service | Emerald City Limos',
       description:
@@ -1412,10 +1658,32 @@ export const locations: Location[] = [
     ],
     faqs: [
       {
-        question: 'How fast is a Federal Way to SEA-TAC transfer?',
-        answer: 'Typically 12–20 minutes door-to-door. Sedan service starts at $75 flat-rate.',
+        question: 'How fast is a private airport transfer from Federal Way to SEA-TAC Airport?',
+        answer:
+          'Private airport transfers from Federal Way to Seattle-Tacoma International Airport (SEA-TAC) typically take around 12 to 20 minutes door-to-door, depending on traffic conditions and pickup location. Emerald City Limos provides reliable flat-rate airport chauffeur service with professional drivers, real-time traffic monitoring, and flight tracking to ensure timely arrivals and stress-free airport transportation.',
+      },
+      {
+        question: 'How much is a private airport transfer from Federal Way to SEA-TAC?',
+        answer:
+          'Private airport transportation from Federal Way to SEA-TAC Airport (SEA) typically starts around $75 for executive sedans, with luxury SUVs available for additional passengers and luggage. All transfers include flat-rate pricing, professional executive chauffeur service, flight tracking, and luggage assistance with no surge pricing.',
+      },
+      {
+        question: 'Do you provide airport transportation from Federal Way to SEA-TAC, Boeing Field, and Paine Field?',
+        answer:
+          'Yes. Emerald City Limos provides reliable airport transfer service between Federal Way, SEA-TAC Airport (SEA), Boeing Field (BFI), and Paine Field (PAE). Our chauffeurs monitor flights in real time and adjust pickup timing for delays or early arrivals, ensuring smooth and dependable airport transportation throughout South King County.',
+      },
+      {
+        question: 'Do you offer corporate chauffeur service in Federal Way?',
+        answer:
+          'Yes. We provide executive and corporate transportation services for Federal Way professionals and businesses, including airport transfers, client meetings, hotel pickups, and hourly chauffeur service. Our corporate clients rely on punctual, discreet, and consistent luxury transportation across the Seattle metro area.',
+      },
+      {
+        question: 'Can I book hourly chauffeur service in Federal Way?',
+        answer:
+          'Yes. Our hourly chauffeur service in Federal Way is ideal for events, business meetings, dining, shopping, casino trips, and multi-stop itineraries. Your chauffeur remains on standby throughout your reservation, offering flexible and seamless luxury transportation when schedules require adaptability.',
       },
     ],
+
     meta: {
       title: 'Federal Way Chauffeur Service | Emerald City Limos',
       description:
@@ -1451,11 +1719,28 @@ export const locations: Location[] = [
     faqs: [
       {
         question: 'Do you serve all of Sammamish, including Klahanie and Trossachs?',
-        answer: 'Yes every Sammamish neighborhood at flat-rate pricing.',
+        answer:
+          'Yes. Emerald City Limos provides full-coverage luxury chauffeur service throughout Sammamish, including Klahanie, Trossachs, Pine Lake, and surrounding residential communities. We offer reliable airport transfers, corporate transportation, hourly chauffeur service, and private event travel at consistent flat-rate pricing across all Sammamish neighborhoods.',
       },
       {
-        question: 'How much is a Sammamish to SEA-TAC transfer?',
-        answer: 'Sedan service from Sammamish to SEA-TAC starts at $115 flat-rate; luxury SUVs from $140.',
+        question: 'How much is a private airport transfer from Sammamish to SEA-TAC Airport?',
+        answer:
+          'Private airport transportation from Sammamish to Seattle-Tacoma International Airport (SEA-TAC) typically starts around $115 for executive sedans and approximately $140 for luxury SUVs depending on passenger count, luggage requirements, and pickup location. All airport transfers include flat-rate pricing, professional executive chauffeur service, flight tracking, and luggage assistance.',
+      },
+      {
+        question: 'Do you provide airport transportation from Sammamish to SEA-TAC, Boeing Field, and Paine Field?',
+        answer:
+          'Yes. We provide dependable airport transfer service between Sammamish, SEA-TAC Airport (SEA), Boeing Field (BFI), and Paine Field (PAE). Our chauffeurs monitor flight schedules in real time and adjust pickup timing for delays or early arrivals, ensuring smooth and stress-free airport transportation across the Eastside.',
+      },
+      {
+        question: 'Do you offer corporate transportation and executive chauffeur service in Sammamish?',
+        answer:
+          'Yes. Emerald City Limos provides executive chauffeur and corporate transportation services for Sammamish residents and businesses. Clients use our service for airport transfers, business meetings, client entertainment, and professional travel throughout Seattle, Bellevue, and the greater Puget Sound region.',
+      },
+      {
+        question: 'Can I book hourly chauffeur service in Sammamish?',
+        answer:
+          'Yes. Our hourly chauffeur service in Sammamish is ideal for flexible travel needs such as dinners, events, shopping trips, business meetings, and multi-stop itineraries. Your chauffeur remains on standby throughout your booking, offering seamless luxury transportation with maximum convenience and flexibility.',
       },
     ],
     meta: {
@@ -1493,12 +1778,29 @@ export const locations: Location[] = [
     ],
     faqs: [
       {
-        question: 'How much is a Kent to SEA-TAC transfer?',
-        answer: 'Sedan service from Kent to SEA-TAC starts at $85 flat-rate; luxury SUVs from $105.',
+        question: 'How much is a private airport transfer from Kent to SEA-TAC Airport?',
+        answer:
+          'Private airport transportation from Kent to Seattle-Tacoma International Airport (SEA-TAC) typically starts around $85 for executive sedans and approximately $105 for luxury SUVs depending on passenger count, luggage requirements, and pickup location. All transfers include flat-rate pricing, professional executive chauffeur service, flight tracking, and luggage assistance with no surge pricing.',
       },
       {
-        question: 'Do you serve accesso ShoWare Center events?',
-        answer: 'Yes concerts, hockey games, family shows. Group transportation in Mercedes Sprinter vans available.',
+        question: 'Do you provide transportation to accesso ShoWare Center events in Kent?',
+        answer:
+          'Yes. Emerald City Limos provides reliable chauffeur service to and from accesso ShoWare Center for concerts, hockey games, family shows, and special events. We also offer group transportation options, including Mercedes Sprinter vans and luxury SUVs, making it easy for families, corporate groups, and event attendees to travel together comfortably and avoid parking or traffic delays.',
+      },
+      {
+        question: 'Do you offer airport transportation from Kent to SEA-TAC, Boeing Field, and Paine Field?',
+        answer:
+          'Absolutely. We provide dependable airport transfer service between Kent, SEA-TAC Airport (SEA), Boeing Field (BFI), and Paine Field (PAE). Our chauffeurs monitor flight schedules in real time and adjust pickup timing for delays or early arrivals, ensuring smooth and stress-free airport transportation across South King County and the greater Seattle area.',
+      },
+      {
+        question: 'Do you provide corporate chauffeur service in Kent?',
+        answer:
+          'Yes. Emerald City Limos offers executive and corporate transportation services for Kent-based professionals and businesses, including airport transfers, client meetings, hotel transportation, and hourly chauffeur bookings. Our corporate clients rely on punctual, discreet, and consistent luxury chauffeur service across the Seattle metro region.',
+      },
+      {
+        question: 'Can I book hourly chauffeur service in Kent?',
+        answer:
+          'Yes. Our hourly chauffeur service in Kent is ideal for events, business meetings, dining, shopping trips, casino visits, and multi-stop itineraries. Your chauffeur remains on standby for the duration of your booking, providing flexible and seamless luxury transportation when schedules require adaptability.',
       },
     ],
     meta: {
@@ -1535,13 +1837,29 @@ export const locations: Location[] = [
     ],
     faqs: [
       {
-        question: 'Do you serve Joint Base Lewis-McChord (JBLM)?',
+        question: 'Do you provide transportation to Joint Base Lewis-McChord (JBLM)?',
         answer:
-          'Yes daily. Our chauffeurs know the gate access procedures for visitors and contractors, and we run transfers timed against PCS arrival schedules.',
+          'Yes. Emerald City Limos provides daily executive chauffeur and private transportation services to and from Joint Base Lewis-McChord (JBLM). Our chauffeurs are experienced with visitor, contractor, and military access procedures, and we regularly coordinate pickups for PCS moves, official visits, and scheduled arrivals. Service is available 24/7 with reliable, discreet, and professional transportation across the South Puget Sound region.',
       },
       {
-        question: 'How much is a Lakewood to SEA-TAC transfer?',
-        answer: 'Sedan service from Lakewood to SEA-TAC starts at $145 flat-rate; luxury SUVs from $175.',
+        question: 'How much is a private airport transfer from Lakewood to SEA-TAC Airport?',
+        answer:
+          'Private airport transportation from Lakewood to Seattle-Tacoma International Airport (SEA-TAC) typically starts around $145 for executive sedans and approximately $175 for luxury SUVs depending on passenger count, luggage requirements, and pickup location. All airport transfers include flat-rate pricing, professional executive chauffeur service, flight tracking, and luggage assistance with no surge pricing.',
+      },
+      {
+        question: 'Do you provide airport transportation from Lakewood to SEA-TAC, Boeing Field, and Paine Field?',
+        answer:
+          'Yes. We offer reliable airport transfer service between Lakewood, SEA-TAC Airport (SEA), Boeing Field (BFI), and Paine Field (PAE). Our chauffeurs monitor flight schedules in real time and adjust pickup timing for delays or early arrivals, ensuring smooth and stress-free airport transportation throughout Pierce County and the greater Seattle area.',
+      },
+      {
+        question: 'Do you offer corporate transportation and executive chauffeur service in Lakewood?',
+        answer:
+          'Yes. Emerald City Limos provides corporate and executive chauffeur services for Lakewood professionals, military personnel, and business travelers. Services include airport transfers, client transportation, hotel pickups, hourly bookings, and reliable point-to-point travel across the Seattle metro region with a strong focus on punctuality and discretion.',
+      },
+      {
+        question: 'Can I book hourly chauffeur service in Lakewood?',
+        answer:
+          'Yes. Our hourly chauffeur service in Lakewood is ideal for business meetings, military-related travel, events, dining, and flexible multi-stop itineraries. Your chauffeur remains on standby for the duration of your booking, offering seamless and adaptable luxury transportation when schedules require flexibility.',
       },
     ],
     meta: {
@@ -1575,15 +1893,31 @@ export const locations: Location[] = [
       { to: 'Tacoma', driveTime: '15–25 min', distanceMiles: 11, startingPriceUSD: 85 },
       { to: 'Downtown Seattle', driveTime: '40–60 min', distanceMiles: 35, startingPriceUSD: 155 },
     ],
-    faqs: [
+   faqs: [
       {
-        question: 'Do you serve the Washington State Fair?',
+        question: 'Do you provide transportation to the Washington State Fair in Puyallup?',
         answer:
-          'Yes daily during the fair. We strongly recommend booking 2+ weeks ahead during fair season as Mercedes Sprinters and stretch limousines book out.',
+          'Yes. Emerald City Limos provides daily private chauffeur service to the Washington State Fair in Puyallup throughout the event season. Demand is high during fair periods, so we strongly recommend booking at least 2 weeks in advance, especially for Mercedes Sprinter vans and stretch limousine-style vehicles, which are frequently reserved early for group and family transportation.',
       },
       {
-        question: 'How much is a Puyallup to SEA-TAC transfer?',
-        answer: 'Sedan service from Puyallup to SEA-TAC starts at $125 flat-rate; luxury SUVs from $155.',
+        question: 'How much is a private airport transfer from Puyallup to SEA-TAC Airport?',
+        answer:
+          'Private airport transportation from Puyallup to Seattle-Tacoma International Airport (SEA-TAC) typically starts around $125 for executive sedans and approximately $155 for luxury SUVs depending on passenger count, luggage requirements, and pickup location. All airport transfers include flat-rate pricing, professional executive chauffeur service, flight tracking, and luggage assistance.',
+      },
+      {
+        question: 'Do you provide airport transportation from Puyallup to SEA-TAC, Boeing Field, and Paine Field?',
+        answer:
+          'Yes. We provide reliable airport transfer service between Puyallup, SEA-TAC Airport (SEA), Boeing Field (BFI), and Paine Field (PAE). Our chauffeurs monitor flight schedules in real time and adjust pickup timing for delays or early arrivals, ensuring smooth and stress-free airport transportation across Pierce County and the greater Seattle region.',
+      },
+      {
+        question: 'Do you offer corporate chauffeur service in Puyallup?',
+        answer:
+          'Yes. Emerald City Limos provides executive and corporate transportation services for Puyallup professionals and businesses, including airport transfers, client meetings, hotel transportation, and hourly chauffeur bookings. Our corporate clients rely on punctual, discreet, and consistently reliable luxury transportation throughout the Seattle metro area.',
+      },
+      {
+        question: 'Can I book hourly chauffeur service in Puyallup?',
+        answer:
+          'Yes. Our hourly chauffeur service in Puyallup is ideal for events, the Washington State Fair, business meetings, dining, shopping trips, and multi-stop itineraries. Your chauffeur remains on standby throughout your booking, providing flexible and seamless luxury transportation tailored to your schedule.',
       },
     ],
     meta: {
@@ -1621,12 +1955,29 @@ export const locations: Location[] = [
     ],
     faqs: [
       {
-        question: 'Do you serve Tulalip Resort Casino?',
-        answer: 'Yes 24/7. Sedan, SUV, and stretch limousine availability with 30 minutes notice.',
+        question: 'Do you provide transportation to Tulalip Resort Casino?',
+        answer:
+          'Yes. Emerald City Limos provides 24/7 private chauffeur service to Tulalip Resort Casino from Marysville and surrounding areas. Whether you are planning a night out, attending an event, or returning late, our executive chauffeur service ensures safe, reliable, and discreet transportation. Sedan, luxury SUV, and Mercedes Sprinter options are available depending on group size and availability.',
       },
       {
-        question: 'How much is a Marysville to SEA-TAC transfer?',
-        answer: 'Sedan service from Marysville to SEA-TAC starts at $175 flat-rate; luxury SUVs from $210.',
+        question: 'How much is a private airport transfer from Marysville to SEA-TAC Airport?',
+        answer:
+          'Private airport transportation from Marysville to Seattle-Tacoma International Airport (SEA-TAC) typically starts around $175 for executive sedans and approximately $210 for luxury SUVs depending on passenger count, luggage requirements, and pickup location. All airport transfers include flat-rate pricing, professional executive chauffeur service, flight tracking, and luggage assistance with no surge pricing.',
+      },
+      {
+        question: 'Do you provide airport transportation from Marysville to SEA-TAC, Paine Field, and Boeing Field?',
+        answer:
+          'Yes. We offer reliable airport transfer service between Marysville, SEA-TAC Airport (SEA), Paine Field (PAE), and Boeing Field (BFI). Our chauffeurs monitor flight schedules in real time and adjust pickup timing for delays or early arrivals, ensuring smooth and stress-free airport transportation across Snohomish County and the greater Seattle region.',
+      },
+      {
+        question: 'Do you offer corporate chauffeur service in Marysville?',
+        answer:
+          'Yes. Emerald City Limos provides executive and corporate transportation services for Marysville professionals, business travelers, and visiting clients. Services include airport transfers, hotel transportation, client meetings, and hourly chauffeur bookings, all delivered with a focus on punctuality, professionalism, and discreet luxury travel.',
+      },
+      {
+        question: 'Can I book hourly chauffeur service in Marysville?',
+        answer:
+          'Yes. Our hourly chauffeur service in Marysville is ideal for casino trips, events, business meetings, dining, shopping, and flexible multi-stop itineraries. Your chauffeur remains on standby for the duration of your booking, providing seamless and convenient luxury transportation tailored to your schedule.',
       },
     ],
     meta: {
@@ -1675,19 +2026,29 @@ export const locations: Location[] = [
     ],
     faqs: [
       {
-        question: 'Do you offer meet-and-greet at SEA-TAC baggage claim?',
+        question: 'Do you offer meet-and-greet service at SEA-TAC Airport baggage claim?',
         answer:
-          'Yes international arrivals receive complimentary indoor meet-and-greet at baggage claim. Domestic meet-and-greet is available on request.',
+          'Yes. Emerald City Limos provides complimentary indoor meet-and-greet service for international arrivals at Seattle-Tacoma International Airport (SEA-TAC), where your executive chauffeur will meet you at baggage claim and assist with luggage. Domestic meet-and-greet service is also available upon request for added convenience and a seamless arrival experience.',
       },
       {
-        question: 'What if my flight is delayed?',
+        question: 'What happens if my flight to SEA-TAC is delayed?',
         answer:
-          'Every airport ride includes live flight tracking. We adjust your chauffeur’s arrival automatically no rebooking, no extra fees for the standard grace period.',
+          'Every airport transfer includes live flight tracking as part of our executive chauffeur service. If your flight is delayed or arrives early, we automatically adjust your chauffeur’s arrival time at SEA-TAC with no need for rebooking. Standard grace periods are included, ensuring stress-free airport transportation without additional fees for typical delays.',
       },
       {
-        question: 'Where do you pick up at SEA-TAC?',
+        question: 'Where do you pick up passengers at SEA-TAC Airport?',
         answer:
-          'Curbside at Door 00 (north end) or Door 30 (south end), depending on your airline. International arrivals: indoor meet-and-greet at baggage claim. We confirm your exact pickup point by text once you land.',
+          'At SEA-TAC Airport, pickup locations depend on your airline and terminal. Most domestic pickups are arranged at designated curbside zones such as Door 00 (north end) or Door 30 (south end). For international arrivals, we offer indoor meet-and-greet service at baggage claim. Once your flight lands, we confirm your exact pickup point via text to ensure a smooth connection with your chauffeur.',
+      },
+      {
+        question: 'Do you provide airport transportation from SEA-TAC to Seattle, Bellevue, and surrounding cities?',
+        answer:
+          'Yes. Emerald City Limos provides luxury airport transfers from SEA-TAC Airport to Seattle, Bellevue, Kirkland, Redmond, and surrounding Puget Sound cities. Our executive chauffeur service ensures timely pickups, professional luggage assistance, and comfortable transportation for business and leisure travelers alike.',
+      },
+      {
+        question: 'Can I request a specific chauffeur or vehicle type for my SEA-TAC pickup?',
+        answer:
+          'Yes. Where available, we accommodate requests for specific vehicle types such as executive sedans, luxury SUVs, or Mercedes Sprinter vans. Corporate clients and frequent travelers can also request preferred chauffeurs as part of our executive transportation service, subject to scheduling availability.',
       },
     ],
     meta: {
@@ -1724,14 +2085,29 @@ export const locations: Location[] = [
     ],
     faqs: [
       {
-        question: 'Can you meet me on the ramp at Boeing Field?',
+        question: 'Can you meet me on the ramp at Boeing Field (BFI)?',
         answer:
-          'Yes ramp access requires FBO authorization on your tail number, but we coordinate with Signature, Modern Aviation, and Galvin Flying line crews routinely.',
+          'Yes. Ramp-side pickup at Boeing Field (BFI) is available when authorized by your FBO and tail number. Emerald City Limos regularly coordinates directly with Signature Flight Support, Modern Aviation, and Galvin Flying for executive and private aviation arrivals. Our chauffeurs work closely with line crews to ensure smooth, discreet ramp access and seamless ground transportation.',
       },
       {
-        question: 'Do you handle multi-leg private aviation trips?',
+        question: 'Do you handle multi-leg private aviation trips from Boeing Field (BFI)?',
         answer:
-          'Yes Boeing Field arrival, ground transport to a Bellevue meeting, return to BFI for the next departure. We hold your chauffeur on standby for the full trip.',
+          'Yes. We specialize in coordinating multi-leg private aviation itineraries through Boeing Field (BFI), including airport arrival, ground transportation to meetings in Seattle, Bellevue, or the Eastside, and return transfers for your next departure. Your executive chauffeur remains on standby throughout the journey to ensure timing flexibility and uninterrupted service.',
+      },
+      {
+        question: 'Do you provide airport transportation from Boeing Field (BFI) to Seattle, Bellevue, and surrounding cities?',
+        answer:
+          'Absolutely. Emerald City Limos provides luxury executive airport transfers from Boeing Field (BFI) to Seattle, Bellevue, Kirkland, Redmond, and the greater Puget Sound region. Our chauffeur service is designed for private aviation passengers who require reliable, discreet, and time-sensitive ground transportation.',
+      },
+      {
+        question: 'Can you coordinate ground transportation with private jet arrivals at Boeing Field (BFI)?',
+        answer:
+          'Yes. We frequently coordinate with private aviation schedules at Boeing Field (BFI) to align chauffeur arrival times with landing and departure slots. This ensures minimal wait time and a smooth transition between aircraft and ground transportation for executives and VIP travelers.',
+      },
+      {
+        question: 'Do you offer standby chauffeur service for private aviation clients at Boeing Field (BFI)?',
+        answer:
+          'Yes. Standby chauffeur service is available for private aviation clients requiring flexible, on-demand transportation throughout the day. Your chauffeur remains available between meetings, airport transfers, and return flights, providing continuous, discreet, and highly responsive executive transportation.',
       },
     ],
     meta: {
@@ -1773,16 +2149,31 @@ export const locations: Location[] = [
       { to: 'Downtown Seattle', driveTime: '55–75 min', distanceMiles: 42, startingPriceUSD: 165 },
       { to: 'Tacoma Narrows Airport', driveTime: '12–18 min', distanceMiles: 8, startingPriceUSD: 75 },
     ],
-    faqs: [
+   faqs: [
       {
         question: 'Do you provide chauffeur service for Gig Harbor waterfront events?',
         answer:
-          'Yes - we regularly provide transportation for marina dinners, private celebrations, weddings, and waterfront events throughout Gig Harbor.',
+          'Yes. Emerald City Limos provides luxury chauffeur service throughout Gig Harbor for waterfront dinners, marina events, private celebrations, and weddings. Our executive transportation is commonly used for destinations along the harbor, upscale restaurants, yacht clubs, and private venues, offering a seamless and discreet travel experience with professional chauffeurs.',
       },
       {
-        question: 'Can I book SEA-TAC airport transfers from Gig Harbor?',
+        question: 'Can I book private airport transfers from Gig Harbor to SEA-TAC Airport?',
         answer:
-          'Yes - luxury airport transportation from Gig Harbor to SEA-TAC starts at $155 flat-rate.',
+          'Yes. We provide reliable private airport transportation from Gig Harbor to Seattle-Tacoma International Airport (SEA-TAC) starting around $155 for executive sedans, with luxury SUVs available for additional passengers and luggage. All airport transfers include flat-rate pricing, flight tracking, and professional executive chauffeur service with luggage assistance.',
+      },
+      {
+        question: 'Do you provide airport transportation from Gig Harbor to SEA-TAC, Boeing Field, and Paine Field?',
+        answer:
+          'Absolutely. Emerald City Limos provides dependable airport transfer service between Gig Harbor, SEA-TAC Airport (SEA), Boeing Field (BFI), and Paine Field (PAE). Our chauffeurs monitor flight schedules in real time and adjust pickup timing for delays or early arrivals, ensuring smooth and stress-free airport transportation across Pierce County and the Puget Sound region.',
+      },
+      {
+        question: 'Do you offer corporate and executive transportation in Gig Harbor?',
+        answer:
+          'Yes. We provide executive chauffeur and corporate transportation services for Gig Harbor professionals, business travelers, and visiting clients. Services include airport transfers, hotel pickups, client meetings, and hourly chauffeur bookings with a focus on punctuality, discretion, and premium service standards.',
+      },
+      {
+        question: 'Can I book hourly chauffeur service in Gig Harbor?',
+        answer:
+          'Yes. Our hourly chauffeur service in Gig Harbor is ideal for waterfront events, business meetings, dining, shopping, and private occasions. Your chauffeur remains on standby throughout your booking, offering flexible and seamless luxury transportation tailored to your schedule.',
       },
     ],
     meta: {
@@ -1823,9 +2214,29 @@ export const locations: Location[] = [
     ],
     faqs: [
       {
-        question: 'Do you offer flat-rate airport transfers from Bonney Lake?',
+        question: 'Do you offer flat-rate airport transfers from Bonney Lake to SEA-TAC Airport?',
         answer:
-          'Yes - Bonney Lake to SEA-TAC luxury sedan transfers start at $145 flat-rate.',
+          'Yes. Emerald City Limos provides private flat-rate airport transfers from Bonney Lake to Seattle-Tacoma International Airport (SEA-TAC), with luxury sedan service starting around $145. Luxury SUVs are available for families and larger groups with additional luggage. Every airport transfer includes professional executive chauffeur service, flight tracking, and luggage assistance with no surge pricing.',
+      },
+      {
+        question: 'Do you provide airport transportation from Bonney Lake to SEA-TAC, Boeing Field, and Paine Field?',
+        answer:
+          'Yes. We offer reliable airport transportation between Bonney Lake, SEA-TAC Airport (SEA), Boeing Field (BFI), and Paine Field (PAE). Our chauffeurs monitor flight schedules in real time and adjust pickup timing for delays or early arrivals, ensuring smooth and dependable airport transfers throughout Pierce County and the greater Seattle region.',
+      },
+      {
+        question: 'Do you provide corporate chauffeur service in Bonney Lake?',
+        answer:
+          'Yes. Emerald City Limos offers executive and corporate transportation services for Bonney Lake residents and professionals, including airport transfers, client meetings, hotel transportation, and hourly chauffeur bookings. Our service is designed for punctual, discreet, and comfortable business travel across the Seattle metro area.',
+      },
+      {
+        question: 'Can I book hourly chauffeur service in Bonney Lake?',
+        answer:
+          'Yes. Our hourly chauffeur service in Bonney Lake is ideal for events, dining, shopping trips, weddings, and flexible multi-stop itineraries. Your chauffeur remains on standby throughout your booking, providing seamless and adaptable luxury transportation tailored to your schedule.',
+      },
+      {
+        question: 'Do you serve surrounding South King and Pierce County areas from Bonney Lake?',
+        answer:
+          'Yes. We provide point-to-point luxury chauffeur service from Bonney Lake to Seattle, Bellevue, Tacoma, and surrounding South King and Pierce County destinations. This includes corporate travel, special events, airport transfers, and private transportation needs throughout the region.',
       },
     ],
     meta: {
@@ -1867,7 +2278,27 @@ export const locations: Location[] = [
       {
         question: 'Do you offer transportation from Sumner Station?',
         answer:
-          'Yes - we provide scheduled pickups and private transportation to and from Sumner Station and surrounding neighborhoods.',
+          'Yes. Emerald City Limos provides private chauffeur and executive transportation to and from Sumner Station, including scheduled pickups for commuters, event travelers, and airport connections. Our service is designed for reliable, pre-booked transfers with professional chauffeurs who ensure timely arrivals and seamless connections throughout Pierce County.',
+      },
+      {
+        question: 'Do you provide airport transfers from Sumner to SEA-TAC Airport?',
+        answer:
+          'Yes. We offer flat-rate private airport transportation from Sumner to Seattle-Tacoma International Airport (SEA-TAC), with executive sedan and luxury SUV options available. Every transfer includes professional chauffeur service, flight tracking, luggage assistance, and dependable 24/7 availability.',
+      },
+      {
+        question: 'Do you provide airport transportation from Sumner to SEA-TAC, Boeing Field, and Paine Field?',
+        answer:
+          'Absolutely. Emerald City Limos provides reliable airport transfer service between Sumner, SEA-TAC Airport (SEA), Boeing Field (BFI), and Paine Field (PAE). Our chauffeurs monitor flights in real time and adjust pickup timing for delays or early arrivals to ensure smooth and stress-free airport transportation across Pierce County and the greater Seattle region.',
+      },
+      {
+        question: 'Do you offer corporate chauffeur service in Sumner?',
+        answer:
+          'Yes. We provide executive and corporate transportation services for Sumner residents and professionals, including airport transfers, client meetings, hotel pickups, and hourly chauffeur bookings. Our service focuses on punctuality, discretion, and consistent luxury travel across the Seattle metro area.',
+      },
+      {
+        question: 'Can I book hourly chauffeur service in Sumner?',
+        answer:
+          'Yes. Our hourly chauffeur service in Sumner is ideal for events, dining, shopping trips, business meetings, and flexible multi-stop itineraries. Your chauffeur remains on standby throughout your booking, providing seamless and adaptable luxury transportation tailored to your schedule.',
       },
     ],
     meta: {
@@ -1909,7 +2340,27 @@ export const locations: Location[] = [
       {
         question: 'Do you provide hotel pickups in Fife?',
         answer:
-          'Yes - we regularly provide transportation to and from Fife hotels, casinos, and conference venues.',
+          'Yes. Emerald City Limos provides private chauffeur service to and from hotels in Fife, including business hotels, casino accommodations, and conference venues. Our executive transportation service is commonly used for airport transfers, corporate travel, and event transportation, ensuring reliable, punctual, and comfortable travel throughout the Tacoma and South King County area.',
+      },
+      {
+        question: 'Do you provide airport transfers from Fife to SEA-TAC Airport?',
+        answer:
+          'Yes. We offer flat-rate private airport transportation from Fife to Seattle-Tacoma International Airport (SEA-TAC), with executive sedans and luxury SUVs available. All transfers include professional chauffeur service, flight tracking, luggage assistance, and 24/7 availability for early morning and late-night departures.',
+      },
+      {
+        question: 'Do you provide airport transportation from Fife to SEA-TAC, Boeing Field, and Paine Field?',
+        answer:
+          'Absolutely. Emerald City Limos provides reliable airport transfer service between Fife, SEA-TAC Airport (SEA), Boeing Field (BFI), and Paine Field (PAE). Our chauffeurs monitor flight schedules in real time and adjust pickup timing for delays or early arrivals, ensuring smooth and stress-free airport transportation across Pierce County.',
+      },
+      {
+        question: 'Do you offer corporate transportation in Fife?',
+        answer:
+          'Yes. We provide executive chauffeur and corporate transportation services for Fife businesses, hotel guests, and visiting professionals. Services include airport transfers, client meetings, hotel pickups, and hourly chauffeur bookings designed for punctual, discreet, and professional travel.',
+      },
+      {
+        question: 'Can I book hourly chauffeur service in Fife?',
+        answer:
+          'Yes. Our hourly chauffeur service in Fife is ideal for business meetings, dining, casino visits, events, and flexible multi-stop itineraries. Your chauffeur remains on standby throughout your booking, providing seamless luxury transportation tailored to your schedule.',
       },
     ],
     meta: {
@@ -1949,9 +2400,29 @@ export const locations: Location[] = [
     ],
     faqs: [
       {
-        question: 'Do you provide transportation to Chambers Bay?',
+        question: 'Do you provide transportation to Chambers Bay in University Place?',
         answer:
-          'Yes - we regularly provide luxury transportation to Chambers Bay for golf outings, events, and private bookings.',
+          'Yes. Emerald City Limos provides private luxury chauffeur service to Chambers Bay in University Place for golf outings, corporate events, weddings, and private bookings. Our executive transportation is ideal for individuals and groups seeking a comfortable, punctual, and discreet ride to one of the region’s premier golf destinations.',
+      },
+      {
+        question: 'Do you provide airport transfers from University Place to SEA-TAC Airport?',
+        answer:
+          'Yes. We offer flat-rate private airport transportation from University Place to Seattle-Tacoma International Airport (SEA-TAC), with executive sedan and luxury SUV options available. All transfers include professional chauffeur service, flight tracking, luggage assistance, and reliable 24/7 availability.',
+      },
+      {
+        question: 'Do you provide airport transportation from University Place to SEA-TAC, Boeing Field, and Paine Field?',
+        answer:
+          'Absolutely. Emerald City Limos provides dependable airport transfer service between University Place, SEA-TAC Airport (SEA), Boeing Field (BFI), and Paine Field (PAE). Our chauffeurs monitor flight schedules in real time and adjust pickup timing for delays or early arrivals, ensuring smooth and stress-free airport transportation across Pierce County.',
+      },
+      {
+        question: 'Do you offer corporate chauffeur service in University Place?',
+        answer:
+          'Yes. We provide executive and corporate transportation services for University Place residents, business travelers, and visiting professionals. Services include airport transfers, hotel pickups, client meetings, and hourly chauffeur bookings designed for punctual, discreet, and premium travel.',
+      },
+      {
+        question: 'Can I book hourly chauffeur service in University Place?',
+        answer:
+          'Yes. Our hourly chauffeur service in University Place is ideal for golf outings, events, dining, business meetings, and flexible multi-stop itineraries. Your chauffeur remains on standby throughout your booking, offering seamless luxury transportation tailored to your schedule.',
       },
     ],
     meta: {
@@ -1998,12 +2469,27 @@ export const locations: Location[] = [
       {
         question: 'Do you provide executive transportation in DuPont?',
         answer:
-          'Yes - we regularly serve business travelers, executives, and corporate clients throughout DuPont and nearby JBLM corridors.',
+          'Yes. Emerald City Limos provides premium executive chauffeur service throughout DuPont and the surrounding JBLM corridor. We regularly support corporate travelers, military personnel, and business executives with reliable point-to-point transportation, airport transfers, and hourly chauffeur service designed for punctual and discreet travel across the South Puget Sound region.',
       },
       {
-        question: 'Can I schedule airport service from DuPont to SEA-TAC?',
+        question: 'Can I schedule private airport transfers from DuPont to SEA-TAC Airport?',
         answer:
-          'Absolutely. Luxury sedan transfers from DuPont to SEA-TAC start at $165 flat-rate with scheduled pickups available 24/7.',
+          'Absolutely. We provide 24/7 private airport transportation from DuPont to Seattle-Tacoma International Airport (SEA-TAC), with luxury sedan service starting around $165 flat-rate. Every transfer includes professional chauffeur service, real-time flight tracking, luggage assistance, and scheduled pickups tailored to your itinerary.',
+      },
+      {
+        question: 'Do you provide airport transportation from DuPont to SEA-TAC, Boeing Field, and Paine Field?',
+        answer:
+          'Yes. Emerald City Limos offers dependable airport transfer service between DuPont, SEA-TAC Airport (SEA), Boeing Field (BFI), and Paine Field (PAE). Our chauffeurs monitor flight schedules in real time and adjust pickup timing for delays or early arrivals, ensuring smooth and stress-free airport transportation throughout Pierce County and JBLM-adjacent areas.',
+      },
+      {
+        question: 'Do you offer military and JBLM transportation services from DuPont?',
+        answer:
+          'Yes. We frequently serve military personnel and contractors traveling between DuPont and Joint Base Lewis-McChord (JBLM). Our chauffeur service is designed to accommodate base access requirements, PCS travel, and official visits, with a strong focus on reliability, discretion, and timely service.',
+      },
+      {
+        question: 'Can I book hourly chauffeur service in DuPont?',
+        answer:
+          'Yes. Our hourly chauffeur service in DuPont is ideal for business meetings, military-related travel, events, dining, and flexible multi-stop itineraries. Your chauffeur remains on standby throughout your booking, providing seamless luxury transportation tailored to your schedule.',
       },
     ],
     meta: {
@@ -2049,12 +2535,27 @@ export const locations: Location[] = [
       {
         question: 'Do you provide chauffeur service for Steilacoom weddings and waterfront events?',
         answer:
-          'Yes - we regularly provide luxury transportation for weddings, waterfront dinners, anniversaries, and private celebrations in Steilacoom.',
+          'Yes. Emerald City Limos provides luxury chauffeur service throughout Steilacoom for waterfront weddings, private celebrations, anniversaries, and fine dining events. Our executive transportation is designed for discreet, reliable, and elegant travel, with vehicles suited for couples, families, and wedding parties attending events along the South Puget Sound waterfront.',
       },
       {
-        question: 'Can you provide airport transportation from Steilacoom?',
+        question: 'Can you provide private airport transportation from Steilacoom to SEA-TAC Airport?',
         answer:
-          'Yes - flat-rate airport transportation from Steilacoom to SEA-TAC starts at $150 for luxury sedan service.',
+          'Yes. We offer flat-rate airport transfers from Steilacoom to Seattle-Tacoma International Airport (SEA-TAC), with luxury sedan service starting around $150. All rides include professional chauffeur service, real-time flight tracking, luggage assistance, and 24/7 availability for both early departures and late-night arrivals.',
+      },
+      {
+        question: 'Do you provide airport transportation from Steilacoom to SEA-TAC, Boeing Field, and Paine Field?',
+        answer:
+          'Absolutely. Emerald City Limos provides reliable airport transfer service between Steilacoom, SEA-TAC Airport (SEA), Boeing Field (BFI), and Paine Field (PAE). Our chauffeurs monitor flight schedules in real time and adjust pickup timing for delays or early arrivals, ensuring smooth and stress-free airport transportation across Pierce County.',
+      },
+      {
+        question: 'Do you offer corporate and executive transportation in Steilacoom?',
+        answer:
+          'Yes. We provide executive chauffeur and corporate transportation services for Steilacoom residents, professionals, and visiting clients. Services include airport transfers, hotel pickups, client meetings, and hourly chauffeur bookings, all delivered with a focus on punctuality, discretion, and premium service quality.',
+      },
+      {
+        question: 'Can I book hourly chauffeur service in Steilacoom?',
+        answer:
+          'Yes. Our hourly chauffeur service in Steilacoom is ideal for weddings, waterfront events, dining, business meetings, and flexible multi-stop itineraries. Your chauffeur remains on standby throughout your booking, providing seamless luxury transportation tailored to your schedule.',
       },
     ],
     meta: {
