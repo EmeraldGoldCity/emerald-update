@@ -1,0 +1,231 @@
+---
+/**
+ * /exotics/[slug]
+ * ---------------
+ * Dynamic detail page for every exotic vehicle in src/data/exotics.ts.
+ * Adding a new exotic vehicle to exotics.ts auto-creates its page on the next build.
+ *
+ * Page structure:
+ *   1. PageHero        — vehicle hero image, name, category
+ *   2. TrustStrip      — shared trust signals
+ *   3. VehicleDetails  — carousel (left) + specs / features / CTA (right)
+ *   4. VehicleStandards — fleet care, licensing, chauffeur standards
+ *   5. Related service  — link back to Car Exotics service page
+ *   6. Closing CTA
+ *   7. Inline JSON-LD  — Vehicle + Product + BreadcrumbList schemas
+ */
+import type { ImageMetadata } from 'astro';
+import MainLayout from '@/layouts/MainLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import TrustStrip from '@/components/shared/TrustStrip.astro';
+import VehicleDetails from '@/components/fleet/VehicleDetails.astro';
+import VehicleStandards from '@/components/fleet/VehicleStandards.astro';
+import { exoticFleet } from '@/data/exotics';
+
+export async function getStaticPaths() {
+  return exoticFleet.map((vehicle) => ({
+    params: { slug: vehicle.id },
+    props: { vehicle },
+  }));
+}
+
+const { vehicle } = Astro.props;
+
+const metaTitle = `${vehicle.name} Rental Seattle | Emerald City Limos`;
+const metaDescription = vehicle.description
+  ? vehicle.description.slice(0, 155).replace(/\s+\S*$/, '') + '…'
+  : `${vehicle.name} (${vehicle.category}) available for chauffeur-driven or self-drive rental in Seattle. Licensed Washington carrier, $1.5M insured, 24/7 dispatch.`;
+
+// PageHero uses Astro <Image> which requires real ImageMetadata (not string paths).
+// Exotic vehicles use string paths (public/) so users can drop images in without code changes.
+// The VehicleDetails carousel handles string paths correctly via a plain <img> tag.
+const heroImage =
+  vehicle.imageSrc && typeof vehicle.imageSrc !== 'string'
+    ? { src: vehicle.imageSrc as ImageMetadata, alt: vehicle.imageAlt }
+    : undefined;
+
+const SITE_URL = 'https://emeraldcitylimos.com';
+const canonical = `${SITE_URL}${vehicle.href}`;
+
+/* JSON-LD — Vehicle + Product + BreadcrumbList */
+const vehicleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Vehicle',
+  '@id': `${canonical}#vehicle`,
+  name: vehicle.name,
+  description: vehicle.description ?? `${vehicle.name} — ${vehicle.category}, ${vehicle.capacityLabel}`,
+  url: canonical,
+  vehicleSeatingCapacity: vehicle.capacity,
+  vehicleConfiguration: vehicle.category,
+  brand: { '@type': 'Brand', name: vehicle.name.split(' ')[0] },
+  ...(vehicle.specs?.yearRange   ? { vehicleModelDate: vehicle.specs.yearRange } : {}),
+  ...(vehicle.specs?.drivetrain  ? { driveWheelConfiguration: vehicle.specs.drivetrain } : {}),
+  ...(vehicle.specs?.transmission ? { vehicleTransmission: vehicle.specs.transmission } : {}),
+  ...(vehicle.specs?.extras?.find((r) => r.label.toLowerCase() === 'engine')
+    ? { vehicleEngine: { '@type': 'EngineSpecification', name: vehicle.specs!.extras!.find((r) => r.label.toLowerCase() === 'engine')!.value } }
+    : {}),
+};
+
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  '@id': `${canonical}#product`,
+  name: `${vehicle.name} Rental & Chauffeur Service Seattle`,
+  description: vehicle.description ?? `${vehicle.name} (${vehicle.category}) — ${vehicle.capacityLabel}. Available chauffeur-driven or self-drive rental in Seattle.`,
+  category: vehicle.category,
+  brand: { '@type': 'Brand', name: 'Emerald City Limos' },
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    url: 'https://customer.moovs.app/a1-charters-1/new/info',
+    priceCurrency: 'USD',
+    seller: { '@type': 'LimousineBusiness', name: 'Emerald City Limos', '@id': SITE_URL },
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home',        item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Car Exotics', item: `${SITE_URL}/services/car-exotics` },
+    { '@type': 'ListItem', position: 3, name: vehicle.name,  item: canonical },
+  ],
+};
+---
+
+<MainLayout
+  title={metaTitle}
+  description={metaDescription}
+  keywords={`${vehicle.name.toLowerCase()} rental seattle, ${vehicle.category.toLowerCase()} rental seattle, exotic car rental seattle, emerald city limos`}
+>
+  <!-- 1. Hero -->
+  <PageHero
+    eyebrow={vehicle.category}
+    headline={vehicle.name}
+    headlineAccent={vehicle.capacityLabel}
+    supporting={vehicle.description ?? `${vehicle.category} available chauffeur-driven or as a self-drive rental across the Seattle metro — ${vehicle.capacityLabel}. Fully insured, licensed Washington carrier, 24/7 dispatch.`}
+    ctaPrimary={{
+      label: 'Reserve This Vehicle',
+      href: 'https://customer.moovs.app/a1-charters-1/new/info',
+      id: `cta-${vehicle.id}-book`,
+    }}
+    image={heroImage}
+    size="page"
+    id={`${vehicle.id}-hero`}
+    breadcrumbs={[
+      { label: 'Home',        href: '/' },
+      { label: 'Car Exotics', href: '/services/car-exotics' },
+      { label: vehicle.name },
+    ]}
+  />
+
+  <!-- 2. Trust signals -->
+  <TrustStrip />
+
+  <!-- 3. Gallery (carousel) · Specs · Features · CTA -->
+  <VehicleDetails vehicle={vehicle} />
+
+  <!-- 4. Fleet care & standards -->
+  <VehicleStandards vehicle={vehicle} />
+
+  <!-- 5. Back to exotic fleet -->
+  <section
+    class="bg-brand-ivory py-12 sm:py-14"
+    aria-label="Explore the full exotic fleet"
+  >
+    <div class="mx-auto max-w-4xl px-6 sm:px-8 lg:px-12">
+      <p class="mb-5 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+        Explore the Collection
+      </p>
+      <ul class="m-0 flex list-none flex-wrap justify-center gap-2.5 p-0">
+        <li>
+          <a
+            href="/services/car-exotics"
+            class="inline-flex items-center gap-1.5 rounded-full border border-brand-forest/12 bg-white px-4 py-2 font-sans text-sm font-medium text-brand-forest transition-all duration-200 hover:border-brand-gold/55 hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ivory"
+          >
+            View All Exotic Vehicles →
+          </a>
+        </li>
+        <li>
+          <a
+            href="/fleet"
+            class="inline-flex items-center gap-1.5 rounded-full border border-brand-forest/12 bg-white px-4 py-2 font-sans text-sm font-medium text-brand-forest transition-all duration-200 hover:border-brand-gold/55 hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-ivory"
+          >
+            Browse Full Fleet →
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 6. Closing CTA -->
+  <section
+    class="relative overflow-hidden bg-brand-forest-deep py-16 text-brand-champagne sm:py-20 lg:py-24"
+    aria-labelledby={`cta-close-${vehicle.id}`}
+  >
+    <div
+      class="pointer-events-none absolute inset-0"
+      style="background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(163,126,44,0.16) 0%, transparent 70%);"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative mx-auto max-w-4xl px-6 text-center sm:px-8 lg:px-12">
+      <div class="mb-3 flex items-center justify-center gap-3">
+        <span class="h-px w-8 bg-brand-gold-soft" aria-hidden="true"></span>
+        <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-gold-soft">
+          Reserve Now
+        </p>
+        <span class="h-px w-8 bg-brand-gold-soft" aria-hidden="true"></span>
+      </div>
+
+      <h2
+        id={`cta-close-${vehicle.id}`}
+        class="mb-4 font-display font-light leading-[1.1] text-white"
+        style="font-size: clamp(1.85rem, 3.8vw, 2.6rem); letter-spacing: -0.01em;"
+      >
+        Book the {vehicle.name}
+        <em class="italic text-brand-gold-soft">today.</em>
+      </h2>
+
+      <p class="mx-auto mb-8 max-w-xl font-sans text-[0.98rem] font-light leading-relaxed text-white/75">
+        Dispatch is staffed 24/7. Book online in under two minutes or call — a human picks up.
+      </p>
+
+      <div
+        class="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4"
+        role="group"
+        aria-label="Book or call"
+      >
+        <a
+          href="https://customer.moovs.app/a1-charters-1/new/info"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex min-h-[52px] items-center justify-center gap-2 border border-brand-gold-soft bg-brand-gold-soft px-8 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-forest outline-none transition-[background-color,border-color,box-shadow] duration-200 hover:bg-brand-gold hover:shadow-[0_12px_28px_-12px_rgba(163,126,44,0.6)] focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-forest-deep motion-reduce:transition-none"
+        >
+          Reserve a Ride
+          <span aria-hidden="true">→</span>
+        </a>
+        <a
+          href="tel:+12065959675"
+          class="inline-flex min-h-[52px] items-center justify-center gap-2 border border-white/30 bg-transparent px-8 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-white outline-none transition-colors duration-200 hover:border-white/70 focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-forest-deep motion-reduce:transition-none"
+          aria-label="Call Emerald City Limos at (206) 595-9675, available 24 hours"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true">
+            <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+          </svg>
+          <span class="tabular-nums">(206) 595-9675</span>
+        </a>
+      </div>
+
+      <p class="mt-6 font-sans text-[0.72rem] uppercase tracking-[0.18em] text-white/45">
+        Licensed · Insured · Chauffeur & Self-Drive Available
+      </p>
+    </div>
+  </section>
+
+  <!-- 7. Structured data -->
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(vehicleSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+</MainLayout>

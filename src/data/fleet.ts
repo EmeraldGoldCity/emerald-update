@@ -28,7 +28,11 @@ export type VehicleCategory =
   | 'Limousine'
   | 'Minibus'
   | 'Party Bus'
-  | 'Motor Coach';
+  | 'Motor Coach'
+  | 'Exotic Sports Car'
+  | 'Exotic SUV'
+  | 'Performance GT'
+  | 'Adventure SUV';
 
 export type GalleryView =
   | 'Exterior'

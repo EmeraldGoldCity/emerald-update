@@ -25,6 +25,7 @@ import boosterHero from "@/assets/images/services/booster-seat/booster-seats.png
 import eventsHero from "@/assets/images/services/special-events/events.png";
 import gameDayHero from "@/assets/images/services/gameday/game-day.png";
 import hotelConciergeHero from "@/assets/images/services/concierge/reception.jpg";
+import carExoticsHero from "@/assets/images/fleet/rolls-royce/cullinan-exterior-2.png";
 
 
 
@@ -133,6 +134,10 @@ const ICON = {
 
   car:
     'M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12',
+  building:
+    'M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z',
+  gauge:
+    'M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-1.66-.45-3.21-1.23-4.55M12 12 8.1 8.1m.9 3.9a3 3 0 1 0 6 0 3 3 0 0 0-6 0',
 };
 
 /* ── Services ────────────────────────────────────────────── */
@@ -1047,6 +1052,113 @@ export const services: Service[] = [
     ],
   },
 },
+  {
+    slug: 'car-exotics',
+    name: 'Car Exotics',
+    cardHeadline: 'Exotic Car Fleet',
+    cardDescription:
+      'Ferraris, Lamborghini Urus, Porsche, Mercedes-Benz G-Wagon, Audi, and Jeep — available chauffeur-driven or as a verified self-drive rental, delivered to your location.',
+    cardBullets: [
+      'Ferrari · Lamborghini · Porsche · G-Wagon',
+      'Chauffeur-driven or self-drive rental',
+      'On-location delivery & pickup',
+      'Event, content creation & daily rental',
+    ],
+    cardIconPath: ICON.gauge,
+    href: '/services/car-exotics',
+    eyebrow: 'Exotic Fleet',
+    headline: 'Exotic Cars,',
+    headlineAccent: 'delivered to your door',
+    heroSupporting:
+      'Seattle\'s premier exotic car experience — Ferraris, Lamborghini Urus, Porsche, G-Wagon, and high-performance Audis available chauffeur-driven or as a verified self-drive rental, staged at your hotel, residence, or venue.',
+    heroImage: {
+      src: carExoticsHero,
+      alt: 'Ultra-luxury exotic SUV staged outside a Seattle hotel — Emerald City Limos car exotics fleet',
+    },
+    lead:
+      'When the standard luxury sedan will not do, our exotic fleet steps in. Seattle\'s discerning clientele — executives, athletes, entertainers, and brand activations — choose from a hand-selected collection spanning Italian supercars to commanding German off-roaders: Ferrari, Lamborghini Urus, Porsche, Mercedes-Benz G-Class, Audi RS performance models, and Jeep Wrangler Rubicon. Every vehicle is maintained to showroom standard, professionally detailed before each engagement, and fully insured under commercial coverage. We hold a Washington Utilities and Transportation Commission permit and carry $1.5M in commercial liability on every booking.',
+    leadExtended:
+      'Each booking ships with white-glove delivery: the vehicle arrives staged, fueled, and cleaned at your hotel, private residence, event venue, or airport terminal — no lot pickup, no shuttle wait. Chauffeur-driven service is available for all models; self-drive rental is offered to licensed drivers who pass our verification process. Multi-day rentals, brand activation packages, and content creation bookings are quoted on request.',
+    benefits: [
+      {
+        title: 'Curated Exotic Fleet',
+        description:
+          'Ferrari, Lamborghini Urus, Porsche, Mercedes G-Wagon, Audi RS, and Jeep Wrangler — maintained to the manufacturer\'s own demonstration standard.',
+        iconPath: ICON.sparkles,
+      },
+      {
+        title: 'Chauffeur or Self-Drive',
+        description:
+          'Arrive in style with a professional chauffeur, or take the wheel yourself on a verified self-drive rental — both options available on most models.',
+        iconPath: ICON.user,
+      },
+      {
+        title: 'White-Glove Delivery',
+        description:
+          'Vehicle delivered staged, fueled, and detailed to your hotel, residence, venue, or FBO ramp — no lot pickup, ever.',
+        iconPath: ICON.car,
+      },
+      {
+        title: 'Fully Insured & Licensed',
+        description:
+          'Every vehicle carries $1.5M commercial liability under our Washington UTC permit — the same coverage as every car in our fleet.',
+        iconPath: ICON.shieldCheck,
+      },
+      {
+        title: 'Event & Content Ready',
+        description:
+          'Perfect for brand activations, social content shoots, film productions, and wedding arrivals — condition documentation provided on request.',
+        iconPath: ICON.badgeCheck,
+      },
+      {
+        title: 'Flexible Rental Terms',
+        description:
+          'Half-day, full-day, and multi-day rental periods available. Recurring accounts and corporate packages quoted on request.',
+        iconPath: ICON.receipt,
+      },
+    ],
+    recommendedFleetIds: ['rolls-royce-cullinan', 's-class-s580', 'escalade-esv'],
+    faqs: [
+      {
+        question: 'Which exotic vehicles are available to rent or book?',
+        answer:
+          'Our exotic fleet includes Ferrari models, Lamborghini Urus, Porsche (Cayenne and Panamera), Mercedes-Benz G-Class (G-Wagon), Audi RS performance models, and Jeep Wrangler Rubicon. Availability varies by date — contact dispatch to confirm which specific vehicles are available for your window.',
+      },
+      {
+        question: 'Can I drive the exotic vehicle myself, or is it chauffeur-only?',
+        answer:
+          'Both options are available on most models. Self-drive rental requires a valid driver\'s license, a minimum age of 25, and a brief verification process completed at booking. Chauffeur-driven service is available on all models with no additional requirements. If you\'re unsure which is right for your event, our team can advise based on your itinerary.',
+      },
+      {
+        question: 'What is the minimum rental duration for an exotic car?',
+        answer:
+          'Half-day (four hours) is the standard minimum. Full-day and multi-day rentals are available and typically include mileage packages. For event-specific bookings (a two-hour brand activation, a wedding arrival, a content shoot), we can quote a dedicated-use window outside the standard rental tiers.',
+      },
+      {
+        question: 'What insurance coverage is included with the rental?',
+        answer:
+          'Every booking is covered under our $1.5M commercial liability policy, which is active for all vehicles in our fleet. Renters are responsible for damage beyond normal wear; we recommend confirming whether your personal auto policy or credit card extends coverage to exotic rental vehicles before the booking date.',
+      },
+      {
+        question: 'Are exotic cars available for photo shoots, brand events, or weddings?',
+        answer:
+          'Yes — brand activations, social media content shoots, film productions, and wedding arrival packages are all available. Event bookings include a pre-shoot condition walk-through, clean-detail prep, and documentation of the vehicle\'s exterior state. Multi-vehicle bookings for larger productions are coordinated through a single dispatch point of contact.',
+      },
+    ],
+    meta: {
+      title: 'Exotic Car Rental Seattle | Emerald City Limos',
+      description:
+        'Exotic car rental and chauffeur service in Seattle. Ferrari, Lamborghini Urus, Porsche, G-Wagon, and Audi — self-drive or chauffeured, delivered to your location.',
+      keywords: [
+        'exotic car rental seattle',
+        'ferrari rental seattle',
+        'lamborghini rental seattle',
+        'luxury car rental seattle',
+        'porsche rental seattle',
+        'g wagon rental seattle',
+      ],
+    },
+  },
 ];
 
 /** Look up a service by slug. Returns `undefined` if not found. */

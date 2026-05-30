@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Baby,
+  Bell,
   Briefcase,
   Calendar,
+  CarFront,
   ChevronDown,
   Clock,
   Heart,
@@ -15,7 +17,6 @@ import {
   Star,
   Trophy,
   X,
-  Bell
 } from 'lucide-react';
 
 /* =========================================================
@@ -106,7 +107,13 @@ const SERVICES = [
     href: '/services/hotel-concierge',
     icon: Bell,
     desc: 'VIP guest transportation coordinated with hotel staff.',
-  }
+  },
+  {
+    name: 'Car Exotics',
+    href: '/services/car-exotics',
+    icon: CarFront,
+    desc: 'Ferrari, Lambo Urus, Porsche, G-Wagon — chauffeur or self-drive.',
+  },
 ] as const;
 
 // Mirror of src/data/locations.ts — keep in sync when adding new cities.
