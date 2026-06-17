@@ -46,7 +46,7 @@ const SERVICES = [
     name: 'Airport Transfers',
     href: '/services/airport-transfer',
     icon: Plane,
-    desc: 'SEA-TAC, BFI, PAE — flight tracked, on time.',
+    desc: 'SEA-TAC, BFI, PAE flight tracked, on time.',
   },
   {
     name: 'Corporate Travel',
@@ -76,7 +76,7 @@ const SERVICES = [
     name: 'Events',
     href: '/events',
     icon: Calendar,
-    desc: 'Browse upcoming events — World Cup 2026, concerts & more.',
+    desc: 'Browse upcoming events World Cup 2026, concerts & more.',
   },
   {
     name: 'Cruise Transportation',
@@ -94,7 +94,7 @@ const SERVICES = [
     name: 'Personal Chauffeur',
     href: '/services/personal-chauffeur',
     icon: Star,
-    desc: 'Same driver on retainer — family & business.',
+    desc: 'Same driver on retainer family & business.',
   },
   {
     name: 'Infant & Booster Seats',
@@ -112,7 +112,7 @@ const SERVICES = [
     name: 'Car Exotics',
     href: '/services/car-exotics',
     icon: CarFront,
-    desc: 'Ferrari, Lambo Urus, Porsche, G-Wagon — chauffeur or self-drive.',
+    desc: 'Ferrari, Lambo Urus, Porsche, G-Wagon chauffeur or self-drive.',
   },
 ] as const;
 
@@ -325,7 +325,7 @@ export function Navigation({ variant = 'overlay' }: NavigationProps) {
             <a
               href="/"
               className={`group flex items-center gap-3 rounded-md ${RING}`}
-              aria-label="Emerald City Limos — return to homepage"
+              aria-label="Emerald City Limos return to homepage"
             >
               <picture>
                 <source srcSet="/icons/logo.webp" type="image/webp" />

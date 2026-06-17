@@ -3,6 +3,7 @@ import MainLayout from '@/layouts/MainLayout.astro';
 import { sanityClient, BLOG_POST_QUERY, BLOG_SLUGS_QUERY, RELATED_POSTS_QUERY } from '@/lib/sanity';
 import type { BlogPost, NormalizedBlogPost } from '@/lib/sanity';
 import { toHTML } from '@portabletext/to-html';
+import { PortableText } from '@portabletext/react';
 import RelatedArticles from '@/components/blog/RelatedArticles.astro';
 import { resolveInternalLink } from '@/lib/resolveInternalLink';
 
