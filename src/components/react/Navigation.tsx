@@ -728,8 +728,6 @@ function MobileDrawer({
       <aside
         id="mobile-drawer"
         ref={drawerRef}
-        role="dialog"
-        aria-modal="true"
         aria-label="Site navigation"
         className={[
           'fixed right-0 top-0 z-50 flex h-[100dvh] w-[88vw] max-w-sm flex-col',

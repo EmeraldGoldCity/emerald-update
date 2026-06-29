@@ -26,11 +26,11 @@ export function Navigation() {
   };
 
   return (
-    <nav className="bg-gradient-to-r from-emerald-900 to-emerald-800 text-white sticky top-0 z-50 w-full shadow-lg">
+    <header className="bg-gradient-to-r from-emerald-900 to-emerald-800 text-white sticky top-0 z-50 w-full shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo with Frame */}
-          <Link to="/" className="flex items-center space-x-2">
+          <Link to="/" aria-label="Emerald City Limo homepage" className="flex items-center space-x-2">
             <div className="border-2 border-[#d4af37] rounded-lg px-4 py-2 bg-emerald-950/30 hover:bg-emerald-950/50 transition-colors">
               <div className="text-xl md:text-2xl font-bold">
                 <span className="text-white">Emerald City</span>
@@ -40,35 +40,41 @@ export function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`text-sm font-medium hover:text-[#d4af37] whitespace-nowrap ${
-                  isActive(link.path) ? 'text-[#d4af37]' : 'text-white'
-                }`}
-                style={{
-                  transition: 'color 150ms cubic-bezier(0.4, 0, 0.2, 1)'
-                }}
-              >
-                {link.name}
-              </Link>
-            ))}
-            
-            {/* Book Now Button - Desktop */}
-            <a
-              href="https://customer.moovs.app/a1-charters-1/new/info"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-6 py-2 rounded-lg font-semibold whitespace-nowrap ml-2"
-              style={{
-                transition: 'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1), transform 150ms cubic-bezier(0.4, 0, 0.2, 1)'
-              }}
-            >
-              BOOK NOW
-            </a>
-          </div>
+          <nav aria-label="Primary" >
+            <ul className="hidden md:flex items-center space-x-6">
+              {navLinks.map((link) => (
+                <li key={link.path}>
+                  <Link
+                    to={link.path}
+                    aria-current={isActive(link.path) ? 'page' : undefined}
+                    className={`text-sm font-medium hover:text-[#d4af37] whitespace-nowrap ${
+                      isActive(link.path) ? 'text-[#d4af37]' : 'text-white'
+                    }`}
+                    style={{
+                      transition: 'color 150ms cubic-bezier(0.4, 0, 0.2, 1)'
+                    }}
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+              
+              {/* Book Now Button - Desktop */}
+              <li>
+                <a
+                  href="https://customer.moovs.app/a1-charters-1/new/info"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#d4af37] hover:bg-[#b8941f] text-black px-6 py-2 rounded-lg font-semibold whitespace-nowrap ml-2"
+                  style={{
+                    transition: 'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1), transform 150ms cubic-bezier(0.4, 0, 0.2, 1)'
+                  }}
+                >
+                  BOOK NOW
+                </a>
+              </li>
+            </ul>
+          </nav>
 
           {/* Contact Email - Desktop Only */}
           <div className="hidden lg:flex items-center">
@@ -89,6 +95,7 @@ export function Navigation() {
             className="md:hidden p-2 rounded-md hover:bg-emerald-700 transition-colors"
             aria-label="Toggle mobile menu"
             aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -96,33 +103,40 @@ export function Navigation() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden pb-4 space-y-2">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`block px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                  isActive(link.path)
-                    ? 'bg-emerald-700 text-yellow-400'
-                    : 'text-white hover:bg-emerald-700'
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
-            <div className="px-4 py-2 space-y-2 border-t border-emerald-700 mt-2 pt-4">
-              <a href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-[#d4af37] hover:bg-[#b8941f] text-black px-6 py-2 rounded-lg font-semibold transition-all">
-                BOOK NOW
-              </a>
-              <a href="mailto:client@emeraldcitylimos.com" className="flex items-center space-x-2 text-sm hover:text-[#d4af37]">
-                <Mail className="w-4 h-4" />
-                <span>client@emeraldcitylimos.com</span>
-              </a>
-            </div>
-          </div>
+          <nav 
+            id="mobile-navigation" 
+            aria-label="Mobile navigation"
+          >
+            <ul className="md:hidden pb-4 space-y-2">
+              {navLinks.map((link) => (
+                <li key={link.path}>
+                  <Link
+                    to={link.path}
+                    onClick={() => setMobileMenuOpen(false)}
+                    aria-current={isActive(link.path) ? 'page' : undefined}
+                    className={`block px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                      isActive(link.path)
+                        ? 'bg-emerald-700 text-yellow-400'
+                        : 'text-white hover:bg-emerald-700'
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+              <li className="px-4 py-2 space-y-2 border-t border-emerald-700 mt-2 pt-4">
+                <a href="https://customer.moovs.app/a1-charters-1/new/info" target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-[#d4af37] hover:bg-[#b8941f] text-black px-6 py-2 rounded-lg font-semibold transition-all">
+                  BOOK NOW
+                </a>
+                <a href="mailto:client@emeraldcitylimos.com" className="flex items-center space-x-2 text-sm hover:text-[#d4af37]">
+                  <Mail className="w-4 h-4" />
+                  <span>client@emeraldcitylimos.com</span>
+                </a>
+              </li>
+           </ul>
+          </nav>
         )}
       </div>
-    </nav>
+    </header>
   );
 }

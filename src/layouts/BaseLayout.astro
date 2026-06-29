@@ -217,23 +217,19 @@ const canonicalURL = canonical || new URL(Astro.url.pathname, siteUrl).href;
           "@type": "ReserveAction",
           target: {
             "@type": "EntryPoint",
-            urlTemplate: 'https://customer.moovs.app/a1-charters-1/new/info',
+            urlTemplate: "https://customer.moovs.app/a1-charters-1/new/info",
             actionPlatform: [
-              "http://schema.org/DesktopWebPlatform",
-              "http://schema.org/MobileWebPlatform",
-            ],
-          },
-          result: {
-            "@type": "Reservation",
-            name: "Book Limo Service",
-          },
+              "https://schema.org/DesktopWebPlatform",
+              "https://schema.org/MobileWebPlatform"
+            ]
+          }
         },
         aggregateRating: {
           "@type": "AggregateRating",
-          ratingValue: "4.9",
-          reviewCount: "127",
-          bestRating: "5",
-          worstRating: "1",
+          ratingValue: 4.9,
+          reviewCount: 127,
+          bestRating: 5,
+          worstRating: 1,
         },
       })}
     />
