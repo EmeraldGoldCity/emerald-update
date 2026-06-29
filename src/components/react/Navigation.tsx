@@ -466,7 +466,7 @@ export function Navigation({ variant = 'overlay' }: NavigationProps) {
   );
 }
 
-/* ==================== Subcomponents ==================== */
+/* ==================== Sub components ==================== */
 
 function NavLink({
   href,
